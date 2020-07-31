@@ -1,0 +1,49 @@
+.card_saldo_contas {
+  margin-left: 50px;
+  position: relative;
+  background: #fff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 20px 45px;
+  border-radius: 25px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    width: 100px;
+    height: 100px;
+    margin-right: -25px;
+    flex-shrink: 0;
+    box-shadow: 4px 13px 30px 1px rgb(95 95 95 / 20%);
+    border-radius: 20px;
+    transform: translateX(-70px);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-icon {
+      width: 35px;
+      height: 35px;
+      font-size: 35px;
+      color: #fff;
+    }
+  }
+
+  .content {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+      font-weight: bold;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+}

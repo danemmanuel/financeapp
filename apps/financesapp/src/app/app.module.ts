@@ -9,9 +9,14 @@ import { RoutingModule } from '@finances-app/src/app/core/routing.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, MainMenuModule, BrowserAnimationsModule, HomeGestaoFinanceiraModule, RoutingModule],
+  imports: [
+    BrowserModule,
+    MainMenuModule,
+    BrowserAnimationsModule,
+    HomeGestaoFinanceiraModule,
+    RoutingModule,
+  ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
