@@ -28,6 +28,12 @@
     "financesapp-e2e": {
       "tags": [],
       "implicitDependencies": ["financesapp"]
+    },
+    "main-menu": {
+      "tags": []
+    },
+    "angular-material": {
+      "tags": []
     }
   }
 }
