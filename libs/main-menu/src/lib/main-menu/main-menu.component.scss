@@ -1,0 +1,29 @@
+.menu {
+  position: fixed;
+  background: #4f5de0;
+  color: #fff;
+  border-radius: 150px;
+  height: 90%;
+  left: 30px;
+  top: 0;
+  overflow: hidden;
+  margin: calc(100% - 98.46%) 0px;
+  padding: 0;
+  width: 118px;
+
+  .content {
+    height: 100%;
+    padding:25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: -webkit-fill-available;
+  }
+
+  ul li {
+    text-align: center;
+    margin:10px 0;
+    font-weight: 500;
+    color:#fff;
+  }
+}
