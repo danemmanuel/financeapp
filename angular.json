@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "projects": {
+    "financesapp": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/financesapp",
+      "sourceRoot": "apps/financesapp/src",
+      "prefix": "finances-app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/financesapp",
+            "index": "apps/financesapp/src/index.html",
+            "main": "apps/financesapp/src/main.ts",
+            "polyfills": "apps/financesapp/src/polyfills.ts",
+            "tsConfig": "apps/financesapp/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/financesapp/src/favicon.ico",
+              "apps/financesapp/src/assets"
+            ],
+            "styles": ["apps/financesapp/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/financesapp/src/environments/environment.ts",
+                  "with": "apps/financesapp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "financesapp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "financesapp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "financesapp:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/financesapp/tsconfig.app.json",
+              "apps/financesapp/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/financesapp/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/financesapp/jest.config.js",
+            "tsConfig": "apps/financesapp/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/financesapp/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "financesapp-e2e": {
+      "root": "apps/financesapp-e2e",
+      "sourceRoot": "apps/financesapp-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/financesapp-e2e/cypress.json",
+            "tsConfig": "apps/financesapp-e2e/tsconfig.e2e.json",
+            "devServerTarget": "financesapp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "financesapp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/financesapp-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/financesapp-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "financesapp"
+}
