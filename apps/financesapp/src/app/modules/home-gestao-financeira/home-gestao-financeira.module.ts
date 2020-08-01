@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'angular-highcharts';
 import { DespesasPendentesComponent } from './components/despesas-pendentes/despesas-pendentes.component';
 import { ReceitasPendentesComponent } from './components/receitas-pendentes/receitas-pendentes.component';
+import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ReceitasPendentesComponent } from './components/receitas-pendentes/rece
     SaldoEmDespesasComponent,
     DespesasPendentesComponent,
     ReceitasPendentesComponent,
+    IndicativosFinanceirosComponent,
   ],
   imports: [
     CommonModule,
