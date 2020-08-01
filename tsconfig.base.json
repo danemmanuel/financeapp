@@ -1,5 +1,9 @@
 {
   "compileOnSave": false,
+  "angularCompilerOptions": {
+    "enableIvy": false,
+    "allowEmptyCodegenFiles": true
+  },
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,

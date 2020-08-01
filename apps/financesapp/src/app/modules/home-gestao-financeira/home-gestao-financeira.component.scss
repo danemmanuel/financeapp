@@ -1,5 +1,19 @@
 .content_home {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .content {
+    margin-top:30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .item {
+      flex: 1;
+      margin: 0 15px;
+    }
+  }
 }

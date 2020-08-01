@@ -39,6 +39,7 @@
 
     h1 {
       font-weight: bold;
+      line-height: 25px;
     }
 
     p {
@@ -46,4 +47,20 @@
       font-size: 18px;
     }
   }
+}
+
+.mat-card {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .title {
+    font-size: 23px;
+    font-weight: bold;
+    padding: 10px 5px;
+  }
+}
+.fade {
+  transition: 1s;
 }

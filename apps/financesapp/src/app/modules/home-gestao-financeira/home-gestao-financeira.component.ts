@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Swiper from 'swiper';
 
 @Component({
   selector: 'finances-app-home-gestao-financeira',
