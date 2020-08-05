@@ -15,9 +15,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "highcharts"
-            ],
+            "allowedCommonJsDependencies": ["highcharts"],
             "outputPath": "dist/apps/financesapp",
             "index": "apps/financesapp/src/index.html",
             "main": "apps/financesapp/src/main.ts",
@@ -90,10 +88,7 @@
               "apps/financesapp/tsconfig.app.json",
               "apps/financesapp/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/financesapp/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/financesapp/**/*"]
           }
         },
         "test": {
@@ -128,13 +123,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/financesapp-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/financesapp-e2e/**/*"
-            ]
+            "tsConfig": ["apps/financesapp-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/financesapp-e2e/**/*"]
           }
         }
       }
@@ -152,10 +142,7 @@
               "libs/main-menu/tsconfig.lib.json",
               "libs/main-menu/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/main-menu/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/main-menu/**/*"]
           }
         },
         "test": {
@@ -187,10 +174,7 @@
               "libs/angular-material/tsconfig.lib.json",
               "libs/angular-material/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/angular-material/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/angular-material/**/*"]
           }
         },
         "test": {
@@ -200,6 +184,38 @@
             "tsConfig": "libs/angular-material/tsconfig.spec.json",
             "passWithNoTests": true
           }
+        }
+      }
+    },
+    "fit-card": {
+      "projectType": "library",
+      "root": "libs/fit-card",
+      "sourceRoot": "libs/fit-card/src",
+      "prefix": "finances-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/fit-card/tsconfig.lib.json",
+              "libs/fit-card/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/fit-card/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/fit-card/jest.config.js",
+            "tsConfig": "libs/fit-card/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/fit-card/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
         }
       }
     }

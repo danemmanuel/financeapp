@@ -10,6 +10,5 @@ export class AppComponent implements OnInit {
   title = 'financesapp';
   constructor(private router: Router) {}
   ngOnInit() {
-    this.router.navigate(['dashboard/home'])
   }
 }

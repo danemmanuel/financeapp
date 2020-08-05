@@ -11,6 +11,7 @@ import { ChartModule } from 'angular-highcharts';
 import { DespesasPendentesComponent } from './components/despesas-pendentes/despesas-pendentes.component';
 import { ReceitasPendentesComponent } from './components/receitas-pendentes/receitas-pendentes.component';
 import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
+import { FitCardModule } from '@finances-app/fit-card';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { IndicativosFinanceirosComponent } from './components/indicativos-financ
     AngularMaterialModule,
     HttpClientModule,
     ChartModule,
+    FitCardModule,
   ],
 })
 export class HomeGestaoFinanceiraModule {}
