@@ -1,0 +1,28 @@
+.content_home {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .content {
+    margin-top:40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .item-50 {
+      flex-basis: 50%;
+      padding: 0 15px;
+      margin-top:10px;
+    }
+    .item-100 {
+      flex: 1;
+      flex-basis: 100%;
+      padding: 0 15px;
+      margin-top:20px;
+
+    }
+  }
+}

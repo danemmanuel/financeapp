@@ -3,7 +3,7 @@
   position: relative;
   background: #fff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  padding: 20px 45px;
+  padding: 15px 45px;
   border-radius: 25px;
   transition: all 0.3s;
   display: flex;
@@ -11,9 +11,9 @@
   justify-content: center;
 
   .icon {
-    width: 100px;
-    height: 100px;
-    margin-right: -25px;
+    width: 80px;
+    height: 80px;
+    margin-right: -40px;
     flex-shrink: 0;
     box-shadow: 4px 13px 30px 1px rgb(95 95 95 / 20%);
     border-radius: 20px;
@@ -24,9 +24,9 @@
     justify-content: center;
 
     mat-icon {
-      width: 35px;
-      height: 35px;
-      font-size: 35px;
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
       color: #fff;
     }
   }
@@ -36,10 +36,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-width: 170px;
 
     h1 {
       font-weight: bold;
-      line-height: 25px;
+      line-height: 27px;
+      font-size: 25px;
     }
 
     p {
