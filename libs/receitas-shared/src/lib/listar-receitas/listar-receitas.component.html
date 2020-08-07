@@ -1,4 +1,10 @@
 <mat-card>
+  <div class="header" *ngIf="titulo">
+    <div class="title green">
+      {{titulo}}
+    </div>
+  </div>
+
   <table mat-table [dataSource]="dataSource" style="width: 100%;">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Descrição</th>

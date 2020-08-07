@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-gestao-financeira.component.scss'],
 })
 export class HomeGestaoFinanceiraComponent implements OnInit {
+  receitasPendentes = [
+    { name: 'Lithium', data: '13/08/2020', weight: 6.9, icone: 'push_pin' },
+    { name: 'Beryllium', data: '13/08/2020', weight: 9.0, icone: 'push_pin' },
+  ];
+
   constructor() {}
 
   ngOnInit(): void {}

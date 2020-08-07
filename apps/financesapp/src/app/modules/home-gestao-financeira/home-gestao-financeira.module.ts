@@ -6,16 +6,15 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'angular-highcharts';
 import { DespesasPendentesComponent } from './components/despesas-pendentes/despesas-pendentes.component';
-import { ReceitasPendentesComponent } from './components/receitas-pendentes/receitas-pendentes.component';
 import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
 import { FitCardModule } from '@finances-app/fit-card';
 import { HeaderMesModule } from '@finances-app/header-mes';
+import { ReceitasSharedModule } from '@finances-app/receitas-shared';
 
 @NgModule({
   declarations: [
     HomeGestaoFinanceiraComponent,
     DespesasPendentesComponent,
-    ReceitasPendentesComponent,
     IndicativosFinanceirosComponent,
   ],
   imports: [
@@ -25,6 +24,7 @@ import { HeaderMesModule } from '@finances-app/header-mes';
     HttpClientModule,
     ChartModule,
     FitCardModule,
+    ReceitasSharedModule,
     HeaderMesModule,
   ],
 })

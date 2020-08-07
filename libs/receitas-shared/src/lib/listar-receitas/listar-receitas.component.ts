@@ -1,13 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 
-const ELEMENT_DATA = [
-  { name: 'Hydrogen', data: '13/08/2020', weight: 50.3, icone: 'check_circle' },
-  { name: 'Helium', data: '13/08/2020', weight: 43.3, icone: 'check_circle' },
-  { name: 'Lithium', data: '13/08/2020', weight: 6.9, icone: 'push_pin' },
-  { name: 'Beryllium', data: '13/08/2020', weight: 9.0, icone: 'push_pin' },
-];
 
 @Component({
   selector: 'finances-app-listar-receitas',
@@ -15,6 +9,8 @@ const ELEMENT_DATA = [
   styleUrls: ['./listar-receitas.component.scss'],
 })
 export class ListarReceitasComponent implements OnInit {
+  @Input() titulo;
+  @Input() receitas;
   displayedColumns: string[] = ['name', 'data', 'weight', 'icone'];
   selection = new SelectionModel<any>(true, []);
   dataSource = new MatTableDataSource();
@@ -22,7 +18,8 @@ export class ListarReceitasComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.dataSource.data = ELEMENT_DATA;
+    console.log(this.titulo);
+    this.dataSource.data = this.receitas;
   }
   isAllSelected() {
     const numSelected = this.selection.selected.length;
