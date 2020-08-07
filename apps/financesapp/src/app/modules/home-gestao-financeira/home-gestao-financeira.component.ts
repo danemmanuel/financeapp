@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class HomeGestaoFinanceiraComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
+  cadastrarReceita() {
+    console.log('cadastrar receita');
+  }
+
+  cadastrarDespesa() {
+    console.log('cadastrar despesa');
   }
 }

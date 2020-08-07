@@ -7,4 +7,15 @@
     <h1 [ngStyle]="{ color: cor }" [class]="cor">{{ titulo }}</h1>
     <p [ngStyle]="{ background: cor }">R$ {{ valor }}</p>
   </div>
+
+  <div class="btn" *ngIf="mostrarBtn">
+    <button
+      (click)="btnClick()"
+      [ngStyle]="{ background: cor }"
+      mat-fab
+      [matTooltip]="tooltip"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>

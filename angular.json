@@ -218,6 +218,70 @@
           "style": "scss"
         }
       }
+    },
+    "receitas-shared": {
+      "projectType": "library",
+      "root": "libs/receitas-shared",
+      "sourceRoot": "libs/receitas-shared/src",
+      "prefix": "finances-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/receitas-shared/tsconfig.lib.json",
+              "libs/receitas-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/receitas-shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/receitas-shared/jest.config.js",
+            "tsConfig": "libs/receitas-shared/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/receitas-shared/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "header-mes": {
+      "projectType": "library",
+      "root": "libs/header-mes",
+      "sourceRoot": "libs/header-mes/src",
+      "prefix": "finances-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/header-mes/tsconfig.lib.json",
+              "libs/header-mes/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/header-mes/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/header-mes/jest.config.js",
+            "tsConfig": "libs/header-mes/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/header-mes/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

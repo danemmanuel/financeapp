@@ -1,4 +1,7 @@
-.content_home {
+.content_despesas {
+  padding: 0 50px;
+
+
   .header {
     display: flex;
     align-items: center;
@@ -6,7 +9,7 @@
   }
 
   .content {
-    margin-top:40px;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,14 +18,13 @@
     .item-50 {
       flex-basis: 50%;
       padding: 0 15px;
-      margin-top:10px;
+      margin-top: 10px;
     }
     .item-100 {
       flex: 1;
       flex-basis: 100%;
       padding: 0 15px;
-      margin-top:20px;
-
+      margin-top: 20px;
     }
   }
 }

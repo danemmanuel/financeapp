@@ -9,6 +9,7 @@ import { DespesasPendentesComponent } from './components/despesas-pendentes/desp
 import { ReceitasPendentesComponent } from './components/receitas-pendentes/receitas-pendentes.component';
 import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
 import { FitCardModule } from '@finances-app/fit-card';
+import { HeaderMesModule } from '@finances-app/header-mes';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FitCardModule } from '@finances-app/fit-card';
     HttpClientModule,
     ChartModule,
     FitCardModule,
+    HeaderMesModule,
   ],
 })
 export class HomeGestaoFinanceiraModule {}

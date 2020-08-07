@@ -1,14 +1,17 @@
-<div class="content_home">
+<div class="content_despesas">
+  <div class="main_header">
+    <finances-app-header-mes></finances-app-header-mes>
+  </div>
   <div class="header">
     <finances-app-fit-card
       titulo="Total Pendente"
       valor="6.130,00"
-      cor="#FF604F"
+      cor="#323DA4"
       icone="lock"
     ></finances-app-fit-card>
 
     <finances-app-fit-card
-      titulo="Total Pago"
+      titulo="Total Recebido"
       valor="6.130,00"
       cor="#35AE96"
       icone="account_balance_wallet"
@@ -16,6 +19,8 @@
   </div>
 
   <div class="content" style="width: 100%;">
-    ds
+
+
+    <finances-app-listar-receitas style="width: 100%"></finances-app-listar-receitas>
   </div>
 </div>
