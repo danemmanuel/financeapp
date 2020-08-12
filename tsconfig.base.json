@@ -21,6 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@finances-app/*": ["apps/financesapp/*"],
+      "@finances-app-libs/*": ["libs/*"],
       "@finances-app/main-menu": ["libs/main-menu/src/index.ts"],
       "@finances-app/angular-material": ["libs/angular-material/src/index.ts"],
       "@finances-app/fit-card": ["libs/fit-card/src/index.ts"],

@@ -26,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CustomDateAdapter } from './custom-date-adapter';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { CustomDateAdapter } from './custom-date-adapter';
     MatMenuModule,
     MatTableModule,
     MatSidenavModule,
+    MatDividerModule
   ],
   declarations: [],
   exports: [
@@ -84,6 +86,7 @@ import { CustomDateAdapter } from './custom-date-adapter';
     MatMenuModule,
     MatTableModule,
     MatSidenavModule,
+    MatDividerModule
   ],
   providers: [
     { provide: DateAdapter, useClass: CustomDateAdapter },

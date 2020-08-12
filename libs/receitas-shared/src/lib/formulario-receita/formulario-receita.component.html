@@ -1,12 +1,31 @@
-<h1 mat-dialog-title>Nova Receita</h1>
+<h1 mat-dialog-title>
+  Nova <span style="color: rgb(53, 174, 150); font-weight: 500;">Receita</span>
+</h1>
 <div mat-dialog-content>
   <form [formGroup]="formReceita" novalidate autocomplete="off">
     <div class="row">
-      <mat-form-field class="col-12">
-        <input formControlName="valor" matInput placeholder="Valor:" />
+      <mat-form-field class="col-6">
+        <input
+          required
+          formControlName="valor"
+          matInput
+          placeholder="Valor da receita:"
+        />
       </mat-form-field>
 
-      <mat-form-field class="col-12">
+      <div class="col-6">
+        <section class="example-section">
+          <mat-slide-toggle
+            class="example-margin"
+            color="primary"
+            [checked]="true"
+          >
+            Recebido
+          </mat-slide-toggle>
+        </section>
+      </div>
+
+      <mat-form-field class="col-5">
         <mat-label>Data</mat-label>
         <input matInput formControlName="data" [matDatepicker]="picker1" />
         <mat-datepicker-toggle
@@ -15,6 +34,11 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
+      <mat-chip-list class="col-7 ">
+        <mat-chip (click)="setOntem()" >Ontem</mat-chip>
+        <mat-chip (click)="setHoje()" class="mat-chip-category">Hoje</mat-chip>
+        <mat-chip (click)="setAmanha()">Amanhã</mat-chip>
+      </mat-chip-list>
 
       <mat-form-field class="col-12">
         <textarea
@@ -25,16 +49,73 @@
       </mat-form-field>
 
       <mat-form-field class="col-12">
-        <input matInput
-               placeholder="State"
-               formControlName="categoria"
-               aria-label="State"
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-            <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
-            <span>{{state.name}}</span> |
-            <small>Population: {{state.population}}</small>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip
+            *ngFor="let fruit of fruits"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(fruit)"
+            class="mat-chip-category-primary"
+          >
+            {{ fruit }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Categoria"
+            #fruitInput
+            formControlName="categoria"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"
+            [disabled]="fruits.length > 0"
+          />
+        </mat-chip-list>
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let fruit of filteredFruits | async"
+            [value]="fruit"
+          >
+            {{ fruit }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-chip-list #chipInstituicao>
+          <mat-chip
+            *ngFor="let fruit of instituicaoFinanceira"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="removeInstituicao(fruit)"
+            class="mat-chip-category"
+          >
+            {{ fruit }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Banco"
+            #instituicaoInput
+            formControlName="instituicaoFinanceira"
+            [matAutocomplete]="autoInstituicao"
+            [matChipInputFor]="chipInstituicao"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addInstituicao($event)"
+            [disabled]="instituicaoFinanceira.length > 0"
+          />
+        </mat-chip-list>
+        <mat-autocomplete
+          #autoInstituicao="matAutocomplete"
+          (optionSelected)="selectedInstituicao($event)"
+        >
+          <mat-option
+            *ngFor="let fruit of filteredInstituicoes | async"
+            [value]="fruit"
+          >
+            {{ fruit }}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
@@ -42,8 +123,8 @@
   </form>
 </div>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" color="primary">
-    Install
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button (click)="salvarReceita()" type="submit" color="primary">
+    Adicionar
   </button>
 </mat-dialog-actions>

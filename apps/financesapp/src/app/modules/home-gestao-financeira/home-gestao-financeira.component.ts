@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormularioReceitaComponent } from '../../../../../../libs/receitas-shared/src/lib/formulario-receita/formulario-receita.component';
+import { FormularioReceitaComponent } from '@finances-app-libs/receitas-shared/src';
 
 @Component({
   selector: 'finances-app-home-gestao-financeira',
@@ -19,8 +19,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit {
 
   cadastrarReceita() {
     this.dialog.open(FormularioReceitaComponent, {
-      width: '400px'
-    })
+      width: '450px',
+    });
     console.log('cadastrar receita');
   }
 
