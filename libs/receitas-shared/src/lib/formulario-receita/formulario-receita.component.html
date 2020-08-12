@@ -2,12 +2,41 @@
 <div mat-dialog-content>
   <form [formGroup]="formReceita" novalidate autocomplete="off">
     <div class="row">
-      <mat-form-field class="col-5">
-        <input
-          formControlName="valor"
+      <mat-form-field class="col-12">
+        <input formControlName="valor" matInput placeholder="Valor:" />
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label>Data</mat-label>
+        <input matInput formControlName="data" [matDatepicker]="picker1" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <textarea
+          formControlName="descricao"
           matInput
-          placeholder="Valor:"
-        />
+          placeholder="Descrição"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <input matInput
+               placeholder="State"
+               formControlName="categoria"
+               aria-label="State"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+            <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
+            <span>{{state.name}}</span> |
+            <small>Population: {{state.population}}</small>
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </div>
   </form>

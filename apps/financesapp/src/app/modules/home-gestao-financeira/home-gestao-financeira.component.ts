@@ -19,7 +19,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit {
 
   cadastrarReceita() {
     this.dialog.open(FormularioReceitaComponent, {
-      width: '700px'
+      width: '400px'
     })
     console.log('cadastrar receita');
   }
