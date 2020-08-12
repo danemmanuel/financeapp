@@ -7,6 +7,8 @@
       <mat-form-field class="col-6">
         <input
           required
+          currencyMask
+          [options]="currencyOption"
           formControlName="valor"
           matInput
           placeholder="Valor da receita:"
@@ -35,9 +37,9 @@
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
       <mat-chip-list class="col-7 ">
-        <mat-chip (click)="setOntem()" >Ontem</mat-chip>
-        <mat-chip (click)="setHoje()" class="mat-chip-category">Hoje</mat-chip>
-        <mat-chip (click)="setAmanha()">Amanhã</mat-chip>
+        <mat-chip class="pointer" (click)="setOntem()" >Ontem</mat-chip>
+        <mat-chip  (click)="setHoje()" class="mat-chip-category pointer">Hoje</mat-chip>
+        <mat-chip class="pointer" (click)="setAmanha()">Amanhã</mat-chip>
       </mat-chip-list>
 
       <mat-form-field class="col-12">

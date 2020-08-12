@@ -4,9 +4,10 @@ import { ListarReceitasComponent } from './listar-receitas/listar-receitas.compo
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { FormularioReceitaComponent } from './formulario-receita/formulario-receita.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
-  imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, NgxCurrencyModule],
   declarations: [ListarReceitasComponent, FormularioReceitaComponent],
   exports: [ListarReceitasComponent, FormularioReceitaComponent],
   entryComponents: [FormularioReceitaComponent],

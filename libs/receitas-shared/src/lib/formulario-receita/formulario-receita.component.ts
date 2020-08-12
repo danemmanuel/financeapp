@@ -21,6 +21,7 @@ import {
 import { MatChipInputEvent } from '@angular/material/chips';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { CurrencyMaskConfig } from 'ngx-currency';
 
 @Component({
   selector: 'finances-app-formulario-receita',
@@ -38,6 +39,19 @@ export class FormularioReceitaComponent implements OnInit {
   instituicaoFinanceira: string[] = ['Nubank'];
   allFruits: string[] = ['Salário', 'Bonificação', 'Investimento'];
   allInstituicoes: string[] = ['Nubank', 'Neon', 'Bradesco'];
+  currencyOption: CurrencyMaskConfig = {
+    allowNegative: false,
+    allowZero: false,
+    nullable: false,
+    suffix: '',
+    max: 99999999,
+    min: 0,
+    precision: 2,
+    align: 'left',
+    thousands: '.',
+    decimal: ',',
+    prefix: 'R$',
+  };
 
   @ViewChild('picker1') picker: MatDatepicker<any>;
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
