@@ -30,6 +30,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/financesapp/src/styles.scss",
               "src/scss/_normalize.scss",
+              "src/scss/bootstrap-grid.min.scss",
               "src/scss/_cards.scss"
             ]
           },
@@ -274,6 +275,38 @@
             "tsConfig": "libs/header-mes/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/header-mes/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "despesas-shared": {
+      "projectType": "library",
+      "root": "libs/despesas-shared",
+      "sourceRoot": "libs/despesas-shared/src",
+      "prefix": "finances-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/despesas-shared/tsconfig.lib.json",
+              "libs/despesas-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/despesas-shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/despesas-shared/jest.config.js",
+            "tsConfig": "libs/despesas-shared/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/despesas-shared/src/test-setup.ts"
           }
         }
       },
