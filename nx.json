@@ -46,6 +46,9 @@
     },
     "despesas-shared": {
       "tags": []
+    },
+    "operacoes-shared": {
+      "tags": []
     }
   }
 }

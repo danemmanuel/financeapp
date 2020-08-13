@@ -10,6 +10,7 @@ import { IndicativosFinanceirosComponent } from './components/indicativos-financ
 import { FitCardModule } from '@finances-app/fit-card';
 import { HeaderMesModule } from '@finances-app/header-mes';
 import { ReceitasSharedModule } from '@finances-app/receitas-shared';
+import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ReceitasSharedModule } from '@finances-app/receitas-shared';
     ChartModule,
     FitCardModule,
     ReceitasSharedModule,
+    OperacoesSharedModule,
     HeaderMesModule,
   ],
 })

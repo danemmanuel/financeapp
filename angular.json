@@ -315,6 +315,38 @@
           "style": "scss"
         }
       }
+    },
+    "operacoes-shared": {
+      "projectType": "library",
+      "root": "libs/operacoes-shared",
+      "sourceRoot": "libs/operacoes-shared/src",
+      "prefix": "finances-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/operacoes-shared/tsconfig.lib.json",
+              "libs/operacoes-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/operacoes-shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/operacoes-shared/jest.config.js",
+            "tsConfig": "libs/operacoes-shared/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/operacoes-shared/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
     }
   },
   "cli": {

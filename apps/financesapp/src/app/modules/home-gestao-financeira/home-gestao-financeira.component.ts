@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormularioReceitaComponent } from '@finances-app-libs/receitas-shared/src';
+import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src';
 
 @Component({
   selector: 'finances-app-home-gestao-financeira',
@@ -18,13 +18,20 @@ export class HomeGestaoFinanceiraComponent implements OnInit {
   ngOnInit(): void {}
 
   cadastrarReceita() {
-    this.dialog.open(FormularioReceitaComponent, {
+    this.dialog.open(FormularioOperacoesComponent, {
       width: '450px',
+      data: {
+        tipoOperacao: 'receita'
+      }
     });
-    console.log('cadastrar receita');
   }
 
   cadastrarDespesa() {
-    console.log('cadastrar despesa');
+    this.dialog.open(FormularioOperacoesComponent, {
+      width: '450px',
+      data: {
+        tipoOperacao: 'despesa'
+      }
+    });
   }
 }
