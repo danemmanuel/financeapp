@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-  {{data.operacao ? 'Editar' : 'Nova'}}
+  {{ data.operacao ? 'Editar' : 'Nova' }}
   <span
     style="font-weight: 500;"
     [ngStyle]="{
@@ -153,6 +153,6 @@
     type="submit"
     [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
   >
-    Adicionar
+    {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>
