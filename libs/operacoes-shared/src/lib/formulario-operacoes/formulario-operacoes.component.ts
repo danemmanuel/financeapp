@@ -5,38 +5,34 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { COMMA } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { CurrencyMaskConfig } from 'ngx-currency';
+import { MatDatepicker } from '@angular/material/datepicker';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { map, startWith } from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { CurrencyMaskConfig } from 'ngx-currency';
 
 @Component({
-  selector: 'finances-app-formulario-receita',
-  templateUrl: './formulario-receita.component.html',
-  styleUrls: ['./formulario-receita.component.scss'],
+  selector: 'finances-app-formulario-operacoes',
+  templateUrl: './formulario-operacoes.component.html',
+  styleUrls: ['./formulario-operacoes.component.scss'],
 })
-export class FormularioReceitaComponent implements OnInit {
+export class FormularioOperacoesComponent implements OnInit {
+  tipoOperacao = '';
   formReceita: FormGroup;
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [COMMA];
   filteredFruits: Observable<string[]>;
   filteredInstituicoes: Observable<string[]>;
-  fruits: string[] = ['Salário'];
-  instituicaoFinanceira: string[] = ['Nubank'];
+  fruits: string[] = [];
+  instituicaoFinanceira: string[] = [];
   allFruits: string[] = ['Salário', 'Bonificação', 'Investimento'];
   allInstituicoes: string[] = ['Nubank', 'Neon', 'Bradesco'];
   currencyOption: CurrencyMaskConfig = {
@@ -61,39 +57,24 @@ export class FormularioReceitaComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
-    public dialogRef: MatDialogRef<FormularioReceitaComponent>,
+    public dialogRef: MatDialogRef<FormularioOperacoesComponent>,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.montarFormulario();
-    this.filteredFruits = this.formReceita.get('categoria').valueChanges.pipe(
-      startWith(''),
-      map((fruit: string | null) =>
-        fruit ? this._filter(fruit) : this.allFruits.slice()
-      )
-    );
+    this.tipoOperacao = this.data.tipoOperacao;
 
-    this.filteredInstituicoes = this.formReceita
-      .get('instituicaoFinanceira')
-      .valueChanges.pipe(
-        startWith(''),
-        map((fruit: string | null) =>
-          fruit ? this._filterInstituicao(fruit) : this.allInstituicoes.slice()
-        )
-      );
   }
 
   addInstituicao(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
 
-    // Add our fruit
     if ((value || '').trim()) {
       this.instituicaoFinanceira.push(value.trim());
     }
 
-    // Reset the input value
     if (input) {
       input.value = '';
     }
@@ -191,5 +172,21 @@ export class FormularioReceitaComponent implements OnInit {
       categoria: this.fb.control(null, [Validators.required]),
       instituicaoFinanceira: this.fb.control(null, [Validators.required]),
     });
+
+    this.filteredFruits = this.formReceita.get('categoria').valueChanges.pipe(
+      startWith(''),
+      map((fruit: string | null) =>
+        fruit ? this._filter(fruit) : this.allFruits.slice()
+      )
+    );
+
+    this.filteredInstituicoes = this.formReceita
+      .get('instituicaoFinanceira')
+      .valueChanges.pipe(
+        startWith(''),
+        map((fruit: string | null) =>
+          fruit ? this._filterInstituicao(fruit) : this.allInstituicoes.slice()
+        )
+      );
   }
 }

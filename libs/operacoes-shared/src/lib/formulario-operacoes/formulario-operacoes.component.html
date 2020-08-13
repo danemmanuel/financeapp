@@ -1,5 +1,16 @@
 <h1 mat-dialog-title>
-  Nova <span style="color: rgb(53, 174, 150); font-weight: 500;">Receita</span>
+  {{data.operacao ? 'Editar' : 'Nova'}}
+  <span
+    style="font-weight: 500;"
+    [ngStyle]="{
+      color:
+        data.tipoOperacao === 'Receita'
+          ? 'rgb(53, 174, 150)'
+          : 'rgb(255, 96, 79)'
+    }"
+  >
+    {{ tipoOperacao }}
+  </span>
 </h1>
 <div mat-dialog-content>
   <form [formGroup]="formReceita" novalidate autocomplete="off">
@@ -11,7 +22,7 @@
           [options]="currencyOption"
           formControlName="valor"
           matInput
-          placeholder="Valor da receita:"
+          placeholder="Valor da {{ tipoOperacao }}:"
         />
       </mat-form-field>
 
@@ -19,13 +30,21 @@
         <section class="example-section">
           <mat-slide-toggle
             class="example-margin"
-            color="primary"
+            [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
             [checked]="true"
           >
-            Recebido
+            {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
           </mat-slide-toggle>
         </section>
       </div>
+
+      <mat-form-field class="col-12">
+        <textarea
+          formControlName="descricao"
+          matInput
+          placeholder="Descrição"
+        ></textarea>
+      </mat-form-field>
 
       <mat-form-field class="col-5">
         <mat-label>Data</mat-label>
@@ -36,19 +55,21 @@
         ></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
-      <mat-chip-list class="col-7 ">
-        <mat-chip class="pointer" (click)="setOntem()" >Ontem</mat-chip>
-        <mat-chip  (click)="setHoje()" class="mat-chip-category pointer">Hoje</mat-chip>
+      <mat-chip-list class="col-7">
+        <mat-chip class="pointer" (click)="setOntem()">Ontem</mat-chip>
+        <mat-chip
+          (click)="setHoje()"
+          [ngStyle]="{
+            background:
+              data.tipoOperacao === 'Receita'
+                ? 'rgb(53, 174, 150)'
+                : 'rgb(255, 96, 79)'
+          }"
+          class="mat-chip-category pointer"
+          >Hoje</mat-chip
+        >
         <mat-chip class="pointer" (click)="setAmanha()">Amanhã</mat-chip>
       </mat-chip-list>
-
-      <mat-form-field class="col-12">
-        <textarea
-          formControlName="descricao"
-          matInput
-          placeholder="Descrição"
-        ></textarea>
-      </mat-form-field>
 
       <mat-form-field class="col-12">
         <mat-chip-list #chipList aria-label="Fruit selection">
@@ -63,6 +84,7 @@
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
           <input
+            required
             placeholder="Categoria"
             #fruitInput
             formControlName="categoria"
@@ -93,7 +115,6 @@
             [selectable]="selectable"
             [removable]="removable"
             (removed)="removeInstituicao(fruit)"
-            class="mat-chip-category"
           >
             {{ fruit }}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
@@ -126,7 +147,12 @@
 </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button (click)="salvarReceita()" type="submit" color="primary">
+  <button
+    mat-button
+    (click)="salvarReceita()"
+    type="submit"
+    [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+  >
     Adicionar
   </button>
 </mat-dialog-actions>

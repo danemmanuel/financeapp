@@ -21,7 +21,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit {
     this.dialog.open(FormularioOperacoesComponent, {
       width: '450px',
       data: {
-        tipoOperacao: 'receita'
+        tipoOperacao: 'Receita'
       }
     });
   }
@@ -30,7 +30,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit {
     this.dialog.open(FormularioOperacoesComponent, {
       width: '450px',
       data: {
-        tipoOperacao: 'despesa'
+        tipoOperacao: 'Despesa'
       }
     });
   }

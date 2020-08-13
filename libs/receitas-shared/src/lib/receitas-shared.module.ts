@@ -4,12 +4,19 @@ import { ListarReceitasComponent } from './listar-receitas/listar-receitas.compo
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 
 @NgModule({
-  imports: [CommonModule, AngularMaterialModule, ReactiveFormsModule, NgxCurrencyModule],
-  declarations: [ListarReceitasComponent, ],
-  exports: [ListarReceitasComponent, ],
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    NgxCurrencyModule,
+    OperacoesSharedModule
+  ],
+  declarations: [ListarReceitasComponent],
+  exports: [ListarReceitasComponent],
   entryComponents: [],
-  providers: [FormBuilder]
+  providers: [FormBuilder],
 })
 export class ReceitasSharedModule {}
