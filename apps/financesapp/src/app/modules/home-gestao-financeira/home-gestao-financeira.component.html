@@ -32,19 +32,17 @@
     ></finances-app-fit-card>
   </div>
 
-  <div class="content" style="width: 100%;">
-    <div class="item-50">
-    </div>
-
-    <div class="item-50">
+  <div class="row content">
+    <div class="col-6">
       <finances-app-listar-receitas
         [receitas]="receitasPendentes"
         titulo="Receitas em aberto"
         style="width: 100%;"
       ></finances-app-listar-receitas>
     </div>
-
-    <div class="item-50">
+  </div>
+  <div class="row">
+    <div class="col-6">
       <finances-app-indicativos-financeiros></finances-app-indicativos-financeiros>
     </div>
   </div>
