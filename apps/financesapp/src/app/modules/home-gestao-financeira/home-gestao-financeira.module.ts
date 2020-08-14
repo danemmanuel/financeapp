@@ -5,7 +5,6 @@ import { HomeGestaoFinanceiraRoutingModule } from './home-gestao-financeira-rout
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'angular-highcharts';
-import { DespesasPendentesComponent } from './components/despesas-pendentes/despesas-pendentes.component';
 import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
 import { FitCardModule } from '@finances-app/fit-card';
 import { HeaderMesModule } from '@finances-app/header-mes';
@@ -15,7 +14,6 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 @NgModule({
   declarations: [
     HomeGestaoFinanceiraComponent,
-    DespesasPendentesComponent,
     IndicativosFinanceirosComponent,
   ],
   imports: [
