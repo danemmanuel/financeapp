@@ -23,11 +23,11 @@ export class DespesasComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  adicionarReceita() {
+  adicionarDespesa() {
     this.dialog.open(FormularioOperacoesComponent, {
       width: '450px',
       data: {
-        tipoOperacao: 'Receita',
+        tipoOperacao: 'Despesa',
       },
     });
   }
