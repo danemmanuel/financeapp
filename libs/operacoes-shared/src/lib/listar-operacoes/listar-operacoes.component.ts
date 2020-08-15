@@ -11,6 +11,7 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
 export class ListarOperacoesComponent implements OnInit {
   @Input() titulo;
   @Input() receitas;
+  @Input() tipoOperacao;
   displayedColumns: string[] = ['name', 'data', 'weight', 'icone'];
   dataSource = new MatTableDataSource();
 
@@ -24,7 +25,7 @@ export class ListarOperacoesComponent implements OnInit {
     this.dialog.open(FormularioOperacoesComponent, {
       width: '450px',
       data: {
-        tipoOperacao: 'Receita',
+        tipoOperacao: this.tipoOperacao,
         operacao: {
           valor: 1000,
         },
