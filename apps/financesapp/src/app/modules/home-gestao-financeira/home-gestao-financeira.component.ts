@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src';
+import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 
 @Component({
   selector: 'finances-app-home-gestao-financeira',

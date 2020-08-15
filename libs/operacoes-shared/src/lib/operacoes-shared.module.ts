@@ -4,6 +4,7 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { FormularioOperacoesComponent } from './formulario-operacoes/formulario-operacoes.component';
+import { ListarOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/listar-operacoes/listar-operacoes.component';
 
 @NgModule({
   imports: [
@@ -12,8 +13,8 @@ import { FormularioOperacoesComponent } from './formulario-operacoes/formulario-
     ReactiveFormsModule,
     NgxCurrencyModule,
   ],
-  declarations: [FormularioOperacoesComponent],
-  exports: [FormularioOperacoesComponent],
+  declarations: [FormularioOperacoesComponent, ListarOperacoesComponent],
+  exports: [FormularioOperacoesComponent, ListarOperacoesComponent],
   providers: [FormBuilder],
   entryComponents: [FormularioOperacoesComponent]
 })
