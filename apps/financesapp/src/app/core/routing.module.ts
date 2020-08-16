@@ -16,6 +16,11 @@ const despesasModule = () =>
     (m) => m.DespesasModule
   );
 
+const contasModule = () =>
+  import('@finances-app/src/app/modules/contas/contas.module').then(
+    (m) => m.ContasModule
+  );
+
 export const routers: Routes = [
   {
     path: 'dashboard',
@@ -31,6 +36,10 @@ export const routers: Routes = [
       {
         path: 'despesas',
         loadChildren: despesasModule,
+      },
+      {
+        path: 'contas',
+        loadChildren: contasModule,
       },
     ],
   },
