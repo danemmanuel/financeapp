@@ -23,6 +23,40 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
+    .contas {
+      width: 100%;
+      .conta {
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:30px;
+        border: 5px solid #fff;
+        border-radius: 65px;
+        cursor: pointer;
+        transition: 0.3s;
+        opacity: 0.85;
+        max-width: 500px;
+        &:hover {
+          transform: scale(1.02, 1.02);
+          z-index: 9;
+        }
+        .saldos {
+          padding: 7px 20px;
+          border-radius: 48px;
+          text-align: right;
+          opacity: 1;
+          background: rgb(255 255 255 / 11%);
+        }
+        p {
+          margin:0;
+        }
+        h2 {
+          margin: 0;
+        }
+      }
+    }
+
     h1 {
       font-size: 30px;
       font-weight: 500;

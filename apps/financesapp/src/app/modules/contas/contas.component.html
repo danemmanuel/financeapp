@@ -7,7 +7,7 @@
       color="primary"
       class="add_operacao"
       matTooltip="Adicionar Conta"
-      style="background-color: #323DA4;"
+      style="background-color: #323da4;"
     >
       <mat-icon>add</mat-icon>
     </button>
@@ -30,10 +30,34 @@
 
   <div class="content" style="width: 100%;">
     <h1>Contas</h1>
-    <finances-app-listar-operacoes
-      [receitas]="receitas"
-      tipoOperacao="Despesa"
-      style="width: 100%;"
-    ></finances-app-listar-operacoes>
+
+    <div class="contas row">
+      <div class="conta col-4" style="background: purple;">
+        <h2>Nubank</h2>
+
+        <div class="saldos">
+          <p>Saldo atual: <b>R$0,00</b></p>
+          <p>Saldo previsto: <b>R$0,00</b></p>
+        </div>
+      </div>
+
+      <div class="conta col-4" style="background: #00bae4;">
+        <h2>Neon</h2>
+
+        <div class="saldos">
+          <p>Saldo atual: <b>R$0,00</b></p>
+          <p>Saldo previsto: <b>R$0,00</b></p>
+        </div>
+      </div>
+
+      <div class="conta col-4" style="background: #cc092e;">
+        <h2>Bradesco</h2>
+
+        <div class="saldos">
+          <p>Saldo atual: <b>R$0,00</b></p>
+          <p>Saldo previsto: <b>R$0,00</b></p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
