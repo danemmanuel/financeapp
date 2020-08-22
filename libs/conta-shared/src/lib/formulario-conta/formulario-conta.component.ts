@@ -1,8 +1,18 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { map, startWith } from 'rxjs/operators';
 import { CurrencyMaskConfig } from 'ngx-currency';
+import { Observable } from 'rxjs';
+import { COMMA } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'finances-app-formulario-conta',
@@ -12,6 +22,11 @@ import { CurrencyMaskConfig } from 'ngx-currency';
 export class FormularioContaComponent implements OnInit {
   formConta: FormGroup;
   tipoOperacao;
+  allInstituicoes: string[] = ['Nubank', 'Neon', 'Bradesco'];
+  filteredInstituicoes: Observable<string[]>;
+  instituicaoFinanceira: string[] = [];
+  selectable = true;
+  removable = true;
   currencyOption: CurrencyMaskConfig = {
     allowNegative: false,
     allowZero: false,
@@ -25,6 +40,26 @@ export class FormularioContaComponent implements OnInit {
     decimal: ',',
     prefix: 'R$',
   };
+  tiposConta = [
+    {
+      id: 1,
+      descricao: 'Conta Corrente',
+    },
+    {
+      id: 2,
+      descricao: 'Investimentos',
+    },
+    {
+      id: 3,
+      descricao: 'Dinheiro',
+    },
+    {
+      id: 4,
+      descricao: 'Outros',
+    },
+  ];
+  separatorKeysCodes: number[] = [COMMA];
+  @ViewChild('instituicaoInput') instituicaoInput: ElementRef<HTMLInputElement>;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -40,11 +75,57 @@ export class FormularioContaComponent implements OnInit {
   montarFormulario() {
     this.formConta = this.fb.group({
       saldo: this.fb.control(null, [Validators.required]),
-      recebido: this.fb.control(null),
-      data: this.fb.control(new Date()),
       descricao: this.fb.control(null),
-      categoria: this.fb.control(null, [Validators.required]),
       instituicaoFinanceira: this.fb.control(null, [Validators.required]),
+      tipoConta: this.fb.control(null, [Validators.required]),
     });
+
+    this.filteredInstituicoes = this.formConta
+      .get('instituicaoFinanceira')
+      .valueChanges.pipe(
+        startWith(''),
+        map((instituicao: string | null) =>
+          instituicao
+            ? this._filterInstituicao(instituicao)
+            : this.allInstituicoes.slice()
+        )
+      );
+  }
+
+  private _filterInstituicao(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allInstituicoes.filter(
+      (fruit) => fruit.toLowerCase().indexOf(filterValue) === 0
+    );
+  }
+
+  removeInstituicao(fruit: string): void {
+    const index = this.instituicaoFinanceira.indexOf(fruit);
+
+    if (index >= 0) {
+      this.instituicaoFinanceira.splice(index, 1);
+    }
+  }
+
+  addInstituicao(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim()) {
+      this.instituicaoFinanceira.push(value.trim());
+    }
+
+    if (input) {
+      input.value = '';
+    }
+
+    this.formConta.get('instituicaoFinanceira').setValue(null);
+  }
+
+  selectedInstituicao(event: MatAutocompleteSelectedEvent): void {
+    this.instituicaoFinanceira.push(event.option.viewValue);
+    this.instituicaoInput.nativeElement.value = '';
+    this.formConta.get('instituicaoFinanceira').setValue(null);
   }
 }

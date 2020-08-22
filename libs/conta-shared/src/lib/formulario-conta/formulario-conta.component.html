@@ -19,7 +19,51 @@
       </mat-form-field>
 
       <mat-form-field class="col-12">
+        <mat-chip-list #chipInstituicao>
+          <mat-chip
+            *ngFor="let fruit of instituicaoFinanceira"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="removeInstituicao(fruit)"
+          >
+            {{ fruit }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Instituição financeira"
+            #instituicaoInput
+            formControlName="instituicaoFinanceira"
+            [matAutocomplete]="autoInstituicao"
+            [matChipInputFor]="chipInstituicao"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="addInstituicao($event)"
+            [disabled]="instituicaoFinanceira.length > 0"
+          />
+        </mat-chip-list>
+        <mat-autocomplete
+          #autoInstituicao="matAutocomplete"
+          (optionSelected)="selectedInstituicao($event)"
+        >
+          <mat-option
+            *ngFor="let fruit of filteredInstituicoes | async"
+            [value]="fruit"
+          >
+            {{ fruit }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
         <input matInput formControlName="descricao" placeholder="Descrição:" />
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label>Tipo da conta</mat-label>
+        <mat-select formControlName="tipoConta">
+          <mat-option *ngFor="let tipoConta of tiposConta" [value]="tipoConta">
+            {{ tipoConta.descricao }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
   </form>
