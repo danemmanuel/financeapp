@@ -6,6 +6,7 @@ import { FitCardModule } from '@finances-app/fit-card';
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { HeaderMesModule } from '@finances-app/header-mes';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
+import { ContaSharedModule } from '@finances-app/conta-shared';
 
 @NgModule({
   declarations: [ContasComponent],
@@ -16,6 +17,7 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     AngularMaterialModule,
     HeaderMesModule,
     OperacoesSharedModule,
+    ContaSharedModule
   ],
 })
 export class ContasModule {}

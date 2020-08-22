@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
+import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/lib/formulario-conta/formulario-conta.component';
 
 @Component({
   selector: 'finances-app-contas',
@@ -24,7 +24,7 @@ export class ContasComponent implements OnInit {
   ngOnInit(): void {}
 
   adicionarConta() {
-    this.dialog.open(FormularioOperacoesComponent, {
+    this.dialog.open(FormularioContaComponent, {
       width: '450px',
       data: {
         tipoOperacao: 'Despesa',
