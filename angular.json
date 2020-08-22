@@ -15,9 +15,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "highcharts"
-            ],
+            "allowedCommonJsDependencies": ["highcharts"],
             "outputPath": "dist/apps/financesapp",
             "index": "apps/financesapp/src/index.html",
             "main": "apps/financesapp/src/main.ts",
@@ -91,10 +89,7 @@
               "apps/financesapp/tsconfig.app.json",
               "apps/financesapp/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/financesapp/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/financesapp/**/*"]
           }
         },
         "test": {
@@ -129,13 +124,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/financesapp-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/financesapp-e2e/**/*"
-            ]
+            "tsConfig": ["apps/financesapp-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/financesapp-e2e/**/*"]
           }
         }
       }
@@ -153,10 +143,7 @@
               "libs/main-menu/tsconfig.lib.json",
               "libs/main-menu/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/main-menu/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/main-menu/**/*"]
           }
         },
         "test": {
@@ -188,10 +175,7 @@
               "libs/angular-material/tsconfig.lib.json",
               "libs/angular-material/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/angular-material/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/angular-material/**/*"]
           }
         },
         "test": {
@@ -217,10 +201,7 @@
               "libs/fit-card/tsconfig.lib.json",
               "libs/fit-card/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/fit-card/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/fit-card/**/*"]
           }
         },
         "test": {
@@ -252,10 +233,7 @@
               "libs/receitas-shared/tsconfig.lib.json",
               "libs/receitas-shared/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/receitas-shared/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/receitas-shared/**/*"]
           }
         },
         "test": {
@@ -287,10 +265,7 @@
               "libs/header-mes/tsconfig.lib.json",
               "libs/header-mes/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/header-mes/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/header-mes/**/*"]
           }
         },
         "test": {
@@ -322,10 +297,7 @@
               "libs/despesas-shared/tsconfig.lib.json",
               "libs/despesas-shared/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/despesas-shared/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/despesas-shared/**/*"]
           }
         },
         "test": {
@@ -357,10 +329,7 @@
               "libs/operacoes-shared/tsconfig.lib.json",
               "libs/operacoes-shared/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/operacoes-shared/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/operacoes-shared/**/*"]
           }
         },
         "test": {
@@ -370,6 +339,38 @@
             "tsConfig": "libs/operacoes-shared/tsconfig.spec.json",
             "passWithNoTests": true,
             "setupFile": "libs/operacoes-shared/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "conta-shared": {
+      "projectType": "library",
+      "root": "libs/conta-shared",
+      "sourceRoot": "libs/conta-shared/src",
+      "prefix": "finances-app",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/conta-shared/tsconfig.lib.json",
+              "libs/conta-shared/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/conta-shared/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/conta-shared/jest.config.js",
+            "tsConfig": "libs/conta-shared/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "libs/conta-shared/src/test-setup.ts"
           }
         }
       },

@@ -49,6 +49,9 @@
     },
     "operacoes-shared": {
       "tags": []
+    },
+    "conta-shared": {
+      "tags": []
     }
   }
 }
