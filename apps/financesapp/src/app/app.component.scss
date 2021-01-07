@@ -2,9 +2,24 @@
   display: flex;
 }
 
-.main_content {
-  margin-left: 150px;
-  margin-top: 25px;
-  width:100%;
-  padding: 0 30px;
+@media (min-width: 768px) {
+  .main_content {
+    padding: 20px 16px 24px;
+    width:100%;
+    margin: 0px auto;
+    margin-left: 140px;
+    background-color: transparent;
+  }
 }
+
+@media (min-width: 1400px) {
+  .main_content {
+    padding: 20px 16px 24px;
+    width:100%;
+    margin: 0px auto;
+    margin-left: 140px;
+    background-color: transparent;
+  }
+}
+
+

@@ -21,7 +21,7 @@
             "main": "apps/financesapp/src/main.ts",
             "polyfills": "apps/financesapp/src/polyfills.ts",
             "tsConfig": "apps/financesapp/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/financesapp/src/favicon.ico",
               "apps/financesapp/src/assets"

@@ -1,60 +1,73 @@
-.menu {
+.main_menu {
   position: fixed;
-  height: 100%;
-  left: 30px;
-  top: 0px;
-  padding: 0;
-  width: 130px;
-  text-align: center;
+  left: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+  white-space: nowrap;
+  width: 260px;
+  transition: width 320ms ease-in-out 0s;
 
-  .content {
-    background: #4f5de0;
-    background: linear-gradient(330deg, #303881 0%, #323eac 100%);
-    color: #fff;
-    border-radius: 30px;
+  .menu {
+    top: 0;
+    flex: 1 0 auto;
     height: 100%;
-    padding: 15px;
     display: flex;
+    outline: 0;
+    z-index: 1200;
+    position: fixed;
+    overflow-y: auto;
     flex-direction: column;
-    justify-content: space-between;
-    height: -webkit-fill-available;
-    margin: 30px 0px;
 
-    & .footer_menu {
-      border-radius: 100px;
-      font-size: 10px;
-      padding:5px;
-      background: rgb(255 255 255 / 6%);
-    }
-  }
+    .content {
+      background: #4f5de0;
+      background: linear-gradient(330deg, #303881 0%, #323eac 100%);
+      color: #fff;
+      border-radius: 30px;
+      height: 100%;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: -webkit-fill-available;
+      margin: 30px 0px;
 
-  ul li {
-    text-align: center;
-    margin: 10px 0;
-    padding: 10px 0px;
-    font-weight: 500;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-    border-radius: 20px;
-
-    mat-icon {
-      margin-top: 5px;
-      font-size: 18px;
+      & .footer_menu {
+        border-radius: 100px;
+        font-size: 10px;
+        padding:5px;
+        background: rgb(255 255 255 / 6%);
+      }
     }
 
-    &:hover {
-       background: rgb(255 255 255 / 6%);
-      border-radius: 20px;
+    ul li {
+      text-align: center;
+      margin: 10px 0;
+      padding: 10px 0px;
+      font-weight: 500;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       transition: 0.2s;
-    }
-
-    &.active {
-      background: rgb(255 255 255 / 6%);
       border-radius: 20px;
+
+      mat-icon {
+        margin-top: 5px;
+        font-size: 18px;
+      }
+
+      &:hover {
+        background: rgb(255 255 255 / 6%);
+        border-radius: 20px;
+        transition: 0.2s;
+      }
+
+      &.active {
+        background: rgb(255 255 255 / 6%);
+        border-radius: 20px;
+      }
     }
   }
 }
+
