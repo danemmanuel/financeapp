@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HeaderMesComponent } from './header-mes.component';
 
@@ -6,7 +6,7 @@ describe('HeaderMesComponent', () => {
   let component: HeaderMesComponent;
   let fixture: ComponentFixture<HeaderMesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ HeaderMesComponent ]
     })

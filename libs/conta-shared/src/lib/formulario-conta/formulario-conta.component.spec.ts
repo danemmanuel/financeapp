@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FormularioContaComponent } from './formulario-conta.component';
 
@@ -6,7 +6,7 @@ describe('FormularioContaComponent', () => {
   let component: FormularioContaComponent;
   let fixture: ComponentFixture<FormularioContaComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FormularioContaComponent ]
     })
