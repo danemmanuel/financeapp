@@ -1,25 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const homeGestaoFinanceiraModule = () =>
-  import(
-    '@finances-app/src/app/modules/home-gestao-financeira/home-gestao-financeira.module'
-  ).then((m) => m.HomeGestaoFinanceiraModule);
+const homeGestaoFinanceiraModule =
+  '@finances-app/src/app/modules/home-gestao-financeira/home-gestao-financeira.module#HomeGestaoFinanceiraModule';
 
-const receitasModule = () =>
-  import('@finances-app/src/app/modules/receitas/receitas.module').then(
-    (m) => m.ReceitasModule
-  );
+const receitasModule =
+  '@finances-app/src/app/modules/receitas/receitas.module#ReceitasModule';
 
-const despesasModule = () =>
-  import('@finances-app/src/app/modules/despesas/despesas.module').then(
-    (m) => m.DespesasModule
-  );
+const despesasModule =
+  '@finances-app/src/app/modules/despesas/despesas.module#DespesasModule';
 
-const contasModule = () =>
-  import('@finances-app/src/app/modules/contas/contas.module').then(
-    (m) => m.ContasModule
-  );
+const contasModule =
+  '@finances-app/src/app/modules/contas/contas.module#ContasModule';
 
 export const routers: Routes = [
   {
@@ -46,7 +38,9 @@ export const routers: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routers, { relativeLinkResolution: 'legacy' })],
+  imports: [
+    RouterModule.forRoot(routers, { relativeLinkResolution: 'legacy' }),
+  ],
   exports: [RouterModule],
 })
 export class RoutingModule {}
