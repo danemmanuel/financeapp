@@ -1,0 +1,21 @@
+version: 0.2
+env:
+  variables:
+    APP_NAME: "financess-app"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14.x
+    commands:
+      - echo install process started
+      - npm install --force && npm install -g @angular/cli
+  build:
+    commands:
+      - echo build process started now
+      - npm run build
+  post_build:
+    commands:
+      - echo build process finished, we should uplload to S3 now
+      - cd dist/apps/financeapp
+      - ls -la
+      - aws s3 . s3://financess-app --acl public-read
