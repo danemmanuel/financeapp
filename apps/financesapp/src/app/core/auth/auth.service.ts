@@ -34,6 +34,6 @@ export class AuthService {
   }
 
   exemplo() {
-    return this.http.get<any>(`http://localhost:5000/auth/protected`);
+    return this.http.get<any>(`http://18.228.223.112:5000/auth/protected`);
   }
 }
