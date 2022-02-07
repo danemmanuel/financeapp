@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeGestaoFinanceiraModule } from './modules/home-gestao-financeira/home-gestao-financeira.module';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { MainMenuModule } from '@finances-app/main-menu';
 import { RoutingModule } from '@finances-app/src/app/core/routing.module';
-import { HttpClient, HttpClientModule, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { AuthGuard } from './core/auth/auth.guard';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 
 @NgModule({
@@ -16,9 +16,12 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
     MainMenuModule,
     BrowserAnimationsModule,
     RoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
+    AuthGuard,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
