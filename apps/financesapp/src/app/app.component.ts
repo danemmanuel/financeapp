@@ -17,10 +17,9 @@ export class AppComponent implements OnInit {
   }
   async ngOnInit() {
     setTimeout(async () => {
-       this._authService.exemplo().subscribe(r=>{
+      this._authService.exemplo().subscribe((r) => {
         console.log(r);
-
-      })
+      });
     }, 3000);
   }
 }

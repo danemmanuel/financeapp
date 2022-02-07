@@ -7,7 +7,6 @@ const rotas: Routes = [
   {
     path: '',
     component: DespesasComponent,
-    canActivate: [AuthGuard]
   },
 ];
 

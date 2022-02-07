@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 const homeGestaoFinanceiraModule =
   '@finances-app/src/app/modules/home-gestao-financeira/home-gestao-financeira.module#HomeGestaoFinanceiraModule';
@@ -21,6 +22,7 @@ export const routers: Routes = [
   { path: 'login', loadChildren: authModule },
   {
     path: 'dashboard',
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'home',

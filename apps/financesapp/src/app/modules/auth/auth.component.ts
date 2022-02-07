@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/lib/formulario-conta/formulario-conta.component';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -21,7 +19,7 @@ export class AuthComponent implements OnInit {
       console.log(params.jwt);
       if (!params.jwt) return;
       localStorage.setItem('token', JSON.stringify(params.jwt));
-      this.router.navigate(['dashboard/home'])
+      this.router.navigate(['dashboard/home']);
     });
   }
 }
