@@ -13,7 +13,12 @@ const despesasModule =
 const contasModule =
   '@finances-app/src/app/modules/contas/contas.module#ContasModule';
 
+const authModule = '@finances-app/src/app/modules/auth/auth.module#AuthModule';
+const homeModule = '@finances-app/src/app/modules/home/home.module#HomeModule';
+
 export const routers: Routes = [
+  { path: '', loadChildren: homeModule },
+  { path: 'login', loadChildren: authModule },
   {
     path: 'dashboard',
     children: [

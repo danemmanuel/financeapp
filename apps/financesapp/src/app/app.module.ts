@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeGestaoFinanceiraModule } from './modules/home-gestao-financeira/home-gestao-financeira.module';
 import { MainMenuModule } from '@finances-app/main-menu';
 import { RoutingModule } from '@finances-app/src/app/core/routing.module';
+import { HttpClient, HttpClientModule, HttpHandler, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,10 +15,16 @@ import { RoutingModule } from '@finances-app/src/app/core/routing.module';
     BrowserModule,
     MainMenuModule,
     BrowserAnimationsModule,
-    HomeGestaoFinanceiraModule,
     RoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
