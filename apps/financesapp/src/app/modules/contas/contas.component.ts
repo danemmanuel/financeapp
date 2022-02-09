@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/lib/formulario-conta/formulario-conta.component';
 
 @Component({
   selector: 'finances-app-contas',
   templateUrl: './contas.component.html',
-  styleUrls: ['./contas.component.scss']
+  styleUrls: ['./contas.component.scss'],
 })
 export class ContasComponent implements OnInit {
-  receitas = [
-    {
-      name: 'Hydrogen',
-      data: '13/08/2020',
-      weight: 50.13,
-      icone: 'check_circle',
-    },
-    { name: 'Helium', data: '13/08/2020', weight: 43.3, icone: 'check_circle' },
-    { name: 'Lithium', data: '13/08/2020', weight: 6.9, icone: 'push_pin' },
-    { name: 'Beryllium', data: '13/08/2020', weight: 9.0, icone: 'push_pin' },
-  ];
-  constructor(private dialog: MatDialog) {}
+  contas: any = [];
 
-  ngOnInit(): void {}
+  constructor(
+    private dialog: MatDialog,
+    private _contaService: ContasService
+  ) {}
+
+  ngOnInit(): void {
+    this.buscarContas();
+  }
+
+  async buscarContas() {
+    this.contas = await this._contaService.buscarContas().toPromise()
+  }
 
   adicionarConta() {
     this.dialog.open(FormularioContaComponent, {

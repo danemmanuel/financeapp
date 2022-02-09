@@ -15,11 +15,5 @@ export class AppComponent implements OnInit {
       this.usuario = r;
     });
   }
-  async ngOnInit() {
-    setTimeout(async () => {
-      this._authService.exemplo().subscribe((r) => {
-        console.log(r);
-      });
-    }, 3000);
-  }
+  async ngOnInit() {}
 }

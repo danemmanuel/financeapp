@@ -7,9 +7,10 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { HeaderMesModule } from '@finances-app/header-mes';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 import { ContaSharedModule } from '@finances-app/conta-shared';
+import { ListarContasComponent } from './listar-contas/listar-contas.component';
 
 @NgModule({
-  declarations: [ContasComponent],
+  declarations: [ContasComponent, ListarContasComponent],
   imports: [
     CommonModule,
     ContasRoutingModule,

@@ -32,10 +32,6 @@
       </mat-form-field>
 
       <mat-form-field class="col-12">
-        <input matInput formControlName="descricao" placeholder="Descrição:" />
-      </mat-form-field>
-
-      <mat-form-field class="col-12">
         <mat-label>Tipo da conta</mat-label>
         <mat-select formControlName="tipoConta">
           <mat-option *ngFor="let tipoConta of tiposConta" [value]="tipoConta">

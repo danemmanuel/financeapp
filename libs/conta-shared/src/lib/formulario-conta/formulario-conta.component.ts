@@ -77,8 +77,7 @@ export class FormularioContaComponent implements OnInit {
   montarFormulario() {
     this.formConta = this.fb.group({
       saldo: this.fb.control(null, [Validators.required]),
-      descricao: this.fb.control(null),
-      instituicaoFinanceira: this.fb.control(null, [Validators.required]),
+      instituicaoFinanceira: this.fb.control(null, []),
       tipoConta: this.fb.control(null, [Validators.required]),
     });
 
@@ -132,10 +131,13 @@ export class FormularioContaComponent implements OnInit {
   }
 
   async enviarFormulario() {
+    if (this.formConta.invalid || !this.instituicaoFinanceira?.length) return;
+
+    let formValue = this.formConta.value;
     let objSalvar = {
-      saldo: 12121.11,
-      instituicao: 'Neon',
-      tipoConta: 'Guardando',
+      saldo: formValue.saldo,
+      instituicao: this.instituicaoFinanceira[0],
+      tipoConta: formValue.tipoConta.descricao,
     };
     await this._contaService.cadastrarConta(objSalvar).toPromise();
   }

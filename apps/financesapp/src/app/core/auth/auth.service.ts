@@ -32,8 +32,4 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
-
-  exemplo() {
-    return this.http.get<any>(`http://localhost:3000/auth/protected`);
-  }
 }
