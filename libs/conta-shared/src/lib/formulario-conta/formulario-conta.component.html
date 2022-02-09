@@ -8,46 +8,24 @@
   <form [formGroup]="formConta" novalidate autocomplete="off">
     <div class="row">
       <mat-form-field class="col-12">
-        <input
-          required
-          currencyMask
-          [options]="currencyOption"
-          formControlName="saldo"
-          matInput
-          placeholder="Saldo atual da conta:"
-        />
+        <input required currencyMask [options]="currencyOption" formControlName="saldo" matInput
+          placeholder="Saldo atual da conta:" />
       </mat-form-field>
 
       <mat-form-field class="col-12">
         <mat-chip-list #chipInstituicao>
-          <mat-chip
-            *ngFor="let fruit of instituicaoFinanceira"
-            [selectable]="selectable"
-            [removable]="removable"
-            (removed)="removeInstituicao(fruit)"
-          >
+          <mat-chip *ngFor="let fruit of instituicaoFinanceira" [selectable]="selectable" [removable]="removable"
+            (removed)="removeInstituicao(fruit)">
             {{ fruit }}
             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
           </mat-chip>
-          <input
-            placeholder="Instituição financeira"
-            #instituicaoInput
-            formControlName="instituicaoFinanceira"
-            [matAutocomplete]="autoInstituicao"
-            [matChipInputFor]="chipInstituicao"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            (matChipInputTokenEnd)="addInstituicao($event)"
-            [disabled]="instituicaoFinanceira.length > 0"
-          />
+          <input placeholder="Instituição financeira" #instituicaoInput formControlName="instituicaoFinanceira"
+            [matAutocomplete]="autoInstituicao" [matChipInputFor]="chipInstituicao"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addInstituicao($event)"
+            [disabled]="instituicaoFinanceira.length > 0" />
         </mat-chip-list>
-        <mat-autocomplete
-          #autoInstituicao="matAutocomplete"
-          (optionSelected)="selectedInstituicao($event)"
-        >
-          <mat-option
-            *ngFor="let fruit of filteredInstituicoes | async"
-            [value]="fruit"
-          >
+        <mat-autocomplete #autoInstituicao="matAutocomplete" (optionSelected)="selectedInstituicao($event)">
+          <mat-option *ngFor="let fruit of filteredInstituicoes | async" [value]="fruit">
             {{ fruit }}
           </mat-option>
         </mat-autocomplete>
@@ -70,7 +48,7 @@
 </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button type="submit" color="primary">
+  <button mat-button type="submit" color="primary" (click)="enviarFormulario()">
     {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>

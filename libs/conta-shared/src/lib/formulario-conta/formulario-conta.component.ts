@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { ContasService } from '../contas.service';
 
 @Component({
   selector: 'finances-app-formulario-conta',
@@ -64,7 +65,8 @@ export class FormularioContaComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<FormularioContaComponent>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _contaService: ContasService
   ) {}
 
   ngOnInit(): void {
@@ -127,5 +129,14 @@ export class FormularioContaComponent implements OnInit {
     this.instituicaoFinanceira.push(event.option.viewValue);
     this.instituicaoInput.nativeElement.value = '';
     this.formConta.get('instituicaoFinanceira').setValue(null);
+  }
+
+  async enviarFormulario() {
+    let objSalvar = {
+      saldo: 12121.11,
+      instituicao: 'Neon',
+      tipoConta: 'Guardando',
+    };
+    await this._contaService.cadastrarConta(objSalvar).toPromise();
   }
 }
