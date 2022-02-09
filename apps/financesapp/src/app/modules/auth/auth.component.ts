@@ -22,4 +22,8 @@ export class AuthComponent implements OnInit {
       this.router.navigate(['dashboard/home']);
     });
   }
+
+  login() {
+    window.open(`http://api.minhasfinancas.digital/auth`, '_self');
+  }
 }
