@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET_NAME: financess-app
+      AWS_S3_BUCKET_NAME: minhasfinancas.digital
     strategy:
       matrix:
         node-version: [10.x]
