@@ -98,7 +98,7 @@ export class FormularioOperacoesComponent implements OnInit {
       valor: this.fb.control(null, [Validators.required]),
       efetivado: this.fb.control(null),
       data: this.fb.control(new Date()),
-      descricao: this.fb.control(null),
+      descricao: this.fb.control(null,  [Validators.required]),
       categoria: this.fb.control(null, [Validators.required]),
       conta: this.fb.control(null, [Validators.required]),
     });

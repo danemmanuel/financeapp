@@ -52,6 +52,9 @@
     },
     "conta-shared": {
       "tags": []
+    },
+    "pipes": {
+      "tags": []
     }
   }
 }

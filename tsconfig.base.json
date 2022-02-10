@@ -29,7 +29,8 @@
       "@finances-app/header-mes": ["libs/header-mes/src/index.ts"],
       "@finances-app/despesas-shared": ["libs/despesas-shared/src/index.ts"],
       "@finances-app/operacoes-shared": ["libs/operacoes-shared/src/index.ts"],
-      "@finances-app/conta-shared": ["libs/conta-shared/src/index.ts"]
+      "@finances-app/conta-shared": ["libs/conta-shared/src/index.ts"],
+      "@finances-app/pipes": ["libs/pipes/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
