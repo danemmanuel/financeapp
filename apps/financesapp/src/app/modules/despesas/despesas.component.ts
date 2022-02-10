@@ -1,27 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
+import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
+import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'finances-app-despesas',
   templateUrl: './despesas.component.html',
   styleUrls: ['./despesas.component.scss'],
 })
-export class DespesasComponent implements OnInit {
-  receitas = [
-    {
-      name: 'Hydrogen',
-      data: '13/08/2020',
-      weight: 50.13,
-      icone: 'check_circle',
-    },
-    { name: 'Helium', data: '13/08/2020', weight: 43.3, icone: 'check_circle' },
-    { name: 'Lithium', data: '13/08/2020', weight: 6.9, icone: 'push_pin' },
-    { name: 'Beryllium', data: '13/08/2020', weight: 9.0, icone: 'push_pin' },
-  ];
-  constructor(private dialog: MatDialog) {}
+export class DespesasComponent implements OnInit, OnDestroy {
+  operacoes = [];
+  mes;
+  ano;
+  a: Subscription;
+  constructor(
+    private dialog: MatDialog,
+    private _operacoesService: OperacoesService,
+    private _headerMesAnoService: HeaderMesAnoService
+  ) {
+    this.a = this._headerMesAnoService.getMesAno().subscribe((obj) => {
+      if (!obj.mes) return;
+      this.mes = obj.mes;
+      this.ano = obj.ano;
+      this.buscarDespesas();
+    });
+  }
 
   ngOnInit(): void {}
+  ngOnDestroy() {
+    this.a.unsubscribe();
+  }
+
+  async buscarDespesas() {
+    const filtros = {
+      mes: this.mes,
+      ano: this.ano,
+    };
+    this.operacoes = await this._operacoesService
+      .buscarDespesas(filtros)
+      .toPromise();
+  }
 
   adicionarDespesa() {
     this.dialog.open(FormularioOperacoesComponent, {

@@ -1,39 +1,19 @@
 <div class="content_despesas">
-  <div class="main_header">
-    <finances-app-header-mes></finances-app-header-mes>
-    <button
-      (click)="adicionarReceita()"
-      mat-mini-fab
-      color="primary"
-      class="add_operacao"
-      matTooltip="Adicionar Receita"
-      style="background-color: rgb(53, 174, 150);"
-    >
+  <div class="header">
+    <finances-app-fit-card titulo="Total Pendente" valor="6.130,00" cor="#323DA4" icone="push_pin">
+    </finances-app-fit-card>
+
+    <finances-app-fit-card titulo="Total Recebido" valor="6.130,00" cor="#35AE96" icone="account_balance_wallet">
+    </finances-app-fit-card>
+    <button (click)="adicionarReceita()" mat-mini-fab color="primary" class="add_operacao"
+      matTooltip="Adicionar Receita" style="background-color: rgb(53, 174, 150);">
       <mat-icon>add</mat-icon>
     </button>
-  </div>
-  <div class="header">
-    <finances-app-fit-card
-      titulo="Total Pendente"
-      valor="6.130,00"
-      cor="#323DA4"
-      icone="push_pin"
-    ></finances-app-fit-card>
-
-    <finances-app-fit-card
-      titulo="Total Recebido"
-      valor="6.130,00"
-      cor="#35AE96"
-      icone="account_balance_wallet"
-    ></finances-app-fit-card>
   </div>
 
   <div class="content" style="width: 100%;">
     <h1>Receitas</h1>
-    <finances-app-listar-operacoes
-      [receitas]="receitas"
-      tipoOperacao="Receita"
-      style="width: 100%;"
-    ></finances-app-listar-operacoes>
+    <finances-app-listar-operacoes [operacoes]="receitas" tipoOperacao="Receita" style="width: 100%;">
+    </finances-app-listar-operacoes>
   </div>
 </div>

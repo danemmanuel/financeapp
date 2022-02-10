@@ -1,22 +1,21 @@
 <div class="content_contas">
-  <div class="main_header">
-    <finances-app-header-mes></finances-app-header-mes>
-    <button (click)="adicionarConta()" mat-mini-fab color="primary" class="add_operacao" matTooltip="Adicionar Conta"
-      style="background-color: #323da4;">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+
   <div class="header">
     <finances-app-fit-card titulo="Saldo Atual" valor="6.130,00" cor="rgb(53, 174, 150)" icone="attach_money">
     </finances-app-fit-card>
 
     <finances-app-fit-card titulo="Saldo Previsto" valor="16.130,00" cor="#323DA4" icone="account_balance_wallet">
     </finances-app-fit-card>
+
+    <button (click)="adicionarConta()" mat-mini-fab color="primary" class="add_operacao" matTooltip="Adicionar Conta"
+      style="background-color: #323da4;">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 
   <div class="content" style="width: 100%;">
     <h1>Contas</h1>
 
-    <finances-app-listar-contas [contas]="contas"></finances-app-listar-contas>
+    <finances-app-listar-contas style="width:100%" [contas]="contas"></finances-app-listar-contas>
   </div>
 </div>

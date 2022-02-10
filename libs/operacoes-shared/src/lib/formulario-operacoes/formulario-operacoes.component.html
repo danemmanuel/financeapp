@@ -1,14 +1,11 @@
 <h1 mat-dialog-title>
   {{ data.operacao ? 'Editar' : 'Nova' }}
-  <span
-    style="font-weight: 500;"
-    [ngStyle]="{
+  <span style="font-weight: 500;" [ngStyle]="{
       color:
         data.tipoOperacao === 'Receita'
           ? 'rgb(53, 174, 150)'
           : 'rgb(255, 96, 79)'
-    }"
-  >
+    }">
     {{ tipoOperacao }}
   </span>
 </h1>
@@ -16,143 +13,54 @@
   <form [formGroup]="formReceita" novalidate autocomplete="off">
     <div class="row">
       <mat-form-field class="col-6">
-        <input
-          required
-          currencyMask
-          [options]="currencyOption"
-          formControlName="valor"
-          matInput
-          placeholder="Valor da {{ tipoOperacao }}:"
-        />
+        <input required currencyMask [options]="currencyOption" formControlName="valor" matInput
+          placeholder="Valor da {{ tipoOperacao }}:" />
       </mat-form-field>
 
       <div class="col-6">
         <section class="example-section">
-          <mat-slide-toggle
-            class="example-margin"
-            [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
-            [checked]="true"
-          >
+          <mat-slide-toggle class="example-margin" [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+            [checked]="true">
             {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
           </mat-slide-toggle>
         </section>
       </div>
 
       <mat-form-field class="col-12">
-        <textarea
-          formControlName="descricao"
-          matInput
-          placeholder="Descrição"
-        ></textarea>
+        <textarea formControlName="descricao" matInput placeholder="Descrição"></textarea>
       </mat-form-field>
 
       <mat-form-field class="col-5">
         <mat-label>Data</mat-label>
         <input matInput formControlName="data" [matDatepicker]="picker1" />
-        <mat-datepicker-toggle
-          matSuffix
-          [for]="picker1"
-        ></mat-datepicker-toggle>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
       <mat-chip-list class="col-7">
         <mat-chip class="pointer" (click)="setOntem()">Ontem</mat-chip>
-        <mat-chip
-          (click)="setHoje()"
-          [ngStyle]="{
+        <mat-chip (click)="setHoje()" [ngStyle]="{
             background:
               data.tipoOperacao === 'Receita'
                 ? 'rgb(53, 174, 150)'
                 : 'rgb(255, 96, 79)'
-          }"
-          class="mat-chip-category pointer"
-          >Hoje</mat-chip
-        >
+          }" class="mat-chip-category pointer">Hoje</mat-chip>
         <mat-chip class="pointer" (click)="setAmanha()">Amanhã</mat-chip>
       </mat-chip-list>
 
       <mat-form-field class="col-12">
-        <mat-chip-list #chipList aria-label="Fruit selection">
-          <mat-chip
-            *ngFor="let fruit of fruits"
-            [selectable]="selectable"
-            [removable]="removable"
-            (removed)="remove(fruit)"
-            class="mat-chip-category-primary"
-          >
-            {{ fruit }}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input
-            required
-            placeholder="Categoria"
-            #fruitInput
-            formControlName="categoria"
-            [matAutocomplete]="auto"
-            [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            (matChipInputTokenEnd)="add($event)"
-            [disabled]="fruits.length > 0"
-          />
-        </mat-chip-list>
-        <mat-autocomplete
-          #auto="matAutocomplete"
-          (optionSelected)="selected($event)"
-        >
-          <mat-option
-            *ngFor="let fruit of filteredFruits | async"
-            [value]="fruit"
-          >
-            {{ fruit }}
+        <mat-label>Conta</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let conta of contas" [value]="conta">
+            {{conta.instituicao}}
           </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-      <mat-form-field class="col-12">
-        <mat-chip-list #chipInstituicao>
-          <mat-chip
-            *ngFor="let fruit of instituicaoFinanceira"
-            [selectable]="selectable"
-            [removable]="removable"
-            (removed)="removeInstituicao(fruit)"
-          >
-            {{ fruit }}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input
-            placeholder="Banco"
-            #instituicaoInput
-            formControlName="instituicaoFinanceira"
-            [matAutocomplete]="autoInstituicao"
-            [matChipInputFor]="chipInstituicao"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            (matChipInputTokenEnd)="addInstituicao($event)"
-            [disabled]="instituicaoFinanceira.length > 0"
-          />
-        </mat-chip-list>
-        <mat-autocomplete
-          #autoInstituicao="matAutocomplete"
-          (optionSelected)="selectedInstituicao($event)"
-        >
-          <mat-option
-            *ngFor="let fruit of filteredInstituicoes | async"
-            [value]="fruit"
-          >
-            {{ fruit }}
-          </mat-option>
-        </mat-autocomplete>
+        </mat-select>
       </mat-form-field>
     </div>
   </form>
 </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button
-    mat-button
-    (click)="salvarReceita()"
-    type="submit"
-    [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
-  >
+  <button mat-button (click)="salvarReceita()" type="submit" [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'">
     {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>

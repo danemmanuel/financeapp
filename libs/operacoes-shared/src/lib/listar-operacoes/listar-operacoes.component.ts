@@ -10,15 +10,19 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
 })
 export class ListarOperacoesComponent implements OnInit {
   @Input() titulo;
-  @Input() receitas;
+  @Input() set operacoes(operacoes) {
+    this.atualizarOperacoes(operacoes);
+  }
   @Input() tipoOperacao;
-  displayedColumns: string[] = ['name', 'data', 'weight', 'icone'];
+  displayedColumns: string[] = ['descricao', 'data', 'valor', 'icone'];
   dataSource = new MatTableDataSource();
 
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-    this.dataSource.data = this.receitas;
+  ngOnInit(): void {}
+
+  atualizarOperacoes(operacoes) {
+    this.dataSource = new MatTableDataSource(operacoes);
   }
 
   receitaSelecionada(receita) {
