@@ -12,7 +12,9 @@ export class OperacoesService {
     return this.http.post<any>(`${environment.apis.conta.conta}`, dados);
   }
 
-  buscarDespesas() {
-    return this.http.get<any>(`${environment.apis.despesa.despesa}`);
+  buscarDespesas(filtros) {
+    return this.http.get<any>(`${environment.apis.despesa.despesa}`, {
+      params: filtros,
+    });
   }
 }
