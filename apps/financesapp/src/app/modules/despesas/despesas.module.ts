@@ -15,7 +15,7 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     FitCardModule,
     AngularMaterialModule,
     HeaderMesModule,
-    OperacoesSharedModule
+    OperacoesSharedModule,
   ],
 })
 export class DespesasModule {}
