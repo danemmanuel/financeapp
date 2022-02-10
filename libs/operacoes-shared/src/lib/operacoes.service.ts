@@ -17,4 +17,10 @@ export class OperacoesService {
       params: filtros,
     });
   }
+
+  buscarReceitas(filtros) {
+    return this.http.get<any>(`${environment.apis.despesa.despesa}`, {
+      params: filtros,
+    });
+  }
 }
