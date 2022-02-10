@@ -44,11 +44,18 @@ export class DespesasComponent implements OnInit, OnDestroy {
   }
 
   adicionarDespesa() {
-    this.dialog.open(FormularioOperacoesComponent, {
-      width: '450px',
-      data: {
-        tipoOperacao: 'Despesa',
-      },
-    });
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        data: {
+          tipoOperacao: 'Despesa',
+        },
+      })
+      .afterClosed()
+      .subscribe((r) => {
+        if (r) {
+          this.buscarDespesas();
+        }
+      });
   }
 }
