@@ -1,5 +1,6 @@
+import { registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
@@ -8,6 +9,9 @@ import { RoutingModule } from '@finances-app/src/app/core/routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +25,7 @@ import { AuthInterceptor } from './core/auth/auth.interceptor';
   providers: [
     AuthGuard,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     JwtHelperService,
     {
       provide: HTTP_INTERCEPTORS,
