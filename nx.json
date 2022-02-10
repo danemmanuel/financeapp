@@ -17,7 +17,12 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
       }
     }
   },
@@ -27,7 +32,9 @@
     },
     "financesapp-e2e": {
       "tags": [],
-      "implicitDependencies": ["financesapp"]
+      "implicitDependencies": [
+        "financesapp"
+      ]
     },
     "main-menu": {
       "tags": []
@@ -51,6 +58,9 @@
       "tags": []
     },
     "conta-shared": {
+      "tags": []
+    },
+    "pipes": {
       "tags": []
     }
   }

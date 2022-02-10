@@ -11,11 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home-gestao-financeira.component.scss'],
 })
 export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
-  receitasPendentes = [
-    { name: 'Lithium', data: '13/08/2020', weight: 6.9, icone: 'push_pin' },
-    { name: 'Beryllium', data: '13/08/2020', weight: 9.0, icone: 'push_pin' },
-  ];
   despesas = [];
+  receitas = [];
   mes;
   ano;
   a: Subscription;
@@ -30,6 +27,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       this.mes = obj.mes;
       this.ano = obj.ano;
       this.buscarDespesas();
+      this.buscarReceitas();
     });
   }
 
@@ -46,6 +44,16 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     };
     this.despesas = await this._operacoesService
       .buscarDespesas(filtros)
+      .toPromise();
+  }
+
+  async buscarReceitas() {
+    const filtros = {
+      mes: this.mes,
+      ano: this.ano,
+    };
+    this.receitas = await this._operacoesService
+      .buscarReceitas(filtros)
       .toPromise();
   }
 

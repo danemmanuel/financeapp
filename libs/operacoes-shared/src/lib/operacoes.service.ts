@@ -8,12 +8,22 @@ import { environment } from '@finances-app/src/environments/environment';
 export class OperacoesService {
   constructor(private http: HttpClient) {}
 
-  cadastrarConta(dados: any) {
-    return this.http.post<any>(`${environment.apis.conta.conta}`, dados);
+  cadastrarDespesa(dados: any) {
+    return this.http.post<any>(`${environment.apis.despesa.despesa}`, dados);
+  }
+
+  cadastrarReceita(dados: any) {
+    return this.http.post<any>(`${environment.apis.receita.receita}`, dados);
   }
 
   buscarDespesas(filtros) {
     return this.http.get<any>(`${environment.apis.despesa.despesa}`, {
+      params: filtros,
+    });
+  }
+
+  buscarReceitas(filtros) {
+    return this.http.get<any>(`${environment.apis.receita.receita}`, {
       params: filtros,
     });
   }

@@ -10,17 +10,21 @@
   </span>
 </h1>
 <div mat-dialog-content>
-  <form [formGroup]="formReceita" novalidate autocomplete="off">
+  <form [formGroup]="formOperacao" novalidate autocomplete="off">
     <div class="row">
       <mat-form-field class="col-6">
         <input required currencyMask [options]="currencyOption" formControlName="valor" matInput
           placeholder="Valor da {{ tipoOperacao }}:" />
+
+          <mat-error>
+            {{ formOperacao.controls['valor']?.errors | errorKeys }}
+          </mat-error>
       </mat-form-field>
 
       <div class="col-6">
         <section class="example-section">
-          <mat-slide-toggle class="example-margin" [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
-            [checked]="true">
+          <mat-slide-toggle formControlName="efetivado" class="example-margin"
+            [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="true">
             {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
           </mat-slide-toggle>
         </section>
@@ -28,6 +32,10 @@
 
       <mat-form-field class="col-12">
         <textarea formControlName="descricao" matInput placeholder="Descrição"></textarea>
+
+        <mat-error>
+          {{ formOperacao.controls['descricao']?.errors | errorKeys }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="col-5">
@@ -35,6 +43,10 @@
         <input matInput formControlName="data" [matDatepicker]="picker1" />
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
+
+        <mat-error>
+          {{ formOperacao.controls['data']?.errors | errorKeys }}
+        </mat-error>
       </mat-form-field>
       <mat-chip-list class="col-7">
         <mat-chip class="pointer" (click)="setOntem()">Ontem</mat-chip>
@@ -49,18 +61,35 @@
 
       <mat-form-field class="col-12">
         <mat-label>Conta</mat-label>
-        <mat-select>
+        <mat-select formControlName="conta">
           <mat-option *ngFor="let conta of contas" [value]="conta">
             {{conta.instituicao}}
           </mat-option>
         </mat-select>
+
+        <mat-error>
+          {{ formOperacao.controls['conta']?.errors | errorKeys }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-12">
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoria">
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+            {{categoria.descricao}}
+          </mat-option>
+        </mat-select>
+
+        <mat-error>
+          {{ formOperacao.controls['categoria']?.errors | errorKeys }}
+        </mat-error>
       </mat-form-field>
     </div>
   </form>
 </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button (click)="salvarReceita()" type="submit" [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'">
+  <button mat-button (click)="salvarOperacao()" type="submit" [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'">
     {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>

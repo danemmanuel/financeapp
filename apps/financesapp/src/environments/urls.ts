@@ -2,6 +2,7 @@ export const API = (GATEWAY: string) => {
   const listaServicos = {
     conta: '/conta',
     despesa: '/despesa',
+    receita: '/receita',
   };
 
   return {
@@ -10,6 +11,9 @@ export const API = (GATEWAY: string) => {
     },
     despesa: {
       despesa: `${GATEWAY}${listaServicos.despesa}`,
+    },
+    receita: {
+      receita: `${GATEWAY}${listaServicos.receita}`,
     },
   };
 };

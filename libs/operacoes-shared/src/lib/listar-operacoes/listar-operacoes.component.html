@@ -30,14 +30,14 @@
     </ng-container>
 
     <ng-container matColumnDef="icone">
-      <th mat-header-cell *matHeaderCellDef>Pago</th>
+      <th mat-header-cell *matHeaderCellDef>{{tipoOperacao === 'Receita' ? 'Recebido' : 'Pago'}}</th>
       <td mat-cell *matCellDef="let element">
         <button mat-icon-button>
           <mat-icon [ngStyle]="{
-              color: element.pago ? '#35AE96' : '#FF604F'
+              color: element.efetivado ? '#35AE96' : '#FF604F'
             }">
             {{
-            element.pago ? 'check_circle' : 'remove_circle'
+            element.efetivado ? 'check_circle' : 'remove_circle'
             }}</mat-icon>
         </button>
       </td>
