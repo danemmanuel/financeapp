@@ -24,9 +24,7 @@
 
     <ng-container matColumnDef="valor">
       <th mat-header-cell *matHeaderCellDef>Valor</th>
-      <td mat-cell [ngStyle]="{
-          color: tipoOperacao === 'Despesa' ? '#FF604F' : '#35AE96'
-        }" *matCellDef="let element">
+      <td mat-cell *matCellDef="let element">
         <b> {{ element.valor | currency:'BRL' }} </b>
       </td>
     </ng-container>
@@ -37,7 +35,10 @@
         <button mat-icon-button>
           <mat-icon [ngStyle]="{
               color: element.pago ? '#35AE96' : '#FF604F'
-            }">check_circle</mat-icon>
+            }">
+            {{
+            element.pago ? 'check_circle' : 'remove_circle'
+            }}</mat-icon>
         </button>
       </td>
     </ng-container>
