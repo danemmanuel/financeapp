@@ -55,9 +55,16 @@ export class FormularioOperacoesComponent implements OnInit {
 
     if (this.formOperacao.invalid) return;
     try {
-      await this._operacoesService
-        .cadastrarDespesa(this.montarObjetoSalvar())
+      if (this.tipoOperacao === 'Receita') {
+        await this._operacoesService
+        .cadastrarReceita(this.montarObjetoSalvar())
         .toPromise();
+      } else if (this.tipoOperacao === 'Despesa') {
+        await this._operacoesService
+          .cadastrarDespesa(this.montarObjetoSalvar())
+          .toPromise();
+      }
+
       this.dialogRef.close(true);
     } catch (e) {
     } finally {
@@ -69,7 +76,7 @@ export class FormularioOperacoesComponent implements OnInit {
 
     return {
       descricao: formValue.descricao,
-      pago: formValue.efetivado,
+      efetivado: formValue.efetivado,
       valor: formValue.valor,
       data: moment(formValue.data).format('DD-MM-YYYY'),
       categoria: formValue.categoria,
@@ -98,7 +105,7 @@ export class FormularioOperacoesComponent implements OnInit {
       valor: this.fb.control(null, [Validators.required]),
       efetivado: this.fb.control(null),
       data: this.fb.control(new Date()),
-      descricao: this.fb.control(null,  [Validators.required]),
+      descricao: this.fb.control(null, [Validators.required]),
       categoria: this.fb.control(null, [Validators.required]),
       conta: this.fb.control(null, [Validators.required]),
     });

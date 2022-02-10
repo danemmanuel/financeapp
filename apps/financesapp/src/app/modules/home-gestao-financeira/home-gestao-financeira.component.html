@@ -14,14 +14,10 @@
   </div>
 
   <div class="row content">
-    <!-- <div class="col-6">
-      <finances-app-listar-operacoes
-        [operacoes]="receitasPendentes"
-        tipoOperacao="Receita"
-        titulo="Receitas em aberto"
-        style="width: 100%;"
-      ></finances-app-listar-operacoes>
-    </div> -->
+    <div class="col-6">
+      <finances-app-listar-operacoes [operacoes]="receitas" tipoOperacao="Receita" titulo="Receitas em aberto"
+        style="width: 100%;"></finances-app-listar-operacoes>
+    </div>
 
     <div class="col-6">
       <finances-app-listar-operacoes [operacoes]="despesas" tipoOperacao="Despesa" titulo="Despesas em aberto"
