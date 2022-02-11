@@ -15,6 +15,9 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   mes;
   ano;
   a: Subscription;
+  loading: boolean;
+  totalPendente: any;
+  totalRecebido: any;
 
   constructor(
     private dialog: MatDialog,
@@ -35,6 +38,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   }
 
   async buscarReceitas() {
+    this.loading = true;
     const filtros = {
       mes: this.mes,
       ano: this.ano,
@@ -42,6 +46,23 @@ export class ReceitasComponent implements OnInit, OnDestroy {
     this.operacoes = await this._operacoesService
       .buscarReceitas(filtros)
       .toPromise();
+    this.calcularTotalPendente();
+    this.calcularTotalRecebido();
+    this.loading = false;
+  }
+
+  calcularTotalPendente() {
+    this.totalPendente = this.operacoes
+      .filter((operacao) => !operacao.efetivado)
+      .reduce((total, operacao) => (total += operacao.valor), 0);
+    console.log(this.totalPendente);
+  }
+
+  calcularTotalRecebido() {
+    this.totalRecebido = this.operacoes
+      .filter((operacao) => operacao.efetivado)
+      .reduce((total, operacao) => (total += operacao.valor), 0);
+    console.log(this.totalPendente);
   }
 
   adicionarReceita() {

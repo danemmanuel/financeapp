@@ -5,25 +5,25 @@
         logo teste
       </div>
       <ul>
-        <li class="active" routerLink="dashboard/home">
+        <li [routerLinkActive]="['active']" routerLink="dashboard/home">
           <mat-icon>
             home
           </mat-icon>
           visão geral
         </li>
-        <li routerLink="dashboard/contas">
+        <li [routerLinkActive]="['active']" routerLink="dashboard/contas">
           <mat-icon>
             account_balance_wallet
           </mat-icon>
           contas
         </li>
-        <li routerLink="dashboard/receitas">
+        <li [routerLinkActive]="['active']" routerLink="dashboard/receitas">
           <mat-icon>
             arrow_upward
           </mat-icon>
           receitas
         </li>
-        <li routerLink="dashboard/despesas">
+        <li [routerLinkActive]="['active']" routerLink="dashboard/despesas">
           <mat-icon>
             arrow_downward
           </mat-icon>

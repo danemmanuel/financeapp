@@ -3,7 +3,7 @@
     <h2>{{conta.instituicao}}</h2>
 
     <div class="saldos">
-      <p>Saldo atual: <b>R${{conta.saldo}}</b></p>
+      <p>Saldo atual: <b>{{conta.saldo | currency:'BRL'}}</b></p>
     </div>
   </div>
 </div>
