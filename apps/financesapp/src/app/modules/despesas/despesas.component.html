@@ -13,11 +13,21 @@
     </button>
   </div>
 
-  <div class="content" style="width: 100%;">
-    <h1>Despesas</h1>
-    <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
+  <div class="row" style="width: 100%;">
+    <div class="col-12">
+      <h1>Receitas</h1>
+    </div>
+    <div class="col-12">
+      <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
+    </div>
 
-    <finances-app-listar-operacoes *ngIf="!loading" [operacoes]="operacoes" tipoOperacao="Despesa" style="width: 100%;">
+    <div class="col-12" *ngIf="!loading && !operacoes.length">
+      <mat-error>Não há despesas</mat-error>
+    </div>
+    <finances-app-listar-operacoes *ngIf="!loading && operacoes.length" [operacoes]="operacoes" tipoOperacao="Despesa"
+      style="width: 100%;">
     </finances-app-listar-operacoes>
   </div>
+
+
 </div>
