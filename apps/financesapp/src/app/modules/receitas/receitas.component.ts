@@ -55,14 +55,12 @@ export class ReceitasComponent implements OnInit, OnDestroy {
     this.totalPendente = this.operacoes
       .filter((operacao) => !operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
-    console.log(this.totalPendente);
   }
 
   calcularTotalRecebido() {
     this.totalRecebido = this.operacoes
       .filter((operacao) => operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
-    console.log(this.totalPendente);
   }
 
   adicionarReceita() {

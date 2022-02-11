@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
+import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
+import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
 
@@ -11,23 +12,28 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home-gestao-financeira.component.scss'],
 })
 export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
+  contas = [];
   despesas = [];
   receitas = [];
   mes;
   ano;
   a: Subscription;
+  saldoContas: any;
+  receitasEsteMes: any;
+  despesasEsteMes: any;
+  loading: boolean;
 
   constructor(
     private dialog: MatDialog,
     private _headerMesAnoService: HeaderMesAnoService,
-    private _operacoesService: OperacoesService
+    private _operacoesService: OperacoesService,
+    private _contaService: ContasService
   ) {
-    this.a = this._headerMesAnoService.getMesAno().subscribe((obj) => {
+    this.a = this._headerMesAnoService.getMesAno().subscribe(async (obj) => {
       if (!obj.mes) return;
       this.mes = obj.mes;
       this.ano = obj.ano;
-      this.buscarDespesas();
-      this.buscarReceitas();
+      this.buscarDados();
     });
   }
 
@@ -35,6 +41,21 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.a.unsubscribe();
+  }
+
+  async buscarDados() {
+    try {
+      this.loading = true;
+      await this.buscarDespesas();
+      await this.buscarReceitas();
+      await this.buscarContas();
+    } finally {
+      this.loading = false;
+    }
+  }
+  async buscarContas() {
+    this.contas = await this._contaService.buscarContas().toPromise();
+    this.calcularSaldoContas();
   }
 
   async buscarDespesas() {
@@ -45,6 +66,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.despesas = await this._operacoesService
       .buscarDespesas(filtros)
       .toPromise();
+    this.calcularDespesasEsteMes();
   }
 
   async buscarReceitas() {
@@ -55,23 +77,59 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.receitas = await this._operacoesService
       .buscarReceitas(filtros)
       .toPromise();
+    this.calcularReceitasEsteMes();
+  }
+
+  calcularReceitasEsteMes() {
+    this.receitasEsteMes = this.receitas.reduce(
+      (total, conta) => (total += conta.valor),
+      0
+    );
+  }
+
+  calcularDespesasEsteMes() {
+    this.despesasEsteMes = this.despesas.reduce(
+      (total, conta) => (total += conta.valor),
+      0
+    );
+  }
+
+  calcularSaldoContas() {
+    this.saldoContas = this.contas.reduce(
+      (total, conta) => (total += conta.saldo),
+      0
+    );
   }
 
   cadastrarReceita() {
-    this.dialog.open(FormularioOperacoesComponent, {
-      width: '450px',
-      data: {
-        tipoOperacao: 'Receita',
-      },
-    });
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        data: {
+          tipoOperacao: 'Receita',
+        },
+      })
+      .afterClosed()
+      .subscribe((r) => {
+        if (r) {
+          this.buscarDados();
+        }
+      });
   }
 
   cadastrarDespesa() {
-    this.dialog.open(FormularioOperacoesComponent, {
-      width: '450px',
-      data: {
-        tipoOperacao: 'Despesa',
-      },
-    });
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        data: {
+          tipoOperacao: 'Despesa',
+        },
+      })
+      .afterClosed()
+      .subscribe((r) => {
+        if (r) {
+          this.buscarDados();
+        }
+      });
   }
 }

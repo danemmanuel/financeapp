@@ -54,14 +54,12 @@ export class DespesasComponent implements OnInit, OnDestroy {
     this.totalPendente = this.operacoes
       .filter((operacao) => !operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
-    console.log(this.totalPendente);
   }
 
   calcularTotalPago() {
     this.totalPago = this.operacoes
       .filter((operacao) => operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
-    console.log(this.totalPendente);
   }
 
   adicionarDespesa() {

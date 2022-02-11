@@ -51,14 +51,12 @@ export class FormularioOperacoesComponent implements OnInit {
   }
 
   async salvarOperacao() {
-    console.log(this.formOperacao.errors);
-
     if (this.formOperacao.invalid) return;
     try {
       if (this.tipoOperacao === 'Receita') {
         await this._operacoesService
-        .cadastrarReceita(this.montarObjetoSalvar())
-        .toPromise();
+          .cadastrarReceita(this.montarObjetoSalvar())
+          .toPromise();
       } else if (this.tipoOperacao === 'Despesa') {
         await this._operacoesService
           .cadastrarDespesa(this.montarObjetoSalvar())
