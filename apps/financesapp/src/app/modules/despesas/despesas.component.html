@@ -25,7 +25,7 @@
       <mat-error>Não há despesas</mat-error>
     </div>
     <finances-app-listar-operacoes *ngIf="!loading && operacoes.length" [operacoes]="operacoes" tipoOperacao="Despesa"
-      style="width: 100%;">
+      (buscarOperacoes)="buscarDespesas()" style="width: 100%;">
     </finances-app-listar-operacoes>
   </div>
 

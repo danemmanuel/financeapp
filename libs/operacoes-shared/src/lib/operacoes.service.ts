@@ -16,6 +16,14 @@ export class OperacoesService {
     return this.http.post<any>(`${environment.apis.receita.receita}`, dados);
   }
 
+  atualizarReceita(dados: any) {
+    return this.http.put<any>(`${environment.apis.receita.receita}`, dados);
+  }
+
+  atualizarDespesa(dados: any) {
+    return this.http.put<any>(`${environment.apis.despesa.despesa}`, dados);
+  }
+
   buscarDespesas(filtros) {
     return this.http.get<any>(`${environment.apis.despesa.despesa}`, {
       params: filtros,
