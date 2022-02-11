@@ -1,10 +1,10 @@
 <div class="content_despesas">
   <div class="header">
-    <finances-app-fit-card titulo="Total Pendente" [valor]="totalPendente | currency:'BRL'" cor="#323DA4"
-      icone="push_pin">
+    <finances-app-fit-card titulo="Total Pendente" [loading]="loading" [valor]="totalPendente | currency:'BRL'"
+      cor="#323DA4" icone="push_pin">
     </finances-app-fit-card>
 
-    <finances-app-fit-card titulo="Total Pago" [valor]="totalPago | currency:'BRL'" cor="#FF604F"
+    <finances-app-fit-card titulo="Total Pago" [loading]="loading" [valor]="totalPago | currency:'BRL'" cor="#FF604F"
       icone="account_balance_wallet">
     </finances-app-fit-card>
     <button (click)="adicionarDespesa()" mat-mini-fab color="primary" class="add_operacao"

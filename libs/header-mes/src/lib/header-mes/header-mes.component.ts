@@ -28,8 +28,6 @@ export class HeaderMesComponent implements OnInit {
   constructor(private _headerMesAnoService: HeaderMesAnoService) {}
 
   ngOnInit(): void {
-    console.log(this.data.getMonth());
-
     this.mesAtual = this.meses[this.data.getMonth()];
     this.anoAtual = this.data.getFullYear();
     this.atualizarMesAno();
