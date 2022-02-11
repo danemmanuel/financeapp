@@ -53,13 +53,13 @@
         </mat-form-field>
         <mat-chip-list class="col-7">
           <mat-chip class="pointer" (click)="setOntem()">Ontem</mat-chip>
-          <mat-chip (click)="setHoje()" [ngStyle]="{
-              background:
-                data.tipoOperacao === 'Receita'
-                  ? 'rgb(53, 174, 150)'
-                  : 'rgb(255, 96, 79)'
-            }" class="mat-chip-category pointer">Hoje</mat-chip>
-          <mat-chip class="pointer" (click)="setAmanha()">Amanhã</mat-chip>
+          <mat-chip (click)="setHoje()" class=" pointer">Hoje</mat-chip>
+          <mat-chip class="pointer" [ngStyle]="{
+            background:
+              data.tipoOperacao === 'Receita'
+                ? 'rgb(53, 174, 150)'
+                : 'rgb(255, 96, 79)'
+          }" style="color:#fff" (click)="picker1.open()">Outros...</mat-chip>
         </mat-chip-list>
 
         <mat-form-field class="col-12">

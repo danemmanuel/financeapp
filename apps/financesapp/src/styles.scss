@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+.mat-row:hover .mat-cell {
+  background: rgb(0 0 0 / 7%);
+  transition: background-color 0.3s linear;
+}
+.mat-row .mat-cell {
+  cursor: pointer;
+  transition: background-color 0.3s ease-in;
+}

@@ -15,7 +15,7 @@ export class ListarOperacoesComponent implements OnInit {
     this.atualizarOperacoes(operacoes);
   }
   @Input() tipoOperacao;
-  displayedColumns: string[] = ['descricao', 'data', 'valor', 'icone'];
+  displayedColumns: string[] = ['descricao', 'valor', 'data', 'icone'];
   dataSource = new MatTableDataSource();
 
   constructor(private dialog: MatDialog) {}
