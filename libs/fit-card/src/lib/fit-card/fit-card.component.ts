@@ -6,6 +6,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./fit-card.component.scss'],
 })
 export class FitCardComponent implements OnInit {
+  @Input() loading;
   @Input() titulo;
   @Input() cor;
   @Input() icone;
