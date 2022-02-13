@@ -34,14 +34,27 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
+  .header {
+    justify-content: center !important;
+  }
+  .main_menu {
+    display: none !important;
+  }
   /* For mobile phones: */
   [class*='col-'] {
-    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    margin: 10px 0;
   }
   .content_home {
+    padding: 0 15px !important;
     .header {
       display: block !important;
     }
+  }
+
+  .card_saldo_contas {
+    margin: 20px !important;
   }
 }
 
