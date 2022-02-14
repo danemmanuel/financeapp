@@ -12,6 +12,10 @@ export class ContasService {
     return this.http.post<any>(`${environment.apis.conta.conta}`, dados);
   }
 
+  atualizarConta(dados: any) {
+    return this.http.put<any>(`${environment.apis.conta.conta}`, dados);
+  }
+
   buscarContas() {
     return this.http.get<any>(`${environment.apis.conta.conta}`);
   }

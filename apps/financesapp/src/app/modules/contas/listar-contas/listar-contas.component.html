@@ -1,5 +1,5 @@
 <div class="contas row">
-  <div class="conta col-4" style="background: purple;" *ngFor="let conta of contas">
+  <div class="conta col-4" style="background: purple;" *ngFor="let conta of contas"  (click)="editarConta(conta)">
     <h2>{{conta.instituicao}}</h2>
 
     <div class="saldos">

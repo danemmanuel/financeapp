@@ -37,7 +37,7 @@ body {
 @media only screen and (max-width: 768px) {
   .header {
     justify-content: center !important;
-    margin-top:20px
+    margin-top: 20px;
   }
   .main_menu {
     display: none !important;
@@ -58,6 +58,10 @@ body {
 
   .card_saldo_contas {
     margin: 20px !important;
+  }
+
+  .row {
+    margin: 0 !important;
   }
 }
 

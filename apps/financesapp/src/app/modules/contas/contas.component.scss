@@ -40,3 +40,15 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .content_contas .header {
+    flex-direction: column;
+  }
+  .content_contas {
+    padding: 0;
+  }
+  .content {
+    padding: 0 15px;
+  }
+}

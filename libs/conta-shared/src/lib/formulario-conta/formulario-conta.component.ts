@@ -72,73 +72,46 @@ export class FormularioContaComponent implements OnInit {
   ngOnInit(): void {
     this.montarFormulario();
     this.tipoOperacao = this.data.tipoOperacao;
+    console.log(this.data);
+
+    if (this.data.conta) {
+      this.preencherFormulario();
+    }
+  }
+
+  preencherFormulario() {
+    console.log(this.data);
+    this.formConta.reset(this.data.conta);
+  }
+
+  by(item1, item2) {
+    return item1 === item2;
   }
 
   montarFormulario() {
     this.formConta = this.fb.group({
       saldo: this.fb.control(null, [Validators.required]),
-      instituicaoFinanceira: this.fb.control(null, []),
+      instituicao: this.fb.control(null, []),
       tipoConta: this.fb.control(null, [Validators.required]),
     });
-
-    this.filteredInstituicoes = this.formConta
-      .get('instituicaoFinanceira')
-      .valueChanges.pipe(
-        startWith(''),
-        map((instituicao: string | null) =>
-          instituicao
-            ? this._filterInstituicao(instituicao)
-            : this.allInstituicoes.slice()
-        )
-      );
-  }
-
-  private _filterInstituicao(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allInstituicoes.filter(
-      (fruit) => fruit.toLowerCase().indexOf(filterValue) === 0
-    );
-  }
-
-  removeInstituicao(fruit: string): void {
-    const index = this.instituicaoFinanceira.indexOf(fruit);
-
-    if (index >= 0) {
-      this.instituicaoFinanceira.splice(index, 1);
-    }
-  }
-
-  addInstituicao(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      this.instituicaoFinanceira.push(value.trim());
-    }
-
-    if (input) {
-      input.value = '';
-    }
-
-    this.formConta.get('instituicaoFinanceira').setValue(null);
-  }
-
-  selectedInstituicao(event: MatAutocompleteSelectedEvent): void {
-    this.instituicaoFinanceira.push(event.option.viewValue);
-    this.instituicaoInput.nativeElement.value = '';
-    this.formConta.get('instituicaoFinanceira').setValue(null);
   }
 
   async enviarFormulario() {
-    if (this.formConta.invalid || !this.instituicaoFinanceira?.length) return;
+    if (this.formConta.invalid) return;
 
     let formValue = this.formConta.value;
     let objSalvar = {
+      _id: this.data.conta?._id,
       saldo: formValue.saldo,
-      instituicao: this.instituicaoFinanceira[0],
-      tipoConta: formValue.tipoConta.descricao,
+      instituicao: formValue.instituicao,
+      tipoConta: formValue.tipoConta,
     };
-    await this._contaService.cadastrarConta(objSalvar).toPromise();
+    if (this.data) {
+      await this._contaService.atualizarConta(objSalvar).toPromise();
+      this.dialogRef.close(true);
+    } else {
+      await this._contaService.cadastrarConta(objSalvar).toPromise();
+      this.dialogRef.close(true);
+    }
   }
 }

@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/lib/formulario-conta/formulario-conta.component';
 
 @Component({
   selector: 'finances-app-listar-contas',
@@ -7,8 +9,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ListarContasComponent implements OnInit {
   @Input() contas;
-
-  constructor() {}
+  @Output() buscarContas = new EventEmitter();
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
+
+  editarConta(conta) {
+    this.dialog
+      .open(FormularioContaComponent, { data: { conta } })
+      .afterClosed()
+      .subscribe((r) => {
+        if (r) {
+          this.buscarContas.emit(true);
+        }
+      });
+  }
 }

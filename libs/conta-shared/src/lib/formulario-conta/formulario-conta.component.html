@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-  {{ data.operacao ? 'Editar' : 'Nova' }}
+  {{ data.conta ? 'Editar' : 'Nova' }}
   <span style="font-weight: 500; color: rgb(50, 61, 164);">
     Conta
   </span>
@@ -12,29 +12,21 @@
           placeholder="Saldo atual da conta:" />
       </mat-form-field>
 
+
+
       <mat-form-field class="col-12">
-        <mat-chip-list #chipInstituicao>
-          <mat-chip *ngFor="let fruit of instituicaoFinanceira" [selectable]="selectable" [removable]="removable"
-            (removed)="removeInstituicao(fruit)">
-            {{ fruit }}
-            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-          </mat-chip>
-          <input placeholder="Instituição financeira" #instituicaoInput formControlName="instituicaoFinanceira"
-            [matAutocomplete]="autoInstituicao" [matChipInputFor]="chipInstituicao"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addInstituicao($event)"
-            [disabled]="instituicaoFinanceira.length > 0" />
-        </mat-chip-list>
-        <mat-autocomplete #autoInstituicao="matAutocomplete" (optionSelected)="selectedInstituicao($event)">
-          <mat-option *ngFor="let fruit of filteredInstituicoes | async" [value]="fruit">
-            {{ fruit }}
+        <mat-label>Instituição Financeira</mat-label>
+        <mat-select formControlName="instituicao" [compareWith]="by">
+          <mat-option *ngFor="let instituicao of allInstituicoes" [value]="instituicao">
+            {{ instituicao }}
           </mat-option>
-        </mat-autocomplete>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="col-12">
         <mat-label>Tipo da conta</mat-label>
         <mat-select formControlName="tipoConta">
-          <mat-option *ngFor="let tipoConta of tiposConta" [value]="tipoConta">
+          <mat-option *ngFor="let tipoConta of tiposConta" [value]="tipoConta.descricao">
             {{ tipoConta.descricao }}
           </mat-option>
         </mat-select>
@@ -45,6 +37,6 @@
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
   <button mat-button type="submit" color="primary" (click)="enviarFormulario()">
-    {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
+    {{ data.conta ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>
