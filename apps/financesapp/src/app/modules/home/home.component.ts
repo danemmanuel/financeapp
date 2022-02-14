@@ -8,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.login();
+  }
 
   login() {
-    window.open(`http://api.minhasfinancas.digital/auth`, '_self');
+    window.open(`https://api.minhasfinancas.digital/auth`, '_self');
   }
 }

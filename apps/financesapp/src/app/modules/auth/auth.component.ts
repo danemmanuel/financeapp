@@ -17,13 +17,15 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       console.log(params.jwt);
-      if (!params.jwt) return;
+      if (!params.jwt) {
+        this.login();
+      }
       localStorage.setItem('token', JSON.stringify(params.jwt));
       this.router.navigate(['dashboard/home']);
     });
   }
 
   login() {
-    window.open(`http://api.minhasfinancas.digital/auth`, '_self');
+    window.open(`https://api.minhasfinancas.digital/auth`, '_self');
   }
 }
