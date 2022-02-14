@@ -17,7 +17,7 @@
       <div class="row">
         <mat-form-field class="col-6">
           <input required currencyMask [options]="currencyOption" formControlName="valor" matInput
-            placeholder="Valor da {{ tipoOperacao }}:" />
+            placeholder="Valor da {{ tipoOperacao }}:" type="phone" />
 
           <mat-error>
             {{ formOperacao.controls['valor']?.errors | errorKeys }}

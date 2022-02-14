@@ -13,6 +13,6 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-    window.open(`https://api.minhasfinancas.digital/auth`, '_self');
+   // window.open(`https://api.minhasfinancas.digital/auth`, '_self');
   }
 }
