@@ -151,7 +151,7 @@ export class FormularioOperacoesComponent implements OnInit {
 
   montarFormulario() {
     this.formOperacao = this.fb.group({
-      valor: this.fb.control(null, [Validators.required]),
+      valor: this.fb.control(0, [Validators.required]),
       efetivado: this.fb.control(null),
       data: this.fb.control(new Date()),
       descricao: this.fb.control(null, [Validators.required]),

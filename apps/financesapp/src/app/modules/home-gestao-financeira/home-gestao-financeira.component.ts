@@ -63,9 +63,10 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       mes: this.mes,
       ano: this.ano,
     };
-    this.despesas = await this._operacoesService
+    const despesas = await this._operacoesService
       .buscarDespesas(filtros)
       .toPromise();
+    this.despesas = despesas.filter((despesa) => !despesa.efetivado);
     this.calcularDespesasEsteMes();
   }
 
@@ -74,9 +75,10 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       mes: this.mes,
       ano: this.ano,
     };
-    this.receitas = await this._operacoesService
+    const receitas = await this._operacoesService
       .buscarReceitas(filtros)
       .toPromise();
+    this.receitas = receitas.filter((despesa) => !despesa.efetivado);
     this.calcularReceitasEsteMes();
   }
 
