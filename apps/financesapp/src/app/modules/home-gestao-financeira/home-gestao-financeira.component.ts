@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
@@ -27,7 +28,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private _headerMesAnoService: HeaderMesAnoService,
     private _operacoesService: OperacoesService,
-    private _contaService: ContasService
+    private _contaService: ContasService,
+    private router: Router
   ) {
     this.a = this._headerMesAnoService.getMesAno().subscribe(async (obj) => {
       if (!obj.mes) return;
@@ -80,6 +82,10 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       .toPromise();
     this.receitas = receitas.filter((despesa) => !despesa.efetivado);
     this.calcularReceitasEsteMes();
+  }
+
+  redirecionar(rota) {
+    this.router.navigate([`dashboard/${rota}`])
   }
 
   calcularReceitasEsteMes() {
