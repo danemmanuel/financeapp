@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -16,19 +17,29 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private _authService: AuthService,
     private fb: FormBuilder
-  ) {}
+  ) {
+    this.router.events
+      .pipe(
+        filter(
+          (e) =>
+            e instanceof ActivationEnd &&
+            Object.keys(e.snapshot.params).length > 0
+        ),
+        map((e) => (e instanceof ActivationEnd ? e.snapshot.params : {}))
+      )
+      .subscribe((params) => {
+        console.log(params);
+        if (!params.jwt) {
+          return;
+        }
+
+        localStorage.setItem('token', JSON.stringify(params.jwt));
+        this.router.navigate(['dashboard/home']);
+      });
+  }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      console.log(params.jwt);
-      if (!params.jwt) {
-        return;
-      }
-      localStorage.setItem('token', JSON.stringify(params.jwt));
-      this.router.navigate(['dashboard/home']);
-    });
     if (localStorage?.getItem('token')) {
-      this.router.navigate(['dashboard/home']);
     }
     this.montarFormulario();
   }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="autenticado">
+<ng-container>
   <div class="content">
     <finances-app-main-menu></finances-app-main-menu>
     <div class="main_content">
@@ -6,10 +6,4 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-</ng-container>
-
-<ng-container *ngIf="!autenticado">
-  <finances-app-auth>
-
-  </finances-app-auth>
 </ng-container>

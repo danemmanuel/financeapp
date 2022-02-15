@@ -11,10 +11,10 @@ export class AppComponent implements OnInit {
   title = 'financesapp';
   autenticado: boolean;
   token = ``;
-  constructor(private router: Router, private _authService: AuthService) {
-    this.autenticado = this._authService.isAuthenticated();
-  }
+  constructor(private router: Router, private _authService: AuthService) {}
   async ngOnInit() {
     this.token = localStorage?.getItem('token');
+    console.log(this.token);
+
   }
 }

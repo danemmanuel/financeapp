@@ -106,7 +106,7 @@ export class FormularioContaComponent implements OnInit {
       instituicao: formValue.instituicao,
       tipoConta: formValue.tipoConta,
     };
-    if (this.data) {
+    if (this.data?.conta) {
       await this._contaService.atualizarConta(objSalvar).toPromise();
       this.dialogRef.close(true);
     } else {
