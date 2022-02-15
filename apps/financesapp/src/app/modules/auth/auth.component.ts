@@ -79,7 +79,6 @@ export class AuthComponent implements OnInit {
 
       localStorage.setItem('token', JSON.stringify(login.access_token));
       this.router.navigate(['dashboard/home']);
-      location.reload();
     } catch (err) {}
   }
 }
