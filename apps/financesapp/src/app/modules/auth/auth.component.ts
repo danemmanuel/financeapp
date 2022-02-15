@@ -10,7 +10,7 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class AuthComponent implements OnInit {
   formLogin: FormGroup;
-
+  isCadastro = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -37,6 +37,7 @@ export class AuthComponent implements OnInit {
     this.formLogin = this.fb.group({
       email: this.fb.control(null, [Validators.required]),
       senha: this.fb.control(null, [Validators.required]),
+      nome: this.fb.control(null, []),
     });
   }
 
@@ -45,13 +46,26 @@ export class AuthComponent implements OnInit {
   }
 
   async login() {
+    if (this.formLogin.invalid) return;
     try {
-      const login = await this._authService
-        .login({
-          email: this.formLogin.get(`email`)?.value,
-          password: this.formLogin.get(`senha`)?.value,
-        })
-        .toPromise();
+      let login;
+      if (this.isCadastro) {
+        login = await this._authService
+          .cadastro({
+            email: this.formLogin.get(`email`)?.value,
+            password: this.formLogin.get('senha')?.value,
+            name: this.formLogin.get(`nome`)?.value,
+          })
+          .toPromise();
+      } else {
+        login = await this._authService
+          .login({
+            email: this.formLogin.get(`email`)?.value,
+            password: this.formLogin.get(`senha`)?.value,
+          })
+          .toPromise();
+      }
+
       localStorage.setItem('token', JSON.stringify(login.access_token));
       this.router.navigate(['dashboard/home']);
       location.reload();

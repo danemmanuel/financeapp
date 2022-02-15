@@ -29,6 +29,9 @@
   }
 }
 
+.create-aacount {
+  margin-top: 10px;
+}
 h1 {
   font-size: 2.441rem;
   line-height: 1.4rem;
@@ -111,6 +114,7 @@ svg {
 .left-inner {
   display: flex;
   flex-flow: column wrap;
+  max-width: 300px;
 }
 .seperator {
   position: relative;
@@ -143,7 +147,6 @@ label {
   display: block;
   color: var(--color-dark-gray);
 }
-
 
 .form-radio,
 .form-checkbox {

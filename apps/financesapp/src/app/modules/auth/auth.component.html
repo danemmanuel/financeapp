@@ -3,7 +3,9 @@
     <div class="left-inner">
 
       <div class="sign-in-form active">
-        <h1>Login</h1>
+        <h1>
+          {{isCadastro ? 'Cadastrar' : 'Login'}}
+        </h1>
         <div class="row">
           <div class="col-12">
             <button mat-raised-button (click)="loginGoogle()">
@@ -60,6 +62,12 @@
                 {{ formLogin.controls['email']?.errors | errorKeys }}
               </mat-error>
             </mat-form-field>
+            <mat-form-field class="col-12" *ngIf="isCadastro">
+              <input required formControlName="nome" matInput placeholder="Nome:" />
+              <mat-error>
+                {{ formLogin.controls['nome']?.errors | errorKeys }}
+              </mat-error>
+            </mat-form-field>
             <mat-form-field class="col-12">
               <input required formControlName="senha" matInput placeholder="Senha:" />
               <mat-error>
@@ -69,8 +77,18 @@
           </div>
 
           <button mat-raised-button type="submit" color="primary" (click)="login()">
-            Login
+            {{isCadastro ? 'Cadastrar' : 'Login'}}
           </button>
+
+          <div class="create-aacount" *ngIf="isCadastro">
+            Já tem cadastro? <a href="javascript:;" (click)="isCadastro = false"
+              class="text-underline sign-up-form-btn">
+              Faça login</a>
+          </div>
+          <div class="create-aacount" *ngIf="!isCadastro">
+            Não é registrado ainda? <a href="javascript:;" (click)="isCadastro = true"
+              class="text-underline sign-up-form-btn"> Crie uma conta</a>
+          </div>
         </form>
 
 

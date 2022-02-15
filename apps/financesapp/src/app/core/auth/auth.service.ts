@@ -22,6 +22,10 @@ export class AuthService {
     return this.http.post<any>(`${environment.apis.auth.signin}`, dados);
   }
 
+  cadastro(dados: any) {
+    return this.http.post<any>(`${environment.apis.auth.signup}`, dados);
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
