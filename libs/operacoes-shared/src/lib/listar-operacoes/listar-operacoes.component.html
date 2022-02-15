@@ -5,45 +5,25 @@
     </div>
   </div>
 
-  <table mat-table [dataSource]="dataSource" style="width: 100%;">
-    <ng-container matColumnDef="descricao">
-      <th mat-header-cell *matHeaderCellDef>Descrição</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.descricao }}
-        <br />
-        <span style="font-size: 10px;">{{element.conta.instituicao}} | {{element.conta.tipoConta}}</span>
-      </td>
-    </ng-container>
+  <ul>
+    <li *ngFor="let operacao of operacoes" class="operacao" (click)="receitaSelecionada(operacao)">
+      <div class="nome">
+        <p>{{operacao.descricao}}</p>
+        <span style="font-size: 10px;">{{operacao.conta.instituicao}} | {{operacao.conta.tipoConta}}</span>
+      </div>
 
-    <ng-container matColumnDef="data">
-      <th mat-header-cell *matHeaderCellDef>Data</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.data | date: 'dd/MM/yyyy'}}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="valor">
-      <th mat-header-cell *matHeaderCellDef>Valor</th>
-      <td mat-cell *matCellDef="let element">
-        <b> {{ element.valor | currency:'BRL' }} </b>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="icone">
-      <th mat-header-cell *matHeaderCellDef>{{tipoOperacao === 'Receita' ? 'Recebido' : 'Pago'}}</th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-icon-button>
+      <div class="valor">
+        <b> {{ operacao.valor | currency:'BRL' }} </b>
+        <p>
           <mat-icon [ngStyle]="{
-              color: element.efetivado ? '#35AE96' : '#FF604F'
-            }">
+            color: operacao.efetivado ? '#35AE96' : '#FF604F'
+          }">
             {{
-            element.efetivado ? 'check_circle' : 'remove_circle'
+            operacao.efetivado ? 'check_circle' : 'remove_circle'
             }}</mat-icon>
-        </button>
-      </td>
-    </ng-container>
+        </p>
+      </div>
+    </li>
+  </ul>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true "></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="receitaSelecionada(row)" class="pointer"></tr>
-  </table>
 </mat-card>

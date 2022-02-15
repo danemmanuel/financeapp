@@ -39,3 +39,27 @@
     }
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .header {
+    justify-content: space-between !important;
+    padding: 0 15px;
+  }
+  .card_saldo_contas .icon {
+    width: 55px !important;
+  }
+  p {
+  }
+  .fitcard {
+    width: 50%;
+  }
+  .content_despesas .header {
+    flex-direction: row;
+  }
+  .content_despesas {
+    padding: 0;
+  }
+  .content {
+    padding: 0 15px;
+  }
+}

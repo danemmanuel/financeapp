@@ -1,31 +1,27 @@
 <div class="content_despesas">
   <div class="header">
     <finances-app-fit-card titulo="Total Pendente" [loading]="loading" [valor]="totalPendente | currency:'BRL'"
-      cor="#323DA4" icone="push_pin">
+      class="fitcard" cor="#323DA4" icone="push_pin">
     </finances-app-fit-card>
 
     <finances-app-fit-card titulo="Total Recebido" [loading]="loading" [valor]="totalRecebido | currency:'BRL'"
-      cor="#35AE96" icone="account_balance_wallet">
+      class="fitcard" cor="#35AE96" icone="account_balance_wallet">
     </finances-app-fit-card>
-    <button (click)="adicionarReceita()" mat-mini-fab color="primary" class="add_operacao"
+    <!-- <button (click)="adicionarReceita()" mat-mini-fab color="primary" class="add_operacao"
       matTooltip="Adicionar Receita" style="background-color: rgb(53, 174, 150);">
       <mat-icon>add</mat-icon>
-    </button>
+    </button> -->
   </div>
 
   <div class="row" style="width: 100%;">
     <div class="col-12">
       <h1>Receitas</h1>
-    </div>
-    <div class="col-12">
       <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
+      <finances-app-listar-operacoes *ngIf="!loading && operacoes.length" (buscarOperacoes)="buscarReceitas()"
+        [operacoes]="operacoes" tipoOperacao="Receita" style="width: 100%;">
+      </finances-app-listar-operacoes>
     </div>
 
-    <div class="col-12" *ngIf="!loading && !operacoes.length">
-      <mat-error>Não há receitas</mat-error>
-    </div>
-    <finances-app-listar-operacoes *ngIf="!loading && operacoes.length" (buscarOperacoes)="buscarReceitas()"
-      [operacoes]="operacoes" tipoOperacao="Receita" style="width: 100%;">
-    </finances-app-listar-operacoes>
+
   </div>
 </div>

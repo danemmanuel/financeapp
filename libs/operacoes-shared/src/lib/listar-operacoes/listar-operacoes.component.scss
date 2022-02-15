@@ -1,0 +1,18 @@
+.operacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  .nome p {
+    font-size: 15px;
+  }
+  .valor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  p {
+    margin: 0;
+  }
+}
