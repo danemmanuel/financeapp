@@ -42,13 +42,32 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .header {
+    justify-content: space-between !important;
+    padding: 0 15px;
+  }
+  .card_saldo_contas .icon {
+    width: 55px !important;
+  }
+
+  .fitcard {
+    width: 50%;
+  }
   .content_contas .header {
-    flex-direction: column;
+    flex-direction: row;
   }
   .content_contas {
     padding: 0;
   }
   .content {
     padding: 0 15px;
+  }
+
+  .add_operacao {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 55px;
+    height: 55px;
   }
 }
