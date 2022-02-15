@@ -57,19 +57,19 @@
         <form [formGroup]="formLogin" novalidate autocomplete="off">
           <div class="row">
             <mat-form-field class="col-12">
-              <input required formControlName="email" matInput placeholder="Email:" />
+              <input formControlName="email" matInput placeholder="Email:" />
               <mat-error>
                 {{ formLogin.controls['email']?.errors | errorKeys }}
               </mat-error>
             </mat-form-field>
             <mat-form-field class="col-12" *ngIf="isCadastro">
-              <input required formControlName="nome" matInput placeholder="Nome:" />
+              <input formControlName="nome" matInput placeholder="Nome:" />
               <mat-error>
                 {{ formLogin.controls['nome']?.errors | errorKeys }}
               </mat-error>
             </mat-form-field>
             <mat-form-field class="col-12">
-              <input required formControlName="senha" matInput placeholder="Senha:" />
+              <input formControlName="senha" matInput placeholder="Senha:" />
               <mat-error>
                 {{ formLogin.controls['senha']?.errors | errorKeys }}
               </mat-error>
