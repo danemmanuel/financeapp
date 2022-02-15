@@ -6,7 +6,7 @@
   </div>
 
   <ul>
-    <li *ngFor="let operacao of operacoes" class="operacao" (click)="receitaSelecionada(operacao)">
+    <li *ngFor="let operacao of operacoes" class="operacao pointer" (click)="receitaSelecionada(operacao)">
       <div class="nome">
         <p>{{operacao.descricao}}</p>
         <span style="font-size: 10px;">{{operacao.conta.instituicao}} | {{operacao.conta.tipoConta}}</span>

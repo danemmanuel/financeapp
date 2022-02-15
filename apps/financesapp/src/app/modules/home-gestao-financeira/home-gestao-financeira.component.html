@@ -2,19 +2,19 @@
   <div class="main_header">
   </div>
 
-  <div class="header">
-    <finances-app-fit-card (click)="redirecionar('contas')" titulo="Saldo em contas" [loading]="loading" class="pointer"
-      [valor]="saldoContas | currency:'BRL'" cor="#323DA4" icone="attach_money">
+  <div class="header-home">
+    <finances-app-fit-card (click)="redirecionar('contas')" titulo="Saldo em contas" [loading]="loading" class="pointer saldo"
+      [valor]="saldoContas | currency:'BRL'" cor="#323DA4" icone="attach_money" >
     </finances-app-fit-card>
 
-    <finances-app-fit-card (click)="redirecionar('receitas')" titulo="Receitas neste mês" [loading]="loading"
-      class="pointer" [valor]="receitasEsteMes | currency:'BRL'" cor="#35AE96" icone="arrow_upward"
-      tooltip="Adicionar Receita" [mostrarBtn]="true" (btnClicado)="cadastrarReceita()">
+    <finances-app-fit-card (click)="redirecionar('receitas')" titulo="Receitas" [loading]="loading"
+      class="pointer operacao" [valor]="receitasEsteMes | currency:'BRL'" cor="#35AE96" icone="arrow_upward"
+      tooltip="Adicionar Receita" [mostrarBtn]="false" (btnClicado)="cadastrarReceita()">
     </finances-app-fit-card>
 
-    <finances-app-fit-card (click)="redirecionar('despesas')" titulo="Despesas neste mês" [loading]="loading"
-      class="pointer" [valor]="despesasEsteMes | currency:'BRL'" cor="#FF604F" icone="arrow_downward"
-      tooltip="Adicionar Despesa" [mostrarBtn]="true" (btnClicado)="cadastrarDespesa()">
+    <finances-app-fit-card (click)="redirecionar('despesas')" titulo="Despesas" [loading]="loading"
+      class="pointer operacao" [valor]="despesasEsteMes | currency:'BRL'" cor="#FF604F" icone="arrow_downward"
+      tooltip="Adicionar Despesa" [mostrarBtn]="false" (btnClicado)="cadastrarDespesa()">
     </finances-app-fit-card>
   </div>
 

@@ -2,8 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
-
+  margin-bottom: 15px;
+  padding:10px;
+  &:hover {
+    background: rgb(0 0 0 / 6%);
+  }
   .nome p {
     font-size: 15px;
   }

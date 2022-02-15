@@ -14,7 +14,7 @@
   </div>
 
   <div class="row" style="width: 100%;">
-    <div class="col-12">
+    <div class="col-6">
       <h1>Receitas</h1>
       <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
       <finances-app-listar-operacoes *ngIf="!loading && operacoes.length" (buscarOperacoes)="buscarReceitas()"

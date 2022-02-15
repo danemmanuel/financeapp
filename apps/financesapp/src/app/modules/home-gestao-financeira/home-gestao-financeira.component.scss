@@ -3,7 +3,7 @@
   .main_header {
     margin-bottom: 20px;
   }
-  .header {
+  .header-home {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -16,4 +16,16 @@
 .operacoes_content {
   max-height: 471px;
   overflow-y: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .header-home {
+    flex-wrap: wrap;
+  }
+  .saldo {
+    width:100%;
+  }
+  .operacao {
+    width:50%;
+  }
 }
