@@ -9,11 +9,12 @@ import { AuthService } from './core/auth/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'financesapp';
-  usuario: any;
+  autenticado: boolean;
+  token = ``;
   constructor(private router: Router, private _authService: AuthService) {
-    this._authService.currentUser.subscribe((r) => {
-      this.usuario = r;
-    });
+    this.autenticado = this._authService.isAuthenticated();
   }
-  async ngOnInit() {}
+  async ngOnInit() {
+    this.token = localStorage?.getItem('token');
+  }
 }

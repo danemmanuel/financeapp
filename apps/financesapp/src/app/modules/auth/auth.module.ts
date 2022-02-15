@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PipesModule } from '@finances-app-libs/pipes/src/lib/pipes.module';
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { ContaSharedModule } from '@finances-app/conta-shared';
 import { FitCardModule } from '@finances-app/fit-card';
@@ -18,6 +20,9 @@ import { AuthComponent } from './auth.component';
     HeaderMesModule,
     OperacoesSharedModule,
     ContaSharedModule,
+    ReactiveFormsModule,
+    PipesModule
   ],
+  exports: [AuthComponent],
 })
 export class AuthModule {}

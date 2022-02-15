@@ -1,7 +1,15 @@
-<div class="content">
-  <finances-app-main-menu></finances-app-main-menu>
-  <div class="main_content">
-    <finances-app-header-mes></finances-app-header-mes>
-    <router-outlet></router-outlet>
+<ng-container *ngIf="autenticado">
+  <div class="content">
+    <finances-app-main-menu></finances-app-main-menu>
+    <div class="main_content">
+      <finances-app-header-mes></finances-app-header-mes>
+      <router-outlet></router-outlet>
+    </div>
   </div>
-</div>
+</ng-container>
+
+<ng-container *ngIf="!autenticado">
+  <finances-app-auth>
+
+  </finances-app-auth>
+</ng-container>

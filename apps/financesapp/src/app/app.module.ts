@@ -11,6 +11,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { AuthInterceptor } from './core/auth/auth.interceptor';
 import localePt from '@angular/common/locales/pt';
 import { HeaderMesModule } from '@finances-app-libs/header-mes/src';
+import { AuthModule } from './modules/auth/auth.module';
 
 registerLocaleData(localePt);
 
@@ -23,6 +24,7 @@ registerLocaleData(localePt);
     RoutingModule,
     HttpClientModule,
     HeaderMesModule,
+    AuthModule
   ],
   providers: [
     AuthGuard,

@@ -1,24 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '@finances-app/src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  public isAuthenticatedObs: Observable<boolean>;
 
-  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {
-    this.currentUserSubject = new BehaviorSubject<any>(
-      JSON.parse(localStorage?.getItem('currentUser'))
-    );
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
-
-  public get currentUserValue(): any {
-    return this.currentUserSubject.value;
-  }
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) {}
 
   public isAuthenticated(): boolean {
     const token = localStorage?.getItem('token');
@@ -27,9 +18,12 @@ export class AuthService {
     return !this.jwtHelper.isTokenExpired(token);
   }
 
+  login(dados: any) {
+    return this.http.post<any>(`${environment.apis.auth.signin}`, dados);
+  }
+
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
   }
 }

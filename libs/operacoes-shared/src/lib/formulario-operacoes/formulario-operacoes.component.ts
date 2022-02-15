@@ -28,7 +28,15 @@ export class FormularioOperacoesComponent implements OnInit {
     decimal: ',',
     prefix: 'R$',
   };
-  categorias = [{ descricao: 'Alimentacao', icone: 'aliment' }];
+  categorias = [
+    { descricao: 'Alimentacao', icone: 'aliment' },
+    { descricao: 'Lazer', icone: 'Lazer' },
+    { descricao: 'Casa', icone: 'Lazer' },
+    { descricao: 'Educação', icone: 'Lazer' },
+    { descricao: 'Pagamentos', icone: 'Lazer' },
+    { descricao: 'Saúde', icone: 'Lazer' },
+    { descricao: 'Serviços', icone: 'Lazer' },
+  ];
 
   @ViewChild('picker1') picker: MatDatepicker<any>;
   operacao: any;
@@ -93,7 +101,6 @@ export class FormularioOperacoesComponent implements OnInit {
       this.dialogRef.close(true);
     } catch (e) {
       console.log(e);
-
     } finally {
     }
   }
