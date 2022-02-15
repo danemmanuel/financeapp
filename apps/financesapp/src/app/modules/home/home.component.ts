@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'finances-app-home',
@@ -6,13 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
-    //this.login();
-  }
-
-  login() {
-    window.open(`https://api.minhasfinancas.digital/auth`, '_self');
+    this.router.navigate(['login']);
   }
 }
