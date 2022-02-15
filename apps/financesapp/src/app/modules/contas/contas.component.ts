@@ -63,15 +63,15 @@ export class ContasComponent implements OnInit, OnDestroy {
       await this.buscarDespesas();
       await this.buscarReceitas();
 
-      const totalDespesas = this.despesas.reduce(
-        (total, despesa) => (total += despesa.valor),
-        0
-      );
+      const totalDespesas = this.despesas
+        .filter((despesa) => !despesa.efetivado)
+        .reduce((total, despesa) => (total += despesa.valor), 0);
       const totalReceitas = this.receitas.reduce(
         (total, despesa) => (total += despesa.valor),
         0
       );
-      this.saldoPrevisto = (totalReceitas - totalDespesas) + this.saldoAtual;
+      debugger;
+      this.saldoPrevisto = this.saldoAtual - totalDespesas;
     } finally {
       this.loading = false;
     }
