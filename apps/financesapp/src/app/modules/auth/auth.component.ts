@@ -28,7 +28,6 @@ export class AuthComponent implements OnInit {
         map((e) => (e instanceof ActivationEnd ? e.snapshot.params : {}))
       )
       .subscribe((params) => {
-        console.log(params);
         if (!params.jwt) {
           return;
         }

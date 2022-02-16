@@ -72,7 +72,6 @@ export class FormularioContaComponent implements OnInit {
   ngOnInit(): void {
     this.montarFormulario();
     this.tipoOperacao = this.data.tipoOperacao;
-    console.log(this.data);
 
     if (this.data.conta) {
       this.preencherFormulario();
@@ -80,7 +79,6 @@ export class FormularioContaComponent implements OnInit {
   }
 
   preencherFormulario() {
-    console.log(this.data);
     this.formConta.reset(this.data.conta);
   }
 

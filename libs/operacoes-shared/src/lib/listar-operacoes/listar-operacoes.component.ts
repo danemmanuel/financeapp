@@ -12,7 +12,8 @@ export class ListarOperacoesComponent implements OnInit {
   @Input() titulo;
   @Input() operacoes;
   @Input() tipoOperacao;
-
+  @Input() mes;
+  @Input() ano;
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}

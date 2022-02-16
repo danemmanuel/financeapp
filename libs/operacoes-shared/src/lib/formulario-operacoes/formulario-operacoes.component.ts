@@ -137,8 +137,6 @@ export class FormularioOperacoesComponent implements OnInit {
   }
 
   preencherFormulario() {
-    console.log(this.operacao);
-
     this.formOperacao.reset({
       valor: this.operacao.valor,
       efetivado: this.operacao.efetivado,

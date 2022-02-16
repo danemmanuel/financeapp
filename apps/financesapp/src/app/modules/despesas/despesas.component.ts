@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
-import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -18,6 +18,8 @@ export class DespesasComponent implements OnInit, OnDestroy {
   loading: boolean;
   totalPendente: any;
   totalPago: any;
+  todasOperacoes: any;
+
   constructor(
     private dialog: MatDialog,
     private _operacoesService: OperacoesService,
@@ -27,36 +29,57 @@ export class DespesasComponent implements OnInit, OnDestroy {
       if (!obj.mes) return;
       this.mes = obj.mes;
       this.ano = obj.ano;
-      this.buscarDespesas();
+      this.calcularOperacoes();
+      this.calcularTotalPendente();
+      this.calcularTotalPago();
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buscarDespesas();
+  }
   ngOnDestroy() {
     this.a.unsubscribe();
   }
 
   async buscarDespesas() {
     this.loading = true;
-    const filtros = {
-      mes: this.mes,
-      ano: this.ano,
-    };
-    this.operacoes = await this._operacoesService
-      .buscarDespesas(filtros)
+
+    this.todasOperacoes = await this._operacoesService
+      .buscarDespesas({})
       .toPromise();
+    this.operacoes = this.todasOperacoes;
+    this.calcularOperacoes();
     this.calcularTotalPendente();
     this.calcularTotalPago();
     this.loading = false;
   }
 
+  calcularOperacoes() {
+    this.operacoes = this.todasOperacoes?.filter((operacao) => {
+      const mesAno = `${
+        operacao.excluirData?.split('-')[0]
+      }${+operacao.excluirData?.split('-')[1]}`;
+
+      return (
+        (operacao.fixa &&
+          mesAno !== `${this.ano.toString()}${this.mes.toString()}`) ||
+        (+operacao.data.split('-')[1] === this.mes &&
+          +operacao.data.split('-')[0] === this.ano &&
+          !operacao.fixa)
+      );
+    });
+  }
+
   calcularTotalPendente() {
+    if (!this.operacoes) return;
     this.totalPendente = this.operacoes
       .filter((operacao) => !operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
   }
 
   calcularTotalPago() {
+    if (!this.operacoes) return;
     this.totalPago = this.operacoes
       .filter((operacao) => operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
