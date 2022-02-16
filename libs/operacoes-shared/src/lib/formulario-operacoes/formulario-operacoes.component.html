@@ -33,6 +33,8 @@
           </section>
         </div>
 
+
+
         <mat-form-field class="col-12">
           <textarea formControlName="descricao" matInput placeholder="Descrição"></textarea>
 
@@ -61,6 +63,15 @@
                 : 'rgb(255, 96, 79)'
           }" style="color:#fff" (click)="picker1.open()">Outros</mat-chip>
         </mat-chip-list>
+
+        <div class="col-12" *ngIf="!data.operacao">
+          <section class="example-section">
+            <mat-slide-toggle formControlName="fixa" class="example-margin"
+              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="operacao?.fixa">
+              Despesa Fixa
+            </mat-slide-toggle>
+          </section>
+        </div>
 
         <mat-form-field class="col-12">
           <mat-label>Conta</mat-label>

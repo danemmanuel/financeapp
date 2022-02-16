@@ -18,6 +18,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   loading: boolean;
   totalPendente: any;
   totalRecebido: any;
+  todasOperacoes: any;
 
   constructor(
     private dialog: MatDialog,
@@ -28,36 +29,47 @@ export class ReceitasComponent implements OnInit, OnDestroy {
       if (!obj.mes) return;
       this.mes = obj.mes;
       this.ano = obj.ano;
-      this.buscarReceitas();
+      this.calcularOperacoes();
+      this.calcularTotalPendente();
+      this.calcularTotalRecebido();
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.buscarReceitas();
+  }
   ngOnDestroy() {
     this.a.unsubscribe();
   }
 
   async buscarReceitas() {
     this.loading = true;
-    const filtros = {
-      mes: this.mes,
-      ano: this.ano,
-    };
-    this.operacoes = await this._operacoesService
-      .buscarReceitas(filtros)
+
+    this.todasOperacoes = await this._operacoesService
+      .buscarReceitas({})
       .toPromise();
+    this.operacoes = this.todasOperacoes;
+    this.calcularOperacoes();
     this.calcularTotalPendente();
     this.calcularTotalRecebido();
     this.loading = false;
   }
 
+  calcularOperacoes() {
+    this.operacoes = this.todasOperacoes?.filter(
+      (operacao) => +operacao.data.split('-')[1] === this.mes || operacao.fixa
+    );
+  }
+
   calcularTotalPendente() {
+    if (!this.operacoes) return;
     this.totalPendente = this.operacoes
       .filter((operacao) => !operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);
   }
 
   calcularTotalRecebido() {
+    if (!this.operacoes) return;
     this.totalRecebido = this.operacoes
       .filter((operacao) => operacao.efetivado)
       .reduce((total, operacao) => (total += operacao.valor), 0);

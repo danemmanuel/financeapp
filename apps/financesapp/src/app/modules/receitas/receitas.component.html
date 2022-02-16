@@ -17,7 +17,8 @@
     <div class="col-6">
       <h1>Receitas</h1>
       <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
-      <finances-app-listar-operacoes *ngIf="!loading && operacoes.length" (buscarOperacoes)="buscarReceitas()"
+      <finances-app-listar-operacoes *ngIf="!loading && operacoes.length"
+        (buscarOperacoes)="buscarReceitas();"
         [operacoes]="operacoes" tipoOperacao="Receita" style="width: 100%;">
       </finances-app-listar-operacoes>
     </div>

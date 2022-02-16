@@ -112,6 +112,7 @@ export class FormularioOperacoesComponent implements OnInit {
       _id: this.operacao?._id,
       descricao: formValue.descricao,
       efetivado: formValue.efetivado,
+      fixa: formValue.fixa,
       valor: formValue.valor,
       data: moment(formValue.data).format('YYYY-MM-DD'),
       categoria: formValue.categoria,
@@ -141,6 +142,7 @@ export class FormularioOperacoesComponent implements OnInit {
     this.formOperacao.reset({
       valor: this.operacao.valor,
       efetivado: this.operacao.efetivado,
+      fixa: this.operacao.fixa,
       descricao: this.operacao.descricao,
       data: moment(this.operacao.data).format(),
       conta: this.operacao.conta,
@@ -160,6 +162,7 @@ export class FormularioOperacoesComponent implements OnInit {
     this.formOperacao = this.fb.group({
       valor: this.fb.control(0, [Validators.required]),
       efetivado: this.fb.control(null),
+      fixa: this.fb.control(null),
       data: this.fb.control(new Date()),
       descricao: this.fb.control(null, [Validators.required]),
       categoria: this.fb.control(null, [Validators.required]),
