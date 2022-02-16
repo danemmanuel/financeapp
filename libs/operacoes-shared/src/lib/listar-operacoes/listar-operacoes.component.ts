@@ -19,6 +19,10 @@ export class ListarOperacoesComponent implements OnInit {
   ngOnInit(): void {}
 
   receitaSelecionada(receita) {
+    if (receita.fixa) {
+      const novaData = `${this.ano}-${this.mes}-${receita.data.split('-')[2]}`;
+     receita.data = novaData
+    }
     this.dialog
       .open(FormularioOperacoesComponent, {
         width: '450px',
