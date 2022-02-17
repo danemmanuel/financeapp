@@ -18,9 +18,11 @@ export class ContasComponent implements OnInit, OnDestroy {
   a: Subscription;
   mes;
   ano;
-  despesas: any;
   saldoPrevisto: any;
-  receitas: any;
+  despesas = [];
+  receitas = [];
+  receitasTotal = [];
+  despesasTotal = [];
 
   constructor(
     private dialog: MatDialog,
@@ -32,22 +34,26 @@ export class ContasComponent implements OnInit, OnDestroy {
       if (!obj.mes) return;
       this.mes = obj.mes;
       this.ano = obj.ano;
-      this.buscarContas();
       this.calcularSaldoPrevisto();
     });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    this.loading = true;
+    await this.buscarContas();
+    await this.buscarReceitas();
+    await this.buscarDespesas();
+    await this.calcularSaldoPrevisto();
+    this.loading = false;
+  }
 
   ngOnDestroy() {
     this.a.unsubscribe();
   }
 
   async buscarContas() {
-    this.loading = true;
     this.contas = await this._contaService.buscarContas().toPromise();
     this.calcularSaldoAtual();
-    this.loading = false;
   }
 
   calcularSaldoAtual() {
@@ -57,44 +63,40 @@ export class ContasComponent implements OnInit, OnDestroy {
     );
   }
 
+  async buscarDespesas() {
+    this.despesasTotal = await this._operacoesService
+      .buscarDespesas({})
+      .toPromise();
+  }
+
+  async buscarReceitas() {
+    this.receitasTotal = await this._operacoesService
+      .buscarReceitas({})
+      .toPromise();
+  }
+
   async calcularSaldoPrevisto() {
     try {
-      this.loading = true;
-      await this.buscarDespesas();
-      await this.buscarReceitas();
+      this.receitas = this._operacoesService.calcularOperacoes(
+        this.receitasTotal,
+        this.mes,
+        this.ano
+      );
+      this.despesas = this._operacoesService.calcularOperacoes(
+        this.despesasTotal,
+        this.mes,
+        this.ano
+      );
+      const receitasEmAberto = this.receitas
+        .filter((despesa) => !despesa.efetivado)
+        .reduce((total, despesa) => (total += despesa.valor), 0);
 
       const totalDespesas = this.despesas
         .filter((despesa) => !despesa.efetivado)
         .reduce((total, despesa) => (total += despesa.valor), 0);
-      const totalReceitas = this.receitas.reduce(
-        (total, despesa) => (total += despesa.valor),
-        0
-      );
-      debugger;
-      this.saldoPrevisto = this.saldoAtual - totalDespesas;
+      this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
     } finally {
-      this.loading = false;
     }
-  }
-
-  async buscarReceitas() {
-    const filtros = {
-      mes: this.mes,
-      ano: this.ano,
-    };
-    this.receitas = await this._operacoesService
-      .buscarReceitas(filtros)
-      .toPromise();
-  }
-
-  async buscarDespesas() {
-    const filtros = {
-      mes: this.mes,
-      ano: this.ano,
-    };
-    this.despesas = await this._operacoesService
-      .buscarDespesas(filtros)
-      .toPromise();
   }
 
   adicionarConta() {

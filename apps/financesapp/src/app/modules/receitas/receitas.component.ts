@@ -56,20 +56,11 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   }
 
   calcularOperacoes() {
-    this.operacoes = this.todasOperacoes?.filter((operacao) => {
-      return (
-        (operacao.fixa &&
-          !operacao.excluirData.find((data) => {
-            return (
-              +data.toString().split('-')[1] === this.mes &&
-              +data.toString().split('-')[0] === this.ano
-            );
-          })) ||
-        (!operacao.fixa &&
-          +operacao.data.split('-')[1] === this.mes &&
-          +operacao.data.split('-')[0] === this.ano)
-      );
-    });
+    this.operacoes = this._operacoesService.calcularOperacoes(
+      this.todasOperacoes,
+      this.mes,
+      this.ano
+    );
   }
 
   calcularTotalPendente() {

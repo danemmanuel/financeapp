@@ -1,8 +1,8 @@
 <div class="content_contas">
 
   <div class="header">
-    <finances-app-fit-card titulo="Saldo Atual" [valor]="saldoAtual | currency:'BRL'" cor="rgb(53, 174, 150)"
-      icone="attach_money">
+    <finances-app-fit-card titulo="Saldo Atual" [loading]="loading" [valor]="saldoAtual | currency:'BRL'"
+      cor="rgb(53, 174, 150)" icone="attach_money">
     </finances-app-fit-card>
 
     <finances-app-fit-card titulo="Saldo Previsto" [loading]="loading" [valor]="saldoPrevisto | currency:'BRL'"

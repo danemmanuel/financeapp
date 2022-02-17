@@ -35,4 +35,21 @@ export class OperacoesService {
       params: filtros,
     });
   }
+
+  calcularOperacoes(todasOperacoes, mes, ano) {
+    return todasOperacoes?.filter((operacao) => {
+      return (
+        (operacao.fixa &&
+          !operacao.excluirData.find((data) => {
+            return (
+              +data.toString().split('-')[1] === mes &&
+              +data.toString().split('-')[0] === ano
+            );
+          })) ||
+        (!operacao.fixa &&
+          +operacao.data.split('-')[1] === mes &&
+          +operacao.data.split('-')[0] === ano)
+      );
+    });
+  }
 }
