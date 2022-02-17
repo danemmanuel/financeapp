@@ -36,6 +36,14 @@ export class OperacoesService {
     });
   }
 
+  deletarDespesa(operacao: any) {
+    return this.http.delete<any>(`${environment.apis.despesa.despesa}/${operacao._id}`);
+  }
+
+  deletarReceita(operacao: any) {
+    return this.http.delete<any>(`${environment.apis.receita.receita}/${operacao._id}`);
+  }
+
   calcularOperacoes(todasOperacoes, mes, ano) {
     return todasOperacoes?.filter((operacao) => {
       return (

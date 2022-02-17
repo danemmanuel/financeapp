@@ -31,7 +31,6 @@
 
     <div class="col-6">
       <div class="operacoes_content">
-        <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
         <finances-app-listar-operacoes *ngIf="!loading" [operacoes]="despesasEmAberto" tipoOperacao="Despesa"
           (buscarOperacoes)="buscarDados()" titulo="Despesas em aberto" style="width: 100%;">
         </finances-app-listar-operacoes>

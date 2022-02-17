@@ -174,4 +174,13 @@ export class FormularioOperacoesComponent implements OnInit {
       conta: this.fb.control(null, [Validators.required]),
     });
   }
+
+  async deletarOperacao() {
+    if (this.tipoOperacao === 'Receita') {
+      await this._operacoesService.deletarReceita(this.operacao).toPromise();
+    } else {
+      await this._operacoesService.deletarDespesa(this.operacao).toPromise();
+    }
+    this.dialogRef.close(true);
+  }
 }
