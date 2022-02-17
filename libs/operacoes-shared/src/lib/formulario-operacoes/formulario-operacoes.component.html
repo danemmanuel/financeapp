@@ -27,7 +27,8 @@
         <div class="col-6">
           <section class="example-section">
             <mat-slide-toggle formControlName="efetivado" class="example-margin"
-              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="operacao?.efetivado">
+              [disabled]="formOperacao.get('data')?.value >= hoje"
+              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="operacao?.efetivado ">
               {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
             </mat-slide-toggle>
           </section>

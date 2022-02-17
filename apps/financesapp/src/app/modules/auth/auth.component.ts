@@ -38,7 +38,8 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage?.getItem('token')) {
+    if (this._authService.isAuthenticated()) {
+      this.router.navigate(['dashboard/home']);
     }
     this.montarFormulario();
   }

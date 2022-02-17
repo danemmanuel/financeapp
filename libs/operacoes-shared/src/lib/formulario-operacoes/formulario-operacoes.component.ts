@@ -41,7 +41,7 @@ export class FormularioOperacoesComponent implements OnInit {
   @ViewChild('picker1') picker: MatDatepicker<any>;
   operacao: any;
   loading: boolean;
-
+  hoje = new Date();
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<FormularioOperacoesComponent>,
@@ -168,7 +168,7 @@ export class FormularioOperacoesComponent implements OnInit {
       valor: this.fb.control(0, [Validators.required]),
       efetivado: this.fb.control(null),
       fixa: this.fb.control(null),
-      data: this.fb.control(new Date()),
+      data: this.fb.control(null),
       descricao: this.fb.control(null, [Validators.required]),
       categoria: this.fb.control(null, [Validators.required]),
       conta: this.fb.control(null, [Validators.required]),
