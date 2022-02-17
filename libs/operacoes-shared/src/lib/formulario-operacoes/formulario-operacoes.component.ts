@@ -81,6 +81,7 @@ export class FormularioOperacoesComponent implements OnInit {
 
       this.dialogRef.close(true);
     } catch (e) {
+      console.log(e);
     } finally {
     }
   }
@@ -107,8 +108,7 @@ export class FormularioOperacoesComponent implements OnInit {
 
   montarObjetoSalvar() {
     const formValue = this.formOperacao.value;
-
-    return {
+    let obj = {
       _id: this.operacao?._id,
       descricao: formValue.descricao,
       efetivado: formValue.efetivado,
@@ -118,6 +118,13 @@ export class FormularioOperacoesComponent implements OnInit {
       categoria: formValue.categoria,
       conta: formValue.conta,
     };
+    if (this.data.operacao) {
+      obj['excluirData'] = [
+        ...this.operacao?.excluirData,
+        moment(formValue.data).format('YYYY-MM-DD'),
+      ];
+    }
+    return obj;
   }
 
   setHoje() {

@@ -57,16 +57,17 @@ export class DespesasComponent implements OnInit, OnDestroy {
 
   calcularOperacoes() {
     this.operacoes = this.todasOperacoes?.filter((operacao) => {
-      const mesAno = `${
-        operacao.excluirData?.split('-')[0]
-      }${+operacao.excluirData?.split('-')[1]}`;
-
       return (
         (operacao.fixa &&
-          mesAno !== `${this.ano.toString()}${this.mes.toString()}`) ||
-        (+operacao.data.split('-')[1] === this.mes &&
-          +operacao.data.split('-')[0] === this.ano &&
-          !operacao.fixa)
+          !operacao.excluirData.find((data) => {
+            return (
+              +data.toString().split('-')[1] === this.mes &&
+              +data.toString().split('-')[0] === this.ano
+            );
+          })) ||
+        (!operacao.fixa &&
+          +operacao.data.split('-')[1] === this.mes &&
+          +operacao.data.split('-')[0] === this.ano)
       );
     });
   }
