@@ -25,6 +25,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   loading: boolean;
   despesasEmAberto: any;
   receitasEmAberto: any;
+  despesasTotal = [];
+  receitasTotal = [];
 
   constructor(
     private dialog: MatDialog,
@@ -37,24 +39,40 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       if (!obj.mes) return;
       this.mes = obj.mes;
       this.ano = obj.ano;
-      this.buscarDados();
+      this.calcularOperacoes();
     });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    this.loading = true;
+    await this.buscarContas();
+    await this.buscarDespesas();
+    await this.buscarReceitas();
+    await this.calcularOperacoes();
+    this.loading = false;
+  }
 
   ngOnDestroy() {
     this.a.unsubscribe();
   }
 
+  calcularOperacoes() {
+    this.receitasEmAberto = this._operacoesService
+      .calcularOperacoes(this.receitasTotal, this.mes, this.ano)
+      .filter((operacao) => !operacao.efetivado);
+
+    this.despesasEmAberto = this._operacoesService
+      .calcularOperacoes(this.despesasTotal, this.mes, this.ano)
+      .filter((operacao) => !operacao.efetivado);
+  }
+
   async buscarDados() {
     try {
-      this.loading = true;
+      await this.buscarContas();
       await this.buscarDespesas();
       await this.buscarReceitas();
-      await this.buscarContas();
+      this.calcularOperacoes();
     } finally {
-      this.loading = false;
     }
   }
   async buscarContas() {
@@ -63,28 +81,16 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   async buscarDespesas() {
-    const filtros = {
-      mes: this.mes,
-      ano: this.ano,
-    };
-    const despesas = await this._operacoesService
-      .buscarDespesas(filtros)
+    this.despesasTotal = await this._operacoesService
+      .buscarDespesas({})
       .toPromise();
-    this.despesasEmAberto = despesas.filter((despesa) => !despesa.efetivado);
-    this.despesas = despesas;
     this.calcularDespesasEsteMes();
   }
 
   async buscarReceitas() {
-    const filtros = {
-      mes: this.mes,
-      ano: this.ano,
-    };
-    const receitas = await this._operacoesService
-      .buscarReceitas(filtros)
+    this.receitasTotal = await this._operacoesService
+      .buscarReceitas({})
       .toPromise();
-    this.receitasEmAberto = receitas.filter((despesa) => !despesa.efetivado);
-    this.receitas = receitas;
     this.calcularReceitasEsteMes();
   }
 
@@ -122,9 +128,11 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
         },
       })
       .afterClosed()
-      .subscribe((r) => {
+      .subscribe(async (r) => {
         if (r) {
-          this.buscarDados();
+          await this.buscarDespesas();
+          await this.buscarReceitas();
+          this.calcularOperacoes();
         }
       });
   }
@@ -138,9 +146,11 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
         },
       })
       .afterClosed()
-      .subscribe((r) => {
+      .subscribe(async (r) => {
         if (r) {
-          this.buscarDados();
+          await this.buscarDespesas();
+          await this.buscarReceitas();
+          this.calcularOperacoes();
         }
       });
   }
