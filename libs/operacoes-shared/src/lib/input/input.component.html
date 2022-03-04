@@ -1,0 +1,20 @@
+<div class="numeric-input-container">
+    <div class="numeric-input" (touchend)="onFocus($event)">
+        <div>
+            <div class="numeric-input-text">
+                <span class="input-text" *ngFor="let value of ks.rawValue; let i = index; trackBy: trackByIndex"
+                      [attr.data-index]="i">
+
+                </span>
+            </div>
+            <div *ngIf="ks.rawValue.length === 0" class="numeric-input-placeholder">
+                <span class="typo-placeholder">
+                    {{ kp.placeholder }}
+                </span>
+            </div>
+            <div *ngIf="ks.cursorActive" class="numeric-input-cursor blinking-cursor"
+                 >
+            </div>
+        </div>
+    </div>
+</div>

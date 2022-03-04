@@ -1,4 +1,10 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -42,6 +48,7 @@ export class FormularioOperacoesComponent implements OnInit {
   operacao: any;
   loading: boolean;
   hoje = new Date();
+  opened = 0;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<FormularioOperacoesComponent>,
@@ -60,6 +67,17 @@ export class FormularioOperacoesComponent implements OnInit {
     }
   }
 
+  onEnter() {}
+  onChange(event) {
+    this.formOperacao.get('valor')?.setValue(event);
+    console.log(event);
+  }
+  onInputFocus() {}
+  onInputBlur() {}
+
+  increment() {
+    this.opened = this.opened + 1;
+  }
   async buscarContas() {
     this.loading = true;
     this.contas = await this._contasService.buscarContas().toPromise();

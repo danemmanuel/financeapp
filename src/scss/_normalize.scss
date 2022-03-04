@@ -430,3 +430,9 @@ table {
 .pointer {
   cursor: pointer !important;
 }
+
+.numeric-keyboard-actionsheet {
+  div {
+    z-index: 99999;
+  }
+}
