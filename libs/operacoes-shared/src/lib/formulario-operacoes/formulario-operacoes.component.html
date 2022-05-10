@@ -19,9 +19,6 @@
 
     <ng-container *ngIf="!loading">
       <div class="row">
-        <ng-numeric-input [layout]="'number'" [disabled]="false" (enterpress)="onEnter()" [opened]="opened"
-          (ngModelChange)="onChange($event)" (focus)="onInputFocus()" (blur)="onInputBlur()" style="z-index:99999">
-        </ng-numeric-input>
         <mat-form-field class="col-6" (click)="increment()">
           <input required currencyMask [options]="currencyOption" formControlName="valor" matInput
             placeholder="Valor da {{ tipoOperacao }}:" type="phone" />
