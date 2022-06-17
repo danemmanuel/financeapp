@@ -2,8 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom:20px;
-  width: 100%;
+  margin-bottom: 20px;
 
   .content {
     background: rgb(0 0 0 / 3%);
@@ -11,8 +10,6 @@
     padding: 5px 0;
     display: flex;
     align-items: center;
-    width: 100%;
-    justify-content: space-between;
   }
 }
 .data {
@@ -21,4 +18,15 @@
 }
 .arrow_navigate {
   margin: 0 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    width: 100% !important;
+
+    .content {
+      width: 100% !important;
+      justify-content: space-between !important;
+    }
+  }
 }
