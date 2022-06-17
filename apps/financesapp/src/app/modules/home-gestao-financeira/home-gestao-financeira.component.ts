@@ -64,6 +64,9 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.despesasEmAberto = this._operacoesService
       .calcularOperacoes(this.despesasTotal, this.mes, this.ano)
       .filter((operacao) => !operacao.efetivado);
+
+    this.calcularReceitasEsteMes();
+    this.calcularDespesasEsteMes();
   }
 
   async buscarDados() {
@@ -71,7 +74,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       await this.buscarContas();
       await this.buscarDespesas();
       await this.buscarReceitas();
-      this.calcularOperacoes();
+      await this.calcularOperacoes();
     } finally {
     }
   }
@@ -84,14 +87,12 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.despesasTotal = await this._operacoesService
       .buscarDespesas({})
       .toPromise();
-    this.calcularDespesasEsteMes();
   }
 
   async buscarReceitas() {
     this.receitasTotal = await this._operacoesService
       .buscarReceitas({})
       .toPromise();
-    this.calcularReceitasEsteMes();
   }
 
   redirecionar(rota) {
@@ -99,14 +100,15 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   calcularReceitasEsteMes() {
-    this.receitasEsteMes = this.receitas.reduce(
+    debugger;
+    this.receitasEsteMes = this.receitasEmAberto.reduce(
       (total, conta) => (total += conta.valor),
       0
     );
   }
 
   calcularDespesasEsteMes() {
-    this.despesasEsteMes = this.despesas.reduce(
+    this.despesasEsteMes = this.despesasEmAberto.reduce(
       (total, conta) => (total += conta.valor),
       0
     );
