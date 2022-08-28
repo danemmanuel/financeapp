@@ -7,8 +7,9 @@ describe('Component: NumericInputComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [NumericInputComponent],
-        });
+    declarations: [NumericInputComponent],
+    teardown: { destroyAfterEach: false }
+});
         fixture = TestBed.createComponent(NumericInputComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();

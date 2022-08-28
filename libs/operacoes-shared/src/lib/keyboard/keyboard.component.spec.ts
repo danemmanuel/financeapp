@@ -7,8 +7,9 @@ describe('Component: NumericKeyboardComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [NumericKeyboardComponent],
-        });
+    declarations: [NumericKeyboardComponent],
+    teardown: { destroyAfterEach: false }
+});
         fixture = TestBed.createComponent(NumericKeyboardComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();

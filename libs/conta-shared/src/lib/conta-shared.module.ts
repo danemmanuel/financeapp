@@ -6,14 +6,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AngularMaterialModule,
-    ReactiveFormsModule,
-    NgxCurrencyModule,
-  ],
-  declarations: [FormularioContaComponent],
-  exports: [FormularioContaComponent],
-  entryComponents: [FormularioContaComponent],
+    imports: [
+        CommonModule,
+        AngularMaterialModule,
+        ReactiveFormsModule,
+        NgxCurrencyModule,
+    ],
+    declarations: [FormularioContaComponent],
+    exports: [FormularioContaComponent]
 })
 export class ContaSharedModule {}

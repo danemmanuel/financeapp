@@ -45,7 +45,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -82,16 +81,6 @@
             "browserTarget": "financesapp:build"
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "apps/financesapp/tsconfig.app.json",
-              "apps/financesapp/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!apps/financesapp/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -120,13 +109,6 @@
               "devServerTarget": "financesapp:serve:production"
             }
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": ["apps/financesapp-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/financesapp-e2e/**/*"]
-          }
         }
       }
     },
@@ -136,16 +118,6 @@
       "sourceRoot": "libs/main-menu/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/main-menu/tsconfig.lib.json",
-              "libs/main-menu/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/main-menu/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -168,16 +140,6 @@
       "projectType": "library",
       "schematics": {},
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/angular-material/tsconfig.lib.json",
-              "libs/angular-material/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/angular-material/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -194,16 +156,6 @@
       "sourceRoot": "libs/fit-card/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/fit-card/tsconfig.lib.json",
-              "libs/fit-card/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/fit-card/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -226,16 +178,6 @@
       "sourceRoot": "libs/pipes/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/pipes/tsconfig.lib.json",
-              "libs/pipes/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/pipes/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -258,16 +200,6 @@
       "sourceRoot": "libs/receitas-shared/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/receitas-shared/tsconfig.lib.json",
-              "libs/receitas-shared/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/receitas-shared/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -290,16 +222,6 @@
       "sourceRoot": "libs/header-mes/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/header-mes/tsconfig.lib.json",
-              "libs/header-mes/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/header-mes/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -322,16 +244,6 @@
       "sourceRoot": "libs/despesas-shared/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/despesas-shared/tsconfig.lib.json",
-              "libs/despesas-shared/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/despesas-shared/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -354,16 +266,6 @@
       "sourceRoot": "libs/operacoes-shared/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/operacoes-shared/tsconfig.lib.json",
-              "libs/operacoes-shared/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/operacoes-shared/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
@@ -386,16 +288,6 @@
       "sourceRoot": "libs/conta-shared/src",
       "prefix": "finances-app",
       "architect": {
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "libs/conta-shared/tsconfig.lib.json",
-              "libs/conta-shared/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/conta-shared/**/*"]
-          }
-        },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {

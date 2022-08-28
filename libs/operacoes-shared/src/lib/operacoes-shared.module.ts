@@ -9,17 +9,16 @@ import { FormularioOperacoesComponent } from './formulario-operacoes/formulario-
 import { NgNumericKeyboardModule } from './ng-numeric-keyboard.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AngularMaterialModule,
-    ReactiveFormsModule,
-    NgxCurrencyModule,
-    PipesModule,
-    NgNumericKeyboardModule,
-  ],
-  declarations: [FormularioOperacoesComponent, ListarOperacoesComponent],
-  exports: [FormularioOperacoesComponent, ListarOperacoesComponent],
-  providers: [FormBuilder],
-  entryComponents: [FormularioOperacoesComponent],
+    imports: [
+        CommonModule,
+        AngularMaterialModule,
+        ReactiveFormsModule,
+        NgxCurrencyModule,
+        PipesModule,
+        NgNumericKeyboardModule,
+    ],
+    declarations: [FormularioOperacoesComponent, ListarOperacoesComponent],
+    exports: [FormularioOperacoesComponent, ListarOperacoesComponent],
+    providers: [FormBuilder]
 })
 export class OperacoesSharedModule {}

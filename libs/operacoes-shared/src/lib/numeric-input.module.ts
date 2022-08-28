@@ -14,9 +14,6 @@ import { NumericKeyboardComponent } from './keyboard/keyboard.component';
         NumericInputComponent,
         NumericKeyboardComponent
     ],
-    entryComponents: [
-        NumericKeyboardComponent
-    ],
     imports: [
         CommonModule,
         FormsModule

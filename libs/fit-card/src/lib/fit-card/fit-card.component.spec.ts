@@ -8,8 +8,9 @@ describe('FitCardComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ FitCardComponent ]
-    })
+    declarations: [FitCardComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 

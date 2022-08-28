@@ -8,8 +8,9 @@ describe('ListarOperacoesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListarOperacoesComponent ]
-    })
+    declarations: [ListarOperacoesComponent],
+    teardown: { destroyAfterEach: false }
+})
     .compileComponents();
   }));
 
