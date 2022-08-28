@@ -306,8 +306,10 @@
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@nrwl/angular"
+    ]
   },
   "schematics": {
     "@nrwl/angular:application": {
@@ -317,6 +319,5 @@
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
     }
-  },
-  "defaultProject": "financesapp"
+  }
 }

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
+import { HomeModule } from '@finances-app/src/app/modules/home/home.module';
 
 const homeGestaoFinanceiraModule =
-  '@finances-app/src/app/modules/home-gestao-financeira/home-gestao-financeira.module#HomeGestaoFinanceiraModule';
+  '../../modules/home-gestao-financeira/home-gestao-financeira.module#HomeGestaoFinanceiraModule';
 
 const receitasModule =
   '@finances-app/src/app/modules/receitas/receitas.module#ReceitasModule';
@@ -15,30 +16,50 @@ const contasModule =
   '@finances-app/src/app/modules/contas/contas.module#ContasModule';
 
 const authModule = '@finances-app/src/app/modules/auth/auth.module#AuthModule';
-const homeModule = '@finances-app/src/app/modules/home/home.module#HomeModule';
+const homeModule = '../modules/home/home.module#HomeModule';
 
 export const routers: Routes = [
-  { path: '', loadChildren: homeModule },
-  { path: 'login', loadChildren: authModule },
+  {
+    path: '',
+    loadChildren: () =>
+      import('../modules/home/home.module').then((x) => {
+        return x.HomeModule;
+      }),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('../modules/auth/auth.module').then((x) => x.AuthModule),
+  },
   {
     path: 'dashboard',
     canActivate: [AuthGuard],
     children: [
       {
         path: 'home',
-        loadChildren: homeGestaoFinanceiraModule,
+        loadChildren: () =>
+          import(
+            '../modules/home-gestao-financeira/home-gestao-financeira.module'
+          ).then((x) => x.HomeGestaoFinanceiraModule),
       },
       {
         path: 'receitas',
-        loadChildren: receitasModule,
+        loadChildren: () =>
+          import('../modules/receitas/receitas.module').then(
+            (x) => x.ReceitasModule
+          ),
       },
       {
         path: 'despesas',
-        loadChildren: despesasModule,
+        loadChildren: () =>
+          import('../modules/despesas/despesas.module').then(
+            (x) => x.DespesasModule
+          ),
       },
       {
         path: 'contas',
-        loadChildren: contasModule,
+        loadChildren: () =>
+          import('../modules/contas/contas.module').then((x) => x.ContasModule),
       },
     ],
   },
