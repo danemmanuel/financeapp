@@ -33,16 +33,16 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^11.0.6",
+    "@angular/animations": "^12.2.16",
     "@angular/cdk": "^11.0.3",
-    "@angular/common": "^11.0.6",
-    "@angular/compiler": "^11.0.6",
-    "@angular/core": "^11.0.6",
-    "@angular/forms": "^11.0.6",
+    "@angular/common": "^12.2.16",
+    "@angular/compiler": "^12.2.16",
+    "@angular/core": "^12.2.16",
+    "@angular/forms": "^12.2.16",
     "@angular/material": "^11.0.3",
-    "@angular/platform-browser": "^11.0.6",
-    "@angular/platform-browser-dynamic": "^11.0.6",
-    "@angular/router": "^11.0.6",
+    "@angular/platform-browser": "^12.2.16",
+    "@angular/platform-browser-dynamic": "^12.2.16",
+    "@angular/router": "^12.2.16",
     "@auth0/angular-jwt": "^5.0.2",
     "@nrwl/angular": "11.0.20",
     "@types/es6-promise": "^3.3.0",
@@ -52,13 +52,13 @@
     "ngx-currency": "^2.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
-    "zone.js": "^0.10.2"
+    "zone.js": "^0.11.8"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1100.6",
-    "@angular/cli": "^11.0.6",
-    "@angular/compiler-cli": "^11.0.6",
-    "@angular/language-service": "^11.0.6",
+    "@angular-devkit/build-angular": "^12.2.18",
+    "@angular/cli": "^12.2.18",
+    "@angular/compiler-cli": "^12.2.16",
+    "@angular/language-service": "^12.2.16",
     "@nrwl/cypress": "11.0.20",
     "@nrwl/jest": "11.0.20",
     "@nrwl/workspace": "11.0.20",
@@ -74,6 +74,6 @@
     "ts-jest": "25.2.1",
     "ts-node": "~7.0.0",
     "tslint": "~6.1.3",
-    "typescript": "~4.0.5"
+    "typescript": "~4.3.5"
   }
 }
