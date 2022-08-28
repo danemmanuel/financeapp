@@ -1,1 +1,1 @@
-export * from './lib/main-menu.module';
+export * from './lib/main-menu/main-menu.component';

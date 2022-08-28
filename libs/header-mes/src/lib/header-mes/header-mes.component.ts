@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 @Component({
   selector: 'finances-app-header-mes',
   templateUrl: './header-mes.component.html',
   styleUrls: ['./header-mes.component.scss'],
+  standalone: true,
+  imports: [MatIconModule, MatButtonModule],
 })
 export class HeaderMesComponent implements OnInit {
   data = new Date();

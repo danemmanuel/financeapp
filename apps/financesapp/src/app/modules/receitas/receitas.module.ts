@@ -4,7 +4,6 @@ import { ReceitasComponent } from './receitas.component';
 import { ReceitasRoutingModule } from '@finances-app/src/app/modules/receitas/receitas-routing.module';
 import { FitCardModule } from '@finances-app/fit-card';
 import { AngularMaterialModule } from '@finances-app/angular-material';
-import { HeaderMesModule } from '@finances-app/header-mes';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 
 @NgModule({
@@ -14,7 +13,6 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     ReceitasRoutingModule,
     FitCardModule,
     AngularMaterialModule,
-    HeaderMesModule,
     OperacoesSharedModule
   ],
 })

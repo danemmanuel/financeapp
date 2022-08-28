@@ -1,1 +1,1 @@
-export * from './lib/header-mes.module';
+export * from './lib/header-mes/header-mes.component';

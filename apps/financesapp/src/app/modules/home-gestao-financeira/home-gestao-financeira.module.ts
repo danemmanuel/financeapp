@@ -6,7 +6,6 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { HttpClientModule } from '@angular/common/http';
 import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
 import { FitCardModule } from '@finances-app/fit-card';
-import { HeaderMesModule } from '@finances-app/header-mes';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     HttpClientModule,
     FitCardModule,
     OperacoesSharedModule,
-    HeaderMesModule,
   ],
 })
 export class HomeGestaoFinanceiraModule {}

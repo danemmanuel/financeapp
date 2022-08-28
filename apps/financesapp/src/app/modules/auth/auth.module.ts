@@ -5,7 +5,6 @@ import { PipesModule } from '@finances-app-libs/pipes/src/lib/pipes.module';
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { ContaSharedModule } from '@finances-app/conta-shared';
 import { FitCardModule } from '@finances-app/fit-card';
-import { HeaderMesModule } from '@finances-app/header-mes';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
@@ -17,7 +16,6 @@ import { AuthComponent } from './auth.component';
     AuthRoutingModule,
     FitCardModule,
     AngularMaterialModule,
-    HeaderMesModule,
     OperacoesSharedModule,
     ContaSharedModule,
     ReactiveFormsModule,
