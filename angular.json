@@ -24,7 +24,8 @@
             "aot": true,
             "assets": [
               "apps/financesapp/src/favicon.ico",
-              "apps/financesapp/src/assets"
+              "apps/financesapp/src/assets",
+              "apps/financesapp/src/img"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",

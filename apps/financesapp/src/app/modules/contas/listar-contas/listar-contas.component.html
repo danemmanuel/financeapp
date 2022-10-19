@@ -1,9 +1,21 @@
-<div class="contas row">
-  <div class="conta col-4" style="background: purple;" *ngFor="let conta of contas"  (click)="editarConta(conta)">
-    <h2>{{conta.instituicao}}</h2>
+<div class="contas">
+  <div class="conta" *ngFor="let conta of contas" (click)="editarConta(conta)">
+    <div class="content">
+      <div class="imagem">
+        <img
+          alt="BTC"
+          style="max-width: 50px"
+          [src]="'/assets/' + conta.instituicao.toLowerCase() +'.png'"
+        />
+      </div>
+      <h2>{{ conta.instituicao }}</h2>
+      <h3>{{ conta.tipoConta }}</h3>
 
-    <div class="saldos">
-      <p>Saldo atual: <b>{{conta.saldo | currency:'BRL'}}</b></p>
+      <div class="saldos">
+        <p>
+           <b>{{ conta.saldo | currency: 'BRL' }}</b>
+        </p>
+      </div>
     </div>
   </div>
 </div>
