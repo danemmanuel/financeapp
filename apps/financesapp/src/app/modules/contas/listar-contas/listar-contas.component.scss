@@ -8,15 +8,17 @@
     flex-basis: 20%;
     -webkit-box-flex: 0;
     flex-grow: 0;
-    background-color: rgb(255, 255, 255);
-    color: rgb(34, 51, 84);
+    background-color: #11192a;
+    color: #fff;
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     border-radius: 10px;
     padding: 0px 9px;
-    box-shadow: rgb(159 162 191 / 18%) 0px 9px 16px,
-      rgb(159 162 191 / 32%) 0px 2px 2px;
     overflow: hidden;
+    &:hover {
+      box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+      transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
+    }
     .content {
       padding: 16px 16px 24px;
 
@@ -58,19 +60,18 @@
       h3 {
         margin: 0px;
         font-size: 14px;
-        color: rgba(34, 51, 84, 0.7);
         font-weight: 400;
         line-height: 1.75;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: rgb(255 255 255 / 42%);
       }
     }
 
     .saldos {
       border-radius: 48px;
       opacity: 1;
-      background: rgb(255 255 255 / 11%);
       margin-top: 20px;
 
       p > b {
@@ -78,7 +79,6 @@
         font-weight: 700;
         font-size: 25px;
         line-height: 1.4;
-        color: rgb(34, 51, 84);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

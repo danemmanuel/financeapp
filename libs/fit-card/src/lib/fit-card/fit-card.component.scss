@@ -1,8 +1,7 @@
 .card_saldo_contas {
+  background: #11192a;
   margin-right: 50px;
   position: relative;
-  background: #fff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
   padding: 15px 45px;
   border-radius: 25px;
   transition: all 0.3s;
@@ -20,7 +19,6 @@
     height: 80px;
     margin-right: -40px;
     flex-shrink: 0;
-    box-shadow: 4px 13px 30px 1px rgb(95 95 95 / 20%);
     border-radius: 20px;
     transform: translateX(-70px);
     overflow: hidden;
@@ -44,14 +42,12 @@
     min-width: 170px;
     @media (min-width: 768px) {
       h1 {
-        font-weight: bold;
         line-height: 25px;
         font-size: 20px;
       }
     }
     @media (min-width: 1400px) {
       h1 {
-        font-weight: bold;
         line-height: 25px;
         font-size: 22px;
       }
@@ -65,7 +61,6 @@
 }
 
 .icon {
-  box-shadow: 4px 13px 30px 1px rgb(95 95 95 / 20%);
 }
 
 p {
@@ -74,7 +69,6 @@ p {
   color: #fff;
   border-radius: 100px;
   padding: 5px 15px;
-  opacity: 0.5;
   min-width: 85%;
   display: flex;
   justify-content: center;
@@ -98,6 +92,7 @@ p {
     padding: 0;
     margin: 0 !important;
     box-shadow: none !important;
+    background: transparent;
   }
   .icon {
     margin: 0 !important;
