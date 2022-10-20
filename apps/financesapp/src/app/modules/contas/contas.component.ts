@@ -52,8 +52,15 @@ export class ContasComponent implements OnInit, OnDestroy {
   }
 
   async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
-    this.calcularSaldoAtual();
+    try {
+      this.loading = true;
+      this.contas = await this._contaService.buscarContas().toPromise();
+      this.calcularSaldoAtual();
+      this.calcularSaldoPrevisto();
+    } finally {
+      this.loading = false;
+    }
+
   }
 
   calcularSaldoAtual() {
