@@ -2,10 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  margin-left:50px;
 
   .content {
-    background: rgb(0 0 0 / 3%);
+    background: rgb(33 33 33);
     border-radius: 50px;
     padding: 5px 0;
     display: flex;
@@ -15,6 +16,8 @@
 .data {
   font-size: 25px;
   font-weight: 500;
+  min-width: 250px;
+  text-align: center;
 }
 .arrow_navigate {
   margin: 0 10px;
@@ -22,11 +25,17 @@
 
 @media only screen and (max-width: 768px) {
   .header {
-    width: 100% !important;
-
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 0 !important;
+    margin-left: 0;
     .content {
       width: 100% !important;
       justify-content: space-between !important;
     }
+  }
+
+  .data {
+    min-width: auto;
   }
 }
