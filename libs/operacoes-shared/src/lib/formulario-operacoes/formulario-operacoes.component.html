@@ -20,7 +20,7 @@
     <ng-container *ngIf="!loading">
       <div class="row">
         <mat-form-field class="col-6" (click)="increment()">
-          <input required currencyMask [options]="currencyOption" formControlName="valor" matInput
+          <input required currencyMask [options]="currencyOption" readonly formControlName="valor" matInput
             placeholder="Valor da {{ tipoOperacao }}:" type="phone" />
 
           <mat-error>
@@ -31,7 +31,6 @@
         <div class="col-6">
           <section class="example-section">
             <mat-slide-toggle formControlName="efetivado" class="example-margin"
-              [disabled]="formOperacao.get('data')?.value >= hoje"
               [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="operacao?.efetivado ">
               {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
             </mat-slide-toggle>
