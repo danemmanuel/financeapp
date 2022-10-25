@@ -433,5 +433,8 @@ table {
 .numeric-keyboard-actionsheet {
   div {
     z-index: 99999;
+    max-width: 450px;
+    left: 50%;
+    margin-left: -225px;
   }
 }
