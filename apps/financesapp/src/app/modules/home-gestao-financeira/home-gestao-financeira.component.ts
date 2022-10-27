@@ -125,6 +125,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.dialog
       .open(FormularioOperacoesComponent, {
         width: '450px',
+        maxWidth: '100vw',
+        height: '100vh',
         data: {
           tipoOperacao: 'Receita',
         },

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   Inject,
@@ -12,12 +13,13 @@ import { CurrencyMaskConfig } from 'ngx-currency';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import * as moment from 'moment';
 import { OperacoesService } from '../operacoes.service';
+import {MatInput} from "@angular/material/input";
 @Component({
   selector: 'finances-app-formulario-operacoes',
   templateUrl: './formulario-operacoes.component.html',
   styleUrls: ['./formulario-operacoes.component.scss'],
 })
-export class FormularioOperacoesComponent implements OnInit {
+export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   tipoOperacao = '';
   formOperacao: FormGroup;
   contas = [];
@@ -34,7 +36,9 @@ export class FormularioOperacoesComponent implements OnInit {
     decimal: ',',
     prefix: 'R$',
   };
+  @ViewChild('valor') valorInput: ElementRef;
   categorias = [
+    { descricao: 'Cartão de Crédito', icone: 'aliment' },
     { descricao: 'Alimentacao', icone: 'aliment' },
     { descricao: 'Lazer', icone: 'Lazer' },
     { descricao: 'Casa', icone: 'Lazer' },
@@ -65,6 +69,13 @@ export class FormularioOperacoesComponent implements OnInit {
       this.operacao = this.data.operacao.receita || this.data.operacao.despesa;
       this.preencherFormulario();
     }
+    setTimeout(()=>{
+      this.valorInput.nativeElement.focus();
+    }, 500)
+  }
+
+  ngAfterViewInit() {
+    this.valorInput?.nativeElement?.focus();
   }
 
   onEnter() {}
