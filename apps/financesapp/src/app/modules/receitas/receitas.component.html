@@ -2,11 +2,11 @@
   <div class="header">
 
     <finances-app-fit-card titulo="Total Pendente" [loading]="loading" [valor]="totalPendente | currency:'BRL'"
-      class="fitcard" cor="#323DA4" icone="push_pin">
+      class="fitcard mr-5" cor="#323DA4" icone="push_pin">
     </finances-app-fit-card>
 
     <finances-app-fit-card titulo="Total Recebido" [loading]="loading" [valor]="totalRecebido | currency:'BRL'"
-      class="fitcard" cor="#35AE96" icone="account_balance_wallet">
+      class="fitcard mr-5" cor="#35AE96" icone="account_balance_wallet">
     </finances-app-fit-card>
     <button (click)="adicionarReceita()" mat-mini-fab color="primary" class="add_operacao"
       matTooltip="Adicionar Receita" style="background-color: rgb(53, 174, 150);">

@@ -42,6 +42,10 @@ finances-app-formulario-operacoes {
   justify-content: space-between;
 }
 @media only screen and (max-width: 768px) {
+  .mr-5 {
+    margin-right: 0px !important;
+  }
+
   .main_content {
     width: 100%;
   }
@@ -444,4 +448,8 @@ table {
     left: 50%;
     margin-left: -225px;
   }
+}
+
+.mr-5 {
+  margin-right: 50px;
 }

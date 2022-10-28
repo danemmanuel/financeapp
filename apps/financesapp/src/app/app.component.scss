@@ -5,7 +5,7 @@
 @media (min-width: 768px) {
   .main_content {
     padding: 20px 16px 24px;
-    width: 100%;
+    width: calc(100% - 250px);
     margin: 0px auto 0px 250px;
     background-color: transparent;
   }

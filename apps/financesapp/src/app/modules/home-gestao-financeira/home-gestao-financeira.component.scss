@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
   }
 
   .content {
@@ -17,15 +18,19 @@
   max-height: 471px;
   overflow-y: auto;
 }
-
+@media only screen and (min-width: 768px) {
+  .saldo, .operacao {
+    max-width: 33%;
+  }
+}
 @media only screen and (max-width: 768px) {
   .header-home {
     flex-wrap: wrap;
   }
   .saldo {
-    width:100%;
+    width:100% !important;
   }
   .operacao {
-    width:50%;
+    width:50% !important;
   }
 }
