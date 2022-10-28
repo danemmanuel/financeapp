@@ -26,8 +26,7 @@ export class ListarOperacoesComponent implements OnInit {
     this.dialog
       .open(FormularioOperacoesComponent, {
         width: '450px',
-        maxWidth: '100vw',
-        height: '100vh',
+        maxWidth: '90%',
         data: {
           tipoOperacao: this.tipoOperacao,
           operacao: {
