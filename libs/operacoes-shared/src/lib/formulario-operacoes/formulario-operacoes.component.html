@@ -1,15 +1,23 @@
 <h1 mat-dialog-title class="titulo_modal">
-  <span style="font-weight: 500;" [ngStyle]="{
+  <span
+    style="font-weight: 500;"
+    [ngStyle]="{
       color:
         data.tipoOperacao === 'Receita'
           ? 'rgb(53, 174, 150)'
           : 'rgb(255, 96, 79)'
-    }">
+    }"
+  >
     {{ data.operacao ? 'Editar' : 'Nova' }}
 
     {{ tipoOperacao }}
   </span>
-  <button mat-mini-fab color="warn" (click)="deletarOperacao()" *ngIf="operacao">
+  <button
+    mat-mini-fab
+    color="warn"
+    (click)="deletarOperacao()"
+    *ngIf="operacao"
+  >
     <mat-icon>delete</mat-icon>
   </button>
 </h1>
@@ -20,8 +28,16 @@
     <ng-container *ngIf="!loading">
       <div class="row">
         <mat-form-field class="col-6" (click)="increment()">
-          <input required #valor currencyMask [options]="currencyOption" formControlName="valor" matInput
-            placeholder="Valor da {{ tipoOperacao }}:" type="phone" />
+          <input
+            required
+            #valor
+            currencyMask
+            [options]="currencyOption"
+            formControlName="valor"
+            matInput
+            placeholder="Valor da {{ tipoOperacao }}:"
+            type="phone"
+          />
 
           <mat-error>
             {{ formOperacao.controls['valor']?.errors | errorKeys }}
@@ -30,58 +46,73 @@
 
         <div class="col-6">
           <section class="example-section">
-            <mat-slide-toggle formControlName="efetivado" class="example-margin"
-              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="operacao?.efetivado ">
+            <mat-slide-toggle
+              formControlName="efetivado"
+              class="example-margin"
+              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+              [checked]="operacao?.efetivado"
+            >
               {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
             </mat-slide-toggle>
           </section>
         </div>
 
-
-
         <mat-form-field class="col-12">
-          <textarea formControlName="descricao" matInput placeholder="Descrição"></textarea>
+          <input formControlName="descricao" matInput placeholder="Descrição" />
 
           <mat-error>
             {{ formOperacao.controls['descricao']?.errors | errorKeys }}
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="col-5">
+        <mat-form-field class="col-6">
           <mat-label>Data</mat-label>
           <input matInput formControlName="data" [matDatepicker]="picker1" />
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker1></mat-datepicker>
 
           <mat-error>
             {{ formOperacao.controls['data']?.errors | errorKeys }}
           </mat-error>
         </mat-form-field>
-        <mat-chip-list class="col-7">
-          <mat-chip class="pointer" (click)="setOntem()">Ontem</mat-chip>
-          <mat-chip (click)="setHoje()" class="pointer">Hoje</mat-chip>
-          <mat-chip class="pointer" [ngStyle]="{
-            background:
-              data.tipoOperacao === 'Receita'
-                ? 'rgb(53, 174, 150)'
-                : 'rgb(255, 96, 79)'
-          }" style="color:#fff" (click)="picker1.open()">Outros</mat-chip>
-        </mat-chip-list>
 
-        <div class="col-12" *ngIf="!data.operacao">
+        <div class="col-6" *ngIf="!data.operacao">
           <section class="example-section">
-            <mat-slide-toggle formControlName="fixa" class="example-margin"
-              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'" [checked]="operacao?.fixa">
-              Despesa Fixa
+            <mat-slide-toggle
+              formControlName="fixa"
+              class="example-margin"
+              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+              [checked]="operacao?.fixa"
+            >
+              Fixa
             </mat-slide-toggle>
           </section>
         </div>
+
+        <mat-chip-list class="col-12">
+          <mat-chip (click)="setHoje()" class="pointer">Hoje</mat-chip>
+          <mat-chip
+            class="pointer"
+            [ngStyle]="{
+              background:
+                data.tipoOperacao === 'Receita'
+                  ? 'rgb(53, 174, 150)'
+                  : 'rgb(255, 96, 79)'
+            }"
+            style="color: #fff;"
+            (click)="picker1.open()"
+            >Outra Data</mat-chip
+          >
+        </mat-chip-list>
 
         <mat-form-field class="col-12">
           <mat-label>Conta</mat-label>
           <mat-select formControlName="conta" [compareWith]="byId">
             <mat-option *ngFor="let conta of contas" [value]="conta">
-              {{conta.instituicao}}
+              {{ conta.instituicao }}
             </mat-option>
           </mat-select>
 
@@ -93,8 +124,11 @@
         <mat-form-field class="col-12">
           <mat-label>Categoria</mat-label>
           <mat-select formControlName="categoria" [compareWith]="byDescricao">
-            <mat-option *ngFor="let categoria of categorias" [value]="categoria">
-              {{categoria.descricao}}
+            <mat-option
+              *ngFor="let categoria of categorias"
+              [value]="categoria"
+            >
+              {{ categoria.descricao }}
             </mat-option>
           </mat-select>
 
@@ -104,14 +138,16 @@
         </mat-form-field>
       </div>
     </ng-container>
-
-
   </form>
 </div>
 <mat-dialog-actions align="end" *ngIf="!loading">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button (click)="operacao ? atualizarOperacao() : salvarOperacao()" type="submit"
-    [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'">
+  <button
+    mat-button
+    (click)="operacao ? atualizarOperacao() : salvarOperacao()"
+    type="submit"
+    [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+  >
     {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>
