@@ -1,11 +1,11 @@
 <div class="content_despesas">
   <div class="header">
 
-    <finances-app-fit-card titulo="Total Pendente" [loading]="loading" [valor]="totalPendente | currency:'BRL'"
+    <finances-app-fit-card titulo="Pendente" [loading]="loading" [valor]="totalPendente | currency:'BRL'"
       class="fitcard mr-5" cor="#323DA4" icone="push_pin">
     </finances-app-fit-card>
 
-    <finances-app-fit-card titulo="Total Recebido" [loading]="loading" [valor]="totalRecebido | currency:'BRL'"
+    <finances-app-fit-card titulo="Recebido" [loading]="loading" [valor]="totalRecebido | currency:'BRL'"
       class="fitcard mr-5" cor="#35AE96" icone="account_balance_wallet">
     </finances-app-fit-card>
     <button (click)="adicionarReceita()" mat-mini-fab color="primary" class="add_operacao"
