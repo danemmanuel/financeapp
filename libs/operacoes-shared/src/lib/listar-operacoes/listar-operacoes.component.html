@@ -6,24 +6,37 @@
   </div>
 
   <ul>
-    <li *ngFor="let operacao of operacoes" class="operacao pointer" (click)="receitaSelecionada(operacao)">
+    <li
+      *ngFor="let operacao of operacoes"
+      class="operacao pointer"
+      (click)="receitaSelecionada(operacao)"
+    >
       <div class="nome">
-        <p>{{operacao.descricao}}</p>
-        <span style="font-size: 10px;">{{operacao.conta.instituicao}} | {{operacao.conta.tipoConta}}</span>
+        <p>{{ operacao.descricao }}</p>
+        <span style="font-size: 10px;"
+          >{{ operacao.conta.instituicao }} |
+          {{ operacao.categoria.descricao }}</span
+        >
+      </div>
+
+      <div class="data">
+        {{operacao.data | date: 'dd/MM/yyyy' }}
       </div>
 
       <div class="valor">
-        <b> {{ operacao.valor | currency:'BRL' }} </b>
+        <b> {{ operacao.valor | currency: 'BRL' }} </b>
         <p>
-          <mat-icon [ngStyle]="{
-            color: operacao.efetivado ? '#35AE96' : '#FF604F'
-          }">
+          <mat-icon
+            [ngStyle]="{
+              color: operacao.efetivado ? '#35AE96' : '#FF604F'
+            }"
+          >
             {{
-            operacao.efetivado ? 'check_circle' : 'remove_circle'
-            }}</mat-icon>
+              operacao.efetivado ? 'check_circle' : 'remove_circle'
+            }}</mat-icon
+          >
         </p>
       </div>
     </li>
   </ul>
-
 </mat-card>
