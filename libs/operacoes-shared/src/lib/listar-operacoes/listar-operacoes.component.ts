@@ -19,14 +19,11 @@ export class ListarOperacoesComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.preencherOperacoes();
+
   }
 
   preencherOperacoes() {
-    this.operacoes = this.operacoes.map((operacao) => {
-      return { ...operacao, efetivado: !!operacao.efetivado };
-    });
-    this.operacoesFiltradas = this.operacoes;
+
   }
 
   filtroChange() {
