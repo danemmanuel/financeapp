@@ -29,9 +29,10 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   }
 
   preencherOperacoes() {
-    this.operacoesFiltradas = this.operacoes.map((operacao) => {
+    this.operacoes = this.operacoes.map((operacao) => {
       return { ...operacao, efetivado: !!operacao.efetivado };
     });
+    this.operacoesFiltradas = this.operacoes;
   }
 
   filtroChange() {
