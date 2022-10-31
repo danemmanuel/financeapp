@@ -52,13 +52,10 @@ export class ContasComponent implements OnInit, OnDestroy {
   }
 
   async buscarContas() {
-    try {
-      this.loading = true;
-      this.contas = await this._contaService.buscarContas().toPromise();
-      this.calcularSaldoAtual();
-      await this.calcularSaldoPrevisto();
-    } finally {
-    }
+    this.contas = await this._contaService.buscarContas().toPromise();
+    this.calcularSaldoAtual();
+    await this.calcularSaldoPrevisto();
+    return this.contas;
   }
 
   calcularSaldoAtual() {
@@ -82,7 +79,6 @@ export class ContasComponent implements OnInit, OnDestroy {
 
   async calcularSaldoPrevisto() {
     try {
-      this.loading = true;
       this.receitas = this._operacoesService.calcularOperacoes(
         this.receitasTotal,
         this.mes,
@@ -114,9 +110,10 @@ export class ContasComponent implements OnInit, OnDestroy {
         },
       })
       .afterClosed()
-      .subscribe((r) => {
+      .subscribe(async (r) => {
         if (r) {
           this.buscarContas();
+          this.loading = false;
         }
       });
   }
