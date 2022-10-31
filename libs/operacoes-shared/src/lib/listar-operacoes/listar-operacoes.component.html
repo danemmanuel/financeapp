@@ -16,6 +16,14 @@
         {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
       </span>
     </mat-slide-toggle>
+    <button
+      mat-mini-fab
+      matTooltip="Limpar Filtro"
+      color="primary"
+      (click)="reset()"
+    >
+      <mat-icon>cached</mat-icon>
+    </button>
   </div>
   <ul>
     <li
