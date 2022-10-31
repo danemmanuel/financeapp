@@ -19,7 +19,11 @@
     <button
       mat-mini-fab
       matTooltip="Limpar Filtro"
-      color="primary"
+      [style]="
+        tipoOperacao === 'Receita'
+          ? 'background-color: rgb(53, 174, 150)'
+          : 'background-color: rgb(255, 96, 79);'
+      "
       (click)="reset()"
     >
       <mat-icon>cached</mat-icon>
