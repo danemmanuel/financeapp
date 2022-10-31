@@ -14,14 +14,28 @@ export class ListarOperacoesComponent implements OnInit {
   @Input() tipoOperacao;
   @Input() mes;
   @Input() ano;
+  filtro: boolean;
+  operacoesFiltradas: any;
   constructor(private dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.operacoes = this.operacoes.map((operacao) => {
+      return { ...operacao, efetivado: !!operacao.efetivado };
+    });
+    this.operacoesFiltradas = this.operacoes;
+  }
+
+  filtroChange() {
+    console.log(this.filtro);
+    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+      return operacao.efetivado === !this.filtro;
+    });
+  }
 
   receitaSelecionada(receita) {
     if (receita.fixa) {
       const novaData = `${this.ano}-${this.mes}-${receita.data.split('-')[2]}`;
-     receita.data = novaData
+      receita.data = novaData;
     }
     this.dialog
       .open(FormularioOperacoesComponent, {

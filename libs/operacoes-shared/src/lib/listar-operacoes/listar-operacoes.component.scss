@@ -1,3 +1,16 @@
+.filtro {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 10px;
+
+  .toggle {
+    background: #191919;
+    padding: 10px 20px;
+    display: inline-table;
+    border-radius: 49px;
+  }
+}
 .operacao {
   display: flex;
   justify-content: space-between;

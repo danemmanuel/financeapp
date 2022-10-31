@@ -10,7 +10,11 @@
     background-color: transparent;
   }
 }
-
+@media (max-width: 768px) {
+  .main_content {
+    margin-bottom: 80px !important;
+  }
+}
 
 .auth {
   position: fixed;

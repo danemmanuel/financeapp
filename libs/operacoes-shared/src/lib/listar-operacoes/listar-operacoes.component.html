@@ -5,9 +5,21 @@
     </div>
   </div>
 
+  <div class="filtro">
+    <mat-slide-toggle
+      class="toggle"
+      [(ngModel)]="filtro"
+      [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+      (toggleChange)="filtroChange()"
+    >
+      <span style="color: #fff;">
+        {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
+      </span>
+    </mat-slide-toggle>
+  </div>
   <ul>
     <li
-      *ngFor="let operacao of operacoes"
+      *ngFor="let operacao of operacoesFiltradas"
       class="operacao pointer"
       (click)="receitaSelecionada(operacao)"
     >
