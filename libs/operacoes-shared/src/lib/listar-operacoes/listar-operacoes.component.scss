@@ -3,7 +3,14 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
-  padding:10px;
+  padding: 10px;
+
+  .green {
+    color: rgb(53, 174, 150);
+  }
+  .red {
+    color: rgb(255, 96, 79);
+  }
   &:hover {
     background: rgb(0 0 0 / 6%);
   }
@@ -14,6 +21,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+  }
+  .data {
+    font-size: 12px !important;
+    color: #8a8a8a;
   }
   p {
     margin: 0;

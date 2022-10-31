@@ -58,9 +58,7 @@ export class ContasComponent implements OnInit, OnDestroy {
       this.calcularSaldoAtual();
       await this.calcularSaldoPrevisto();
     } finally {
-      this.loading = false;
     }
-
   }
 
   calcularSaldoAtual() {
@@ -84,6 +82,7 @@ export class ContasComponent implements OnInit, OnDestroy {
 
   async calcularSaldoPrevisto() {
     try {
+      this.loading = true;
       this.receitas = this._operacoesService.calcularOperacoes(
         this.receitasTotal,
         this.mes,

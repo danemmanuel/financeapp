@@ -13,14 +13,13 @@
     >
       <div class="nome">
         <p>{{ operacao.descricao }}</p>
-        <span style="font-size: 10px;"
+        <span
+          style="font-size: 10px;"
+          [ngClass]="tipoOperacao === 'Receita' ? 'green' : 'red'"
           >{{ operacao.conta.instituicao }} |
           {{ operacao.categoria.descricao }}</span
         >
-      </div>
-
-      <div class="data">
-        {{operacao.data | date: 'dd/MM/yyyy' }}
+        <p class="data">{{ operacao.data | date: 'dd/MM/yyyy' }}</p>
       </div>
 
       <div class="valor">

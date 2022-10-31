@@ -1,23 +1,44 @@
 <div class="content_contas">
-
   <div class="header">
-    <finances-app-fit-card class="mr-5" titulo="Saldo Atual" [loading]="loading" [valor]="saldoAtual | currency:'BRL'"
-      cor="rgb(53, 174, 150)" icone="attach_money">
+    <finances-app-fit-card
+      class="mr-5"
+      titulo="Saldo Atual"
+      [loading]="loading"
+      [valor]="saldoAtual | currency: 'BRL'"
+      cor="rgb(53, 174, 150)"
+      icone="attach_money"
+    >
     </finances-app-fit-card>
 
-    <finances-app-fit-card class="mr-5" titulo="Saldo Previsto" [loading]="loading" [valor]="saldoPrevisto | currency:'BRL'"
-      cor="#323DA4" icone="account_balance_wallet">
+    <finances-app-fit-card
+      class="mr-5"
+      titulo="Saldo Previsto"
+      [loading]="loading"
+      [valor]="saldoPrevisto | currency: 'BRL'"
+      cor="#323DA4"
+      icone="account_balance_wallet"
+    >
     </finances-app-fit-card>
 
-    <button (click)="adicionarConta()" mat-mini-fab color="primary" class="add_operacao" matTooltip="Adicionar Conta"
-      style="background-color: #323da4;">
+    <button
+      (click)="adicionarConta()"
+      mat-mini-fab
+      color="primary"
+      class="add_operacao"
+      matTooltip="Adicionar Conta"
+      style="background-color: #323da4;"
+    >
       <mat-icon>add</mat-icon>
     </button>
   </div>
 
   <div class="content" style="width: 100%;">
     <h1>Contas</h1>
-    <finances-app-listar-contas style="width:100%" [contas]="contas" (buscarContas)="buscarContas()">
+    <finances-app-listar-contas
+      style="width: 100%;"
+      [contas]="contas"
+      (buscarContas)="buscarContas()"
+    >
     </finances-app-listar-contas>
   </div>
 </div>
