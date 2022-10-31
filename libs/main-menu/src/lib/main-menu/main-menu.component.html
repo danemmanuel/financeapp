@@ -50,3 +50,44 @@
   </div>
 </div>
 
+<nav class="bottom-nav">
+  <a
+    [routerLinkActive]="['active']"
+    routerLink="dashboard/home"
+    class="bottom-nav__destination"
+    href="#"
+  >
+    <mat-icon>home</mat-icon>
+    <span class="bottom-nav__label">Home</span>
+  </a>
+
+  <a
+    [routerLinkActive]="['active']"
+    routerLink="dashboard/contas"
+    class="bottom-nav__destination bottom-nav__destination--active"
+    href="#"
+  >
+    <mat-icon>account_balance_wallet</mat-icon>
+    <span class="bottom-nav__label">Contas</span>
+  </a>
+
+  <a
+    [routerLinkActive]="['active']"
+    routerLink="dashboard/receitas"
+    class="bottom-nav__destination bottom-nav__destination--active"
+    href="#"
+  >
+    <mat-icon>arrow_upward</mat-icon>
+    <span class="bottom-nav__label">Receitas</span>
+  </a>
+
+  <a
+    [routerLinkActive]="['active']"
+    routerLink="dashboard/despesas"
+    class="bottom-nav__destination bottom-nav__destination--active"
+    href="#"
+  >
+    <mat-icon>arrow_downward</mat-icon>
+    <span class="bottom-nav__label">Despesas</span>
+  </a>
+</nav>
