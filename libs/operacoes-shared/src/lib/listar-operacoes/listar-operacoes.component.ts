@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 
@@ -7,7 +7,7 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
   templateUrl: './listar-operacoes.component.html',
   styleUrls: ['./listar-operacoes.component.scss'],
 })
-export class ListarOperacoesComponent implements OnInit {
+export class ListarOperacoesComponent implements OnInit, OnChanges {
   @Output() buscarOperacoes = new EventEmitter();
   @Input() titulo;
   @Input() operacoes;
@@ -19,11 +19,19 @@ export class ListarOperacoesComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.preencherOperacoes();
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes?.operacoes) {
+      this.preencherOperacoes();
+    }
   }
 
   preencherOperacoes() {
-
+    this.operacoesFiltradas = this.operacoes.map((operacao) => {
+      return { ...operacao, efetivado: !!operacao.efetivado };
+    });
   }
 
   filtroChange() {
