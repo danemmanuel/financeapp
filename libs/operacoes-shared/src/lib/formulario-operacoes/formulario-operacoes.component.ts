@@ -115,6 +115,13 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     }
   }
 
+  efetivadoChange() {
+    console.log(this.formOperacao.get('efetivado').value)
+    if (!this.formOperacao.get('efetivado').value) {
+      this.formOperacao.get('fixa').setValue(false);
+    }
+  }
+
   async atualizarOperacao() {
     if (this.formOperacao.invalid) return;
     try {

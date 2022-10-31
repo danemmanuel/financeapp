@@ -19,7 +19,14 @@
           >{{ operacao.conta.instituicao }} |
           {{ operacao.categoria.descricao }}</span
         >
-        <p class="data">{{ operacao.data | date: 'dd/MM/yyyy' }}</p>
+        <p class="data">
+          {{
+            operacao.fixa
+              ? (operacao.data | date: 'MM/yyyy')
+              : (operacao.data | date: 'dd/MM/yyyy')
+          }}
+          {{ operacao.fixa ? '| FIXA' : '' }}
+        </p>
       </div>
 
       <div class="valor">

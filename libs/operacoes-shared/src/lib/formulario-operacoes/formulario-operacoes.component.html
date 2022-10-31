@@ -51,6 +51,7 @@
               class="example-margin"
               [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
               [checked]="operacao?.efetivado"
+              (toggleChange)="efetivadoChange()"
             >
               {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
             </mat-slide-toggle>
@@ -86,6 +87,7 @@
               class="example-margin"
               [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
               [checked]="operacao?.fixa"
+              [disabled]="formOperacao.get('efetivado').value"
             >
               Fixa
             </mat-slide-toggle>

@@ -61,6 +61,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
       this.mes,
       this.ano
     );
+    console.log(this.operacoes)
   }
 
   calcularTotalPendente() {

@@ -37,27 +37,41 @@ export class OperacoesService {
   }
 
   deletarDespesa(operacao: any) {
-    return this.http.delete<any>(`${environment.apis.despesa.despesa}/${operacao._id}`);
+    return this.http.delete<any>(
+      `${environment.apis.despesa.despesa}/${operacao._id}`
+    );
   }
 
   deletarReceita(operacao: any) {
-    return this.http.delete<any>(`${environment.apis.receita.receita}/${operacao._id}`);
+    return this.http.delete<any>(
+      `${environment.apis.receita.receita}/${operacao._id}`
+    );
   }
 
   calcularOperacoes(todasOperacoes, mes, ano) {
-    return todasOperacoes?.filter((operacao) => {
-      return (
-        (operacao.fixa &&
-          !operacao.excluirData.find((data) => {
-            return (
-              +data.toString().split('-')[1] === mes &&
-              +data.toString().split('-')[0] === ano
-            );
-          })) ||
-        (!operacao.fixa &&
-          +operacao.data.split('-')[1] === mes &&
-          +operacao.data.split('-')[0] === ano)
-      );
-    });
+    console.log(mes, ano);
+    return todasOperacoes
+      ?.filter((operacao) => {
+        return (
+          (operacao.fixa &&
+            !operacao.excluirData.find((data) => {
+              return (
+                +data.toString().split('-')[1] === mes &&
+                +data.toString().split('-')[0] === ano
+              );
+            })) ||
+          (!operacao.fixa &&
+            +operacao.data.split('-')[1] === mes &&
+            +operacao.data.split('-')[0] === ano)
+        );
+      })
+      .map((operacao) => {
+        return {
+          ...operacao,
+          data: `${ano}-${mes}-${
+            operacao.fixa ? '01' : operacao.data.split('-')[2]
+          }`,
+        };
+      });
   }
 }
