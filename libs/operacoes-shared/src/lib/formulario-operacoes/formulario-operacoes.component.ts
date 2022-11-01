@@ -118,6 +118,8 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   efetivadoChange() {
     if (!this.data.operacao && !this.formOperacao.get('efetivado').value) {
       this.formOperacao.get('fixa').setValue(false);
+      this.formOperacao.get('repetir').setValue(false);
+      this.formOperacao.get('repetirPor').setValue(1);
     }
   }
 
@@ -210,7 +212,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   montarFormulario() {
     this.formOperacao = this.fb.group({
       valor: this.fb.control(0, [Validators.required]),
-      repetirPor: this.fb.control(2, [Validators.min(2)]),
+      repetirPor: this.fb.control(2, []),
       repetir: this.fb.control(false),
       efetivado: this.fb.control(null),
       fixa: this.fb.control(null),
