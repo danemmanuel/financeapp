@@ -13,7 +13,7 @@ import { CurrencyMaskConfig } from 'ngx-currency';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import * as moment from 'moment';
 import { OperacoesService } from '../operacoes.service';
-import {MatInput} from "@angular/material/input";
+import { MatInput } from '@angular/material/input';
 @Component({
   selector: 'finances-app-formulario-operacoes',
   templateUrl: './formulario-operacoes.component.html',
@@ -69,9 +69,9 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       this.operacao = this.data.operacao.receita || this.data.operacao.despesa;
       this.preencherFormulario();
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.valorInput.nativeElement.focus();
-    }, 500)
+    }, 500);
   }
 
   ngAfterViewInit() {
@@ -116,8 +116,8 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   }
 
   efetivadoChange() {
-    console.log(this.formOperacao.get('efetivado').value)
-    if (!this.formOperacao.get('efetivado').value) {
+    console.log(this.formOperacao.get('efetivado').value);
+    if (!this.data.operacao && !this.formOperacao.get('efetivado').value) {
       this.formOperacao.get('fixa').setValue(false);
     }
   }

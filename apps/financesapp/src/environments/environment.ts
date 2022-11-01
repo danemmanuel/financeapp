@@ -1,5 +1,5 @@
 import { API } from './urls';
-const GATEWAY = 'https://api.minhasfinancas.digital';
+const GATEWAY = 'http://localhost:3000';
 
 export const environment = {
   versao: '1.0',

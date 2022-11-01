@@ -56,6 +56,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   }
 
   calcularOperacoes() {
+    console.log(this.operacoes)
     this.operacoes = this._operacoesService.calcularOperacoes(
       this.todasOperacoes,
       this.mes,

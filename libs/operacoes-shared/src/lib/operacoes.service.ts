@@ -49,7 +49,6 @@ export class OperacoesService {
   }
 
   calcularOperacoes(todasOperacoes, mes, ano) {
-    console.log(mes, ano);
     return todasOperacoes
       ?.filter((operacao) => {
         return (
