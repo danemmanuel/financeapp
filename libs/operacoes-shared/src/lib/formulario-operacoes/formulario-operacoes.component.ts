@@ -150,6 +150,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       efetivado: formValue.efetivado,
       fixa: formValue.fixa,
       valor: formValue.valor,
+      repetirPor: formValue.repetirPor,
       data: moment(formValue.data).format('YYYY-MM-DD'),
       categoria: formValue.categoria,
       conta: formValue.conta,
@@ -202,6 +203,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   montarFormulario() {
     this.formOperacao = this.fb.group({
       valor: this.fb.control(0, [Validators.required]),
+      repetirPor: this.fb.control(0, []),
       efetivado: this.fb.control(null),
       fixa: this.fb.control(null),
       data: this.fb.control(null),

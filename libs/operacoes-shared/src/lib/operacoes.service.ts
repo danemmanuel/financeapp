@@ -53,9 +53,16 @@ export class OperacoesService {
       ?.filter((operacao) => {
         const data = new Date(operacao.data);
         data.setDate(data.getDate() + 1);
+        operacao.repetirPor = 3; //TODO apagar
+        let repetirPor = new Date(
+          data.getFullYear(),
+          data.getMonth() + operacao.repetirPor + 1,
+          1
+        );
         return (
           (operacao.fixa &&
-            new Date(data).getTime() < new Date(ano, mes, 1).getTime() &&
+            data.getTime() < new Date(ano, mes, 1).getTime() &&
+            new Date(ano, mes, 1).getTime() < repetirPor.getTime() &&
             !operacao.excluirData.find((data) => {
               return (
                 +data.toString().split('-')[1] === mes &&
