@@ -47,7 +47,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     { descricao: 'Saúde', icone: 'Lazer' },
     { descricao: 'Serviços', icone: 'Lazer' },
   ];
-
+  usAmount = 0;
   @ViewChild('picker1') picker: MatDatepicker<any>;
   operacao: any;
   loading: boolean;
@@ -76,6 +76,10 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.valorInput?.nativeElement?.focus();
+  }
+
+  updateUSAmount(event) {
+    this.usAmount = event.target.value;
   }
 
   onEnter() {}
@@ -158,7 +162,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       descricao: formValue.descricao,
       efetivado: formValue.efetivado,
       fixa: formValue.fixa,
-      valor: formValue.valor,
+      valor: +formValue.valor.replace(',', '.'),
       repetirPor: formValue.repetir ? formValue.repetirPor : 0,
       data: moment(formValue.data).format('YYYY-MM-DD'),
       categoria: formValue.categoria,

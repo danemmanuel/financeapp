@@ -61,6 +61,7 @@ export class FormularioContaComponent implements OnInit {
   ];
   separatorKeysCodes: number[] = [COMMA];
   @ViewChild('instituicaoInput') instituicaoInput: ElementRef<HTMLInputElement>;
+  usAmount = 0;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -76,6 +77,10 @@ export class FormularioContaComponent implements OnInit {
     if (this.data.conta) {
       this.preencherFormulario();
     }
+  }
+
+  updateUSAmount(event) {
+    this.usAmount = event.target.value;
   }
 
   preencherFormulario() {

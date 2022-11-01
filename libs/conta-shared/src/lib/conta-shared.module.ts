@@ -4,6 +4,7 @@ import { FormularioContaComponent } from './formulario-conta/formulario-conta.co
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
+import {MatCurrencyFormatModule} from "mat-currency-format";
 
 @NgModule({
     imports: [
@@ -11,6 +12,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
         AngularMaterialModule,
         ReactiveFormsModule,
         NgxCurrencyModule,
+        MatCurrencyFormatModule,
     ],
     declarations: [FormularioContaComponent],
     exports: [FormularioContaComponent]

@@ -29,14 +29,15 @@
       <div class="row">
         <mat-form-field class="col-6" (click)="increment()">
           <input
-            required
-            #valor
-            currencyMask
-            [options]="currencyOption"
-            formControlName="valor"
-            matInput
-            placeholder="Valor da {{ tipoOperacao }}:"
             type="phone"
+            matInput
+            #valor
+            formControlName="valor"
+            placeholder="Valor da {{ tipoOperacao }}:"
+            mvndrMatCurrencyFormat
+            [allowNegative]="false"
+            [currencyCode]="'BRL'"
+            (blur)="updateUSAmount($event)"
           />
 
           <mat-error>

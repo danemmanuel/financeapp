@@ -8,16 +8,26 @@
   <form [formGroup]="formConta" novalidate autocomplete="off">
     <div class="row">
       <mat-form-field class="col-12">
-        <input required currencyMask [options]="currencyOption" formControlName="saldo" matInput
-          placeholder="Saldo atual da conta:" />
+        <input
+          type="phone"
+          required
+          mvndrMatCurrencyFormat
+          [allowNegative]="false"
+          [currencyCode]="'BRL'"
+          (blur)="updateUSAmount($event)"
+          formControlName="saldo"
+          matInput
+          placeholder="Saldo atual da conta:"
+        />
       </mat-form-field>
-
-
 
       <mat-form-field class="col-12">
         <mat-label>Instituição Financeira</mat-label>
         <mat-select formControlName="instituicao" [compareWith]="by">
-          <mat-option *ngFor="let instituicao of allInstituicoes" [value]="instituicao">
+          <mat-option
+            *ngFor="let instituicao of allInstituicoes"
+            [value]="instituicao"
+          >
             {{ instituicao }}
           </mat-option>
         </mat-select>
@@ -26,7 +36,10 @@
       <mat-form-field class="col-12">
         <mat-label>Tipo da conta</mat-label>
         <mat-select formControlName="tipoConta">
-          <mat-option *ngFor="let tipoConta of tiposConta" [value]="tipoConta.descricao">
+          <mat-option
+            *ngFor="let tipoConta of tiposConta"
+            [value]="tipoConta.descricao"
+          >
             {{ tipoConta.descricao }}
           </mat-option>
         </mat-select>
