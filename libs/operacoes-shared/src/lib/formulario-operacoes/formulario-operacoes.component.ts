@@ -127,7 +127,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     if (this.formOperacao.get('repetir').value) {
       this.formOperacao.get('repetirPor').setValue(null);
     } else {
-      this.formOperacao.get('repetirPor').setValue(2);
+      this.formOperacao.get('repetirPor').setValue(1);
     }
   }
 
