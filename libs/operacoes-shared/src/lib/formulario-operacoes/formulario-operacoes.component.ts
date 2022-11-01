@@ -159,7 +159,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       efetivado: formValue.efetivado,
       fixa: formValue.fixa,
       valor: formValue.valor,
-      repetirPor: formValue.repetirPor || 1,
+      repetirPor: formValue.repetir ? formValue.repetirPor : 0,
       data: moment(formValue.data).format('YYYY-MM-DD'),
       categoria: formValue.categoria,
       conta: formValue.conta,

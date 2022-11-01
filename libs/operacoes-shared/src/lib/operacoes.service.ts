@@ -58,13 +58,11 @@ export class OperacoesService {
           data.getMonth() + operacao.repetirPor + 1,
           1
         );
-        if (!operacao.repetirPor) {
-          operacao.repetirPor = 1;
-        }
         return (
           (operacao.fixa &&
             data.getTime() < new Date(ano, mes, 1).getTime() &&
-            new Date(ano, mes, 1).getTime() < repetirPor.getTime() &&
+            new Date(ano, mes, 1).getTime() <
+              (operacao.repetirPor > 0 ? repetirPor.getTime() : 99999999999999999999999999999999) &&
             !operacao.excluirData.find((data) => {
               return (
                 +data.toString().split('-')[1] === mes &&
