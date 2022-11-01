@@ -154,7 +154,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       categoria: formValue.categoria,
       conta: formValue.conta,
     };
-    if (this.data.operacao) {
+    if (formValue.fixa && this.data.operacao) {
       obj['excluirData'] = [
         ...this.operacao?.excluirData,
         moment(formValue.data).format('YYYY-MM-DD'),
