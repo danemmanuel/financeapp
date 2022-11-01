@@ -51,8 +51,11 @@ export class OperacoesService {
   calcularOperacoes(todasOperacoes, mes, ano) {
     return todasOperacoes
       ?.filter((operacao) => {
+        const data = new Date(operacao.data);
+        data.setDate(data.getDate() + 1);
         return (
           (operacao.fixa &&
+            new Date(data).getTime() < new Date(ano, mes, 1).getTime() &&
             !operacao.excluirData.find((data) => {
               return (
                 +data.toString().split('-')[1] === mes &&
