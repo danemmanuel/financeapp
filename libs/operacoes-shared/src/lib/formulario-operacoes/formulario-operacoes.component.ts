@@ -116,9 +116,16 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   }
 
   efetivadoChange() {
-    console.log(this.formOperacao.get('efetivado').value);
     if (!this.data.operacao && !this.formOperacao.get('efetivado').value) {
       this.formOperacao.get('fixa').setValue(false);
+    }
+  }
+
+  repetirChange() {
+    if (this.formOperacao.get('repetir').value) {
+      this.formOperacao.get('repetirPor').setValue(null);
+    } else {
+      this.formOperacao.get('repetirPor').setValue(2);
     }
   }
 
@@ -150,7 +157,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       efetivado: formValue.efetivado,
       fixa: formValue.fixa,
       valor: formValue.valor,
-      repetirPor: formValue.repetirPor,
+      repetirPor: formValue.repetirPor || 1,
       data: moment(formValue.data).format('YYYY-MM-DD'),
       categoria: formValue.categoria,
       conta: formValue.conta,
@@ -203,7 +210,8 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   montarFormulario() {
     this.formOperacao = this.fb.group({
       valor: this.fb.control(0, [Validators.required]),
-      repetirPor: this.fb.control(0, []),
+      repetirPor: this.fb.control(2, [Validators.min(2)]),
+      repetir: this.fb.control(false),
       efetivado: this.fb.control(null),
       fixa: this.fb.control(null),
       data: this.fb.control(null),

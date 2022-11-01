@@ -58,6 +58,9 @@ export class OperacoesService {
           data.getMonth() + operacao.repetirPor + 1,
           1
         );
+        if (!operacao.repetirPor) {
+          operacao.repetirPor = 1;
+        }
         return (
           (operacao.fixa &&
             data.getTime() < new Date(ano, mes, 1).getTime() &&

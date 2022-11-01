@@ -94,7 +94,7 @@
           </section>
         </div>
 
-        <mat-chip-list class="col-6" style="margin-bottom: 15px;">
+        <mat-chip-list class="col-12" style="margin-bottom: 15px;">
           <mat-chip (click)="setHoje()" class="pointer">Hoje</mat-chip>
           <mat-chip
             class="pointer"
@@ -110,20 +110,39 @@
           >
         </mat-chip-list>
 
-        <mat-form-field class="col-6" *ngIf="formOperacao.get('fixa').value">
+        <div
+          class="col-6"
+          *ngIf="!data.operacao && formOperacao.get('fixa').value"
+        >
+          <section class="example-section">
+            <mat-slide-toggle
+              formControlName="repetir"
+              [checked]="false"
+              [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+              (toggleChange)="repetirChange()"
+            >
+              Repetir
+            </mat-slide-toggle>
+          </section>
+        </div>
+
+        <mat-form-field
+          class="col-6"
+          *ngIf="formOperacao.get('repetir').value && !this.data.operacao"
+        >
           <input
             formControlName="repetirPor"
             matInput
             placeholder="Repetir Por"
             type="number"
           />
-          <span matSuffix>meses</span>
+          <span matSuffix>{{
+            formOperacao.get('repetirPor').value > 1 ? 'meses' : 'mês'
+          }}</span>
           <mat-error>
             {{ formOperacao.controls['repetirPor']?.errors | errorKeys }}
           </mat-error>
         </mat-form-field>
-
-
 
         <mat-form-field class="col-12">
           <mat-label>Conta</mat-label>
