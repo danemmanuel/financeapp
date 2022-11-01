@@ -53,7 +53,6 @@ export class OperacoesService {
       ?.filter((operacao) => {
         const data = new Date(operacao.data);
         data.setDate(data.getDate() + 1);
-        operacao.repetirPor = 3; //TODO apagar
         let repetirPor = new Date(
           data.getFullYear(),
           data.getMonth() + operacao.repetirPor + 1,
