@@ -5,6 +5,7 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
 import {MatCurrencyFormatModule} from "mat-currency-format";
+import {PipesModule} from "@finances-app/pipes";
 
 @NgModule({
     imports: [
@@ -13,6 +14,7 @@ import {MatCurrencyFormatModule} from "mat-currency-format";
         ReactiveFormsModule,
         NgxCurrencyModule,
         MatCurrencyFormatModule,
+      PipesModule
     ],
     declarations: [FormularioContaComponent],
     exports: [FormularioContaComponent]

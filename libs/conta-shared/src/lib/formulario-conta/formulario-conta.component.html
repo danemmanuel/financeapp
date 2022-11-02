@@ -5,7 +5,7 @@
   </span>
 </h1>
 <div mat-dialog-content>
-  <form [formGroup]="formConta" novalidate autocomplete="off">
+  <form [formGroup]="formConta" novalidate autocomplete="off" id="formConta">
     <div class="row">
       <mat-form-field class="col-12">
         <input
@@ -19,6 +19,10 @@
           matInput
           placeholder="Saldo atual da conta:"
         />
+
+        <mat-error>
+          {{ formConta.controls['saldo']?.errors | errorKeys }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="col-12">
@@ -31,6 +35,10 @@
             {{ instituicao }}
           </mat-option>
         </mat-select>
+
+        <mat-error>
+          {{ formConta.controls['instituicao']?.errors | errorKeys }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="col-12">
@@ -43,13 +51,23 @@
             {{ tipoConta.descricao }}
           </mat-option>
         </mat-select>
+
+        <mat-error>
+          {{ formConta.controls['tipoConta']?.errors | errorKeys }}
+        </mat-error>
       </mat-form-field>
     </div>
   </form>
 </div>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button type="submit" color="primary" (click)="enviarFormulario()">
+  <button
+    mat-button
+    form="formConta"
+    type="submit"
+    color="primary"
+    (click)="enviarFormulario()"
+  >
     {{ data.conta ? 'Atualizar' : 'Adicionar' }}
   </button>
 </mat-dialog-actions>

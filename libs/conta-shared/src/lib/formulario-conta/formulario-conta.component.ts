@@ -96,7 +96,7 @@ export class FormularioContaComponent implements OnInit {
   montarFormulario() {
     this.formConta = this.fb.group({
       saldo: this.fb.control(null, [Validators.required]),
-      instituicao: this.fb.control(null, []),
+      instituicao: this.fb.control(null, [Validators.required]),
       tipoConta: this.fb.control(null, [Validators.required]),
     });
   }
