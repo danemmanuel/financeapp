@@ -107,7 +107,10 @@ export class FormularioContaComponent implements OnInit {
     let formValue = this.formConta.value;
     let objSalvar = {
       _id: this.data.conta?._id,
-      saldo: formValue.saldo,
+      saldo:
+        typeof formValue.saldo === 'number'
+          ? formValue.saldo
+          : +formValue.saldo.replace(',', '.'),
       instituicao: formValue.instituicao,
       tipoConta: formValue.tipoConta,
     };

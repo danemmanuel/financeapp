@@ -164,7 +164,10 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       descricao: formValue.descricao,
       efetivado: formValue.efetivado,
       fixa: formValue.fixa,
-      valor: +formValue.valor.replace(',', '.'),
+      valor:
+        typeof formValue.valor === 'number'
+          ? formValue.valor
+          : +formValue.valor.replace(',', '.'),
       repetirPor: formValue.repetir ? formValue.repetirPor : 0,
       data: moment(formValue.data).format('YYYY-MM-DD'),
       categoria: formValue.categoria,
