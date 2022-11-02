@@ -23,11 +23,7 @@
 
       <mat-form-field class="col-12">
         <mat-label>Instituição Financeira</mat-label>
-        <mat-select
-          *ngIf="!isMobile"
-          formControlName="instituicao"
-          [compareWith]="by"
-        >
+        <mat-select formControlName="instituicao" [compareWith]="by">
           <mat-option
             *ngFor="let instituicao of allInstituicoes"
             [value]="instituicao"
@@ -35,25 +31,11 @@
             {{ instituicao }}
           </mat-option>
         </mat-select>
-
-        <select
-          *ngIf="isMobile"
-          matNativeControl
-          formControlName="instituicao"
-          [compareWith]="by"
-        >
-          <option
-            *ngFor="let instituicao of allInstituicoes"
-            [value]="instituicao"
-          >
-            {{ instituicao }}
-          </option>
-        </select>
       </mat-form-field>
 
       <mat-form-field class="col-12">
         <mat-label>Tipo da conta</mat-label>
-        <mat-select *ngIf="!isMobile" formControlName="tipoConta">
+        <mat-select formControlName="tipoConta">
           <mat-option
             *ngFor="let tipoConta of tiposConta"
             [value]="tipoConta.descricao"
@@ -61,15 +43,6 @@
             {{ tipoConta.descricao }}
           </mat-option>
         </mat-select>
-
-        <select *ngIf="isMobile" matNativeControl formControlName="tipoConta">
-          <option
-            *ngFor="let tipoConta of tiposConta"
-            [value]="tipoConta.descricao"
-          >
-            {{ tipoConta.descricao }}
-          </option>
-        </select>
       </mat-form-field>
     </div>
   </form>

@@ -151,26 +151,11 @@
         <mat-form-field class="col-12">
           <mat-label>Conta</mat-label>
 
-          <mat-select
-            *ngIf="!isMobile"
-            formControlName="conta"
-            [compareWith]="byId"
-          >
+          <mat-select formControlName="conta" [compareWith]="byId">
             <mat-option *ngFor="let conta of contas" [value]="conta">
               {{ conta.instituicao }}
             </mat-option>
           </mat-select>
-
-          <select
-            *ngIf="isMobile"
-            matNativeControl
-            formControlName="conta"
-            [compareWith]="byId"
-          >
-            <option *ngFor="let conta of contas" [value]="conta">
-              {{ conta.instituicao }}
-            </option>
-          </select>
 
           <mat-error>
             {{ formOperacao.controls['conta']?.errors | errorKeys }}
@@ -179,11 +164,7 @@
 
         <mat-form-field class="col-12">
           <mat-label>Categoria</mat-label>
-          <mat-select
-            *ngIf="!isMobile"
-            formControlName="categoria"
-            [compareWith]="byDescricao"
-          >
+          <mat-select formControlName="categoria" [compareWith]="byDescricao">
             <mat-option
               *ngFor="let categoria of categorias"
               [value]="categoria"
@@ -191,17 +172,6 @@
               {{ categoria.descricao }}
             </mat-option>
           </mat-select>
-
-          <select
-            *ngIf="isMobile"
-            matNativeControl
-            formControlName="categoria"
-            [compareWith]="byDescricao"
-          >
-            <option *ngFor="let categoria of categorias" [value]="categoria">
-              {{ categoria.descricao }}
-            </option>
-          </select>
 
           <mat-error>
             {{ formOperacao.controls['categoria']?.errors | errorKeys }}
