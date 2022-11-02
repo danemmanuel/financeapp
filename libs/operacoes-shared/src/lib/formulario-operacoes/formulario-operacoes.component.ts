@@ -221,12 +221,12 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
 
   montarFormulario() {
     this.formOperacao = this.fb.group({
-      valor: this.fb.control(0, [Validators.required]),
+      valor: this.fb.control(null, [Validators.required]),
       repetirPor: this.fb.control(2, []),
       repetir: this.fb.control(false),
       efetivado: this.fb.control(null),
       fixa: this.fb.control(null),
-      data: this.fb.control(null),
+      data: this.fb.control(null, [Validators.required]),
       descricao: this.fb.control(null, [Validators.required]),
       categoria: this.fb.control(null, [Validators.required]),
       conta: this.fb.control(null, [Validators.required]),
