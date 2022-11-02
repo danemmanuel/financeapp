@@ -53,6 +53,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   loading: boolean;
   hoje = new Date();
   opened = 0;
+  isMobile: boolean;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<FormularioOperacoesComponent>,
@@ -62,6 +63,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   ) {}
 
   async ngOnInit() {
+    this.isMobile = window.innerWidth < 768;
     this.montarFormulario();
     await this.buscarContas();
     this.tipoOperacao = this.data.tipoOperacao;
