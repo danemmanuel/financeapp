@@ -29,6 +29,8 @@
     padding: 20px;
     margin-left: 0;
     margin-bottom: 0 !important;
+    position: fixed;
+    z-index: 9;
     .content {
       width: 100% !important;
       justify-content: space-between !important;

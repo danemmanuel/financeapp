@@ -103,7 +103,6 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   calcularReceitasEsteMes() {
-    debugger;
     this.receitasEsteMes = this.receitasEmAberto.reduce(
       (total, conta) => (total += conta.valor),
       0

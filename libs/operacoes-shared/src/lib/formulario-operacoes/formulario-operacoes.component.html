@@ -182,7 +182,6 @@
   </form>
 </div>
 <mat-dialog-actions align="end" *ngIf="!loading">
-  <button mat-button mat-dialog-close>Cancelar</button>
   <button
     form="formOperacao"
     mat-button
@@ -192,4 +191,6 @@
   >
     {{ data.operacao ? 'Atualizar' : 'Adicionar' }}
   </button>
+
+  <button mat-button mat-dialog-close>Cancelar</button>
 </mat-dialog-actions>
