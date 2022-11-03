@@ -5,6 +5,9 @@ import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/li
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
+import {
+  FormularioTransferenciaContaComponent
+} from "@finances-app-libs/conta-shared/src/lib/formulario-transferencia-conta/formulario-transferencia-conta.component";
 
 @Component({
   selector: 'finances-app-contas',
@@ -99,6 +102,23 @@ export class ContasComponent implements OnInit, OnDestroy {
       this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
     } finally {
     }
+  }
+
+  transferenciaContas() {
+    this.dialog
+      .open(FormularioTransferenciaContaComponent, {
+        width: '450px',
+        data: {
+
+        },
+      })
+      .afterClosed()
+      .subscribe(async (r) => {
+        if (r) {
+          this.buscarContas();
+          this.loading = false;
+        }
+      });
   }
 
   adicionarConta() {

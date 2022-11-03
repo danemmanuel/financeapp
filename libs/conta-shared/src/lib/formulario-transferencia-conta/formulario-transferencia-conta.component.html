@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>
+  Transfeir entre
+  <span style="font-weight: 500; color: rgb(50, 61, 164);">
+    Contas
+  </span>
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formConta" novalidate autocomplete="off" id="formConta">
+    <div class="row">
+      <mat-form-field class="col-12">
+        <input
+          type="phone"
+          required
+          mvndrMatCurrencyFormat
+          [allowNegative]="false"
+          [currencyCode]="'BRL'"
+          (blur)="updateUSAmount($event)"
+          formControlName="saldo"
+          matInput
+          placeholder="Valor a ser transferido:"
+        />
+
+        <mat-error>
+          {{ formConta.controls['saldo']?.errors | errorKeys }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="col-5">
+        <mat-label>Conta Origem</mat-label>
+        <mat-select formControlName="contaOrigem" [compareWith]="byId">
+          <mat-option *ngFor="let conta of contas" [value]="conta">
+            {{ conta.instituicao }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error>
+          {{ formConta.controls['contaOrigem']?.errors | errorKeys }}
+        </mat-error>
+      </mat-form-field>
+
+      <div
+        class="col-1"
+        style="display: flex; align-items: center; justify-content: center;"
+      >
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+
+      <mat-form-field class="col-5">
+        <mat-label>Conta Destino</mat-label>
+        <mat-select formControlName="contaDestino" [compareWith]="byId">
+          <mat-option *ngFor="let conta of contas" [value]="conta">
+            {{ conta.instituicao }}
+          </mat-option>
+        </mat-select>
+
+        <mat-error>
+          {{ formConta.controls['contaDestino']?.errors | errorKeys }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button
+    mat-button
+    form="formConta"
+    type="submit"
+    color="primary"
+    (click)="enviarFormulario()"
+  >
+    Transferir
+  </button>
+</mat-dialog-actions>

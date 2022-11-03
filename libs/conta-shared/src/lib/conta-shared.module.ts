@@ -4,19 +4,23 @@ import { FormularioContaComponent } from './formulario-conta/formulario-conta.co
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
-import {MatCurrencyFormatModule} from "mat-currency-format";
-import {PipesModule} from "@finances-app/pipes";
+import { MatCurrencyFormatModule } from 'mat-currency-format';
+import { PipesModule } from '@finances-app/pipes';
+import { FormularioTransferenciaContaComponent } from '@finances-app-libs/conta-shared/src/lib/formulario-transferencia-conta/formulario-transferencia-conta.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        AngularMaterialModule,
-        ReactiveFormsModule,
-        NgxCurrencyModule,
-        MatCurrencyFormatModule,
-      PipesModule
-    ],
-    declarations: [FormularioContaComponent],
-    exports: [FormularioContaComponent]
+  imports: [
+    CommonModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    NgxCurrencyModule,
+    MatCurrencyFormatModule,
+    PipesModule,
+  ],
+  declarations: [
+    FormularioContaComponent,
+    FormularioTransferenciaContaComponent,
+  ],
+  exports: [FormularioContaComponent, FormularioTransferenciaContaComponent],
 })
 export class ContaSharedModule {}
