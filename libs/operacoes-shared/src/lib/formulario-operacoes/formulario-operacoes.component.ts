@@ -60,9 +60,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     if (this.data.operacao) {
       this.operacao = this.data.operacao.receita || this.data.operacao.despesa;
       this.preencherFormulario();
-      setTimeout(() => {
-        this.valorInput.nativeElement.focus();
-      }, 500);
     }
 
     await this.buscarContas();
