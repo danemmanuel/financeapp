@@ -88,6 +88,13 @@ export class DespesasComponent implements OnInit, OnDestroy {
           type: 'pie',
           top: 90,
           data: this.removeDuplicado(dataGrafico),
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
         },
       ],
     };
@@ -136,6 +143,13 @@ export class DespesasComponent implements OnInit, OnDestroy {
           type: 'pie',
           top: 90,
           data: this.removeDuplicado(dataGrafico),
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
         },
       ],
     };
