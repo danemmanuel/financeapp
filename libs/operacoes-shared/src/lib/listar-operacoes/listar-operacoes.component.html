@@ -40,7 +40,17 @@
         <span
           style="font-size: 10px;"
           [ngClass]="tipoOperacao === 'Receita' ? 'green' : 'red'"
-          >{{ operacao.conta.instituicao }} |
+        >
+          <div class="imagem">
+            <img
+              alt="BTC"
+              style="max-width: 15px;"
+              [src]="
+                '/assets/' + operacao.conta.instituicao.toLowerCase() + '.png'
+              "
+            />
+          </div>
+          {{ operacao.conta.instituicao }} |
           {{ operacao.categoria.descricao }}</span
         >
         <p class="data">

@@ -23,13 +23,11 @@
 </h1>
 <div mat-dialog-content>
   <form [formGroup]="formOperacao" id="formOperacao" autocomplete="off">
-    <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
-
-    <ng-container *ngIf="!loading">
+    <ng-container>
       <div class="row">
-        <mat-form-field class="col-6" (click)="increment()">
+        <mat-form-field class="col-6">
           <input
-            type="phone"
+            type="text"
             matInput
             #valor
             formControlName="valor"
@@ -150,7 +148,6 @@
         </mat-form-field>
         <mat-form-field class="col-12">
           <mat-label>Conta</mat-label>
-
           <mat-select formControlName="conta" [compareWith]="byId">
             <mat-option *ngFor="let conta of contas" [value]="conta">
               {{ conta.instituicao }}
@@ -181,7 +178,7 @@
     </ng-container>
   </form>
 </div>
-<mat-dialog-actions align="end" *ngIf="!loading">
+<mat-dialog-actions align="end">
   <button
     form="formOperacao"
     mat-button

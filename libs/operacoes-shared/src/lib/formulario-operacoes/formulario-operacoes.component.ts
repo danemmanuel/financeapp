@@ -8,12 +8,12 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CurrencyMaskConfig } from 'ngx-currency';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import * as moment from 'moment';
 import { OperacoesService } from '../operacoes.service';
-import { MatInput } from '@angular/material/input';
+
 @Component({
   selector: 'finances-app-formulario-operacoes',
   templateUrl: './formulario-operacoes.component.html',
@@ -64,16 +64,17 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
 
   async ngOnInit() {
     this.isMobile = window.innerWidth < 768;
-    this.montarFormulario();
-    await this.buscarContas();
     this.tipoOperacao = this.data.tipoOperacao;
+    this.montarFormulario();
     if (this.data.operacao) {
       this.operacao = this.data.operacao.receita || this.data.operacao.despesa;
       this.preencherFormulario();
+      setTimeout(() => {
+        this.valorInput.nativeElement.focus();
+      }, 500);
     }
-    setTimeout(() => {
-      this.valorInput.nativeElement.focus();
-    }, 500);
+
+    await this.buscarContas();
   }
 
   ngAfterViewInit() {
@@ -92,9 +93,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   onInputFocus() {}
   onInputBlur() {}
 
-  increment() {
-    this.opened = this.opened + 1;
-  }
   async buscarContas() {
     this.loading = true;
     this.contas = await this._contasService.buscarContas().toPromise();
@@ -121,24 +119,9 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     }
   }
 
-  efetivadoChange() {
-    if (!this.data.operacao && !this.formOperacao.get('efetivado').value) {
-      this.formOperacao.get('fixa').setValue(false);
-      this.formOperacao.get('repetir').setValue(false);
-      this.formOperacao.get('repetirPor').setValue(1);
-    }
-  }
-
-  repetirChange() {
-    if (this.formOperacao.get('repetir').value) {
-      this.formOperacao.get('repetirPor').setValue(null);
-    } else {
-      this.formOperacao.get('repetirPor').setValue(1);
-    }
-  }
-
   async atualizarOperacao() {
     if (this.formOperacao.invalid) return;
+    this.loading = true;
     try {
       if (this.tipoOperacao === 'Receita') {
         await this._operacoesService
@@ -154,6 +137,23 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     } catch (e) {
       console.log(e);
     } finally {
+      this.loading = false;
+    }
+  }
+
+  efetivadoChange() {
+    if (!this.data.operacao && !this.formOperacao.get('efetivado').value) {
+      this.formOperacao.get('fixa').setValue(false);
+      this.formOperacao.get('repetir').setValue(false);
+      this.formOperacao.get('repetirPor').setValue(1);
+    }
+  }
+
+  repetirChange() {
+    if (this.formOperacao.get('repetir').value) {
+      this.formOperacao.get('repetirPor').setValue(null);
+    } else {
+      this.formOperacao.get('repetirPor').setValue(1);
     }
   }
 
