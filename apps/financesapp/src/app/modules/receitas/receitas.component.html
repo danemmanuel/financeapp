@@ -32,41 +32,44 @@
   </div>
 
   <div class="row" style="width: 100%; align-items: start;">
-    <div class="col-6">
+    <div class="col-4">
       <h1>Receitas</h1>
       <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
       <finances-app-listar-operacoes
         *ngIf="!loading && operacoes.length"
         (buscarOperacoes)="buscarReceitas()"
+        (limparFiltro)="limparFiltro()"
         [mes]="mes"
         [ano]="ano"
-        [operacoes]="operacoes"
+        [operacoes]="operacoesFiltradas"
         tipoOperacao="Receita"
         style="width: 100%;"
       >
       </finances-app-listar-operacoes>
     </div>
 
-    <div class="col-6">
+    <div class="col-4">
       <ng-container *ngIf="graficoCategoria.series[0].data?.length">
         <div
           id="chart1"
           echarts
           [options]="graficoCategoria"
           [theme]="'dark'"
-          [merge]="updateOptions"
+          (chartClick)="filtrarPorCategoria($event)"
           class="demo-chart"
         ></div>
       </ng-container>
+    </div>
 
+    <div class="col-4">
       <ng-container *ngIf="graficoBanco.series[0].data?.length">
         <div
-          style="margin-top: 50px;"
           id="chart2"
           echarts
           [options]="graficoBanco"
           [theme]="'dark'"
           class="demo-chart"
+          (chartClick)="filtrarPorBanco($event)"
         ></div>
       </ng-container>
     </div>

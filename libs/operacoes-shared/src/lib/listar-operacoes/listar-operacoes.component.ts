@@ -1,4 +1,12 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 
@@ -9,6 +17,7 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
 })
 export class ListarOperacoesComponent implements OnInit, OnChanges {
   @Output() buscarOperacoes = new EventEmitter();
+  @Output() limparFiltro = new EventEmitter();
   @Input() titulo;
   @Input() operacoes;
   @Input() tipoOperacao;
@@ -44,7 +53,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
 
   reset() {
     this.filtro = false;
-    this.preencherOperacoes();
+    this.limparFiltro.emit(true);
   }
 
   receitaSelecionada(receita) {

@@ -195,7 +195,7 @@ export class OperacoesService {
         show: true,
         left: 'center',
         top: 0,
-        text: 'Distribuição de Receitas',
+        text: 'Distribuição por Categoria',
       },
       tooltip: {
         trigger: 'item',

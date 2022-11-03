@@ -22,6 +22,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
   todasOperacoes: any;
   graficoCategoria: EChartsOption;
   graficoBanco: EChartsOption;
+  operacoesFiltradas: any[];
 
   constructor(
     private dialog: MatDialog,
@@ -46,7 +47,9 @@ export class DespesasComponent implements OnInit, OnDestroy {
   }
 
   configurarGraficoPorBanco(operacoes) {
-    this.graficoBanco = this._operacoesService.configurarGraficoPorBanco(operacoes);
+    this.graficoBanco = this._operacoesService.configurarGraficoPorBanco(
+      operacoes
+    );
   }
 
   configurarGraficoPorCategoria(operacoes) {
@@ -111,6 +114,22 @@ export class DespesasComponent implements OnInit, OnDestroy {
     );
   }
 
+  limparFiltro() {
+    this.operacoesFiltradas = this.operacoes;
+  }
+
+  filtrarPorCategoria(e) {
+    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+      return operacao.categoria.descricao === e.data.name;
+    });
+  }
+
+  filtrarPorBanco(e) {
+    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+      return operacao.conta.instituicao === e.data.name;
+    });
+  }
+
   async buscarDespesas() {
     this.loading = true;
 
@@ -130,6 +149,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
       this.mes,
       this.ano
     );
+    this.operacoesFiltradas = this.operacoes;
     this.configurarGraficoPorCategoria(this.operacoes);
     this.configurarGraficoPorBanco(this.operacoes);
   }

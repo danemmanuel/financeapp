@@ -25,6 +25,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   updateOptions: any;
   graficoBanco: EChartsOption;
   graficoCategoria: EChartsOption;
+  operacoesFiltradas: any[];
 
   constructor(
     private dialog: MatDialog,
@@ -68,6 +69,22 @@ export class ReceitasComponent implements OnInit, OnDestroy {
     );
   }
 
+  limparFiltro() {
+    this.operacoesFiltradas = this.operacoes;
+  }
+
+  filtrarPorCategoria(e) {
+    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+      return operacao.categoria.descricao === e.data.name;
+    });
+  }
+
+  filtrarPorBanco(e) {
+    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+      return operacao.conta.instituicao === e.data.name;
+    });
+  }
+
   async buscarReceitas() {
     this.loading = true;
 
@@ -87,6 +104,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
       this.mes,
       this.ano
     );
+    this.operacoesFiltradas = this.operacoes;
     this.configurarGraficoPorCategoria(this.operacoes);
     this.configurarGraficoPorBanco(this.operacoes);
   }
