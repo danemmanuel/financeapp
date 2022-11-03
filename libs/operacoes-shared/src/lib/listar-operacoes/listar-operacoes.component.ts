@@ -54,6 +54,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
 
   reset() {
     this.filtro = false;
+    this.operacoesFiltradas = this.operacoes;
     this.limparFiltro.emit(true);
   }
 
