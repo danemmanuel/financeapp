@@ -4,7 +4,7 @@ import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/heade
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
-import {EChartsOption} from "echarts";
+import { EChartsOption } from 'echarts';
 
 @Component({
   selector: 'finances-app-despesas',
@@ -20,8 +20,8 @@ export class DespesasComponent implements OnInit, OnDestroy {
   totalPendente: any;
   totalPago: any;
   todasOperacoes: any;
-  updateOptions: any;
-  chartOption: EChartsOption;
+  graficoCategoria: EChartsOption;
+  graficoBanco: EChartsOption;
 
   constructor(
     private dialog: MatDialog,
@@ -45,7 +45,55 @@ export class DespesasComponent implements OnInit, OnDestroy {
     this.a.unsubscribe();
   }
 
-  configurarGrafico(operacoes) {
+  configurarGraficoPorBanco(operacoes) {
+    let dataGrafico = operacoes?.map((operacao) => {
+      return {
+        name: operacao.conta.instituicao,
+        value: operacoes
+          .filter(
+            (operacaoF) =>
+              operacao.conta.instituicao === operacaoF.conta.instituicao
+          )
+          .reduce((total, operacaoV) => (total += operacaoV.valor), 0),
+      };
+    });
+
+    this.graficoBanco = {
+      backgroundColor: '#191919',
+      legend: {
+        top: 60,
+        data: this.removeDuplicado(dataGrafico)?.map((r) => {
+          return r.name;
+        }),
+      },
+      title: {
+        name: 'Teste 2',
+        show: true,
+        left: 'center',
+        top: 0,
+        text: 'Distribuição por Banco',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : R${c} <b>({d}%)</b>',
+      },
+      dataZoom: [
+        {
+          type: 'inside',
+        },
+      ],
+      series: [
+        {
+          name: 'area',
+          type: 'pie',
+          top: 90,
+          data: this.removeDuplicado(dataGrafico),
+        },
+      ],
+    };
+  }
+
+  configurarGraficoPorCategoria(operacoes) {
     let dataGrafico = operacoes?.map((operacao) => {
       return {
         name: operacao.categoria.descricao,
@@ -58,7 +106,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
       };
     });
 
-    this.chartOption = {
+    this.graficoCategoria = {
       backgroundColor: '#191919',
       legend: {
         top: 60,
@@ -71,7 +119,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
         show: true,
         left: 'center',
         top: 0,
-        text: 'Distribuição de Despesas',
+        text: 'Distribuição por Categoria',
       },
       tooltip: {
         trigger: 'item',
@@ -119,8 +167,8 @@ export class DespesasComponent implements OnInit, OnDestroy {
       this.mes,
       this.ano
     );
-    this.configurarGrafico(this.operacoes);
-
+    this.configurarGraficoPorCategoria(this.operacoes);
+    this.configurarGraficoPorBanco(this.operacoes);
   }
 
   calcularTotalPendente() {

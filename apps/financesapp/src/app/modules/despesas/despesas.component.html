@@ -49,16 +49,27 @@
     </div>
 
     <div class="col-6">
-      <ng-container *ngIf="chartOption.series[0].data?.length">
+      <ng-container *ngIf="graficoCategoria.series[0].data?.length">
         <div
           id="chart1"
           echarts
-          [options]="chartOption"
+          [options]="graficoCategoria"
           [theme]="'dark'"
-          [merge]="updateOptions"
           class="demo-chart"
         ></div>
       </ng-container>
+
+      <ng-container *ngIf="graficoBanco.series[0].data?.length">
+        <div
+          style="margin-top:50px;"
+          id="chart2"
+          echarts
+          [options]="graficoBanco"
+          [theme]="'dark'"
+          class="demo-chart"
+        ></div>
+      </ng-container>
+
     </div>
   </div>
 </div>
