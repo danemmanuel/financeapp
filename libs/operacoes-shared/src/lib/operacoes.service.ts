@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@finances-app/src/environments/environment';
+import { EChartsOption } from 'echarts';
 
 @Injectable({
   providedIn: 'root',
@@ -62,7 +63,7 @@ export class OperacoesService {
           (operacao.fixa &&
             data.getTime() < new Date(ano, mes, 1).getTime() &&
             new Date(ano, mes, 1).getTime() <
-              (operacao.repetirPor > 0 ? repetirPor.getTime() : 9E99) &&
+              (operacao.repetirPor > 0 ? repetirPor.getTime() : 9e99) &&
             !operacao.excluirData.find((data) => {
               return (
                 +data.toString().split('-')[1] === mes &&
@@ -82,5 +83,151 @@ export class OperacoesService {
           }`,
         };
       });
+  }
+
+  configurarGraficoPorBanco(operacoes): EChartsOption {
+    let dataGrafico = operacoes?.map((operacao) => {
+      let color = '';
+      switch (operacao.conta.instituicao) {
+        case 'Nubank':
+          color = '#612F74';
+          break;
+
+        case 'Bradesco':
+          color = '#dd042d';
+          break;
+
+        case 'Neon':
+          color = '#26d3e0';
+          break;
+
+        case 'C6':
+          color = '#242424';
+          break;
+
+        case 'Inter':
+          color = '#FF7604';
+          break;
+
+        case 'Itau':
+          color = '#004990';
+          break;
+      }
+      return {
+        itemStyle: {
+          color: color,
+        },
+        name: operacao.conta.instituicao,
+        value: operacoes
+          .filter(
+            (operacaoF) =>
+              operacao.conta.instituicao === operacaoF.conta.instituicao
+          )
+          .reduce((total, operacaoV) => (total += operacaoV.valor), 0),
+      };
+    });
+
+    return {
+      backgroundColor: '#191919',
+      legend: {
+        top: 60,
+        data: this.removeDuplicado(dataGrafico)?.map((r) => {
+          return r.name;
+        }),
+      },
+      title: {
+        name: 'Teste 2',
+        show: true,
+        left: 'center',
+        top: 0,
+        text: 'Distribuição por Banco',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : R${c} <b>({d}%)</b>',
+      },
+      dataZoom: [
+        {
+          type: 'inside',
+        },
+      ],
+      series: [
+        {
+          name: 'area',
+          type: 'pie',
+          top: 90,
+          data: this.removeDuplicado(dataGrafico),
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    };
+  }
+
+  configurarGraficoPorCategoria(operacoes): EChartsOption {
+    let dataGrafico = operacoes?.map((operacao) => {
+      return {
+        name: operacao.categoria.descricao,
+        value: operacoes
+          .filter(
+            (operacaoF) =>
+              operacao.categoria.descricao === operacaoF.categoria.descricao
+          )
+          .reduce((total, operacaoV) => (total += operacaoV.valor), 0),
+      };
+    });
+
+    return {
+      backgroundColor: '#191919',
+      legend: {
+        top: 60,
+        data: this.removeDuplicado(dataGrafico)?.map((r) => {
+          return r.name;
+        }),
+      },
+      title: {
+        name: 'Teste',
+        show: true,
+        left: 'center',
+        top: 0,
+        text: 'Distribuição de Receitas',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : R${c} <b>({d}%)</b>',
+      },
+      dataZoom: [
+        {
+          type: 'inside',
+        },
+      ],
+      series: [
+        {
+          name: 'area',
+          type: 'pie',
+          top: 90,
+          data: this.removeDuplicado(dataGrafico),
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
+        },
+      ],
+    };
+  }
+
+  removeDuplicado(array) {
+    return array?.filter(
+      (value, index, self) =>
+        index === self.findIndex((t) => t.name === value.name)
+    );
   }
 }

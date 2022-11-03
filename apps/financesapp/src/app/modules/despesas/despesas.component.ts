@@ -46,58 +46,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
   }
 
   configurarGraficoPorBanco(operacoes) {
-    let dataGrafico = operacoes?.map((operacao) => {
-      return {
-        name: operacao.conta.instituicao,
-        value: operacoes
-          .filter(
-            (operacaoF) =>
-              operacao.conta.instituicao === operacaoF.conta.instituicao
-          )
-          .reduce((total, operacaoV) => (total += operacaoV.valor), 0),
-      };
-    });
-
-    this.graficoBanco = {
-      backgroundColor: '#191919',
-      legend: {
-        top: 60,
-        data: this.removeDuplicado(dataGrafico)?.map((r) => {
-          return r.name;
-        }),
-      },
-      title: {
-        name: 'Teste 2',
-        show: true,
-        left: 'center',
-        top: 0,
-        text: 'Distribuição por Banco',
-      },
-      tooltip: {
-        trigger: 'item',
-        formatter: '{b} : R${c} <b>({d}%)</b>',
-      },
-      dataZoom: [
-        {
-          type: 'inside',
-        },
-      ],
-      series: [
-        {
-          name: 'area',
-          type: 'pie',
-          top: 90,
-          data: this.removeDuplicado(dataGrafico),
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
-        },
-      ],
-    };
+    this.graficoBanco = this._operacoesService.configurarGraficoPorBanco(operacoes);
   }
 
   configurarGraficoPorCategoria(operacoes) {
@@ -147,9 +96,9 @@ export class DespesasComponent implements OnInit, OnDestroy {
             itemStyle: {
               shadowBlur: 10,
               shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)'
-            }
-          }
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
         },
       ],
     };

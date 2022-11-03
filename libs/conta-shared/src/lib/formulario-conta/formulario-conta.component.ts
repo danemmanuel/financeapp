@@ -23,7 +23,7 @@ import { ContasService } from '../contas.service';
 export class FormularioContaComponent implements OnInit {
   formConta: FormGroup;
   tipoOperacao;
-  allInstituicoes: string[] = ['Nubank', 'Neon', 'Bradesco', 'C6'];
+  allInstituicoes: string[] = ['Nubank', 'Neon', 'Bradesco', 'C6', 'Inter', 'Itau'];
   filteredInstituicoes: Observable<string[]>;
   instituicaoFinanceira: string[] = [];
   selectable = true;
