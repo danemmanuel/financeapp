@@ -18,12 +18,13 @@
     </mat-slide-toggle>
     <button
       mat-mini-fab
-      matTooltip="Limpar Filtro"
+      matTooltip="Limpar Filtros"
       [style]="
         tipoOperacao === 'Receita'
           ? 'background-color: rgb(53, 174, 150)'
           : 'background-color: rgb(255, 96, 79);'
       "
+      [ngClass]="shakeFiltro || filtro ? 'rise-shake' : ''"
       (click)="reset()"
     >
       <mat-icon>cached</mat-icon>

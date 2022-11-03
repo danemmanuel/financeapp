@@ -42,6 +42,7 @@
         tipoOperacao="Despesa"
         [mes]="mes"
         [ano]="ano"
+        [shakeFiltro]="operacoesFiltradas?.length !== operacoes?.length"
         (buscarOperacoes)="buscarDespesas()"
         (limparFiltro)="limparFiltro()"
         style="width: 100%;"

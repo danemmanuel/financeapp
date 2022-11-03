@@ -23,6 +23,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   @Input() tipoOperacao;
   @Input() mes;
   @Input() ano;
+  @Input() shakeFiltro;
   filtro: boolean;
   operacoesFiltradas: any;
   constructor(private dialog: MatDialog) {}
