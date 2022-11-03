@@ -35,6 +35,11 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.operacoes) {
       this.preencherOperacoes();
+      if (this.filtro) {
+        this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+          return operacao.efetivado === this.filtro;
+        });
+      }
     }
   }
 
@@ -42,6 +47,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
     this.operacoes = this.operacoes.map((operacao) => {
       return { ...operacao, efetivado: !!operacao.efetivado };
     });
+
     this.operacoesFiltradas = this.operacoes;
   }
 
