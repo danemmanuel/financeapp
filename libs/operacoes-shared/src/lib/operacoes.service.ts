@@ -112,6 +112,14 @@ export class OperacoesService {
         case 'Itau':
           color = '#004990';
           break;
+
+        case 'BTG':
+          color = '#010B25';
+          break;
+
+        case 'Unicred':
+          color = '#044931';
+          break;
       }
       return {
         itemStyle: {

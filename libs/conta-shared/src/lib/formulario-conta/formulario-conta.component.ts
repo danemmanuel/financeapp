@@ -7,12 +7,9 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { map, startWith } from 'rxjs/operators';
 import { CurrencyMaskConfig } from 'ngx-currency';
 import { Observable } from 'rxjs';
 import { COMMA } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { ContasService } from '../contas.service';
 
 @Component({
@@ -23,7 +20,16 @@ import { ContasService } from '../contas.service';
 export class FormularioContaComponent implements OnInit {
   formConta: FormGroup;
   tipoOperacao;
-  allInstituicoes: string[] = ['Nubank', 'Neon', 'Bradesco', 'C6', 'Inter', 'Itau'];
+  allInstituicoes: string[] = [
+    'Nubank',
+    'Neon',
+    'Bradesco',
+    'C6',
+    'Inter',
+    'Itau',
+    'BTG',
+    'Unicred',
+  ];
   filteredInstituicoes: Observable<string[]>;
   instituicaoFinanceira: string[] = [];
   selectable = true;
