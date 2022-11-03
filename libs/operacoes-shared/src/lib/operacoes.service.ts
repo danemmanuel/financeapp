@@ -224,6 +224,62 @@ export class OperacoesService {
     };
   }
 
+  configurarGraficoHome(meses, dadosDespesas, dadosReceitas): EChartsOption {
+    return {
+      backgroundColor: '#191919',
+      title: {
+        text: 'Relação Receitas x Despesas',
+      },
+      tooltip: {
+        trigger: 'axis',
+      },
+      legend: {
+        data: ['Receita', 'Despesa'],
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {},
+        },
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: meses,
+      },
+      yAxis: {
+        type: 'value',
+      },
+      series: [
+        {
+          name: 'Receita',
+          type: 'line',
+          areaStyle: {},
+          emphasis: {
+            focus: 'series',
+          },
+          data: dadosReceitas,
+          color: 'rgb(53, 174, 150)',
+        },
+        {
+          name: 'Despesa',
+          type: 'line',
+          emphasis: {
+            focus: 'series',
+          },
+          areaStyle: {},
+          data: dadosDespesas,
+          color: 'rgb(255, 96, 79)',
+        },
+      ],
+    };
+  }
+
   removeDuplicado(array) {
     return array?.filter(
       (value, index, self) =>

@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IndicativosFinanceirosComponent } from './components/indicativos-financeiros/indicativos-financeiros.component';
 import { FitCardModule } from '@finances-app/fit-card';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
+import {NgxEchartsModule} from "ngx-echarts";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,9 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     HttpClientModule,
     FitCardModule,
     OperacoesSharedModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
 })
 export class HomeGestaoFinanceiraModule {}
