@@ -53,58 +53,9 @@ export class DespesasComponent implements OnInit, OnDestroy {
   }
 
   configurarGraficoPorCategoria(operacoes) {
-    let dataGrafico = operacoes?.map((operacao) => {
-      return {
-        name: operacao.categoria.descricao,
-        value: operacoes
-          .filter(
-            (operacaoF) =>
-              operacao.categoria.descricao === operacaoF.categoria.descricao
-          )
-          .reduce((total, operacaoV) => (total += operacaoV.valor), 0),
-      };
-    });
-
-    this.graficoCategoria = {
-      backgroundColor: '#191919',
-      legend: {
-        top: 60,
-        data: this.removeDuplicado(dataGrafico)?.map((r) => {
-          return r.name;
-        }),
-      },
-      title: {
-        name: 'Teste',
-        show: true,
-        left: 'center',
-        top: 0,
-        text: 'Distribuição por Categoria',
-      },
-      tooltip: {
-        trigger: 'item',
-        formatter: '{b} : R${c} <b>({d}%)</b>',
-      },
-      dataZoom: [
-        {
-          type: 'inside',
-        },
-      ],
-      series: [
-        {
-          name: 'area',
-          type: 'pie',
-          top: 90,
-          data: this.removeDuplicado(dataGrafico),
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
-          },
-        },
-      ],
-    };
+    this.graficoCategoria = this._operacoesService.configurarGraficoPorCategoria(
+      operacoes
+    );
   }
 
   removeDuplicado(array) {
