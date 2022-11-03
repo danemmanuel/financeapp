@@ -37,16 +37,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     prefix: 'R$',
   };
   @ViewChild('valor') valorInput: ElementRef;
-  categorias = [
-    { descricao: 'Cartão de Crédito', icone: 'aliment' },
-    { descricao: 'Alimentacao', icone: 'aliment' },
-    { descricao: 'Lazer', icone: 'Lazer' },
-    { descricao: 'Casa', icone: 'Lazer' },
-    { descricao: 'Educação', icone: 'Lazer' },
-    { descricao: 'Taxas', icone: 'Lazer' },
-    { descricao: 'Saúde', icone: 'Lazer' },
-    { descricao: 'Serviços', icone: 'Lazer' },
-  ];
+  categorias = [];
   usAmount = 0;
   @ViewChild('picker1') picker: MatDatepicker<any>;
   operacao: any;
@@ -231,6 +222,27 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       categoria: this.fb.control(null, [Validators.required]),
       conta: this.fb.control(null, [Validators.required]),
     });
+
+    if (this.data.tipoOperacao === 'Receita') {
+      this.categorias = [
+        { descricao: 'Salário', icone: 'aliment' },
+        { descricao: 'Investimento', icone: 'aliment' },
+        { descricao: 'Recisão', icone: 'aliment' },
+        { descricao: 'Emprestimo', icone: 'aliment' },
+        { descricao: 'Dividendo', icone: 'aliment' },
+      ];
+    } else {
+      this.categorias = [
+        { descricao: 'Cartão de Crédito', icone: 'aliment' },
+        { descricao: 'Alimentacao', icone: 'aliment' },
+        { descricao: 'Lazer', icone: 'Lazer' },
+        { descricao: 'Casa', icone: 'Lazer' },
+        { descricao: 'Educação', icone: 'Lazer' },
+        { descricao: 'Taxas', icone: 'Lazer' },
+        { descricao: 'Saúde', icone: 'Lazer' },
+        { descricao: 'Serviços', icone: 'Lazer' },
+      ];
+    }
   }
 
   async deletarOperacao() {
