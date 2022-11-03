@@ -4,6 +4,7 @@ import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/heade
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
+import {EChartsOption} from "echarts";
 
 @Component({
   selector: 'finances-app-despesas',
@@ -19,6 +20,8 @@ export class DespesasComponent implements OnInit, OnDestroy {
   totalPendente: any;
   totalPago: any;
   todasOperacoes: any;
+  updateOptions: any;
+  chartOption: EChartsOption;
 
   constructor(
     private dialog: MatDialog,
@@ -42,6 +45,61 @@ export class DespesasComponent implements OnInit, OnDestroy {
     this.a.unsubscribe();
   }
 
+  configurarGrafico(operacoes) {
+    let dataGrafico = operacoes?.map((operacao) => {
+      return {
+        name: operacao.categoria.descricao,
+        value: operacoes
+          .filter(
+            (operacaoF) =>
+              operacao.categoria.descricao === operacaoF.categoria.descricao
+          )
+          .reduce((total, operacaoV) => (total += operacaoV.valor), 0),
+      };
+    });
+
+    this.chartOption = {
+      backgroundColor: '#191919',
+      legend: {
+        top: 60,
+        data: this.removeDuplicado(dataGrafico)?.map((r) => {
+          return r.name;
+        }),
+      },
+      title: {
+        name: 'Teste',
+        show: true,
+        left: 'center',
+        top: 0,
+        text: 'Distribuição de Despesas',
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : R${c} <b>({d}%)</b>',
+      },
+      dataZoom: [
+        {
+          type: 'inside',
+        },
+      ],
+      series: [
+        {
+          name: 'area',
+          type: 'pie',
+          top: 90,
+          data: this.removeDuplicado(dataGrafico),
+        },
+      ],
+    };
+  }
+
+  removeDuplicado(array) {
+    return array?.filter(
+      (value, index, self) =>
+        index === self.findIndex((t) => t.name === value.name)
+    );
+  }
+
   async buscarDespesas() {
     this.loading = true;
 
@@ -61,6 +119,8 @@ export class DespesasComponent implements OnInit, OnDestroy {
       this.mes,
       this.ano
     );
+    this.configurarGrafico(this.operacoes);
+
   }
 
   calcularTotalPendente() {

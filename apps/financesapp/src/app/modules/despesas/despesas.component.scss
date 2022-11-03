@@ -43,6 +43,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .demo-chart {
+    margin-top: 50px;
+  }
   .col-6 {
     flex: 0 0 100%;
     max-width: 100%;

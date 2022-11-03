@@ -46,5 +46,18 @@
       >
       </finances-app-listar-operacoes>
     </div>
+
+    <div class="col-6">
+      <ng-container *ngIf="chartOption.series[0].data?.length">
+        <div
+          id="chart1"
+          echarts
+          [options]="chartOption"
+          [theme]="'dark'"
+          [merge]="updateOptions"
+          class="demo-chart"
+        ></div>
+      </ng-container>
+    </div>
   </div>
 </div>

@@ -5,6 +5,7 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { DespesasComponent } from './despesas.component';
 import { DespesasRoutingModule } from '@finances-app/src/app/modules/despesas/despesas-routing.module';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
+import {NgxEchartsModule} from "ngx-echarts";
 
 @NgModule({
   declarations: [DespesasComponent],
@@ -14,6 +15,9 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     FitCardModule,
     AngularMaterialModule,
     OperacoesSharedModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
 })
 export class DespesasModule {}

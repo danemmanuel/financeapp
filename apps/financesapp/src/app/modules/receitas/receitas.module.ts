@@ -5,6 +5,7 @@ import { ReceitasRoutingModule } from '@finances-app/src/app/modules/receitas/re
 import { FitCardModule } from '@finances-app/fit-card';
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 @NgModule({
   declarations: [ReceitasComponent],
@@ -13,7 +14,10 @@ import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
     ReceitasRoutingModule,
     FitCardModule,
     AngularMaterialModule,
-    OperacoesSharedModule
+    OperacoesSharedModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
   ],
 })
 export class ReceitasModule {}
