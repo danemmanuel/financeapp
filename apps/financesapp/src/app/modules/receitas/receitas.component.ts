@@ -128,6 +128,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
       .open(FormularioOperacoesComponent, {
         width: '450px',
         maxWidth: '90%',
+        autoFocus: true,
         data: {
           tipoOperacao: 'Receita',
         },

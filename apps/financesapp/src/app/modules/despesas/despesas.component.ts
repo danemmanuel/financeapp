@@ -124,6 +124,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
       .open(FormularioOperacoesComponent, {
         width: '450px',
         maxWidth: '90%',
+        autoFocus: true,
         data: {
           tipoOperacao: 'Despesa',
         },

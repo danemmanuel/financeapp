@@ -73,6 +73,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
       .open(FormularioOperacoesComponent, {
         width: '450px',
         maxWidth: '90%',
+        autoFocus: false,
         data: {
           tipoOperacao: this.tipoOperacao,
           operacao: {
