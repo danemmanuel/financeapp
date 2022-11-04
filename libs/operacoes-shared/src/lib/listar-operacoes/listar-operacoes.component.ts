@@ -48,7 +48,9 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
       return { ...operacao, efetivado: !!operacao.efetivado };
     });
 
-    this.operacoesFiltradas = this.operacoes;
+    this.operacoesFiltradas = this.operacoes.sort(
+      (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()
+    );
   }
 
   filtroChange() {
