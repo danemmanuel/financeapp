@@ -272,7 +272,14 @@ export class OperacoesService {
           )}</span> </b> <br> Despesa: <span style="color:red"><b>${this.currencyPipe.transform(
             params[1].value,
             'BRL'
-          )}</span></b>`;
+          )}</span></b><br>
+            <span></span> Diferença: <span style="font-weight:bold;color:${
+              params[0].value - params[1].value > 0 ? 'green' : 'red'
+            }"> ${this.currencyPipe.transform(
+            params[0].value - params[1].value,
+            'BRL'
+          )}
+`;
         },
       },
       legend: {
@@ -352,7 +359,10 @@ export class OperacoesService {
         formatter: (params) => {
           return `${params.name}:<span style="color:${
             params.data.itemStyle.color
-          }"> <b>${this.currencyPipe.transform(params.value, 'BRL')}</b><span> <br><i> ${params.percent}%</i> `;
+          }"> <b>${this.currencyPipe.transform(
+            params.value,
+            'BRL'
+          )}</b><span> <br><i> ${params.percent}%</i> `;
         },
       },
       legend: {
