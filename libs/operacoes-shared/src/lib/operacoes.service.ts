@@ -242,7 +242,7 @@ export class OperacoesService {
         trigger: 'axis',
       },
       legend: {
-        top:30,
+        top: 30,
         data: ['Receita', 'Despesa'],
       },
       grid: {
@@ -282,6 +282,55 @@ export class OperacoesService {
           },
           data: dadosDespesas,
           color: 'rgb(255, 96, 79)',
+        },
+      ],
+    };
+  }
+
+  configurarGraficoReceitaXDespesa(dadosReceita, dadosDespesa, mes, ano): EChartsOption {
+    const meses = [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
+      'Janeiro',
+    ];
+
+    return {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        top: 60,
+      },
+      backgroundColor: '#191919',
+      title: {
+        name: 'Teste',
+        show: true,
+        left: 'center',
+        top: 0,
+        text: `Receitas X Despesas de ${meses[mes - 1]} de ${ano}`,
+      },
+      series: [
+        {
+          type: 'pie',
+          top: 90,
+          data: [dadosReceita, dadosDespesa],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)',
+            },
+          },
         },
       ],
     };

@@ -7,9 +7,14 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { RelatoriosComponent } from '@finances-app/src/app/modules/relatorios/relatorios.component';
 import { RelatoriosRoutingModule } from '@finances-app/src/app/modules/relatorios/relatorios-routing.module';
 import { ReceitaXDespesaComponent } from '@finances-app/src/app/modules/relatorios/receita-x-despesa/receita-x-despesa.component';
+import { ReceitaXDespesaIndividualComponent } from '@finances-app/src/app/modules/relatorios/receita-x-despesa-individual/receita-x-despesa-individual.component';
 
 @NgModule({
-  declarations: [RelatoriosComponent, ReceitaXDespesaComponent],
+  declarations: [
+    RelatoriosComponent,
+    ReceitaXDespesaComponent,
+    ReceitaXDespesaIndividualComponent,
+  ],
   imports: [
     CommonModule,
     FitCardModule,

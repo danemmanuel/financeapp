@@ -8,5 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class RelatoriosComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  async ngOnInit() {}
 }
