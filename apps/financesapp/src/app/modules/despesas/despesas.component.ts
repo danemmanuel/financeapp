@@ -48,13 +48,15 @@ export class DespesasComponent implements OnInit, OnDestroy {
 
   configurarGraficoPorBanco(operacoes) {
     this.graficoBanco = this._operacoesService.configurarGraficoPorBanco(
-      operacoes
+      operacoes,
+      'despesa'
     );
   }
 
   configurarGraficoPorCategoria(operacoes) {
     this.graficoCategoria = this._operacoesService.configurarGraficoPorCategoria(
-      operacoes
+      operacoes,
+      'despesa'
     );
   }
 

@@ -1,5 +1,5 @@
 import { PipesModule } from './../../../pipes/src/lib/pipes.module';
-import { CommonModule } from '@angular/common';
+import {CommonModule, CurrencyPipe} from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/listar-operacoes/listar-operacoes.component';
@@ -34,6 +34,6 @@ let CustomCurrencyMaskConfig = {
   ],
   declarations: [FormularioOperacoesComponent, ListarOperacoesComponent],
   exports: [FormularioOperacoesComponent, ListarOperacoesComponent],
-  providers: [FormBuilder],
+  providers: [FormBuilder, CurrencyPipe],
 })
 export class OperacoesSharedModule {}

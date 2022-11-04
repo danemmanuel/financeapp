@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@finances-app/src/environments/environment';
 import { EChartsOption } from 'echarts';
+import { CurrencyPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OperacoesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private currencyPipe: CurrencyPipe) {}
 
   cadastrarDespesa(dados: any) {
     return this.http.post<any>(`${environment.apis.despesa.despesa}`, dados);
@@ -85,7 +86,7 @@ export class OperacoesService {
       });
   }
 
-  configurarGraficoPorBanco(operacoes): EChartsOption {
+  configurarGraficoPorBanco(operacoes, tipoOperacao): EChartsOption {
     let dataGrafico = operacoes?.map((operacao) => {
       let color = '';
       switch (operacao.conta.instituicao) {
@@ -152,7 +153,14 @@ export class OperacoesService {
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{b} : R${c} <b>({d}%)</b>',
+        formatter: (params) => {
+          console.log(params);
+          return `<b>${params.name}</b> <br> <span style="color:${
+            tipoOperacao === 'receita' ? 'green' : 'red'
+          }">
+<b>${this.currencyPipe.transform(params.value, 'BRL')}</b>
+</span>  `;
+        },
       },
       dataZoom: [
         {
@@ -177,7 +185,7 @@ export class OperacoesService {
     };
   }
 
-  configurarGraficoPorCategoria(operacoes): EChartsOption {
+  configurarGraficoPorCategoria(operacoes, tipoOperacao): EChartsOption {
     let dataGrafico = operacoes?.map((operacao) => {
       return {
         name: operacao.categoria.descricao,
@@ -207,7 +215,14 @@ export class OperacoesService {
       },
       tooltip: {
         trigger: 'item',
-        formatter: '{b} : R${c} <b>({d}%)</b>',
+        formatter: (params) => {
+          console.log(params);
+          return `<b>${params.name}</b> <br> <span style="color:${
+            tipoOperacao === 'receita' ? 'green' : 'red'
+          }">
+<b>${this.currencyPipe.transform(params.value, 'BRL')}</b>
+</span> `;
+        },
       },
       dataZoom: [
         {
@@ -246,6 +261,17 @@ export class OperacoesService {
       },
       tooltip: {
         trigger: 'axis',
+        formatter: (params) => {
+          return `<b>${
+            params[0].name
+          }</b> <br> RECEITA: <span style="color:green"><b>${this.currencyPipe.transform(
+            params[0].value,
+            'BRL'
+          )}</span> </b> <br> DESPESA: <span style="color:red"><b>${this.currencyPipe.transform(
+            params[1].value,
+            'BRL'
+          )}</span></b>`;
+        },
       },
       legend: {
         top: 30,
@@ -314,6 +340,11 @@ export class OperacoesService {
     return {
       tooltip: {
         trigger: 'item',
+        formatter: (params) => {
+          return `${params.name}:<span style="color:${
+            params.data.itemStyle.color
+          }"> <b>${this.currencyPipe.transform(params.value, 'BRL')}</b><span>`;
+        },
       },
       legend: {
         top: 60,
