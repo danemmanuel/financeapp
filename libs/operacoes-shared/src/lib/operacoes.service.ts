@@ -287,7 +287,7 @@ export class OperacoesService {
     };
   }
 
-  configurarGraficoReceitaXDespesa(dadosReceita, dadosDespesa, mes, ano): EChartsOption {
+  configurarGraficoReceitaXDespesa(dadosReceita, dadosDespesa): EChartsOption {
     const meses = [
       'Janeiro',
       'Fevereiro',
@@ -317,7 +317,7 @@ export class OperacoesService {
         show: true,
         left: 'center',
         top: 0,
-        text: `Receitas X Despesas de ${meses[mes - 1]} de ${ano}`,
+        text: `Receitas X Despesas deste mês`,
       },
       series: [
         {

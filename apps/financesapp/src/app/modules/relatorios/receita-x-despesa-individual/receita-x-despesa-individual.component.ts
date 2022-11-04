@@ -43,7 +43,6 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
   }
 
   calcularOperacoes() {
-    debugger;
     this.receitasEmAberto = this._operacoesService.calcularOperacoes(
       this.receitasTotal,
       this.mes,
@@ -96,9 +95,7 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
 
     this.dadosGrafico = this._operacoesService.configurarGraficoReceitaXDespesa(
       dadosReceita,
-      dadosDespesa,
-      this.mes,
-      this.ano
+      dadosDespesa
     );
   }
 }
