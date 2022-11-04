@@ -5,7 +5,6 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
 import { EChartsOption } from 'echarts';
-import { CoolTheme } from '@finances-app/src/app/modules/receitas/theme';
 
 @Component({
   selector: 'finances-app-receitas',
@@ -21,7 +20,6 @@ export class ReceitasComponent implements OnInit, OnDestroy {
   totalPendente: any;
   totalRecebido: any;
   todasOperacoes: any;
-  coolTheme = CoolTheme;
   updateOptions: any;
   graficoBanco: EChartsOption;
   graficoCategoria: EChartsOption;

@@ -1,0 +1,81 @@
+
+.content_despesas {
+  padding: 0 50px;
+
+  .main_header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .add_operacao {
+      margin-left: 30px;
+    }
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .row {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    h1 {
+      font-size: 30px;
+      font-weight: 500;
+    }
+    .item-50 {
+      flex-basis: 50%;
+      padding: 0 15px;
+      margin-top: 10px;
+    }
+    .item-100 {
+      flex: 1;
+      flex-basis: 100%;
+      padding: 0 15px;
+      margin-top: 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .col-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .header {
+    justify-content: space-between !important;
+    padding: 0 15px;
+    margin-bottom: 25px;
+  }
+  .card_saldo_contas .icon {
+    width: 55px !important;
+  }
+
+  .fitcard {
+    width: 50%;
+  }
+  .content_despesas .header {
+    flex-direction: row;
+  }
+  .content_despesas {
+    padding: 0;
+    margin-top: 120px;
+  }
+  .content {
+    padding: 0 15px;
+  }
+
+  .add_operacao {
+    position: fixed;
+    right: 25px;
+    bottom: 75px;
+    width: 55px;
+    height: 55px;
+    z-index: 999;
+  }
+}

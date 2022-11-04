@@ -236,12 +236,13 @@ export class OperacoesService {
     return {
       backgroundColor: '#191919',
       title: {
-        text: 'Relação Receitas x Despesas',
+        text: 'Relação Receitas x Despesas dos últimos 6 meses',
       },
       tooltip: {
         trigger: 'axis',
       },
       legend: {
+        top:30,
         data: ['Receita', 'Despesa'],
       },
       grid: {
@@ -267,7 +268,6 @@ export class OperacoesService {
         {
           name: 'Receita',
           type: 'line',
-          areaStyle: {},
           emphasis: {
             focus: 'series',
           },
@@ -280,7 +280,6 @@ export class OperacoesService {
           emphasis: {
             focus: 'series',
           },
-          areaStyle: {},
           data: dadosDespesas,
           color: 'rgb(255, 96, 79)',
         },

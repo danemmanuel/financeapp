@@ -61,6 +61,11 @@ export const routers: Routes = [
         loadChildren: () =>
           import('../modules/contas/contas.module').then((x) => x.ContasModule),
       },
+      {
+        path: 'relatorios',
+        loadChildren: () =>
+          import('../modules/relatorios/relatorios.module').then((x) => x.RelatoriosModule),
+      },
     ],
   },
 ];
