@@ -157,8 +157,10 @@ export class OperacoesService {
           return `<b>${params.name}</b> <br> <span style="color:${
             tipoOperacao === 'receita' ? 'green' : 'red'
           }">
-<b>${this.currencyPipe.transform(params.value, 'BRL')}</b>
-</span>  `;
+<b>${this.currencyPipe.transform(params.value, 'BRL')}</b>  <br><i> ${
+            params.percent
+          }%</i>
+</span>`;
         },
       },
       dataZoom: [
@@ -218,8 +220,10 @@ export class OperacoesService {
           return `<b>${params.name}</b> <br> <span style="color:${
             tipoOperacao === 'receita' ? 'green' : 'red'
           }">
-<b>${this.currencyPipe.transform(params.value, 'BRL')}</b>
-</span> `;
+<b>${this.currencyPipe.transform(params.value, 'BRL')} <br> </b>  <i> ${
+            params.percent
+          }%</i>
+</span>`;
         },
       },
       dataZoom: [
@@ -255,7 +259,7 @@ export class OperacoesService {
     return {
       backgroundColor: '#191919',
       title: {
-        text: 'Relação Receitas x Despesas dos últimos 6 meses',
+        text: 'Receitas x Despesas dos últimos 6 meses',
       },
       tooltip: {
         trigger: 'axis',
@@ -348,11 +352,17 @@ export class OperacoesService {
         formatter: (params) => {
           return `${params.name}:<span style="color:${
             params.data.itemStyle.color
-          }"> <b>${this.currencyPipe.transform(params.value, 'BRL')}</b><span>`;
+          }"> <b>${this.currencyPipe.transform(params.value, 'BRL')}</b><span> <br><i> ${params.percent}%</i> `;
         },
       },
       legend: {
         top: 80,
+      },
+      label: {
+        formatter: (params) => {
+          console.log(params);
+          return `${params.name}`;
+        },
       },
       toolbox: {
         feature: {
