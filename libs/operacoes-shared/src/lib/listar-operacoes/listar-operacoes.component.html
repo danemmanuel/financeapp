@@ -24,7 +24,13 @@
           ? 'background-color: rgb(53, 174, 150)'
           : 'background-color: rgb(255, 96, 79);'
       "
-      [ngClass]="shakeFiltro || filtro ? 'rise-shake' : ''"
+      [ngClass]="
+        shakeFiltro ||
+        filtro ||
+        operacoesFiltradas?.length !== operacoes?.length
+          ? 'rise-shake'
+          : ''
+      "
       (click)="reset()"
     >
       <mat-icon>cached</mat-icon>
