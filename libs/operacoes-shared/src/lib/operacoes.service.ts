@@ -266,10 +266,10 @@ export class OperacoesService {
         formatter: (params) => {
           return `<b>${
             params[0].name
-          }</b> <br> RECEITA: <span style="color:green"><b>${this.currencyPipe.transform(
+          }</b> <br> Receita: <span style="color:green"><b>${this.currencyPipe.transform(
             params[0].value,
             'BRL'
-          )}</span> </b> <br> DESPESA: <span style="color:red"><b>${this.currencyPipe.transform(
+          )}</span> </b> <br> Despesa: <span style="color:red"><b>${this.currencyPipe.transform(
             params[1].value,
             'BRL'
           )}</span></b>`;
