@@ -52,7 +52,6 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   }
 
   filtroChange() {
-    console.log(this.filtro);
     this.operacoesFiltradas = this.operacoes.filter((operacao) => {
       return operacao.efetivado === !this.filtro;
     });

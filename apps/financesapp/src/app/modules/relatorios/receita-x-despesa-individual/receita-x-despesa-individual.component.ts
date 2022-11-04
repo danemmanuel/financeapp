@@ -55,7 +55,6 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       this.ano
     );
     this.configurarRelatorio();
-    console.log(this.receitasEmAberto, this.despesasEmAberto);
   }
 
   async buscarDespesas() {

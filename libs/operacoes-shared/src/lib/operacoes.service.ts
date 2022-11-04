@@ -233,6 +233,12 @@ export class OperacoesService {
   }
 
   configurarGraficoHome(meses, dadosDespesas, dadosReceitas): EChartsOption {
+    dadosDespesas = dadosDespesas?.map((valor) => {
+      return +valor?.toFixed(2);
+    });
+    dadosReceitas = dadosReceitas?.map((valor) => {
+      return +valor?.toFixed(2);
+    });
     return {
       backgroundColor: '#191919',
       title: {
@@ -303,7 +309,8 @@ export class OperacoesService {
       'Dezembro',
       'Janeiro',
     ];
-
+    dadosDespesa.value = dadosDespesa?.value?.toFixed(2);
+    dadosReceita.value = dadosReceita?.value?.toFixed(2);
     return {
       tooltip: {
         trigger: 'item',

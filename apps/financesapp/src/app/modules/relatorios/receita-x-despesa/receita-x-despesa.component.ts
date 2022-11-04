@@ -81,7 +81,6 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
 
     for (let i = 1; i < xMeses; i++) {
       let mes;
-      console.log(dataAtual.getMonth() + 1);
       switch (dataAtual.getMonth() + 1) {
         case 1:
           mes = 'Janeiro';
@@ -146,7 +145,6 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
       dadosDespesas.reverse(),
       dadosReceitas.reverse()
     );
-    console.log(dadosDespesas, dadosReceitas);
   }
 
   async buscarDados() {

@@ -170,8 +170,6 @@ export class NumericInputComponent
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-
     if (changes.opened.currentValue >= 1) {
       this.openKeyboard();
     }

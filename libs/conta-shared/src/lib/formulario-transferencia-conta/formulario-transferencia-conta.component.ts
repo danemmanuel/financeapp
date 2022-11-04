@@ -120,7 +120,6 @@ export class FormularioTransferenciaContaComponent implements OnInit {
     if (this.formConta.invalid) return;
 
     let formValue = this.formConta.value;
-    console.log(formValue);
 
     let objSalvarContaOrigem = {
       _id: formValue.contaOrigem._id,

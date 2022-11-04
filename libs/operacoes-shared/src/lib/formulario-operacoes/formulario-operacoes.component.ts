@@ -61,7 +61,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   onEnter() {}
   onChange(event) {
     this.formOperacao.get('valor')?.setValue(event);
-    console.log(event);
   }
   onInputFocus() {}
   onInputBlur() {}
@@ -132,7 +131,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
 
   montarObjetoSalvar() {
     const formValue = this.formOperacao.value;
-    console.log(this.formOperacao.get('categoria').value);
     let obj = {
       _id: this.operacao?._id,
       descricao: formValue.descricao,
