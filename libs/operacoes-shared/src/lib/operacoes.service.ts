@@ -154,7 +154,6 @@ export class OperacoesService {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          console.log(params);
           return `<b>${params.name}</b> <br> <span style="color:${
             tipoOperacao === 'receita' ? 'green' : 'red'
           }">
@@ -216,7 +215,6 @@ export class OperacoesService {
       tooltip: {
         trigger: 'item',
         formatter: (params) => {
-          console.log(params);
           return `<b>${params.name}</b> <br> <span style="color:${
             tipoOperacao === 'receita' ? 'green' : 'red'
           }">
