@@ -27,15 +27,11 @@
       <div class="row">
         <mat-form-field class="col-6">
           <input
-            type="text"
+            type="tel"
             matInput
-            #valor
             formControlName="valor"
             placeholder="Valor da {{ tipoOperacao }}:"
-            mvndrMatCurrencyFormat
-            [allowNegative]="false"
-            [currencyCode]="'BRL'"
-            (blur)="updateUSAmount($event)"
+            currencyMask
           />
 
           <mat-error>

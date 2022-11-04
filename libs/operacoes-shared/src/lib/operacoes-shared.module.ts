@@ -4,10 +4,24 @@ import { NgModule } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/listar-operacoes/listar-operacoes.component';
 import { AngularMaterialModule } from '@finances-app/angular-material';
-import { NgxCurrencyModule } from 'ngx-currency';
+import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
 import { FormularioOperacoesComponent } from './formulario-operacoes/formulario-operacoes.component';
-import { NgNumericKeyboardModule } from './ng-numeric-keyboard.module';
-import { MatCurrencyFormatModule } from 'mat-currency-format';
+
+let CustomCurrencyMaskConfig = {
+  align: 'left',
+  allowNegative: true,
+  allowZero: true,
+  decimal: ',',
+  precision: 2,
+  prefix: 'R$ ',
+  suffix: '',
+  thousands: '.',
+  nullable: true,
+  min: null,
+  max: null,
+  inputMode: CurrencyMaskInputMode.FINANCIAL,
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,9 +29,8 @@ import { MatCurrencyFormatModule } from 'mat-currency-format';
     ReactiveFormsModule,
     NgxCurrencyModule,
     PipesModule,
-    NgNumericKeyboardModule,
     FormsModule,
-    MatCurrencyFormatModule,
+    NgxCurrencyModule.forRoot(CustomCurrencyMaskConfig),
   ],
   declarations: [FormularioOperacoesComponent, ListarOperacoesComponent],
   exports: [FormularioOperacoesComponent, ListarOperacoesComponent],

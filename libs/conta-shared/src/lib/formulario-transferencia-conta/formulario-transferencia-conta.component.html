@@ -9,12 +9,9 @@
     <div class="row">
       <mat-form-field class="col-12">
         <input
-          type="phone"
+          type="tel"
           required
-          mvndrMatCurrencyFormat
-          [allowNegative]="false"
-          [currencyCode]="'BRL'"
-          (blur)="updateUSAmount($event)"
+          currencyMask
           formControlName="saldo"
           matInput
           placeholder="Valor a ser transferido:"

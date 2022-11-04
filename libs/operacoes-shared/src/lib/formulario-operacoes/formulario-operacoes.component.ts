@@ -23,20 +23,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   tipoOperacao = '';
   formOperacao: FormGroup;
   contas = [];
-  currencyOption: CurrencyMaskConfig = {
-    allowNegative: false,
-    allowZero: false,
-    nullable: false,
-    suffix: '',
-    max: 99999999,
-    min: 0,
-    precision: 2,
-    align: 'left',
-    thousands: '.',
-    decimal: ',',
-    prefix: 'R$',
-  };
-  @ViewChild('valor') valorInput: ElementRef;
   categorias = [];
   usAmount = 0;
   @ViewChild('picker1') picker: MatDatepicker<any>;
@@ -66,7 +52,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.valorInput?.nativeElement?.focus();
   }
 
   updateUSAmount(event) {
