@@ -221,6 +221,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
         { descricao: 'Taxas', icone: 'Lazer' },
         { descricao: 'Saúde', icone: 'Lazer' },
         { descricao: 'Serviços', icone: 'Lazer' },
+        { descricao: 'Outros', icone: 'Lazer' },
       ];
     }
   }
