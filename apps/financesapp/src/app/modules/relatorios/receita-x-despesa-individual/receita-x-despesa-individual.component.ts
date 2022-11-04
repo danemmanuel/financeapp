@@ -94,7 +94,9 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
 
     this.dadosGrafico = this._operacoesService.configurarGraficoReceitaXDespesa(
       dadosReceita,
-      dadosDespesa
+      dadosDespesa,
+      this.mes,
+      this.ano
     );
   }
 }

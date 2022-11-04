@@ -283,7 +283,9 @@ export class OperacoesService {
       },
       toolbox: {
         feature: {
-          saveAsImage: {},
+          saveAsImage: {
+            title: 'Exportar como imagem',
+          },
         },
       },
       xAxis: {
@@ -317,7 +319,12 @@ export class OperacoesService {
     };
   }
 
-  configurarGraficoReceitaXDespesa(dadosReceita, dadosDespesa): EChartsOption {
+  configurarGraficoReceitaXDespesa(
+    dadosReceita,
+    dadosDespesa,
+    mes,
+    ano
+  ): EChartsOption {
     const meses = [
       'Janeiro',
       'Fevereiro',
@@ -345,7 +352,14 @@ export class OperacoesService {
         },
       },
       legend: {
-        top: 60,
+        top: 80,
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {
+            title: 'Exportar como imagem',
+          },
+        },
       },
       backgroundColor: '#191919',
       title: {
@@ -353,7 +367,7 @@ export class OperacoesService {
         show: true,
         left: 'center',
         top: 0,
-        text: `Receitas X Despesas deste mês`,
+        text: `Receitas X Despesas \n \n${meses[mes - 1]} de ${ano}`,
       },
       series: [
         {
