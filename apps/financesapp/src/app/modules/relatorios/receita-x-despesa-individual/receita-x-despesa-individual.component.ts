@@ -128,18 +128,10 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       },
     };
 
-    const dadosPrevisto = {
-      value: this.saldoPrevisto,
-      name: 'Saldo Previsto',
-      itemStyle: {
-        color: '#3498db',
-      },
-    };
-
     this.dadosGrafico = this._operacoesService.configurarGraficoReceitaXDespesa(
       dadosReceita,
       dadosDespesa,
-      dadosPrevisto,
+      this.saldoPrevisto,
       this.mes,
       this.ano
     );

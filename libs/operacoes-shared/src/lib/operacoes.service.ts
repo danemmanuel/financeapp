@@ -397,13 +397,18 @@ export class OperacoesService {
         show: true,
         left: 'center',
         top: 0,
-        text: `Receitas X Despesas \n \n${meses[mes - 1]} de ${ano}`,
+        text: `${
+          meses[mes - 1]
+        } de ${ano} \n \n Saldo Previsto: ${this.currencyPipe.transform(
+          dadosPrevisto,
+          'BRL'
+        )}`,
       },
       series: [
         {
           type: 'pie',
           top: 90,
-          data: [dadosReceita, dadosDespesa, dadosPrevisto],
+          data: [dadosReceita, dadosDespesa],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
