@@ -1,9 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
-import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
 import { EChartsOption } from 'echarts';
@@ -22,10 +19,16 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
   private mes: any;
   private ano: any;
   dadosGrafico: EChartsOption;
+  private saldoPrevisto: any;
+  private saldoAtual: any;
+  private contas: any;
+  private receitas: any;
+  private despesas: any;
 
   constructor(
     private _operacoesService: OperacoesService,
-    private _headerMesAnoService: HeaderMesAnoService
+    private _headerMesAnoService: HeaderMesAnoService,
+    private _contaService: ContasService
   ) {
     this.a = this._headerMesAnoService.getMesAno().subscribe(async (obj) => {
       if (!obj.mes) return;
@@ -37,9 +40,15 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
   }
 
   async ngOnInit() {
+    await this.buscarContas();
+    this.calcularSaldoAtual();
     await this.buscarDespesas();
     await this.buscarReceitas();
     this.calcularOperacoes();
+  }
+
+  async buscarContas() {
+    this.contas = await this._contaService.buscarContas().toPromise();
   }
 
   calcularOperacoes() {
@@ -69,7 +78,34 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       .toPromise();
   }
 
+  calcularSaldoAtual() {
+    this.saldoAtual = this.contas.reduce(
+      (total, conta) => (total += conta.saldo),
+      0
+    );
+  }
+
   configurarRelatorio() {
+    this.receitas = this._operacoesService.calcularOperacoes(
+      this.receitasTotal,
+      this.mes,
+      this.ano
+    );
+    this.despesas = this._operacoesService.calcularOperacoes(
+      this.despesasTotal,
+      this.mes,
+      this.ano
+    );
+
+    const receitasEmAberto = this.receitas
+      ?.filter((despesa) => !despesa.efetivado)
+      .reduce((total, despesa) => (total += despesa.valor), 0);
+
+    const totalDespesas = this.despesas
+      ?.filter((despesa) => !despesa.efetivado)
+      .reduce((total, despesa) => (total += despesa.valor), 0);
+    this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
+    console.log(this.saldoAtual, totalDespesas, receitasEmAberto)
     const dadosReceita = {
       value: this.receitasEmAberto?.reduce(
         (total, conta) => (total += conta.valor),
@@ -92,9 +128,18 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       },
     };
 
+    const dadosPrevisto = {
+      value: this.saldoPrevisto,
+      name: 'Saldo Previsto',
+      itemStyle: {
+        color: '#3498db',
+      },
+    };
+
     this.dadosGrafico = this._operacoesService.configurarGraficoReceitaXDespesa(
       dadosReceita,
       dadosDespesa,
+      dadosPrevisto,
       this.mes,
       this.ano
     );

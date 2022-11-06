@@ -84,7 +84,6 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
     const dataAtual = new Date();
     let dadosReceitas = [];
     let dadosDespesas = [];
-    let saldosPrevistos = [];
     let meses = [];
 
     for (let i = 1; i < xMeses; i++) {
@@ -148,15 +147,7 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
         0
       );
 
-      const receitasEmAberto = receitas
-        .filter((despesa) => !despesa.efetivado)
-        .reduce((total, despesa) => (total += despesa.valor), 0);
 
-      const totalDespesas = despesas
-        .filter((despesa) => !despesa.efetivado)
-        .reduce((total, despesa) => (total += despesa.valor), 0);
-      this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
-      saldosPrevistos.push(this.saldoPrevisto);
 
       dataAtual.setMonth(dataAtual.getMonth() - 1);
       dadosDespesas.push(
@@ -168,7 +159,7 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
       meses.reverse(),
       dadosDespesas.reverse(),
       dadosReceitas.reverse(),
-      saldosPrevistos.reverse()
+
     );
   }
 
