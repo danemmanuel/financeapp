@@ -249,7 +249,13 @@ export class OperacoesService {
     };
   }
 
-  configurarGraficoHome(meses, dadosDespesas, dadosReceitas): EChartsOption {
+  configurarGraficoHome(
+    meses,
+    dadosDespesas,
+    dadosReceitas,
+    saldoPrevisto
+  ): EChartsOption {
+    console.log(saldoPrevisto);
     dadosDespesas = dadosDespesas?.map((valor) => {
       return +valor?.toFixed(2);
     });
@@ -273,12 +279,14 @@ export class OperacoesService {
             params[1].value,
             'BRL'
           )}</span></b><br>
-            <span></span> Diferença: <span style="font-weight:bold;color:${
+            Diferença: <span style="font-weight:bold;color:${
               params[0].value - params[1].value > 0 ? 'green' : 'red'
             }"> ${this.currencyPipe.transform(
             params[0].value - params[1].value,
             'BRL'
-          )}
+          )}</span> <br>Saldo Previsto: <span style="font-weight:bold;color:${
+            params[0].value - params[1].value > 0 ? 'green' : 'red'
+          }"><b>${this.currencyPipe.transform(params[2].value, 'BRL')}</span>
 `;
         },
       },
@@ -325,6 +333,15 @@ export class OperacoesService {
           },
           data: dadosDespesas,
           color: 'rgb(255, 96, 79)',
+        },
+        {
+          name: 'Saldo Previsto',
+          type: 'line',
+          emphasis: {
+            focus: 'series',
+          },
+          data: saldoPrevisto,
+          color: '#3498db',
         },
       ],
     };

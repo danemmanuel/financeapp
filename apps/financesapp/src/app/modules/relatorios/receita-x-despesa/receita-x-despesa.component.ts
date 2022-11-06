@@ -29,6 +29,8 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
   despesasTotal = [];
   receitasTotal = [];
   graficoBanco: EChartsOption;
+  saldoPrevisto: any;
+   saldoAtual: any;
 
   constructor(
     private dialog: MatDialog,
@@ -47,6 +49,7 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.loading = true;
+    await this.buscarContas();
     await this.buscarDespesas();
     await this.buscarReceitas();
     await this.calcularOperacoes();
@@ -55,6 +58,10 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.a.unsubscribe();
+  }
+
+  async buscarContas() {
+    this.contas = await this._contaService.buscarContas().toPromise();
   }
 
   calcularOperacoes() {
@@ -77,6 +84,7 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
     const dataAtual = new Date();
     let dadosReceitas = [];
     let dadosDespesas = [];
+    let saldosPrevistos = [];
     let meses = [];
 
     for (let i = 1; i < xMeses; i++) {
@@ -134,6 +142,22 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
         dataAtual.getMonth() + 1,
         dataAtual.getFullYear()
       );
+
+      this.saldoAtual = this.contas.reduce(
+        (total, conta) => (total += conta.saldo),
+        0
+      );
+
+      const receitasEmAberto = receitas
+        .filter((despesa) => !despesa.efetivado)
+        .reduce((total, despesa) => (total += despesa.valor), 0);
+
+      const totalDespesas = despesas
+        .filter((despesa) => !despesa.efetivado)
+        .reduce((total, despesa) => (total += despesa.valor), 0);
+      this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
+      saldosPrevistos.push(this.saldoPrevisto);
+
       dataAtual.setMonth(dataAtual.getMonth() - 1);
       dadosDespesas.push(
         despesas.reduce((total, conta) => (total += conta.valor), 0)
@@ -143,7 +167,8 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
     this.graficoBanco = this._operacoesService.configurarGraficoHome(
       meses.reverse(),
       dadosDespesas.reverse(),
-      dadosReceitas.reverse()
+      dadosReceitas.reverse(),
+      saldosPrevistos.reverse()
     );
   }
 
