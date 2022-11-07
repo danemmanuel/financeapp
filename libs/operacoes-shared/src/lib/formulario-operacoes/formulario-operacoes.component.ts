@@ -215,6 +215,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       this.categorias = [
         { descricao: 'Cartão de Crédito', icone: 'alimenst' },
         { descricao: 'Alimentacao', icone: 'aliment' },
+        { descricao: 'Mercado', icone: 'aliment' },
         { descricao: 'Lazer', icone: 'Lazer' },
         { descricao: 'Casa', icone: 'Lazer' },
         { descricao: 'Educação', icone: 'Lazer' },
