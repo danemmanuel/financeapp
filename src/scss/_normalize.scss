@@ -29,7 +29,6 @@ body {
   margin: 0;
   max-width: 100vw;
   overflow-x: hidden;
-  background: #191919;
   color: #fff;
   border-radius: 0;
 }
@@ -452,4 +451,8 @@ table {
 
 .mr-5 {
   margin-right: 50px;
+}
+
+.dark_bg {
+  background: #191919;
 }
