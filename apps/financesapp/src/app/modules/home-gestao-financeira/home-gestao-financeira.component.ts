@@ -59,17 +59,17 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   calcularOperacoes() {
-    this.receitasEmAberto = this._operacoesService.calcularOperacoes(
-      this.receitasTotal,
-      this.mes,
-      this.ano
-    );
+    this.receitasEmAberto = this._operacoesService
+      .calcularOperacoes(this.receitasTotal, this.mes, this.ano)
+      .filter((operacao) => {
+        return !operacao.efetivado;
+      });
 
-    this.despesasEmAberto = this._operacoesService.calcularOperacoes(
-      this.despesasTotal,
-      this.mes,
-      this.ano
-    );
+    this.despesasEmAberto = this._operacoesService
+      .calcularOperacoes(this.despesasTotal, this.mes, this.ano)
+      .filter((operacao) => {
+        return !operacao.efetivado;
+      });
     this.calcularReceitasEsteMes();
     this.calcularDespesasEsteMes();
   }

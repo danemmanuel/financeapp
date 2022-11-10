@@ -42,42 +42,46 @@
     </finances-app-fit-card>
   </div>
 
-  <div class="row content" style="margin-top:50px">
+  <div class="row content" style="margin-top: 50px;">
     <div class="col-12">
-
+      <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
     </div>
-<!--    <div class="col-6">-->
-<!--      <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>-->
-<!--      <div class="operacoes_content">-->
-<!--        <finances-app-listar-operacoes-->
-<!--          *ngIf="!loading"-->
-<!--          [operacoes]="receitasEmAberto"-->
-<!--          tipoOperacao="Receita"-->
-<!--          (buscarOperacoes)="buscarDados()"-->
-<!--          titulo="Receitas em aberto"-->
-<!--          style="width: 100%;"-->
-<!--        >-->
-<!--        </finances-app-listar-operacoes>-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="col-6">-->
-<!--      <div class="operacoes_content">-->
-<!--        <finances-app-listar-operacoes-->
-<!--          *ngIf="!loading"-->
-<!--          [operacoes]="despesasEmAberto"-->
-<!--          tipoOperacao="Despesa"-->
-<!--          (buscarOperacoes)="buscarDados()"-->
-<!--          titulo="Despesas em aberto"-->
-<!--          style="width: 100%;"-->
-<!--        >-->
-<!--        </finances-app-listar-operacoes>-->
-<!--      </div>-->
-<!--    </div>-->
-  </div>
-  <!-- <div class="row">
     <div class="col-6">
-      <finances-app-indicativos-financeiros></finances-app-indicativos-financeiros>
+      <div
+        class="operacoes_content"
+        *ngIf="!loading && receitasEmAberto?.length"
+      >
+        <h1>Receitas em aberto</h1>
+
+        <finances-app-listar-operacoes
+          *ngIf="!loading"
+          [operacoes]="receitasEmAberto"
+          tipoOperacao="Receita"
+          (buscarOperacoes)="buscarDados()"
+          style="width: 100%;"
+        >
+        </finances-app-listar-operacoes>
+      </div>
     </div>
-  </div> -->
+
+    <div class="col-6">
+      <div
+        class="operacoes_content"
+        *ngIf="!loading && despesasEmAberto?.length"
+      >
+        <h1>Despesas em aberto</h1>
+        <finances-app-listar-operacoes
+          *ngIf="!loading"
+          [operacoes]="despesasEmAberto"
+          tipoOperacao="Despesa"
+          (buscarOperacoes)="buscarDados()"
+          style="width: 100%;"
+        >
+        </finances-app-listar-operacoes>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+<!--    <finances-app-indicativos-financeiros></finances-app-indicativos-financeiros>-->
+  </div>
 </div>

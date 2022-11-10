@@ -14,6 +14,10 @@
     margin-top: 40px;
   }
 }
+h1 {
+  font-size: 30px;
+  font-weight: 500;
+}
 .operacoes_content {
   max-height: 471px;
   overflow-y: auto;
@@ -24,6 +28,13 @@
   }
 }
 @media only screen and (max-width: 768px) {
+  .col-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .operacoes_content {
+    margin-top:30px;
+  }
   .content {
     margin-top:50px !important;
   }
