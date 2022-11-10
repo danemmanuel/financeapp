@@ -71,12 +71,6 @@ export class DespesasComponent implements OnInit, OnDestroy {
     this.operacoesFiltradas = this.operacoes;
   }
 
-  filtrarPorCategoria(e) {
-    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
-      return operacao.categoria.descricao === e.data.name;
-    });
-  }
-
   filtrarPorBanco(e) {
     this.operacoesFiltradas = this.operacoes.filter((operacao) => {
       return operacao.conta.instituicao === e.data.name;
