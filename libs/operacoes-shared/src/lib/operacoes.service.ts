@@ -397,12 +397,11 @@ export class OperacoesService {
         show: true,
         left: 'center',
         top: 0,
-        text: `${
-          meses[mes - 1]
-        } de ${ano} \n \n Saldo Previsto: ${this.currencyPipe.transform(
-          dadosPrevisto,
-          'BRL'
-        )}`,
+        text: `${meses[mes - 1]} de ${ano} \n \n Saldo Previsto: ${
+          !dadosPrevisto
+            ? 'calculando...'
+            : this.currencyPipe.transform(dadosPrevisto, 'BRL')
+        }`,
       },
       series: [
         {
