@@ -15,6 +15,7 @@ export class RelatoriosComponent implements OnInit {
   private arrayReceitas = [];
   mediaDespesa: number;
   mediaReceita: number;
+  mediaSobra: number;
 
   constructor(
     private _operacoesService: OperacoesService,
@@ -38,13 +39,14 @@ export class RelatoriosComponent implements OnInit {
   }
 
   calcularMedias() {
-    console.log(this.arrayDespesas)
+    console.log(this.arrayDespesas);
     this.mediaDespesa =
       this.arrayDespesas.reduce((a, b) => a + b, 0) / this.arrayDespesas.length;
 
     this.mediaReceita =
       this.arrayReceitas.reduce((a, b) => a + b, 0) / this.arrayReceitas.length;
 
+    this.mediaSobra = this.mediaReceita - this.mediaDespesa;
   }
 
   async buscarContas() {

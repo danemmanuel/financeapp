@@ -20,21 +20,30 @@
         ></finances-app-receita-x-despesa-individual>
       </div>
 
-      <div class="col-6">
+      <div class="col-4">
         <h3>
-          Você <span>gasta</span> em média por mês
+          Você <span>gasta</span> em média
           <span style="color: #FF6956;">{{
             mediaDespesa | currency: 'BRL'
-          }}</span>
+          }}</span> por mês
         </h3>
       </div>
 
-      <div class="col-6">
+      <div class="col-4">
+        <h3 style="text-align: center;">
+          Geralmente <span>sobra </span>
+          <span style="color: #fff;">{{
+            mediaSobra | currency: 'BRL'
+            }}</span> por mês
+        </h3>
+      </div>
+
+      <div class="col-4">
         <h3 style="text-align: right;">
-          Você <span>ganha</span> em média por mês
+          Você <span>ganha</span> em média
           <span style="color: #3abfa5;">{{
             mediaReceita | currency: 'BRL'
-          }}</span>
+          }}</span>  por mês
         </h3>
       </div>
     </ng-container>
