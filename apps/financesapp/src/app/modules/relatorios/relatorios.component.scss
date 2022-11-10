@@ -55,6 +55,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+  h3, p {
+    text-align: left !important;
+  }
   .col-6, .col-4 {
     flex: 0 0 100%;
     max-width: 100%;
