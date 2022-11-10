@@ -16,6 +16,7 @@ export class RelatoriosComponent implements OnInit {
   mediaDespesa: number;
   mediaReceita: number;
   mediaSobra: number;
+  porcentagemGasto: any;
 
   constructor(
     private _operacoesService: OperacoesService,
@@ -26,6 +27,11 @@ export class RelatoriosComponent implements OnInit {
     this.buscarContas();
     this.buscarDespesas();
     this.buscarReceitas();
+  }
+
+  calcularPorcentagem() {
+    this.porcentagemGasto = (100 * this.mediaDespesa) / this.mediaReceita;
+    this.porcentagemGasto = this.porcentagemGasto.toFixed(2);
   }
 
   atribuirDadosDespesas(dadosDespesas) {
@@ -39,7 +45,6 @@ export class RelatoriosComponent implements OnInit {
   }
 
   calcularMedias() {
-    console.log(this.arrayDespesas);
     this.mediaDespesa =
       this.arrayDespesas.reduce((a, b) => a + b, 0) / this.arrayDespesas.length;
 
@@ -47,6 +52,8 @@ export class RelatoriosComponent implements OnInit {
       this.arrayReceitas.reduce((a, b) => a + b, 0) / this.arrayReceitas.length;
 
     this.mediaSobra = this.mediaReceita - this.mediaDespesa;
+
+    this.calcularPorcentagem();
   }
 
   async buscarContas() {

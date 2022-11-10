@@ -23,19 +23,20 @@
       <div class="col-4">
         <h3>
           Você <span>gasta</span> em média
-          <span style="color: #FF6956;">{{
+          <span style="color: #ff6956;">{{
             mediaDespesa | currency: 'BRL'
-          }}</span> por mês
+          }}</span>
+          por mês
         </h3>
       </div>
 
       <div class="col-4">
         <h3 style="text-align: center;">
           Geralmente <span>sobra </span>
-          <span style="color: #fff;">{{
-            mediaSobra | currency: 'BRL'
-            }}</span> por mês
+          <span style="color: #fff;">{{ mediaSobra | currency: 'BRL' }}</span>
+          por mês
         </h3>
+        <p style="text-align: center;">em média você gasta <b>{{ porcentagemGasto }}%</b> do que você ganha</p>
       </div>
 
       <div class="col-4">
@@ -43,9 +44,12 @@
           Você <span>ganha</span> em média
           <span style="color: #3abfa5;">{{
             mediaReceita | currency: 'BRL'
-          }}</span>  por mês
+          }}</span>
+          por mês
         </h3>
       </div>
+
+      <div class="col-12"></div>
     </ng-container>
   </div>
 </div>
