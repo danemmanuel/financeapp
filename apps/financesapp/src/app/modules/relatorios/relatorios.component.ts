@@ -11,6 +11,10 @@ export class RelatoriosComponent implements OnInit {
   despesasTotal = [];
   receitasTotal = [];
   contas = [];
+  private arrayDespesas = [];
+  private arrayReceitas = [];
+  mediaDespesa: number;
+  mediaReceita: number;
 
   constructor(
     private _operacoesService: OperacoesService,
@@ -21,6 +25,26 @@ export class RelatoriosComponent implements OnInit {
     this.buscarContas();
     this.buscarDespesas();
     this.buscarReceitas();
+  }
+
+  atribuirDadosDespesas(dadosDespesas) {
+    this.arrayDespesas = dadosDespesas.filter((despesa) => despesa);
+    this.calcularMedias();
+  }
+
+  atribuirDadosReceitas(dadosReceitas) {
+    this.arrayReceitas = dadosReceitas.filter((despesa) => despesa);
+    this.calcularMedias();
+  }
+
+  calcularMedias() {
+    console.log(this.arrayDespesas)
+    this.mediaDespesa =
+      this.arrayDespesas.reduce((a, b) => a + b, 0) / this.arrayDespesas.length;
+
+    this.mediaReceita =
+      this.arrayReceitas.reduce((a, b) => a + b, 0) / this.arrayReceitas.length;
+
   }
 
   async buscarContas() {

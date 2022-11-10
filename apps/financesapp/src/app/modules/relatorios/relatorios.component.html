@@ -7,6 +7,8 @@
         <finances-app-receita-x-despesa
           [despesasTotal]="despesasTotal"
           [receitasTotal]="receitasTotal"
+          (despesasXMeses)="atribuirDadosDespesas($event)"
+          (receitasXMeses)="atribuirDadosReceitas($event)"
         ></finances-app-receita-x-despesa>
       </div>
 
@@ -16,6 +18,24 @@
           [despesasTotal]="despesasTotal"
           [receitasTotal]="receitasTotal"
         ></finances-app-receita-x-despesa-individual>
+      </div>
+
+      <div class="col-6">
+        <h3>
+          Você <span>gasta</span> em média por mês
+          <span style="color: #FF6956;">{{
+            mediaDespesa | currency: 'BRL'
+          }}</span>
+        </h3>
+      </div>
+
+      <div class="col-6">
+        <h3 style="text-align: right;">
+          Você <span>ganha</span> em média por mês
+          <span style="color: #3abfa5;">{{
+            mediaReceita | currency: 'BRL'
+          }}</span>
+        </h3>
       </div>
     </ng-container>
   </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
@@ -16,7 +16,8 @@ import { EChartsOption } from 'echarts';
 export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
   @Input() despesasTotal = [];
   @Input() receitasTotal = [];
-  @Input() contas = [];
+  @Output() despesasXMeses = new EventEmitter(null);
+  @Output() receitasXMeses = new EventEmitter(null);
   despesas = [];
   receitas = [];
   mes;
@@ -139,13 +140,9 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
         despesas.reduce((total, conta) => (total += conta.valor), 0)
       );
     }
-    const arrayDespesas = dadosDespesas.filter((despesa) => despesa);
-    const arrayReceitas = dadosReceitas.filter((despesa) => despesa);
-    const mediaDespesas =
-      arrayDespesas.reduce((a, b) => a + b, 0) / arrayDespesas.length;
-    const mediaReceita =
-      arrayReceitas.reduce((a, b) => a + b, 0) / arrayReceitas.length;
-    console.log(mediaDespesas, mediaReceita);
+
+    this.despesasXMeses.emit(dadosDespesas);
+    this.receitasXMeses.emit(dadosReceitas);
     this.graficoBanco = this._operacoesService.configurarGraficoHome(
       meses.reverse(),
       dadosDespesas.reverse(),

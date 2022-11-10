@@ -380,7 +380,6 @@ export class OperacoesService {
       },
       label: {
         formatter: (params) => {
-          console.log(params);
           return `${params.name}`;
         },
       },
