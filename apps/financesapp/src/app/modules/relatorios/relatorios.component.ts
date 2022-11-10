@@ -21,10 +21,14 @@ export class RelatoriosComponent implements OnInit {
   constructor(
     private _operacoesService: OperacoesService,
     private _contaService: ContasService
-  ) {}
+  ) {
+    this._contaService.getConta().subscribe((conta) => {
+      if (!conta) return;
+      this.contas = conta;
+    });
+  }
 
   async ngOnInit() {
-    this.buscarContas();
     this.buscarDespesas();
     this.buscarReceitas();
   }
@@ -54,10 +58,6 @@ export class RelatoriosComponent implements OnInit {
     this.mediaSobra = this.mediaReceita - this.mediaDespesa;
 
     this.calcularPorcentagem();
-  }
-
-  async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
   }
 
   async buscarDespesas() {
