@@ -1,4 +1,11 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
@@ -119,14 +126,10 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
           mes = 'Dezembro';
           break;
       }
-      meses.push(mes);
       const receitas = this._operacoesService.calcularOperacoes(
         this.receitasTotal,
         dataAtual.getMonth() + 1,
         dataAtual.getFullYear()
-      );
-      dadosReceitas.push(
-        receitas.reduce((total, conta) => (total += conta.valor), 0)
       );
 
       const despesas = this._operacoesService.calcularOperacoes(
@@ -135,10 +138,17 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
         dataAtual.getFullYear()
       );
 
+      if (receitas.length && despesas.length) {
+        dadosReceitas.push(
+          receitas.reduce((total, conta) => (total += conta.valor), 0)
+        );
+        dadosDespesas.push(
+          despesas.reduce((total, conta) => (total += conta.valor), 0)
+        );
+        meses.push(mes);
+      }
+
       dataAtual.setMonth(dataAtual.getMonth() - 1);
-      dadosDespesas.push(
-        despesas.reduce((total, conta) => (total += conta.valor), 0)
-      );
     }
 
     this.despesasXMeses.emit(dadosDespesas);

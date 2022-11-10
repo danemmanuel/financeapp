@@ -259,7 +259,7 @@ export class OperacoesService {
     return {
       backgroundColor: '#191919',
       title: {
-        text: 'Receitas x Despesas dos últimos 6 meses',
+        text: 'Receitas x Despesas',
       },
       tooltip: {
         trigger: 'axis',
