@@ -20,13 +20,17 @@ export class ContasGuard implements CanActivate {
     private _contaService: ContasService,
     private _snackBar: MatSnackBar,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this._contaService.getConta().subscribe(conta=>{
+      if (!conta) return;
+      this.contas = conta;
+    })
+  }
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<any> {
     return new Promise(async (resolve, reject) => {
-      await this.buscarContas();
       if (!this.contas.length) {
         console.log(route);
         this.router.navigate(['dashboard/contas']);
@@ -38,10 +42,6 @@ export class ContasGuard implements CanActivate {
       }
       resolve(true);
     });
-  }
-
-  async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
   }
 
   adicionarConta(route) {
@@ -56,6 +56,8 @@ export class ContasGuard implements CanActivate {
       .afterClosed()
       .subscribe(async (r) => {
         if (r) {
+          const contas = await this._contaService.buscarContas().toPromise();
+          this._contaService.setConta(contas);
           this.router.navigate([`dashboard/${route.routeConfig.path}`]);
         }
       });

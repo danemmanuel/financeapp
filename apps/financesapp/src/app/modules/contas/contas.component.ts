@@ -40,7 +40,6 @@ export class ContasComponent implements OnInit, OnDestroy {
     this._contaService.getConta().subscribe(async (contas) => {
       if (!contas) return;
       this.contas = contas;
-      this._contaService.setConta(this.contas);
       this.calcularSaldoAtual();
       await this.calcularSaldoPrevisto();
     });
