@@ -35,6 +35,10 @@
     <div class="col-4">
       <h1>Receitas</h1>
       <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
+      <mat-error *ngIf="!loading && !operacoes?.length"
+        >Nenhuma receita cadastrada para este mês</mat-error
+      >
+
       <finances-app-listar-operacoes
         *ngIf="!loading && operacoes.length"
         (buscarOperacoes)="buscarReceitas()"
