@@ -140,7 +140,7 @@ export class OperacoesService {
       backgroundColor: '#191919',
       legend: {
         top: 60,
-        data: this.removeDuplicado(dataGrafico)?.map((r) => {
+        data: this.removeDuplicado(dataGrafico, 'name')?.map((r) => {
           return r.name;
         }),
       },
@@ -173,7 +173,7 @@ export class OperacoesService {
           name: 'area',
           type: 'pie',
           top: 90,
-          data: this.removeDuplicado(dataGrafico),
+          data: this.removeDuplicado(dataGrafico, 'name'),
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -203,7 +203,7 @@ export class OperacoesService {
       backgroundColor: '#191919',
       legend: {
         top: 60,
-        data: this.removeDuplicado(dataGrafico)?.map((r) => {
+        data: this.removeDuplicado(dataGrafico, 'name')?.map((r) => {
           return r.name;
         }),
       },
@@ -236,7 +236,7 @@ export class OperacoesService {
           name: 'area',
           type: 'pie',
           top: 90,
-          data: this.removeDuplicado(dataGrafico),
+          data: this.removeDuplicado(dataGrafico, 'name'),
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -419,10 +419,10 @@ export class OperacoesService {
     };
   }
 
-  removeDuplicado(array) {
+  removeDuplicado(array, atributo) {
     return array?.filter(
       (value, index, self) =>
-        index === self.findIndex((t) => t.name === value.name)
+        index === self.findIndex((t) => t[atributo] === value[atributo])
     );
   }
 }

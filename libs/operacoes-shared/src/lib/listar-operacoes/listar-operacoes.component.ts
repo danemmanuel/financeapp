@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
+import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 
 @Component({
   selector: 'finances-app-listar-operacoes',
@@ -26,7 +27,13 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   @Input() shakeFiltro;
   filtro: boolean;
   operacoesFiltradas: any;
-  constructor(private dialog: MatDialog) {}
+  categorias = [];
+  categoriaSelecionada: any;
+
+  constructor(
+    private dialog: MatDialog,
+    private operacoesService: OperacoesService
+  ) {}
 
   ngOnInit(): void {
     this.preencherOperacoes();
@@ -51,18 +58,58 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
     this.operacoesFiltradas = this.operacoes.sort(
       (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()
     );
+
+    console.log(this.operacoesFiltradas);
+    this.categorias = this.operacoesFiltradas.map((op) => {
+      return op.categoria;
+    });
+    this.categorias = this.operacoesService.removeDuplicado(
+      this.categorias,
+      'descricao'
+    );
+    console.log(this.categorias);
+  }
+
+  selecionarCategoria(categoria) {
+    this.filtro = false;
+    this.categoriaSelecionada = categoria;
+    if (!categoria) {
+      this.operacoesFiltradas = this.operacoes;
+      return;
+    }
+    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+      return operacao.categoria.descricao === categoria.descricao;
+    });
+    if (this.filtro) {
+      this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+        return (
+          operacao.efetivado === !this.filtro &&
+          operacao.categoria?.descricao === this.categoriaSelecionada?.descricao
+        );
+      });
+    }
+    console.log(categoria);
   }
 
   filtroChange() {
     this.operacoesFiltradas = this.operacoes.filter((operacao) => {
       return operacao.efetivado === !this.filtro;
     });
+    if (this.categoriaSelecionada) {
+      this.operacoesFiltradas = this.operacoes.filter((operacao) => {
+        return (
+          operacao.efetivado === !this.filtro &&
+          operacao.categoria?.descricao === this.categoriaSelecionada?.descricao
+        );
+      });
+    }
   }
 
   reset() {
-    this.filtro = false;
+    this.filtro = null;
     this.operacoesFiltradas = this.operacoes;
     this.limparFiltro.emit(true);
+    this.categoriaSelecionada = null;
   }
 
   receitaSelecionada(receita) {

@@ -6,35 +6,51 @@
   </div>
 
   <div class="filtro">
-    <mat-slide-toggle
-      class="toggle"
-      [(ngModel)]="filtro"
-      [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
-      (toggleChange)="filtroChange()"
-    >
-      <span style="color: #fff;">
-        {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
-      </span>
-    </mat-slide-toggle>
-    <button
-      mat-mini-fab
-      matTooltip="Limpar Filtros"
-      [style]="
-        tipoOperacao === 'Receita'
-          ? 'background-color: rgb(53, 174, 150)'
-          : 'background-color: rgb(255, 96, 79);'
-      "
-      [ngClass]="
-        shakeFiltro ||
-        filtro ||
-        operacoesFiltradas?.length !== operacoes?.length
-          ? 'rise-shake'
-          : ''
-      "
-      (click)="reset()"
-    >
-      <mat-icon>cached</mat-icon>
+    <button style="color: #fff;" mat-button [matMenuTriggerFor]="menu">
+      {{ categoriaSelecionada?.descricao || 'Categorias' }}
     </button>
+    <mat-menu #menu="matMenu">
+      <button (click)="selecionarCategoria(null)" mat-menu-item>Todas</button>
+      <button
+        *ngFor="let categoria of categorias"
+        mat-menu-item
+        (click)="selecionarCategoria(categoria)"
+      >
+        {{ categoria.descricao }}
+      </button>
+    </mat-menu>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <mat-slide-toggle
+        class="toggle"
+        [(ngModel)]="filtro"
+        [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+        (toggleChange)="filtroChange()"
+      >
+        <span style="color: #fff;">
+          {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
+        </span>
+      </mat-slide-toggle>
+      <button
+        mat-mini-fab
+        matTooltip="Limpar Filtros"
+        [style]="
+          tipoOperacao === 'Receita'
+            ? 'background-color: rgb(53, 174, 150)'
+            : 'background-color: rgb(255, 96, 79);'
+        "
+        [ngClass]="
+          shakeFiltro ||
+          filtro ||
+          operacoesFiltradas?.length !== operacoes?.length
+            ? 'rise-shake'
+            : ''
+        "
+        (click)="reset()"
+      >
+        <mat-icon>cached</mat-icon>
+      </button>
+    </div>
   </div>
   <ul>
     <li
