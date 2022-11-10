@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeModule } from '@finances-app/src/app/modules/home/home.module';
+import { ContasGuard } from '@finances-app/src/app/core/auth/contas.guard';
 
 const homeGestaoFinanceiraModule =
   '../../modules/home-gestao-financeira/home-gestao-financeira.module#HomeGestaoFinanceiraModule';
@@ -48,6 +49,7 @@ export const routers: Routes = [
           import('../modules/receitas/receitas.module').then(
             (x) => x.ReceitasModule
           ),
+        canActivate: [ContasGuard],
       },
       {
         path: 'despesas',
@@ -55,6 +57,7 @@ export const routers: Routes = [
           import('../modules/despesas/despesas.module').then(
             (x) => x.DespesasModule
           ),
+        canActivate: [ContasGuard],
       },
       {
         path: 'contas',
@@ -64,7 +67,10 @@ export const routers: Routes = [
       {
         path: 'relatorios',
         loadChildren: () =>
-          import('../modules/relatorios/relatorios.module').then((x) => x.RelatoriosModule),
+          import('../modules/relatorios/relatorios.module').then(
+            (x) => x.RelatoriosModule
+          ),
+        canActivate: [ContasGuard],
       },
     ],
   },

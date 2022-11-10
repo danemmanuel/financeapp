@@ -12,6 +12,7 @@ import localePt from '@angular/common/locales/pt';
 import { AuthModule } from './modules/auth/auth.module';
 import { HeaderMesComponent } from '@finances-app/header-mes';
 import { MainMenuComponent } from '@finances-app/main-menu';
+import {ContasGuard} from "@finances-app/src/app/core/auth/contas.guard";
 
 registerLocaleData(localePt);
 
@@ -28,6 +29,7 @@ registerLocaleData(localePt);
   ],
   providers: [
     AuthGuard,
+    ContasGuard,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     JwtHelperService,
