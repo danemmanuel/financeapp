@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
@@ -11,8 +11,9 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./receita-x-despesa-individual.component.scss'],
 })
 export class ReceitaXDespesaIndividualComponent implements OnInit {
-  private despesasTotal: any;
-  private receitasTotal: any;
+  @Input() despesasTotal = [];
+  @Input() receitasTotal = [];
+  @Input() contas = [];
   private receitasEmAberto: any;
   private despesasEmAberto: any;
   a: Subscription;
@@ -21,7 +22,6 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
   dadosGrafico: EChartsOption;
   private saldoPrevisto: any;
   private saldoAtual: any;
-  private contas: any;
   private receitas: any;
   private despesas: any;
 
@@ -40,15 +40,8 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await this.buscarContas();
     this.calcularSaldoAtual();
-    await this.buscarDespesas();
-    await this.buscarReceitas();
     this.calcularOperacoes();
-  }
-
-  async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
   }
 
   calcularOperacoes() {
@@ -64,18 +57,6 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       this.ano
     );
     this.configurarRelatorio();
-  }
-
-  async buscarDespesas() {
-    this.despesasTotal = await this._operacoesService
-      .buscarDespesas({})
-      .toPromise();
-  }
-
-  async buscarReceitas() {
-    this.receitasTotal = await this._operacoesService
-      .buscarReceitas({})
-      .toPromise();
   }
 
   calcularSaldoAtual() {
@@ -105,7 +86,7 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       ?.filter((despesa) => !despesa.efetivado)
       .reduce((total, despesa) => (total += despesa.valor), 0);
     this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
-    console.log(this.saldoAtual, totalDespesas, receitasEmAberto)
+    console.log(this.saldoAtual, totalDespesas, receitasEmAberto);
     const dadosReceita = {
       value: this.receitasEmAberto?.reduce(
         (total, conta) => (total += conta.valor),

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
@@ -14,7 +14,9 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./receita-x-despesa.component.scss'],
 })
 export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
-  contas = [];
+  @Input() despesasTotal = [];
+  @Input() receitasTotal = [];
+  @Input() contas = [];
   despesas = [];
   receitas = [];
   mes;
@@ -26,11 +28,8 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
   loading: boolean;
   despesasEmAberto: any;
   receitasEmAberto: any;
-  despesasTotal = [];
-  receitasTotal = [];
   graficoBanco: EChartsOption;
   saldoPrevisto: any;
-   saldoAtual: any;
 
   constructor(
     private dialog: MatDialog,
@@ -49,19 +48,12 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.loading = true;
-    await this.buscarContas();
-    await this.buscarDespesas();
-    await this.buscarReceitas();
     await this.calcularOperacoes();
     this.loading = false;
   }
 
   ngOnDestroy() {
     this.a.unsubscribe();
-  }
-
-  async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
   }
 
   calcularOperacoes() {
@@ -142,45 +134,22 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
         dataAtual.getFullYear()
       );
 
-      this.saldoAtual = this.contas.reduce(
-        (total, conta) => (total += conta.saldo),
-        0
-      );
-
-
-
       dataAtual.setMonth(dataAtual.getMonth() - 1);
       dadosDespesas.push(
         despesas.reduce((total, conta) => (total += conta.valor), 0)
       );
     }
-
+    const arrayDespesas = dadosDespesas.filter((despesa) => despesa);
+    const arrayReceitas = dadosReceitas.filter((despesa) => despesa);
+    const mediaDespesas =
+      arrayDespesas.reduce((a, b) => a + b, 0) / arrayDespesas.length;
+    const mediaReceita =
+      arrayReceitas.reduce((a, b) => a + b, 0) / arrayReceitas.length;
+    console.log(mediaDespesas, mediaReceita);
     this.graficoBanco = this._operacoesService.configurarGraficoHome(
       meses.reverse(),
       dadosDespesas.reverse(),
-      dadosReceitas.reverse(),
-
+      dadosReceitas.reverse()
     );
-  }
-
-  async buscarDados() {
-    try {
-      await this.buscarDespesas();
-      await this.buscarReceitas();
-      await this.calcularOperacoes();
-    } finally {
-    }
-  }
-
-  async buscarDespesas() {
-    this.despesasTotal = await this._operacoesService
-      .buscarDespesas({})
-      .toPromise();
-  }
-
-  async buscarReceitas() {
-    this.receitasTotal = await this._operacoesService
-      .buscarReceitas({})
-      .toPromise();
   }
 }
