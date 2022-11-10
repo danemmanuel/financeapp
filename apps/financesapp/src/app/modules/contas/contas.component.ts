@@ -37,11 +37,17 @@ export class ContasComponent implements OnInit, OnDestroy {
       this.ano = obj.ano;
       this.calcularSaldoPrevisto();
     });
+    this._contaService.getConta().subscribe(async (contas) => {
+      if (!contas) return;
+      this.contas = contas;
+      this._contaService.setConta(this.contas);
+      this.calcularSaldoAtual();
+      await this.calcularSaldoPrevisto();
+    });
   }
 
   async ngOnInit() {
     this.loading = true;
-    await this.buscarContas();
     await this.buscarReceitas();
     await this.buscarDespesas();
     await this.calcularSaldoPrevisto();
@@ -54,6 +60,7 @@ export class ContasComponent implements OnInit, OnDestroy {
 
   async buscarContas() {
     this.contas = await this._contaService.buscarContas().toPromise();
+    this._contaService.setConta(this.contas);
     this.calcularSaldoAtual();
     await this.calcularSaldoPrevisto();
     return this.contas;

@@ -43,11 +43,15 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       this.ano = obj.ano;
       this.calcularOperacoes();
     });
+    this._contaService.getConta().subscribe(conta=>{
+      if (!conta) return;
+      this.contas = conta;
+      this.calcularSaldoContas();
+    })
   }
 
   async ngOnInit() {
     this.loading = true;
-    await this.buscarContas();
     await this.buscarDespesas();
     await this.buscarReceitas();
     await this.calcularOperacoes();
@@ -76,17 +80,13 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
 
   async buscarDados() {
     try {
-      await this.buscarContas();
       await this.buscarDespesas();
       await this.buscarReceitas();
       await this.calcularOperacoes();
     } finally {
     }
   }
-  async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
-    this.calcularSaldoContas();
-  }
+
 
   async buscarDespesas() {
     this.despesasTotal = await this._operacoesService
