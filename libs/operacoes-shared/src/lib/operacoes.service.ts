@@ -3,12 +3,24 @@ import { Injectable } from '@angular/core';
 import { environment } from '@finances-app/src/environments/environment';
 import { EChartsOption } from 'echarts';
 import { CurrencyPipe } from '@angular/common';
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class OperacoesService {
+  private despesas = new BehaviorSubject<any>(undefined);
+
+
   constructor(private http: HttpClient, private currencyPipe: CurrencyPipe) {}
+
+  setDespesa(user: any): void {
+    this.despesas.next(user);
+  }
+
+  getDespesas(): Observable<any> {
+    return this.despesas.asObservable();
+  }
 
   cadastrarDespesa(dados: any) {
     return this.http.post<any>(`${environment.apis.despesa.despesa}`, dados);

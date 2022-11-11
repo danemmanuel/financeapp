@@ -31,7 +31,7 @@ export class ContasGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<any> {
     return new Promise(async (resolve, reject) => {
-      if (!this.contas.length) {
+      if (!this.contas?.length) {
         console.log(route);
         this.router.navigate(['dashboard/contas']);
         this._snackBar.open('Cadastre uma conta para continuar', 'Fechar', {
