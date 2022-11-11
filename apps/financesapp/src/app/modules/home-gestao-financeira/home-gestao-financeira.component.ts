@@ -62,7 +62,10 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     this.loading = true;
-
+    this.receitasTotal = await this._operacoesService.buscarReceitas({}).toPromise();
+    this.despesasTotal = await this._operacoesService.buscarDespesas({}).toPromise();
+    this._operacoesService.setReceita(this.receitasTotal);
+    this._operacoesService.setDespesa(this.despesasTotal);
     await this.calcularOperacoes();
     this.loading = false;
   }
