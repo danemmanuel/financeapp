@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   async buscarDespesas() {
-    this.despesas = await this._contaService.buscarContas().toPromise();
+    this.despesas = await this._operacoesService.buscarDespesas({}).toPromise();
     this._operacoesService.setDespesa(this.despesas);
   }
 }

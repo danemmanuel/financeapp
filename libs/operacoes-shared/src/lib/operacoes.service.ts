@@ -3,16 +3,21 @@ import { Injectable } from '@angular/core';
 import { environment } from '@finances-app/src/environments/environment';
 import { EChartsOption } from 'echarts';
 import { CurrencyPipe } from '@angular/common';
-import {BehaviorSubject, Observable} from "rxjs";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OperacoesService {
   private despesas = new BehaviorSubject<any>(undefined);
+  private receitas = new BehaviorSubject<any>(undefined);
 
-
-  constructor(private http: HttpClient, private currencyPipe: CurrencyPipe) {}
+  constructor(
+    private http: HttpClient,
+    private currencyPipe: CurrencyPipe,
+    private _contaService: ContasService
+  ) {}
 
   setDespesa(user: any): void {
     this.despesas.next(user);
@@ -20,6 +25,14 @@ export class OperacoesService {
 
   getDespesas(): Observable<any> {
     return this.despesas.asObservable();
+  }
+
+  setReceita(user: any): void {
+    this.receitas.next(user);
+  }
+
+  getReceitas(): Observable<any> {
+    return this.receitas.asObservable();
   }
 
   cadastrarDespesa(dados: any) {
@@ -60,6 +73,17 @@ export class OperacoesService {
     return this.http.delete<any>(
       `${environment.apis.receita.receita}/${operacao._id}`
     );
+  }
+
+  async consolidarCarteira() {
+    const despesas = await this.buscarDespesas({}).toPromise();
+    this.setDespesa(despesas);
+
+    const receitas = await this.buscarReceitas({}).toPromise();
+    this.setReceita(receitas);
+
+    const contas = await this._contaService.buscarContas().toPromise();
+    this._contaService.setConta(contas);
   }
 
   calcularOperacoes(todasOperacoes, mes, ano) {

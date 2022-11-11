@@ -37,11 +37,16 @@ export class DespesasComponent implements OnInit, OnDestroy {
       this.calcularTotalPendente();
       this.calcularTotalPago();
     });
+
+    this._operacoesService.getDespesas().subscribe((despesas) => {
+      if (!despesas) return;
+      this.todasOperacoes = despesas;
+      console.log(this.todasOperacoes);
+      this.buscarDespesas();
+    });
   }
 
-  ngOnInit(): void {
-    this.buscarDespesas();
-  }
+  ngOnInit(): void {}
   ngOnDestroy() {
     this.a.unsubscribe();
   }
@@ -77,12 +82,12 @@ export class DespesasComponent implements OnInit, OnDestroy {
     });
   }
 
-  async buscarDespesas() {
+  async buscarDespesas(refazerGet?) {
+    if (refazerGet) {
+      this._operacoesService.consolidarCarteira();
+    }
     this.loading = true;
 
-    this.todasOperacoes = await this._operacoesService
-      .buscarDespesas({})
-      .toPromise();
     this.operacoes = this.todasOperacoes;
     this.calcularOperacoes();
     this.calcularTotalPendente();
@@ -126,9 +131,9 @@ export class DespesasComponent implements OnInit, OnDestroy {
         },
       })
       .afterClosed()
-      .subscribe((r) => {
+      .subscribe(async (r) => {
         if (r) {
-          this.buscarDespesas();
+          this.buscarDespesas(true);
         }
       });
   }
