@@ -57,7 +57,7 @@
       class="col-4"
       style="margin-top: 50px; border-right: 1px solid #212121;"
     >
-      <ng-container *ngIf="graficoCategoria.series[0].data?.length">
+      <ng-container  *ngIf="!loading && operacoes?.length">
         <div
           id="chart1"
           echarts

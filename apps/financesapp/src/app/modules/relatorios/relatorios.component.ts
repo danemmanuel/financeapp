@@ -26,12 +26,17 @@ export class RelatoriosComponent implements OnInit {
       if (!conta) return;
       this.contas = conta;
     });
+    this._operacoesService.getReceitas().subscribe((receitas) => {
+      if (!receitas) return;
+      this.receitasTotal = receitas;
+    });
+    this._operacoesService.getDespesas().subscribe((despesas) => {
+      if (!despesas) return;
+      this.despesasTotal = despesas;
+    });
   }
 
-  async ngOnInit() {
-    this.buscarDespesas();
-    this.buscarReceitas();
-  }
+  async ngOnInit() {}
 
   calcularPorcentagem() {
     this.porcentagemGasto = (100 * this.mediaDespesa) / this.mediaReceita;
@@ -58,17 +63,5 @@ export class RelatoriosComponent implements OnInit {
     this.mediaSobra = this.mediaReceita - this.mediaDespesa;
 
     this.calcularPorcentagem();
-  }
-
-  async buscarDespesas() {
-    this.despesasTotal = await this._operacoesService
-      .buscarDespesas({})
-      .toPromise();
-  }
-
-  async buscarReceitas() {
-    this.receitasTotal = await this._operacoesService
-      .buscarReceitas({})
-      .toPromise();
   }
 }
