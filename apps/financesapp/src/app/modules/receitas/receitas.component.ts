@@ -38,11 +38,15 @@ export class ReceitasComponent implements OnInit, OnDestroy {
       this.calcularTotalPendente();
       this.calcularTotalRecebido();
     });
+
+    this._operacoesService.getReceitas().subscribe((receitas) => {
+      if (!receitas) return;
+      this.todasOperacoes = receitas;
+      this.buscarReceitas();
+    });
   }
 
-  ngOnInit(): void {
-    this.buscarReceitas();
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy() {
     this.a.unsubscribe();
@@ -79,12 +83,11 @@ export class ReceitasComponent implements OnInit, OnDestroy {
     });
   }
 
-  async buscarReceitas() {
+  async buscarReceitas(refazerGet?) {
     this.loading = true;
-
-    this.todasOperacoes = await this._operacoesService
-      .buscarReceitas({})
-      .toPromise();
+    if (refazerGet) {
+      this._operacoesService.consolidarCarteira();
+    }
     this.operacoes = this.todasOperacoes;
     this.calcularOperacoes();
     this.calcularTotalPendente();
@@ -130,7 +133,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
       .afterClosed()
       .subscribe((r) => {
         if (r) {
-          this.buscarReceitas();
+          this.buscarReceitas(true);
         }
       });
   }

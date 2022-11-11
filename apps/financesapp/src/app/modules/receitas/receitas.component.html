@@ -41,7 +41,7 @@
 
       <finances-app-listar-operacoes
         *ngIf="!loading && operacoes.length"
-        (buscarOperacoes)="buscarReceitas()"
+        (buscarOperacoes)="buscarReceitas(true)"
         (limparFiltro)="limparFiltro()"
         [mes]="mes"
         [ano]="ano"

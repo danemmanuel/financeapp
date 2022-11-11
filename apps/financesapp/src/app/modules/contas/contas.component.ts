@@ -40,15 +40,24 @@ export class ContasComponent implements OnInit, OnDestroy {
     this._contaService.getConta().subscribe(async (contas) => {
       if (!contas) return;
       this.contas = contas;
-      this.calcularSaldoAtual();
-      await this.calcularSaldoPrevisto();
+      this.buscarContas();
+
+    });
+    this._operacoesService.getReceitas().subscribe(async (receitas) => {
+      if (!receitas) return;
+      this.receitasTotal = receitas;
+      this.buscarContas();
+    });
+    this._operacoesService.getDespesas().subscribe(async (despesas) => {
+      if (!despesas) return;
+      this.despesasTotal = despesas;
+      this.buscarContas();
     });
   }
 
   async ngOnInit() {
     this.loading = true;
-    await this.buscarReceitas();
-    await this.buscarDespesas();
+
     await this.calcularSaldoPrevisto();
     this.loading = false;
   }
@@ -57,9 +66,11 @@ export class ContasComponent implements OnInit, OnDestroy {
     this.a.unsubscribe();
   }
 
-  async buscarContas() {
-    this.contas = await this._contaService.buscarContas().toPromise();
-    this._contaService.setConta(this.contas);
+  async buscarContas(refazerGet?) {
+    if (refazerGet) {
+      this.contas = await this._contaService.buscarContas().toPromise();
+      this._contaService.setConta(this.contas);
+    }
     this.calcularSaldoAtual();
     await this.calcularSaldoPrevisto();
     return this.contas;
@@ -70,18 +81,6 @@ export class ContasComponent implements OnInit, OnDestroy {
       (total, conta) => (total += conta.saldo),
       0
     );
-  }
-
-  async buscarDespesas() {
-    this.despesasTotal = await this._operacoesService
-      .buscarDespesas({})
-      .toPromise();
-  }
-
-  async buscarReceitas() {
-    this.receitasTotal = await this._operacoesService
-      .buscarReceitas({})
-      .toPromise();
   }
 
   async calcularSaldoPrevisto() {
@@ -118,7 +117,7 @@ export class ContasComponent implements OnInit, OnDestroy {
       .afterClosed()
       .subscribe(async (r) => {
         if (r) {
-          this.buscarContas();
+          this.buscarContas(true);
           this.loading = false;
         }
       });
@@ -136,7 +135,7 @@ export class ContasComponent implements OnInit, OnDestroy {
       .afterClosed()
       .subscribe(async (r) => {
         if (r) {
-          this.buscarContas();
+          this.buscarContas(true);
           this.loading = false;
         }
       });

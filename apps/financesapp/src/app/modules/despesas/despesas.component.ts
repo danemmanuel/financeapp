@@ -41,7 +41,6 @@ export class DespesasComponent implements OnInit, OnDestroy {
     this._operacoesService.getDespesas().subscribe((despesas) => {
       if (!despesas) return;
       this.todasOperacoes = despesas;
-      console.log(this.todasOperacoes);
       this.buscarDespesas();
     });
   }
@@ -83,11 +82,10 @@ export class DespesasComponent implements OnInit, OnDestroy {
   }
 
   async buscarDespesas(refazerGet?) {
+    this.loading = true;
     if (refazerGet) {
       this._operacoesService.consolidarCarteira();
     }
-    this.loading = true;
-
     this.operacoes = this.todasOperacoes;
     this.calcularOperacoes();
     this.calcularTotalPendente();
