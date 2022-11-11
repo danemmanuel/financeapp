@@ -51,8 +51,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     await this.buscarContas();
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   updateUSAmount(event) {
     this.usAmount = event.target.value;
@@ -225,6 +224,11 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
         { descricao: 'Outros', icone: 'Lazer' },
       ];
     }
+  }
+
+  async efetivarOperacao() {
+    this.formOperacao.get('efetivado').setValue(true);
+    this.atualizarOperacao();
   }
 
   async deletarOperacao() {

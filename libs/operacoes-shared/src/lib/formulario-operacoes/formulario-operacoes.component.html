@@ -12,14 +12,28 @@
 
     {{ tipoOperacao }}
   </span>
-  <button
-    mat-mini-fab
-    color="warn"
-    (click)="deletarOperacao()"
-    *ngIf="operacao"
-  >
-    <mat-icon>delete</mat-icon>
-  </button>
+  <div style="display: flex; align-items: center; gap: 20px;">
+    <button
+      mat-mini-fab
+      style="background:#35AE96;"
+      (click)="efetivarOperacao()"
+      *ngIf="operacao"
+      matTooltip="{{ tipoOperacao === 'Receita' ? 'Receber' : 'Pagar' }} {{
+        tipoOperacao
+      }}"
+    >
+      <mat-icon>check</mat-icon>
+    </button>
+    <button
+      mat-mini-fab
+      color="warn"
+      (click)="deletarOperacao()"
+      *ngIf="operacao"
+      matTooltip="Excluir {{ tipoOperacao }}"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </h1>
 <div mat-dialog-content>
   <form [formGroup]="formOperacao" id="formOperacao" autocomplete="off">
@@ -39,7 +53,7 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="col-6">
+        <div class="col-6" >
           <section class="example-section">
             <mat-slide-toggle
               formControlName="efetivado"
