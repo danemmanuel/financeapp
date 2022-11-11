@@ -82,7 +82,7 @@ export class AuthComponent implements OnInit {
       }
 
       localStorage.setItem('token', JSON.stringify(login.access_token));
-      this.router.navigate(['dashboard/home', true]);
+      this.router.navigate(['dashboard/home']);
       window.location.reload();
 
     } catch (err) {}

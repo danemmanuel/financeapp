@@ -41,13 +41,6 @@ export const routers: Routes = [
         loadChildren: () =>
           import(
             '../modules/home-gestao-financeira/home-gestao-financeira.module'
-            ).then((x) => x.HomeGestaoFinanceiraModule),
-      },
-      {
-        path: 'home/:redirect',
-        loadChildren: () =>
-          import(
-            '../modules/home-gestao-financeira/home-gestao-financeira.module'
           ).then((x) => x.HomeGestaoFinanceiraModule),
       },
       {
