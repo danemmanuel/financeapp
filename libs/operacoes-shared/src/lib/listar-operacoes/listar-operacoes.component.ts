@@ -59,7 +59,6 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
       (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()
     );
 
-    console.log(this.operacoesFiltradas);
     this.categorias = this.operacoesFiltradas.map((op) => {
       return op.categoria;
     });
@@ -67,7 +66,6 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
       this.categorias,
       'descricao'
     );
-    console.log(this.categorias);
   }
 
   selecionarCategoria(categoria) {
@@ -88,7 +86,6 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
         );
       });
     }
-    console.log(categoria);
   }
 
   filtroChange() {

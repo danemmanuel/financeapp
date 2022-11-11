@@ -86,7 +86,6 @@ export class ReceitaXDespesaIndividualComponent implements OnInit {
       ?.filter((despesa) => !despesa.efetivado)
       .reduce((total, despesa) => (total += despesa.valor), 0);
     this.saldoPrevisto = this.saldoAtual - totalDespesas + receitasEmAberto;
-    console.log(this.saldoAtual, totalDespesas, receitasEmAberto);
     const dadosReceita = {
       value: this.receitasEmAberto?.reduce(
         (total, conta) => (total += conta.valor),
