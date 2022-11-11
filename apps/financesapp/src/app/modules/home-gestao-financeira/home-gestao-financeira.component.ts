@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { HeaderMesAnoService } from '@finances-app-libs/header-mes/src/lib/header-mes/header-mes-ano.service';
 import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-shared/src/lib/formulario-operacoes/formulario-operacoes.component';
@@ -35,7 +35,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     private _headerMesAnoService: HeaderMesAnoService,
     private _operacoesService: OperacoesService,
     private _contaService: ContasService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.a = this._headerMesAnoService.getMesAno().subscribe(async (obj) => {
       if (!obj.mes) return;
@@ -61,15 +62,10 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.loading = true;
-    this.contas = await this._contaService.buscarContas().toPromise();
-    this.receitasTotal = await this._operacoesService.buscarReceitas({}).toPromise();
-    this.despesasTotal = await this._operacoesService.buscarDespesas({}).toPromise();
-    this._contaService.setConta(this.contas);
-    this._operacoesService.setReceita(this.receitasTotal);
-    this._operacoesService.setDespesa(this.despesasTotal);
-    await this.calcularOperacoes();
-    this.loading = false;
+    if (this.route.snapshot.paramMap.get('redirect')) {
+
+
+    }
   }
 
   ngOnDestroy() {
@@ -93,7 +89,7 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   async buscarDados() {
-    this._operacoesService.consolidarCarteira()
+    this._operacoesService.consolidarCarteira();
     await this.calcularOperacoes();
   }
 

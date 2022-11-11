@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../../core/auth/auth.service';
+import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
+import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 
 @Component({
   selector: 'finances-app-auth',
@@ -16,7 +18,9 @@ export class AuthComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _contaService: ContasService,
+    private _operacoesService: OperacoesService
   ) {
     this.router.events
       .pipe(
@@ -78,7 +82,9 @@ export class AuthComponent implements OnInit {
       }
 
       localStorage.setItem('token', JSON.stringify(login.access_token));
-      this.router.navigate(['dashboard/home']);
+      this.router.navigate(['dashboard/home', true]);
+      window.location.reload();
+
     } catch (err) {}
   }
 }
