@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
     });
     this._operacoesService.getReceitas().subscribe((receitas) => {
       if (!receitas) return;
+      this.receitas = receitas;
     });
     this._operacoesService.getDespesas().subscribe((despesas) => {
       if (!despesas) return;

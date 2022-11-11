@@ -43,17 +43,26 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       this.ano = obj.ano;
       this.calcularOperacoes();
     });
-    this._contaService.getConta().subscribe(conta=>{
+    this._contaService.getConta().subscribe((conta) => {
       if (!conta) return;
       this.contas = conta;
       this.calcularSaldoContas();
-    })
+    });
+    this._operacoesService.getReceitas().subscribe((receitas) => {
+      if (!receitas) return;
+      this.receitasTotal = receitas;
+      this.calcularOperacoes();
+    });
+    this._operacoesService.getDespesas().subscribe((despesas) => {
+      if (!despesas) return;
+      this.despesasTotal = despesas;
+      this.calcularOperacoes();
+    });
   }
 
   async ngOnInit() {
     this.loading = true;
-    await this.buscarDespesas();
-    await this.buscarReceitas();
+
     await this.calcularOperacoes();
     this.loading = false;
   }
@@ -79,25 +88,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   async buscarDados() {
-    try {
-      await this.buscarDespesas();
-      await this.buscarReceitas();
-      await this.calcularOperacoes();
-    } finally {
-    }
-  }
-
-
-  async buscarDespesas() {
-    this.despesasTotal = await this._operacoesService
-      .buscarDespesas({})
-      .toPromise();
-  }
-
-  async buscarReceitas() {
-    this.receitasTotal = await this._operacoesService
-      .buscarReceitas({})
-      .toPromise();
+    this._operacoesService.consolidarCarteira()
+    await this.calcularOperacoes();
   }
 
   redirecionar(rota) {
@@ -123,43 +115,5 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       (total, conta) => (total += conta.saldo),
       0
     );
-  }
-
-  cadastrarReceita() {
-    this.dialog
-      .open(FormularioOperacoesComponent, {
-        width: '450px',
-        maxWidth: '100vw',
-        height: '100vh',
-        data: {
-          tipoOperacao: 'Receita',
-        },
-      })
-      .afterClosed()
-      .subscribe(async (r) => {
-        if (r) {
-          await this.buscarDespesas();
-          await this.buscarReceitas();
-          this.calcularOperacoes();
-        }
-      });
-  }
-
-  cadastrarDespesa() {
-    this.dialog
-      .open(FormularioOperacoesComponent, {
-        width: '450px',
-        data: {
-          tipoOperacao: 'Despesa',
-        },
-      })
-      .afterClosed()
-      .subscribe(async (r) => {
-        if (r) {
-          await this.buscarDespesas();
-          await this.buscarReceitas();
-          this.calcularOperacoes();
-        }
-      });
   }
 }
