@@ -35,7 +35,7 @@ export class AuthComponent implements OnInit {
         if (!params.jwt) {
           return;
         }
-
+        console.log(params)
         localStorage.setItem('token', JSON.stringify(params.jwt));
         this.router.navigate(['dashboard/home']);
       });

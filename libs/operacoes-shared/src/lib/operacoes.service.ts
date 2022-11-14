@@ -157,6 +157,10 @@ export class OperacoesService {
         case 'Unicred':
           color = '#044931';
           break;
+
+        case 'Rico':
+          color = '#F24E00';
+          break;
       }
       return {
         itemStyle: {
