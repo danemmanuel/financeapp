@@ -8,7 +8,7 @@ const rotas: Routes = [
     component: AuthComponent,
   },
   {
-    path: 'succes/:jwt',
+    path: '/login/succes/:jwt',
     component: AuthComponent,
   },
 ];
