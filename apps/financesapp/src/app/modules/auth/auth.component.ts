@@ -22,23 +22,14 @@ export class AuthComponent implements OnInit {
     private _contaService: ContasService,
     private _operacoesService: OperacoesService
   ) {
-    this.router.events
-      .pipe(
-        filter(
-          (e) =>
-            e instanceof ActivationEnd &&
-            Object.keys(e.snapshot.params).length > 0
-        ),
-        map((e) => (e instanceof ActivationEnd ? e.snapshot.params : {}))
-      )
-      .subscribe((params) => {
-        if (!params.jwt) {
-          return;
-        }
-        console.log(params)
-        localStorage.setItem('token', JSON.stringify(params.jwt));
-        this.router.navigate(['dashboard/home']);
-      });
+    this.route.params.subscribe((params) => {
+      if (!params.jwt) {
+        return;
+      }
+      console.log(params);
+      localStorage.setItem('token', JSON.stringify(params.jwt));
+      this.router.navigate(['dashboard/home']);
+    });
   }
 
   ngOnInit(): void {
@@ -84,7 +75,6 @@ export class AuthComponent implements OnInit {
       localStorage.setItem('token', JSON.stringify(login.access_token));
       this.router.navigate(['dashboard/home']);
       window.location.reload();
-
     } catch (err) {}
   }
 }
