@@ -6,7 +6,11 @@
   </div>
 
   <div class="filtro">
-    <button style="color: #fff;background:#191919;" mat-button [matMenuTriggerFor]="menu">
+    <button
+      style="color: #fff; background: #191919;"
+      mat-button
+      [matMenuTriggerFor]="menu"
+    >
       {{ categoriaSelecionada?.descricao || 'Categorias' }}
     </button>
     <mat-menu #menu="matMenu">
@@ -41,11 +45,7 @@
             : 'background-color: rgb(255, 96, 79);'
         "
         [ngClass]="
-          shakeFiltro ||
-          filtro ||
-          operacoesFiltradas?.length !== operacoes?.length
-            ? 'rise-shake'
-            : ''
+          operacoesFiltradas?.length !== operacoes?.length ? 'rise-shake' : ''
         "
         (click)="reset()"
       >
