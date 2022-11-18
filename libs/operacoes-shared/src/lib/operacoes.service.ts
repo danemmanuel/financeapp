@@ -437,7 +437,7 @@ export class OperacoesService {
         left: 'center',
         top: 0,
         text: `${meses[mes - 1]} de ${ano} \n \n Saldo Previsto: ${
-          !dadosPrevisto
+          dadosPrevisto === null
             ? 'calculando...'
             : this.currencyPipe.transform(dadosPrevisto, 'BRL')
         }`,
