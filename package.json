@@ -53,6 +53,7 @@
     "ngx-currency": "^2.5.3",
     "ngx-echarts": "^14.0.0",
     "rxjs": "~6.5.5",
+    "sweetalert2": "^11.6.9",
     "tslib": "^2.0.0",
     "zone.js": "^0.11.8"
   },

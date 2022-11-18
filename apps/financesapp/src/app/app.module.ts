@@ -13,6 +13,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { HeaderMesComponent } from '@finances-app/header-mes';
 import { MainMenuComponent } from '@finances-app/main-menu';
 import {ContasGuard} from "@finances-app/src/app/core/auth/contas.guard";
+import {HttpErrorInterceptor} from "@finances-app/src/app/core/auth/httperror.interceptor";
 
 registerLocaleData(localePt);
 
@@ -36,6 +37,11 @@ registerLocaleData(localePt);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
       multi: true,
     },
   ],

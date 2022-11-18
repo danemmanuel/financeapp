@@ -57,7 +57,7 @@
         <form [formGroup]="formLogin" novalidate autocomplete="off">
           <div class="row">
             <mat-form-field class="col-12">
-              <input formControlName="email" matInput placeholder="Email:" />
+              <input formControlName="email" matInput placeholder="Usuário:" />
               <mat-error>
                 {{ formLogin.controls['email']?.errors | errorKeys }}
               </mat-error>

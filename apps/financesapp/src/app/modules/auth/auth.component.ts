@@ -53,28 +53,32 @@ export class AuthComponent implements OnInit {
 
   async login() {
     if (this.formLogin.invalid) return;
-    try {
-      let login;
-      if (this.isCadastro) {
-        login = await this._authService
-          .cadastro({
-            email: this.formLogin.get(`email`)?.value,
-            password: this.formLogin.get('senha')?.value,
-            name: this.formLogin.get(`nome`)?.value,
-          })
-          .toPromise();
-      } else {
-        login = await this._authService
-          .login({
-            email: this.formLogin.get(`email`)?.value,
-            password: this.formLogin.get(`senha`)?.value,
-          })
-          .toPromise();
-      }
 
-      localStorage.setItem('token', JSON.stringify(login.access_token));
-      this.router.navigate(['dashboard/home']);
-      window.location.reload();
-    } catch (err) {}
+    if (this.isCadastro) {
+      this._authService
+        .cadastro({
+          email: this.formLogin.get(`email`)?.value,
+          password: this.formLogin.get('senha')?.value,
+          name: this.formLogin.get(`nome`)?.value,
+        })
+        .subscribe((r) => {
+          localStorage.setItem('token', JSON.stringify(r.access_token));
+          this.router.navigate(['dashboard/home']);
+          window.location.reload();
+        });
+    } else {
+      this._authService
+        .login({
+          email: this.formLogin.get(`email`)?.value,
+          password: this.formLogin.get(`senha`)?.value,
+        })
+        .subscribe((r) => {
+          localStorage.setItem('token', JSON.stringify(r.access_token));
+          this.router.navigate(['dashboard/home']);
+          window.location.reload();
+        });
+    }
+
+
   }
 }
