@@ -45,9 +45,11 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       this.calcularOperacoes();
     });
     this._contaService.getConta().subscribe((conta) => {
+      this.loading = true;
       if (!conta) return;
       this.contas = conta;
       this.calcularSaldoContas();
+      this.loading = false;
     });
     this._operacoesService.getReceitas().subscribe((receitas) => {
       if (!receitas) return;
@@ -63,8 +65,6 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     if (this.route.snapshot.paramMap.get('redirect')) {
-
-
     }
   }
 
