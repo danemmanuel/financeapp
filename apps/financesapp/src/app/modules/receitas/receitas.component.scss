@@ -1,3 +1,4 @@
+
 .content_despesas {
   padding: 0 50px;
 
@@ -22,6 +23,7 @@
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+
     h1 {
       font-size: 30px;
       font-weight: 500;
@@ -53,10 +55,9 @@
   .card_saldo_contas .icon {
     width: 55px !important;
   }
-  p {
-  }
+
   .fitcard {
-    width: 50%;
+
   }
   .content_despesas .header {
     flex-direction: row;
