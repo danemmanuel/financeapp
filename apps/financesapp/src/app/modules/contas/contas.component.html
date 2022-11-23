@@ -32,6 +32,7 @@
     </button>
 
     <button
+      *ngIf="contas?.length > 1"
       (click)="transferenciaContas()"
       mat-mini-fab
       color="primary"

@@ -1,5 +1,14 @@
 <div class="content_despesas">
   <div class="row" style="width: 100%; align-items: start;">
+    <div class="col-6">
+      <h1>Relatórios</h1>
+
+      <mat-error *ngIf="!despesasTotal.length || !receitasTotal.length"
+      >Nenhum dado para analisar, cadastre receitas e despesas</mat-error
+      >
+    </div>
+
+
     <ng-container
       *ngIf="contas.length && despesasTotal.length && receitasTotal.length"
     >
@@ -36,7 +45,9 @@
           <span style="color: #fff;">{{ mediaSobra | currency: 'BRL' }}</span>
           por mês
         </h3>
-        <p style="text-align: center;">em média você gasta <b>{{ porcentagemGasto }}%</b> do que você ganha</p>
+        <p style="text-align: center;">
+          em média você gasta <b>{{ porcentagemGasto }}%</b> do que você ganha
+        </p>
       </div>
 
       <div class="col-4">
@@ -49,9 +60,7 @@
         </h3>
       </div>
 
-      <div class="col-12">
-
-      </div>
+      <div class="col-12"></div>
     </ng-container>
   </div>
 </div>

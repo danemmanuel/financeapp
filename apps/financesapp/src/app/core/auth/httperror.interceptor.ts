@@ -8,7 +8,9 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 export class HttpErrorInterceptor implements HttpInterceptor {
+
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -20,7 +22,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         let icon: any = '';
 
         if (error instanceof HttpErrorResponse) {
-          console.log(error)
+          console.log(error);
           switch (error.status) {
             case 400:
               title = 'Erro';
@@ -63,12 +65,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               errorMsg = `Não foi possível encontrar a origem do erro`;
               break;
           }
-          console.log(errorMsg, title)
-          Swal.fire({
-            title: `da`,
-            text: `sad`,
-            icon,
-          });
+          console.log(errorMsg, title);
+          // Swal.fire({
+          //   title: title,
+          //   text: errorMsg,
+          //   icon,
+          // });
         } else {
           console.error('some thing else happened');
         }

@@ -5,6 +5,8 @@ import { filter, map } from 'rxjs/operators';
 import { AuthService } from '../../core/auth/auth.service';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
+import Swal from 'sweetalert2';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'finances-app-auth',
@@ -20,7 +22,8 @@ export class AuthComponent implements OnInit {
     private _authService: AuthService,
     private fb: FormBuilder,
     private _contaService: ContasService,
-    private _operacoesService: OperacoesService
+    private _operacoesService: OperacoesService,
+    private _snackBar: MatSnackBar
   ) {
     this.route.params.subscribe((params) => {
       if (!params.jwt) {
@@ -72,13 +75,18 @@ export class AuthComponent implements OnInit {
           email: this.formLogin.get(`email`)?.value,
           password: this.formLogin.get(`senha`)?.value,
         })
-        .subscribe((r) => {
-          localStorage.setItem('token', JSON.stringify(r.access_token));
-          this.router.navigate(['dashboard/home']);
-          window.location.reload();
-        });
+        .subscribe(
+          (r) => {
+            localStorage.setItem('token', JSON.stringify(r.access_token));
+            this.router.navigate(['dashboard/home']);
+            window.location.reload();
+          },
+          (error) => {
+            this._snackBar.open('Usuário ou senha incorretos', '', {
+              duration: 5000,
+            });
+          }
+        );
     }
-
-
   }
 }
