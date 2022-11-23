@@ -1,13 +1,12 @@
 <div class="content_despesas">
   <div class="row" style="width: 100%; align-items: start;">
-    <div class="col-6">
+    <div class="col-12">
       <h1>Relatórios</h1>
 
       <mat-error *ngIf="!despesasTotal.length || !receitasTotal.length"
-      >Nenhum dado para analisar, cadastre receitas e despesas</mat-error
+        >Nenhum dado para analisar, cadastre receitas e despesas</mat-error
       >
     </div>
-
 
     <ng-container
       *ngIf="contas.length && despesasTotal.length && receitasTotal.length"
