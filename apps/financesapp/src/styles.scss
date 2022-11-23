@@ -10,6 +10,7 @@
 .bottom-nav {
   border-top: none !important;
   padding: 5px 0px;
+  z-index: 9 !important;
   @include bottom-nav.root(
     $background-color: #212121,
     $active-color: #ffffff,
