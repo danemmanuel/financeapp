@@ -13,6 +13,7 @@ import { CurrencyMaskConfig } from 'ngx-currency';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import * as moment from 'moment';
 import { OperacoesService } from '../operacoes.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'finances-app-formulario-operacoes',
@@ -36,7 +37,8 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     public dialogRef: MatDialogRef<FormularioOperacoesComponent>,
     private fb: FormBuilder,
     private _contasService: ContasService,
-    private _operacoesService: OperacoesService
+    private _operacoesService: OperacoesService,
+    private _snackBar: MatSnackBar
   ) {}
 
   async ngOnInit() {
@@ -84,6 +86,10 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       }
 
       this.dialogRef.close(true);
+      this._snackBar.open(`${this.tipoOperacao} adicionada com sucesso`, 'fechar', {
+        panelClass: 'my-custom-snackbar',
+        duration: 2000,
+      });
     } catch (e) {
       console.log(e);
     } finally {
@@ -105,6 +111,10 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       }
 
       this.dialogRef.close(true);
+      this._snackBar.open(`${this.tipoOperacao} atualizada com sucesso`, 'fechar', {
+        panelClass: 'my-custom-snackbar',
+        duration: 2000,
+      });
     } catch (e) {
       console.log(e);
     } finally {
@@ -237,6 +247,10 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     } else {
       await this._operacoesService.deletarDespesa(this.operacao).toPromise();
     }
+    this._snackBar.open(`${this.tipoOperacao} removida com sucesso`, 'fechar', {
+      panelClass: 'my-custom-snackbar',
+      duration: 2000,
+    });
     this.dialogRef.close(true);
   }
 }

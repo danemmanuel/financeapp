@@ -11,6 +11,7 @@ import { CurrencyMaskConfig } from 'ngx-currency';
 import { Observable } from 'rxjs';
 import { COMMA } from '@angular/cdk/keycodes';
 import { ContasService } from '../contas.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'finances-app-formulario-conta',
@@ -75,7 +76,8 @@ export class FormularioContaComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<FormularioContaComponent>,
     private fb: FormBuilder,
-    private _contaService: ContasService
+    private _contaService: ContasService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -124,9 +126,17 @@ export class FormularioContaComponent implements OnInit {
     if (this.data?.conta) {
       await this._contaService.atualizarConta(objSalvar).toPromise();
       this.dialogRef.close(true);
+      this._snackBar.open('Conta atualizada com sucesso', 'fechar', {
+        panelClass: 'my-custom-snackbar',
+        duration: 2000,
+      });
     } else {
       await this._contaService.cadastrarConta(objSalvar).toPromise();
       this.dialogRef.close(true);
+      this._snackBar.open('Conta cadastrada com sucesso', 'fechar', {
+        panelClass: 'my-custom-snackbar',
+        duration: 2000,
+      });
     }
   }
 }
