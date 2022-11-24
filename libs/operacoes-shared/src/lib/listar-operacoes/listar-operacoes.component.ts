@@ -128,7 +128,10 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
       })
       .afterClosed()
       .subscribe((r) => {
-        if (r) this.buscarOperacoes.emit(true);
+        if (r) {
+          this.buscarOperacoes.emit(true);
+          this.reset();
+        }
       });
   }
 }
