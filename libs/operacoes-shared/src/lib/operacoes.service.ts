@@ -161,6 +161,10 @@ export class OperacoesService {
         case 'Rico':
           color = '#F24E00';
           break;
+
+        case 'Santander':
+          color = '#CC0000';
+          break;
       }
       return {
         itemStyle: {

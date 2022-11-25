@@ -26,6 +26,7 @@ export class FormularioContaComponent implements OnInit {
     'Neon',
     'Bradesco',
     'C6',
+    'Santander',
     'Inter',
     'Itau',
     'Rico',
