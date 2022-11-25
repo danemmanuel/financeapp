@@ -17,6 +17,15 @@
   border-top: none !important;
   padding: 5px 0px;
   z-index: 9 !important;
+
+  & a {
+    color: #b7b7b7;
+
+  }
+  & a.active {
+    color: #fff !important;
+    border-bottom: 1px solid;
+  }
   @include bottom-nav.root(
     $background-color: #212121,
     $active-color: #ffffff,
