@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { AuthService } from './core/auth/auth.service';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
@@ -20,8 +20,19 @@ export class AppComponent implements OnInit {
     private router: Router,
     private _authService: AuthService,
     private _contaService: ContasService,
-    private _operacoesService: OperacoesService
+    private _operacoesService: OperacoesService,
+    private route: ActivatedRoute,
+
   ) {
+    this.route.params.subscribe((params) => {
+      if (!params.jwt) {
+        return;
+      }
+      console.log(params);
+      localStorage.setItem('token', JSON.stringify(params.jwt));
+      this.router.navigate(['dashboard/home']);
+    });
+
     this._contaService.getConta().subscribe((conta) => {
       if (!conta) return;
       this.contas = conta;
@@ -37,9 +48,12 @@ export class AppComponent implements OnInit {
   }
   async ngOnInit() {
     this.token = localStorage?.getItem('token');
-    this.buscarContas();
-    this.buscarReceitas();
-    this.buscarDespesas();
+    setTimeout(()=>{
+      this.buscarContas();
+      this.buscarReceitas();
+      this.buscarDespesas();
+    }, 1000)
+
   }
 
   async buscarContas() {

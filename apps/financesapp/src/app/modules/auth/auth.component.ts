@@ -25,6 +25,12 @@ export class AuthComponent implements OnInit {
     private _operacoesService: OperacoesService,
     private _snackBar: MatSnackBar
   ) {
+
+  }
+
+  ngOnInit(): void {
+    console.log(this.router);
+    console.log(this.route)
     this.route.params.subscribe((params) => {
       if (!params.jwt) {
         return;
@@ -33,9 +39,6 @@ export class AuthComponent implements OnInit {
       localStorage.setItem('token', JSON.stringify(params.jwt));
       this.router.navigate(['dashboard/home']);
     });
-  }
-
-  ngOnInit(): void {
     if (this._authService.isAuthenticated()) {
       this.router.navigate(['dashboard/home']);
     }
