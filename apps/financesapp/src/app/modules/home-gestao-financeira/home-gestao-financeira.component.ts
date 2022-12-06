@@ -29,6 +29,8 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   despesasTotal = [];
   receitasTotal = [];
   graficoBanco: EChartsOption;
+  graficoCategoria: EChartsOption;
+  graficoCategoriaReceita: EChartsOption;
 
   constructor(
     private dialog: MatDialog,
@@ -86,6 +88,22 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       });
     this.calcularReceitasEsteMes();
     this.calcularDespesasEsteMes();
+    this.configurarGraficoPorCategoria(this.despesasEmAberto);
+    this.configurarGraficoPorCategoriaReceita(this.receitasEmAberto);
+  }
+
+  configurarGraficoPorCategoria(operacoes) {
+    this.graficoCategoria = this._operacoesService.configurarGraficoPorCategoria(
+      operacoes,
+      'despesa'
+    );
+  }
+
+  configurarGraficoPorCategoriaReceita(operacoes) {
+    this.graficoCategoriaReceita = this._operacoesService.configurarGraficoPorCategoria(
+      operacoes,
+      'receita'
+    );
   }
 
   async buscarDados() {

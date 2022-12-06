@@ -78,6 +78,25 @@
       </div>
     </div>
 
+    <div
+      class="col-6"
+      style="margin-top: 50px; border-right: 1px solid #212121;"
+    >
+      <ng-container *ngIf="graficoCategoriaReceita.series[0].data?.length">
+        <div
+          id="chart2"
+          echarts
+          [options]="graficoCategoriaReceita"
+          [theme]="'dark'"
+          class="demo-chart"
+        ></div>
+      </ng-container>
+    </div>
+
+    <div class="col-12">
+      <div style="margin-top: 50px;"></div>
+    </div>
+
     <div class="col-6">
       <div
         class="operacoes_content"
@@ -93,6 +112,21 @@
         >
         </finances-app-listar-operacoes>
       </div>
+    </div>
+
+    <div
+      class="col-6"
+      style="margin-top: 50px; border-right: 1px solid #212121;"
+    >
+      <ng-container *ngIf="graficoCategoria.series[0].data?.length">
+        <div
+          id="chart1"
+          echarts
+          [options]="graficoCategoria"
+          [theme]="'dark'"
+          class="demo-chart"
+        ></div>
+      </ng-container>
     </div>
   </div>
   <div class="col-6">
