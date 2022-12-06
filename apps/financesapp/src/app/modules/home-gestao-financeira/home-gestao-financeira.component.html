@@ -69,6 +69,7 @@
 
         <finances-app-listar-operacoes
           *ngIf="!loading"
+          [origin]="'home'"
           [operacoes]="receitasEmAberto"
           tipoOperacao="Receita"
           (buscarOperacoes)="buscarDados()"
@@ -105,6 +106,7 @@
         <h1>Despesas em aberto</h1>
         <finances-app-listar-operacoes
           *ngIf="!loading"
+          [origin]="'home'"
           [operacoes]="despesasEmAberto"
           tipoOperacao="Despesa"
           (buscarOperacoes)="buscarDados()"

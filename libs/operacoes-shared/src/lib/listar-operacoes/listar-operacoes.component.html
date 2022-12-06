@@ -24,35 +24,38 @@
       </button>
     </mat-menu>
 
-    <div style="display: flex; align-items: center; gap: 10px;">
-      <mat-slide-toggle
-        class="toggle"
-        [(ngModel)]="filtro"
-        [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
-        (toggleChange)="filtroChange()"
-      >
-        <span style="color: #fff;">
-          {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
-        </span>
-      </mat-slide-toggle>
-      <button
-        mat-mini-fab
-        matTooltip="Limpar Filtros"
-        [disabled]="operacoesFiltradas?.length === operacoes?.length"
-        [style]="
-          tipoOperacao === 'Receita'
-            ? 'background-color: rgb(53, 174, 150)'
-            : 'background-color: rgb(255, 96, 79);'
-        "
-        [ngClass]="
-          operacoesFiltradas?.length !== operacoes?.length ? 'rise-shake' : ''
-        "
-        (click)="reset()"
-      >
-        <mat-icon>cached</mat-icon>
-      </button>
-    </div>
+    <ng-container *ngIf="origin !== 'home'">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <mat-slide-toggle
+          class="toggle"
+          [(ngModel)]="filtro"
+          [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"
+          (toggleChange)="filtroChange()"
+        >
+          <span style="color: #fff;">
+            {{ tipoOperacao === 'Receita' ? 'Recebido' : 'Pago' }}
+          </span>
+        </mat-slide-toggle>
+        <button
+          mat-mini-fab
+          matTooltip="Limpar Filtros"
+          [disabled]="operacoesFiltradas?.length === operacoes?.length"
+          [style]="
+            tipoOperacao === 'Receita'
+              ? 'background-color: rgb(53, 174, 150)'
+              : 'background-color: rgb(255, 96, 79);'
+          "
+          [ngClass]="
+            operacoesFiltradas?.length !== operacoes?.length ? 'rise-shake' : ''
+          "
+          (click)="reset()"
+        >
+          <mat-icon>cached</mat-icon>
+        </button>
+      </div>
+    </ng-container>
   </div>
+
   <ul>
     <li
       *ngFor="let operacao of operacoesFiltradas"

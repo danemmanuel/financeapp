@@ -20,6 +20,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   @Output() buscarOperacoes = new EventEmitter();
   @Output() limparFiltro = new EventEmitter();
   @Input() titulo;
+  @Input() origin;
   @Input() operacoes;
   @Input() tipoOperacao;
   @Input() mes;
