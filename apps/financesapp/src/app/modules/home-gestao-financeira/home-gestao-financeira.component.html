@@ -40,9 +40,25 @@
     </finances-app-fit-card>
   </div>
 
-  <div class="row content" style="margin-top: 50px;">
+  <div class="row content">
     <div class="col-12">
       <mat-progress-bar *ngIf="loading" mode="buffer"></mat-progress-bar>
+    </div>
+
+    <ng-container *ngIf="!loading">
+      <div class="col-12">
+        <h1>Saldo das Contas</h1>
+        <finances-app-listar-contas
+          style="width: 100%;"
+          [contas]="contas"
+          [origin]="'home'"
+        >
+        </finances-app-listar-contas>
+      </div>
+    </ng-container>
+
+    <div class="col-12">
+      <div style="margin-top: 50px;"></div>
     </div>
     <div class="col-6">
       <div
@@ -80,6 +96,6 @@
     </div>
   </div>
   <div class="col-6">
-<!--    <finances-app-indicativos-financeiros></finances-app-indicativos-financeiros>-->
+    <!--    <finances-app-indicativos-financeiros></finances-app-indicativos-financeiros>-->
   </div>
 </div>

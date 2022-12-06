@@ -18,5 +18,6 @@ import { ListarContasComponent } from './listar-contas/listar-contas.component';
     OperacoesSharedModule,
     ContaSharedModule
   ],
+  exports: [ListarContasComponent]
 })
 export class ContasModule {}

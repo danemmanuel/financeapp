@@ -9,6 +9,7 @@ import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/li
 })
 export class ListarContasComponent implements OnInit {
   @Input() contas;
+  @Input() origin;
   @Output() buscarContas = new EventEmitter();
   constructor(private dialog: MatDialog) {}
 

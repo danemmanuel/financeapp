@@ -1,11 +1,15 @@
 <div class="contas">
-  <div class="conta" *ngFor="let conta of contas" (click)="editarConta(conta)">
+  <div
+    class="conta"
+    *ngFor="let conta of contas"
+    (click)="origin !== 'home' ? editarConta(conta) : null"
+  >
     <div class="content">
       <div class="imagem">
         <img
           alt="BTC"
-          style="max-width: 50px"
-          [src]="'/assets/' + conta.instituicao.toLowerCase() +'.png'"
+          style="max-width: 50px;"
+          [src]="'/assets/' + conta.instituicao.toLowerCase() + '.png'"
         />
       </div>
       <h2>{{ conta.instituicao }}</h2>
@@ -13,7 +17,7 @@
 
       <div class="saldos">
         <p>
-           <b>{{ conta.saldo | currency: 'BRL' }}</b>
+          <b>{{ conta.saldo | currency: 'BRL' }}</b>
         </p>
       </div>
     </div>
