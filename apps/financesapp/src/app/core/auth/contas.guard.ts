@@ -37,11 +37,9 @@ export class ContasGuard implements CanActivate {
         if (contas.length) {
           resolve(true);
         } else {
-          this.router.navigate(['dashboard/contas']);
-          this._snackBar.open('Cadastre uma conta para continuar', 'Fechar', {
+          this._snackBar.open('Cadastre uma conta para começar', 'Fechar', {
             duration: 5000,
           });
-          this.adicionarConta(route);
           reject();
         }
       }

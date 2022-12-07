@@ -24,8 +24,8 @@
       </button>
     </mat-menu>
 
-    <ng-container *ngIf="origin !== 'home'">
-      <div style="display: flex; align-items: center; gap: 10px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <ng-container *ngIf="origin !== 'home'">
         <mat-slide-toggle
           class="toggle"
           [(ngModel)]="filtro"
@@ -52,8 +52,32 @@
         >
           <mat-icon>cached</mat-icon>
         </button>
-      </div>
-    </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="origin === 'home' && tipoOperacao === 'Receita'">
+        <button
+          (click)="adicionarReceita()"
+          mat-mini-fab
+          color="primary"
+          matTooltip="Adicionar Receita"
+          style="background-color: rgb(53, 174, 150);"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="origin === 'home' && tipoOperacao === 'Despesa'">
+        <button
+          (click)="adicionarDespesa()"
+          mat-mini-fab
+          color="primary"
+          matTooltip="Adicionar Despesa"
+          style="background-color: rgb(255, 96, 79);"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </ng-container>
+    </div>
   </div>
 
   <ul>

@@ -135,4 +135,40 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
         }
       });
   }
+
+  adicionarReceita() {
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        maxWidth: '90%',
+        autoFocus: true,
+        data: {
+          tipoOperacao: 'Receita',
+        },
+      })
+      .afterClosed()
+      .subscribe((r) => {
+        if (r) {
+          this.operacoesService.consolidarCarteira();
+        }
+      });
+  }
+
+  adicionarDespesa() {
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        maxWidth: '90%',
+        autoFocus: true,
+        data: {
+          tipoOperacao: 'Despesa',
+        },
+      })
+      .afterClosed()
+      .subscribe(async (r) => {
+        if (r) {
+          this.operacoesService.consolidarCarteira();
+        }
+      });
+  }
 }

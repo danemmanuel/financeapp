@@ -7,6 +7,7 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
 import { EChartsOption } from 'echarts';
+import { FormularioContaComponent } from '@finances-app-libs/conta-shared/src/lib/formulario-conta/formulario-conta.component';
 
 @Component({
   selector: 'finances-app-home-gestao-financeira',
@@ -121,15 +122,69 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.router.navigate([`dashboard/${rota}`]);
   }
 
+  adicionarConta() {
+    this.dialog
+      .open(FormularioContaComponent, {
+        width: '450px',
+        autoFocus: true,
+        data: {
+          tipoOperacao: 'Despesa',
+        },
+      })
+      .afterClosed()
+      .subscribe(async (r) => {
+        if (r) {
+          this.buscarContas();
+          this.loading = false;
+        }
+      });
+  }
+
+  adicionarReceita() {
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        maxWidth: '90%',
+        autoFocus: true,
+        data: {
+          tipoOperacao: 'Receita',
+        },
+      })
+      .afterClosed()
+      .subscribe((r) => {
+        if (r) {
+          this._operacoesService.consolidarCarteira();
+        }
+      });
+  }
+
+  adicionarDespesa() {
+    this.dialog
+      .open(FormularioOperacoesComponent, {
+        width: '450px',
+        maxWidth: '90%',
+        autoFocus: true,
+        data: {
+          tipoOperacao: 'Despesa',
+        },
+      })
+      .afterClosed()
+      .subscribe(async (r) => {
+        if (r) {
+          this._operacoesService.consolidarCarteira();
+        }
+      });
+  }
+
   calcularReceitasEsteMes() {
-    this.receitasEsteMes = this.receitasEmAberto.reduce(
+    this.receitasEsteMes = this.receitasTotal.reduce(
       (total, conta) => (total += conta.valor),
       0
     );
   }
 
   calcularDespesasEsteMes() {
-    this.despesasEsteMes = this.despesasEmAberto.reduce(
+    this.despesasEsteMes = this.despesasTotal.reduce(
       (total, conta) => (total += conta.valor),
       0
     );
