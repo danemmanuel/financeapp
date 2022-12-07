@@ -2,7 +2,7 @@
   <div
     class="conta"
     *ngFor="let conta of contas"
-    (click)="origin !== 'home' ? editarConta(conta) : null"
+    (click)="origin !== 'home' ? editarConta(conta) : editarConta(conta)"
   >
     <div class="content">
       <div class="imagem">

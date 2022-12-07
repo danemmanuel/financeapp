@@ -91,7 +91,11 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
     this.calcularDespesasEsteMes();
     this.configurarGraficoPorCategoria(this.despesasEmAberto);
     this.configurarGraficoPorCategoriaReceita(this.receitasEmAberto);
+  }
 
+  async buscarContas() {
+    this.contas = await this._contaService.buscarContas().toPromise();
+    this._contaService.setConta(this.contas);
   }
 
   configurarGraficoPorCategoria(operacoes) {
