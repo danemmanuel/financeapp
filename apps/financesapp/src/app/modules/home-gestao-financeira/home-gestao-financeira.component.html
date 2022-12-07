@@ -46,8 +46,77 @@
     </div>
 
     <ng-container *ngIf="!loading">
-      <div class="col-12">
-        <h1>Saldo das Contas</h1>
+      <div class="col-3">
+        <h1>
+          <span style="color: rgb(53, 174, 150);">Receitas</span> em aberto
+        </h1>
+        <mat-error *ngIf="!receitasEmAberto?.length">
+          Nenhuma receita em aberto este mês
+        </mat-error>
+        <div class="operacoes_content" *ngIf="receitasEmAberto?.length">
+          <finances-app-listar-operacoes
+            *ngIf="!loading"
+            [origin]="'home'"
+            [operacoes]="receitasEmAberto"
+            tipoOperacao="Receita"
+            (buscarOperacoes)="buscarDados()"
+            style="width: 100%;"
+          >
+          </finances-app-listar-operacoes>
+        </div>
+        <div
+          class="all"
+          *ngIf="receitasEmAberto?.length > 3"
+          routerLink="/dashboard/receitas"
+        >
+          exibir todas as receitas ({{ receitasEmAberto?.length }})
+        </div>
+      </div>
+
+      <!--    <div-->
+      <!--      class="col-3"-->
+      <!--      style="margin-top: 50px; border-right: 2px solid #212121;"-->
+      <!--    >-->
+      <!--      <ng-container *ngIf="graficoCategoriaReceita.series[0].data?.length">-->
+      <!--        <div-->
+      <!--          id="chart2"-->
+      <!--          echarts-->
+      <!--          [options]="graficoCategoriaReceita"-->
+      <!--          [theme]="'dark'"-->
+      <!--          class="demo-chart"-->
+      <!--        ></div>-->
+      <!--      </ng-container>-->
+      <!--    </div>-->
+
+      <div class="col-3">
+        <h1>
+          <span style="color: rgb(255, 96, 79);">Despesas</span> em aberto
+        </h1>
+        <mat-error *ngIf="!despesasEmAberto?.length">
+          Nenhuma despesa em aberto este mês
+        </mat-error>
+        <div class="operacoes_content" *ngIf="despesasEmAberto?.length">
+          <finances-app-listar-operacoes
+            *ngIf="!loading"
+            [origin]="'home'"
+            [operacoes]="despesasEmAberto"
+            tipoOperacao="Despesa"
+            (buscarOperacoes)="buscarDados()"
+            style="width: 100%;"
+          >
+          </finances-app-listar-operacoes>
+        </div>
+        <div
+          class="all"
+          *ngIf="despesasEmAberto?.length > 3"
+          routerLink="/dashboard/despesas"
+        >
+          exibir todas as despesas ({{ despesasEmAberto?.length }})
+        </div>
+      </div>
+
+      <div class="col-6">
+        <h1><span style="color: rgb(119 131 244);">Saldo</span> das Contas</h1>
         <finances-app-listar-contas
           style="width: 100%;"
           [contas]="contas"
@@ -55,82 +124,21 @@
         >
         </finances-app-listar-contas>
       </div>
+
+      <!--    <div class="col-3" style="margin-top: 50px;">-->
+      <!--      <ng-container *ngIf="graficoCategoria.series[0].data?.length">-->
+      <!--        <div-->
+      <!--          id="chart1"-->
+      <!--          echarts-->
+      <!--          [options]="graficoCategoria"-->
+      <!--          [theme]="'dark'"-->
+      <!--          class="demo-chart"-->
+      <!--        ></div>-->
+      <!--      </ng-container>-->
+      <!--    </div>-->
     </ng-container>
-
-    <div class="col-12">
-      <div style="margin-top: 50px;"></div>
-    </div>
-    <div class="col-6">
-      <div
-        class="operacoes_content"
-        *ngIf="!loading && receitasEmAberto?.length"
-      >
-        <h1>Receitas em aberto</h1>
-
-        <finances-app-listar-operacoes
-          *ngIf="!loading"
-          [origin]="'home'"
-          [operacoes]="receitasEmAberto"
-          tipoOperacao="Receita"
-          (buscarOperacoes)="buscarDados()"
-          style="width: 100%;"
-        >
-        </finances-app-listar-operacoes>
-      </div>
-    </div>
-
-    <div
-      class="col-6"
-      style="margin-top: 50px; border-right: 1px solid #212121;"
-    >
-      <ng-container *ngIf="graficoCategoriaReceita.series[0].data?.length">
-        <div
-          id="chart2"
-          echarts
-          [options]="graficoCategoriaReceita"
-          [theme]="'dark'"
-          class="demo-chart"
-        ></div>
-      </ng-container>
-    </div>
-
-    <div class="col-12">
-      <div style="margin-top: 50px;"></div>
-    </div>
-
-    <div class="col-6">
-      <div
-        class="operacoes_content"
-        *ngIf="!loading && despesasEmAberto?.length"
-      >
-        <h1>Despesas em aberto</h1>
-        <finances-app-listar-operacoes
-          *ngIf="!loading"
-          [origin]="'home'"
-          [operacoes]="despesasEmAberto"
-          tipoOperacao="Despesa"
-          (buscarOperacoes)="buscarDados()"
-          style="width: 100%;"
-        >
-        </finances-app-listar-operacoes>
-      </div>
-    </div>
-
-    <div
-      class="col-6"
-      style="margin-top: 50px; border-right: 1px solid #212121;"
-    >
-      <ng-container *ngIf="graficoCategoria.series[0].data?.length">
-        <div
-          id="chart1"
-          echarts
-          [options]="graficoCategoria"
-          [theme]="'dark'"
-          class="demo-chart"
-        ></div>
-      </ng-container>
-    </div>
   </div>
+
   <div class="col-6">
     <!--    <finances-app-indicativos-financeiros></finances-app-indicativos-financeiros>-->
   </div>

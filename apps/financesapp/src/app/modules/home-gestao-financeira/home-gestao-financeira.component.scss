@@ -19,8 +19,8 @@ h1 {
   font-weight: 500;
 }
 .operacoes_content {
-  max-height: 471px;
-  overflow-y: auto;
+  max-height: 400px;
+  overflow-y: hidden;
 }
 @media only screen and (min-width: 768px) {
   .saldo, .operacao {
@@ -28,16 +28,15 @@ h1 {
   }
 }
 @media only screen and (max-width: 768px) {
-  .col-6, .col-12 {
+  .col-6, .col-12, .col-3 {
     flex: 0 0 100%;
     max-width: 100%;
+    margin:20px 0;
   }
   .operacoes_content {
-    margin-top:30px;
     overflow-y: hidden;
   }
   .content {
-    margin-top:50px !important;
   }
   .header-home {
     flex-wrap: wrap;
@@ -48,4 +47,10 @@ h1 {
   .operacao {
     width:50% !important;
   }
+}
+
+.all {
+  text-align: center;
+  margin-top:10px;
+  cursor: pointer;
 }

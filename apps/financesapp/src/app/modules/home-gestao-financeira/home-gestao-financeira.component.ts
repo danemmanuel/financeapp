@@ -86,10 +86,12 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
       .filter((operacao) => {
         return !operacao.efetivado;
       });
+
     this.calcularReceitasEsteMes();
     this.calcularDespesasEsteMes();
     this.configurarGraficoPorCategoria(this.despesasEmAberto);
     this.configurarGraficoPorCategoriaReceita(this.receitasEmAberto);
+
   }
 
   configurarGraficoPorCategoria(operacoes) {
