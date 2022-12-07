@@ -177,17 +177,15 @@ export class HomeGestaoFinanceiraComponent implements OnInit, OnDestroy {
   }
 
   calcularReceitasEsteMes() {
-    this.receitasEsteMes = this.receitasTotal.reduce(
-      (total, conta) => (total += conta.valor),
-      0
-    );
+    this.receitasEsteMes = this._operacoesService
+      .calcularOperacoes(this.receitasTotal, this.mes, this.ano)
+      .reduce((total, conta) => (total += conta.valor), 0);
   }
 
   calcularDespesasEsteMes() {
-    this.despesasEsteMes = this.despesasTotal.reduce(
-      (total, conta) => (total += conta.valor),
-      0
-    );
+    this.despesasEsteMes = this._operacoesService
+      .calcularOperacoes(this.despesasTotal, this.mes, this.ano)
+      .reduce((total, conta) => (total += conta.valor), 0);
   }
 
   calcularSaldoContas() {
