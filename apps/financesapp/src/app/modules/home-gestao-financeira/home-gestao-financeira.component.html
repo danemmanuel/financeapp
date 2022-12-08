@@ -72,93 +72,94 @@
         </finances-app-listar-contas>
       </div>
 
-      <div class="col-4">
-        <h1>
-          <span style="color: rgb(53, 174, 150);">Receitas</span> em aberto
-        </h1>
+      <ng-container *ngIf="contas?.length">
+        <div class="col-4">
+          <h1>
+            <span style="color: rgb(53, 174, 150);">Receitas</span> em aberto
+          </h1>
 
-        <ng-container *ngIf="!receitasEmAberto?.length">
-          <span style="margin-right: 20px;"
-            >Cadastre uma receita para começar</span
-          >
-          <button
-            (click)="adicionarReceita()"
-            mat-mini-fab
-            color="primary"
-            matTooltip="Adicionar Receita"
-            style="background-color: rgb(53, 174, 150);"
-          >
-            <mat-icon>add</mat-icon>
-          </button>
-        </ng-container>
-
-        <ng-container *ngIf="receitasEmAberto?.length">
-          <div class="operacoes_content">
-            <finances-app-listar-operacoes
-              *ngIf="!loading"
-              [origin]="'home'"
-              [operacoes]="receitasEmAberto"
-              tipoOperacao="Receita"
-              (buscarOperacoes)="buscarDados()"
-              style="width: 100%;"
+          <ng-container *ngIf="!receitasEmAberto?.length">
+            <span style="margin-right: 20px;"
+              >Cadastre uma receita para começar</span
             >
-            </finances-app-listar-operacoes>
-          </div>
-
-          <div
-            class="all"
-            *ngIf="receitasEmAberto?.length > 3"
-            routerLink="/dashboard/receitas"
-            style="color: rgb(53, 174, 150);"
-          >
-            exibir todas as receitas ({{ receitasEmAberto?.length }})
-          </div>
-        </ng-container>
-      </div>
-
-      <div class="col-4">
-        <h1>
-          <span style="color: rgb(255, 96, 79);">Despesas</span> em aberto
-        </h1>
-
-        <ng-container *ngIf="!despesasEmAberto?.length">
-          <span style="margin-right: 20px;"
-            >Cadastre uma despesa para começar</span
-          >
-          <button
-            (click)="adicionarDespesa()"
-            mat-mini-fab
-            color="primary"
-            matTooltip="Adicionar Despesa"
-            style="background-color: rgb(255, 96, 79);"
-          >
-            <mat-icon>add</mat-icon>
-          </button>
-        </ng-container>
-
-        <ng-container *ngIf="despesasEmAberto?.length">
-          <div class="operacoes_content">
-            <finances-app-listar-operacoes
-              *ngIf="!loading"
-              [origin]="'home'"
-              [operacoes]="despesasEmAberto"
-              tipoOperacao="Despesa"
-              (buscarOperacoes)="buscarDados()"
-              style="width: 100%;"
+            <button
+              (click)="adicionarReceita()"
+              mat-mini-fab
+              color="primary"
+              matTooltip="Adicionar Receita"
+              style="background-color: rgb(53, 174, 150);"
             >
-            </finances-app-listar-operacoes>
-          </div>
-          <div
-            class="all"
-            *ngIf="despesasEmAberto?.length > 3"
-            routerLink="/dashboard/despesas"
-            style="color: rgb(255, 96, 79);"
-          >
-            exibir todas as despesas ({{ despesasEmAberto?.length }})
-          </div>
-        </ng-container>
-      </div>
+              <mat-icon>add</mat-icon>
+            </button>
+          </ng-container>
 
+          <ng-container *ngIf="receitasEmAberto?.length">
+            <div class="operacoes_content">
+              <finances-app-listar-operacoes
+                *ngIf="!loading"
+                [origin]="'home'"
+                [operacoes]="receitasEmAberto"
+                tipoOperacao="Receita"
+                (buscarOperacoes)="buscarDados()"
+                style="width: 100%;"
+              >
+              </finances-app-listar-operacoes>
+            </div>
+
+            <div
+              class="all"
+              *ngIf="receitasEmAberto?.length > 3"
+              routerLink="/dashboard/receitas"
+              style="color: rgb(53, 174, 150);"
+            >
+              exibir todas as receitas ({{ receitasEmAberto?.length }})
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="col-4">
+          <h1>
+            <span style="color: rgb(255, 96, 79);">Despesas</span> em aberto
+          </h1>
+
+          <ng-container *ngIf="!despesasEmAberto?.length">
+            <span style="margin-right: 20px;"
+              >Cadastre uma despesa para começar</span
+            >
+            <button
+              (click)="adicionarDespesa()"
+              mat-mini-fab
+              color="primary"
+              matTooltip="Adicionar Despesa"
+              style="background-color: rgb(255, 96, 79);"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="despesasEmAberto?.length">
+            <div class="operacoes_content">
+              <finances-app-listar-operacoes
+                *ngIf="!loading"
+                [origin]="'home'"
+                [operacoes]="despesasEmAberto"
+                tipoOperacao="Despesa"
+                (buscarOperacoes)="buscarDados()"
+                style="width: 100%;"
+              >
+              </finances-app-listar-operacoes>
+            </div>
+            <div
+              class="all"
+              *ngIf="despesasEmAberto?.length > 3"
+              routerLink="/dashboard/despesas"
+              style="color: rgb(255, 96, 79);"
+            >
+              exibir todas as despesas ({{ despesasEmAberto?.length }})
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
       <!--    <div class="col-3" style="margin-top: 50px;">-->
       <!--      <ng-container *ngIf="graficoCategoria.series[0].data?.length">-->
       <!--        <div-->
