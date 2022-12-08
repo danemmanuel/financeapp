@@ -98,6 +98,8 @@
               <finances-app-listar-operacoes
                 *ngIf="!loading"
                 [origin]="'home'"
+                [mes]="mes"
+                [ano]="ano"
                 [operacoes]="receitasEmAberto"
                 tipoOperacao="Receita"
                 (buscarOperacoes)="buscarDados()"
@@ -142,6 +144,8 @@
               <finances-app-listar-operacoes
                 *ngIf="!loading"
                 [origin]="'home'"
+                [mes]="mes"
+                [ano]="ano"
                 [operacoes]="despesasEmAberto"
                 tipoOperacao="Despesa"
                 (buscarOperacoes)="buscarDados()"
