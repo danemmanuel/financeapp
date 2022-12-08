@@ -6,7 +6,6 @@
   transition: all 0.3s;
   display: flex;
   align-items: center;
-  justify-content: center;
 
   @media only screen and (max-width: 768px) {
     h1 {
@@ -92,6 +91,7 @@ p {
     margin: 0 !important;
     box-shadow: none !important;
     background: transparent;
+    justify-content: center;
   }
   .icon {
     margin: 0 !important;

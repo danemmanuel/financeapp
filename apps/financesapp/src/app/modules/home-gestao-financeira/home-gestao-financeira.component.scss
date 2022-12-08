@@ -1,5 +1,11 @@
+
 .content_home {
   padding: 0 50px;
+
+  ::ng-deep .card_saldo_contas {
+    background: transparent !important;
+  }
+
   .main_header {
     margin-bottom: 20px;
   }
@@ -24,7 +30,7 @@ h1 {
 }
 @media only screen and (min-width: 768px) {
   .saldo, .operacao {
-    max-width: 33%;
+    width: 33%;
   }
 }
 @media only screen and (max-width: 768px) {
