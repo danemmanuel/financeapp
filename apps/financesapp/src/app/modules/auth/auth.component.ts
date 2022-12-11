@@ -54,7 +54,7 @@ export class AuthComponent implements OnInit {
   }
 
   loginGoogle() {
-    window.open(`https://api.minhasfinancas.digital/auth`, '_self');
+    window.open(`https://financess-back.herokuapp.com/auth`, '_self');
   }
 
   async login() {

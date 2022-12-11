@@ -1,5 +1,5 @@
 import { API } from './urls';
-const GATEWAY = 'https://api.minhasfinancas.digital';
+const GATEWAY = 'https://financess-back.herokuapp.com';
 
 
 export const environment = {
