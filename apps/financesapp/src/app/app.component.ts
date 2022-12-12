@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
       }
       console.log(params);
       localStorage.setItem('token', JSON.stringify(params.jwt));
+      this._operacoesService.consolidarCarteira();
+
       this.router.navigate(['dashboard/home']);
     });
 
