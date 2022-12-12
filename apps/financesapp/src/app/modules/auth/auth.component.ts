@@ -42,7 +42,6 @@ export class AuthComponent implements OnInit {
     });
     if (this._authService.isAuthenticated()) {
       this.router.navigate(['dashboard/home']);
-      window.location.reload();
     }
     this.montarFormulario();
   }
