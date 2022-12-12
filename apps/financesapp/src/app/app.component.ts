@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
     }, 2000);
     if (!this.token) return;
     setTimeout(() => {
-
+      this._operacoesService.consolidarCarteira();
     }, 1000);
   }
 
