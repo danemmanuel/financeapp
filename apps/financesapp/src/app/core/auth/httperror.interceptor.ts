@@ -66,11 +66,11 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               break;
           }
           console.log(errorMsg, title);
-          // Swal.fire({
-          //   title: title,
-          //   text: errorMsg,
-          //   icon,
-          // });
+          Swal.fire({
+            title: title,
+            text: errorMsg,
+            icon,
+          });
         } else {
           console.error('some thing else happened');
         }

@@ -20,6 +20,8 @@
 
   & a {
     color: #b7b7b7;
+    min-width: inherit;
+    padding: 0 0 10px;
 
   }
   & a.active {

@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
   }
   async ngOnInit() {
     this.token = localStorage?.getItem('token');
+    if (!this.token) return;
     setTimeout(()=>{
       this.buscarContas();
       this.buscarReceitas();

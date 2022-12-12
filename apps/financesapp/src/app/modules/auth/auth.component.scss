@@ -88,7 +88,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  padding: 1rem;
 
   @include transition;
 
@@ -118,7 +118,7 @@ svg {
 }
 .seperator {
   position: relative;
-
+  margin:10px 0;
   &:before {
     content: '';
     position: absolute;
@@ -136,7 +136,6 @@ svg {
     position: relative;
     z-index: 2;
     color: var(--color-mid-gray);
-    margin-bottom: 0.5rem;
   }
 }
 .form-group {
@@ -237,7 +236,7 @@ label {
   align-items: center;
   justify-content: center;
   color: var(--color-white);
-  padding: 3rem;
+  padding: 1rem;
 
   svg {
     margin: auto;
@@ -313,16 +312,20 @@ label {
     grid-template-columns: 1fr;
   }
   .right {
-    display: none;
+    text-align: left;
+    padding: 1rem;
+    p {
+      margin: inherit;
+    }
   }
 }
 
 .auth {
-  color:#000;
+  color: #000;
   position: fixed;
   left: 0;
   top: 0;
   background: #fff;
-  width:100%;
+  width: 100%;
   z-index: 999;
 }
