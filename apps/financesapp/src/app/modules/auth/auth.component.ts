@@ -38,9 +38,11 @@ export class AuthComponent implements OnInit {
       console.log(params);
       localStorage.setItem('token', JSON.stringify(params.jwt));
       this.router.navigate(['dashboard/home']);
+      window.location.reload();
     });
     if (this._authService.isAuthenticated()) {
       this.router.navigate(['dashboard/home']);
+      window.location.reload();
     }
     this.montarFormulario();
   }
