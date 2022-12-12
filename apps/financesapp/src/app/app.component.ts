@@ -48,13 +48,10 @@ export class AppComponent implements OnInit {
     });
   }
   async ngOnInit() {
-    setInterval(() => {
-      this.token = localStorage?.getItem('token');
-    }, 2000);
+    this.token = localStorage?.getItem('token');
     if (!this.token) return;
-    setTimeout(() => {
-      this._operacoesService.consolidarCarteira();
-    }, 1000);
+    this._operacoesService.consolidarCarteira();
+
   }
 
 

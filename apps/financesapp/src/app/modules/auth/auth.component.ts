@@ -31,8 +31,6 @@ export class AuthComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.router);
-    console.log(this.route);
     this.route.params.subscribe((params) => {
       if (!params.jwt) {
         return;
