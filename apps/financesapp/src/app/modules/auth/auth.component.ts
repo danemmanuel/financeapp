@@ -16,6 +16,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AuthComponent implements OnInit {
   formLogin: FormGroup;
   isCadastro = false;
+  private contas: any;
+  private despesas: any;
+  private receitas: any;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -24,23 +28,23 @@ export class AuthComponent implements OnInit {
     private _contaService: ContasService,
     private _operacoesService: OperacoesService,
     private _snackBar: MatSnackBar
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     console.log(this.router);
-    console.log(this.route)
+    console.log(this.route);
     this.route.params.subscribe((params) => {
       if (!params.jwt) {
         return;
       }
       console.log(params);
       localStorage.setItem('token', JSON.stringify(params.jwt));
+      this._operacoesService.consolidarCarteira();
       this.router.navigate(['dashboard/home']);
-      window.location.reload();
     });
     if (this._authService.isAuthenticated()) {
+      this._operacoesService.consolidarCarteira();
+
       this.router.navigate(['dashboard/home']);
     }
     this.montarFormulario();
