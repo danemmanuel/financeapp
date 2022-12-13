@@ -90,16 +90,32 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
   }
 
   filtroChange() {
-    this.operacoesFiltradas = this.operacoes.filter((operacao) => {
-      return operacao.efetivado === !this.filtro;
-    });
-    if (this.categoriaSelecionada) {
+    if (!this.filtro) {
       this.operacoesFiltradas = this.operacoes.filter((operacao) => {
-        return (
-          operacao.efetivado === !this.filtro &&
-          operacao.categoria?.descricao === this.categoriaSelecionada?.descricao
-        );
+        return operacao.efetivado === false;
       });
+
+      if (this.categoriaSelecionada) {
+        this.operacoesFiltradas = this.operacoesFiltradas.filter((operacao) => {
+          return (
+            operacao.categoria?.descricao ===
+            this.categoriaSelecionada?.descricao
+          );
+        });
+      }
+    } else {
+      this.operacoesFiltradas = this.operacoes;
+      if (this.categoriaSelecionada) {
+        this.operacoesFiltradas = this.operacoesFiltradas.filter((operacao) => {
+          return (
+            operacao.categoria?.descricao ===
+            this.categoriaSelecionada?.descricao
+          );
+        });
+        return;
+      }
+
+      this.operacoesFiltradas = this.operacoes;
     }
   }
 
