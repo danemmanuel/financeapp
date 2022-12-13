@@ -54,6 +54,12 @@ export class AuthComponent implements OnInit {
       senha: this.fb.control(null, [Validators.required]),
       nome: this.fb.control(null, []),
     });
+
+    this.formLogin.get('email').valueChanges.subscribe((r) => {
+      this.formLogin
+        .get('email')
+        .setValue(r.toLowerCase(), { emitEvent: false });
+    });
   }
 
   loginGoogle() {
