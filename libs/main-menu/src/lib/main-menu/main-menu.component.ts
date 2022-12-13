@@ -13,4 +13,9 @@ export class MainMenuComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  logout() {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
 }
