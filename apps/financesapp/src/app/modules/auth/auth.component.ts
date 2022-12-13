@@ -66,6 +66,10 @@ export class AuthComponent implements OnInit {
     window.open(`https://financess-back.herokuapp.com/auth`, '_self');
   }
 
+  loginFacebook() {
+    window.open(`https://financess-back.herokuapp.com/auth/facebook`, '_self');
+  }
+
   async login() {
     if (this.formLogin.invalid) return;
 
