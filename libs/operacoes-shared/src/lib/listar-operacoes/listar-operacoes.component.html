@@ -105,13 +105,16 @@
           {{ operacao.categoria.descricao }}</span
         >
         <p class="data">
-          {{
-            operacao.fixa
-              ? (operacao.data | date: 'MM/yyyy')
-              : (operacao.data | date: 'dd/MM/yyyy')
-          }}
+          <ng-container *ngIf="!operacao.fixa">
+            {{
+              operacao.fixa
+                ? (operacao.data | date: 'MM/yyyy')
+                : (operacao.data | date: 'dd/MM/yyyy')
+            }}
+          </ng-container>
+
           <ng-container *ngIf="operacao.fixa">
-            | FIXA
+            FIXA
             <ng-container *ngIf="operacao.repetirPor">
               | repetindo por {{ operacao.repetirPor }} meses
             </ng-container>
