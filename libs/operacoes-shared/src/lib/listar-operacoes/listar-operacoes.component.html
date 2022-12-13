@@ -33,7 +33,7 @@
           (toggleChange)="filtroChange()"
         >
           <span style="color: #fff;">
-           Pendentes
+            Pendentes
           </span>
         </mat-slide-toggle>
         <button
@@ -110,7 +110,12 @@
               ? (operacao.data | date: 'MM/yyyy')
               : (operacao.data | date: 'dd/MM/yyyy')
           }}
-          {{ operacao.fixa ? '| FIXA' : '' }}
+          <ng-container *ngIf="operacao.fixa">
+            | FIXA
+            <ng-container *ngIf="operacao.repetirPor">
+              | repetindo por {{ operacao.repetirPor }} meses
+            </ng-container>
+          </ng-container>
         </p>
       </div>
 
