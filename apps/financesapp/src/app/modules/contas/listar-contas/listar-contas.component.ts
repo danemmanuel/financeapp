@@ -17,7 +17,7 @@ export class ListarContasComponent implements OnInit {
 
   editarConta(conta) {
     this.dialog
-      .open(FormularioContaComponent, { data: { conta } })
+      .open(FormularioContaComponent,  { maxWidth: '400px', data: { conta } })
       .afterClosed()
       .subscribe((r) => {
         if (r) {

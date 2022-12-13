@@ -126,7 +126,7 @@ export class ContasComponent implements OnInit, OnDestroy {
   adicionarConta() {
     this.dialog
       .open(FormularioContaComponent, {
-        width: '450px',
+        maxWidth: '400px',
         autoFocus: true,
         data: {
           tipoOperacao: 'Despesa',
