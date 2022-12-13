@@ -72,6 +72,7 @@ export class FormularioContaComponent implements OnInit {
   @ViewChild('instituicaoInput') instituicaoInput: ElementRef<HTMLInputElement>;
   usAmount = 0;
   isMobile: boolean;
+  loading: boolean;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -113,7 +114,7 @@ export class FormularioContaComponent implements OnInit {
 
   async enviarFormulario() {
     if (this.formConta.invalid) return;
-
+    this.loading = true;
     let formValue = this.formConta.value;
     let objSalvar = {
       _id: this.data.conta?._id,
@@ -131,6 +132,7 @@ export class FormularioContaComponent implements OnInit {
         panelClass: 'my-custom-snackbar',
         duration: 2000,
       });
+
     } else {
       await this._contaService.cadastrarConta(objSalvar).toPromise();
       this.dialogRef.close(true);

@@ -63,6 +63,7 @@
     form="formConta"
     type="submit"
     color="primary"
+    [disabled]="loading"
     (click)="enviarFormulario()"
   >
     {{ data.conta ? 'Atualizar' : 'Adicionar' }}
