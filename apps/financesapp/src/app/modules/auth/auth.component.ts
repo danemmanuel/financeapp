@@ -70,11 +70,18 @@ export class AuthComponent implements OnInit {
           password: this.formLogin.get('senha')?.value,
           name: this.formLogin.get(`nome`)?.value,
         })
-        .subscribe((r) => {
-          localStorage.setItem('token', JSON.stringify(r.access_token));
-          this.router.navigate(['dashboard/home']);
-          window.location.reload();
-        });
+        .subscribe(
+          (r) => {
+            localStorage.setItem('token', JSON.stringify(r.access_token));
+            this.router.navigate(['dashboard/home']);
+            window.location.reload();
+          },
+          (error) => {
+            this._snackBar.open('Usuário já utilizado, tente outro', '', {
+              duration: 5000,
+            });
+          }
+        );
     } else {
       this._authService
         .login({
