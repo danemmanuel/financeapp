@@ -18,6 +18,7 @@
       color="warn"
       (click)="deletarOperacao()"
       *ngIf="operacao"
+      [disabled]="loading"
       matTooltip="Excluir {{ tipoOperacao }}"
     >
       <mat-icon>delete</mat-icon>
@@ -42,7 +43,7 @@
           </mat-error>
         </mat-form-field>
 
-        <div class="col-6" >
+        <div class="col-6">
           <section class="example-section">
             <mat-slide-toggle
               formControlName="efetivado"
@@ -181,6 +182,7 @@
   <button
     form="formOperacao"
     mat-button
+    [disabled]="loading"
     (click)="operacao ? atualizarOperacao() : salvarOperacao()"
     type="submit"
     [color]="tipoOperacao === 'Receita' ? 'primary' : 'warn'"

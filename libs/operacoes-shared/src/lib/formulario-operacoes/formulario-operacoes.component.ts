@@ -74,6 +74,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
 
   async salvarOperacao() {
     if (this.formOperacao.invalid) return;
+    this.loading = true;
     try {
       if (this.tipoOperacao === 'Receita') {
         await this._operacoesService
@@ -242,6 +243,7 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   }
 
   async deletarOperacao() {
+    this.loading = true;
     if (this.tipoOperacao === 'Receita') {
       await this._operacoesService.deletarReceita(this.operacao).toPromise();
     } else {
