@@ -30,4 +30,10 @@ export class ContasService {
   buscarContas() {
     return this.http.get<any>(`${environment.apis.conta.conta}`);
   }
+
+  deletarConta(conta: any) {
+    return this.http.delete<any>(
+      `${environment.apis.conta.conta}/${conta._id}`
+    );
+  }
 }

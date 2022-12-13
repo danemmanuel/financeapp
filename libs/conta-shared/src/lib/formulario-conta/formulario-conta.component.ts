@@ -112,6 +112,15 @@ export class FormularioContaComponent implements OnInit {
     });
   }
 
+  async deletarConta() {
+    await this._contaService.deletarConta(this.data.conta).toPromise();
+    this._snackBar.open(`Conta removida com sucesso`, 'fechar', {
+      panelClass: 'my-custom-snackbar',
+      duration: 2000,
+    });
+    this.dialogRef.close(true);
+  }
+
   async enviarFormulario() {
     if (this.formConta.invalid) return;
     this.loading = true;
