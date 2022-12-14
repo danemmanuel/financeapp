@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { COMMA } from '@angular/cdk/keycodes';
 import { ContasService } from '../contas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 
 @Component({
   selector: 'finances-app-formulario-conta',
@@ -79,6 +80,7 @@ export class FormularioContaComponent implements OnInit {
     public dialogRef: MatDialogRef<FormularioContaComponent>,
     private fb: FormBuilder,
     private _contaService: ContasService,
+    private _operacoesService: OperacoesService,
     private _snackBar: MatSnackBar
   ) {}
 
@@ -114,6 +116,8 @@ export class FormularioContaComponent implements OnInit {
 
   async deletarConta() {
     await this._contaService.deletarConta(this.data.conta).toPromise();
+    this._operacoesService.consolidarCarteira();
+
     this._snackBar.open(`Conta removida com sucesso`, 'fechar', {
       panelClass: 'my-custom-snackbar',
       duration: 2000,
@@ -141,7 +145,6 @@ export class FormularioContaComponent implements OnInit {
         panelClass: 'my-custom-snackbar',
         duration: 2000,
       });
-
     } else {
       await this._contaService.cadastrarConta(objSalvar).toPromise();
       this.dialogRef.close(true);
