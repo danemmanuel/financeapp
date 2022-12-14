@@ -115,9 +115,7 @@ export class OperacoesService {
       .map((operacao) => {
         return {
           ...operacao,
-          data: `${ano}-${mes}-${
-            operacao.fixa ? '01' : operacao.data.split('-')[2]
-          }`,
+          data: operacao.data,
         };
       });
   }

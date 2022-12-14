@@ -51,10 +51,29 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
     }
   }
 
+  monthDiff(dateFrom, dateTo) {
+    return (
+      dateTo.getMonth() -
+      dateFrom.getMonth() +
+      12 * (dateTo.getFullYear() - dateFrom.getFullYear())
+    );
+  }
+
   preencherOperacoes() {
+    const dataTo = new Date(`${this.mes}-01-${this.ano}`);
+
     this.operacoes = this.operacoes.map((operacao) => {
-      return { ...operacao, efetivado: !!operacao.efetivado };
+      const dateFrom = new Date(
+        `${operacao.data.split('-')[1]}-01-${operacao.data.split('-')[0]}`
+      );
+      console.log(dateFrom);
+      return {
+        ...operacao,
+        efetivado: !!operacao.efetivado,
+        dif: this.monthDiff(dateFrom, dataTo) + 1,
+      };
     });
+    console.log(this.operacoes);
 
     this.operacoesFiltradas = this.operacoes.sort(
       (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()
