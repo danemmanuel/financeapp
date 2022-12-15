@@ -6,6 +6,8 @@ import { AngularMaterialModule } from '@finances-app/angular-material';
 import { OperacoesSharedModule } from '@finances-app/operacoes-shared';
 import { ContaSharedModule } from '@finances-app/conta-shared';
 import { ContaRoutingModule } from '@finances-app/src/app/modules/conta/conta-routing.module';
+import {ReactiveFormsModule} from "@angular/forms";
+import {PipesModule} from "@finances-app/pipes";
 
 @NgModule({
   declarations: [ContaComponent],
@@ -16,6 +18,8 @@ import { ContaRoutingModule } from '@finances-app/src/app/modules/conta/conta-ro
     AngularMaterialModule,
     OperacoesSharedModule,
     ContaSharedModule,
+    ReactiveFormsModule,
+    PipesModule
   ],
   exports: [],
 })
