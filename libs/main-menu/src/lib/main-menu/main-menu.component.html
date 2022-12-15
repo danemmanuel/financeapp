@@ -35,13 +35,12 @@
           </mat-icon>
           Relatórios
         </li>
-        <!--
-        <li>
+        <li [routerLinkActive]="['active']" routerLink="dashboard/conta">
           <mat-icon>
-            settings
+            account_circle
           </mat-icon>
-          configurações
-        </li> -->
+          Conta
+        </li>
       </ul>
 
       <div class="footer_menu">
@@ -121,5 +120,15 @@
   >
     <mat-icon>pie_chart</mat-icon>
     <span class="bottom-nav__label">Relatórios</span>
+  </a>
+
+  <a
+    [routerLinkActive]="['active']"
+    routerLink="dashboard/conta"
+    class="bottom-nav__destination bottom-nav__destination--active"
+    href="#"
+  >
+    <mat-icon>account_circle</mat-icon>
+    <span class="bottom-nav__label">Conta</span>
   </a>
 </nav>

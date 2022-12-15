@@ -4,6 +4,7 @@ export const API = (GATEWAY: string) => {
     despesa: '/despesa',
     receita: '/receita',
     auth: '/auth',
+    user: '/user',
   };
 
   return {
@@ -19,6 +20,9 @@ export const API = (GATEWAY: string) => {
     auth: {
       signin: `${GATEWAY}${listaServicos.auth}/local/signin`,
       signup: `${GATEWAY}${listaServicos.auth}/local/signup`,
+    },
+    user: {
+      user: `${GATEWAY}${listaServicos.user}`,
     },
   };
 };

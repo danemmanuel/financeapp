@@ -72,6 +72,12 @@ export const routers: Routes = [
           ),
         canActivate: [ContasGuard],
       },
+      {
+        path: 'conta',
+        loadChildren: () =>
+          import('../modules/conta/conta.module').then((x) => x.ContaModule),
+        canActivate: [],
+      },
     ],
   },
 ];
