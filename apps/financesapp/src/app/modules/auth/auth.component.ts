@@ -7,6 +7,7 @@ import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.se
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import Swal from 'sweetalert2';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'finances-app-auth',
@@ -37,6 +38,7 @@ export class AuthComponent implements OnInit {
       }
       console.log(params);
       localStorage.setItem('token', JSON.stringify(params.jwt));
+      this._authService.setDadosUsuario(jwt_decode(localStorage?.getItem('token')))
       this._operacoesService.consolidarCarteira();
       this.router.navigate(['dashboard/home']);
     });
@@ -83,6 +85,7 @@ export class AuthComponent implements OnInit {
         .subscribe(
           (r) => {
             localStorage.setItem('token', JSON.stringify(r.access_token));
+            this._authService.setDadosUsuario(jwt_decode(localStorage?.getItem('token')))
             this.router.navigate(['dashboard/home']);
             window.location.reload();
           },
@@ -101,6 +104,7 @@ export class AuthComponent implements OnInit {
         .subscribe(
           (r) => {
             localStorage.setItem('token', JSON.stringify(r.access_token));
+            this._authService.setDadosUsuario(jwt_decode(localStorage?.getItem('token')))
             this.router.navigate(['dashboard/home']);
             window.location.reload();
           },

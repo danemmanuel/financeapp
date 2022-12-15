@@ -28,6 +28,8 @@ export class ContaComponent implements OnInit {
     this.formConta = this.fb.group({
       nome: this.fb.control(dadosConta.name),
       usuario: this.fb.control(dadosConta.email),
+      nascimento: this.fb.control(null),
+      cel: this.fb.control(null),
     });
     this.formConta.get('usuario').disable();
   }

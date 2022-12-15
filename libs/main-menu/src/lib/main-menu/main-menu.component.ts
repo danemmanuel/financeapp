@@ -1,16 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularMaterialModule } from '@finances-app/angular-material';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '@finances-app/src/app/core/auth/auth.service';
+import {JsonPipe} from "@angular/common";
 
 @Component({
   selector: 'finances-app-main-menu',
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.scss'],
-  imports: [AngularMaterialModule, RouterModule],
+  imports: [AngularMaterialModule, RouterModule, JsonPipe],
   standalone: true,
 })
 export class MainMenuComponent implements OnInit {
-  constructor() {}
+  dadosUsuario;
+
+  constructor(private authService: AuthService) {
+    this.authService.getDadosUsuario().subscribe((r) => {
+      console.log(r)
+      this.dadosUsuario = r;
+    });
+  }
 
   ngOnInit(): void {}
 

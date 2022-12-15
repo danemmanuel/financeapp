@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './core/auth/auth.service';
 import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.service';
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'finances-app-root',
@@ -46,13 +47,18 @@ export class AppComponent implements OnInit {
       if (!despesas) return;
       this.despesas = despesas;
     });
+    const token = jwt_decode(localStorage?.getItem('token'));
+    this._authService
+      .buscarConta(token['sub']).subscribe(r=>{
+        this._authService.setDadosUsuario(r._doc);
+    })
   }
   async ngOnInit() {
     this.token = localStorage?.getItem('token');
+    this._authService.setDadosUsuario(
+      jwt_decode(localStorage?.getItem('token'))
+    );
     if (!this.token) return;
     this._operacoesService.consolidarCarteira();
-
   }
-
-
 }
