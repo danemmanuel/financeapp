@@ -17,6 +17,7 @@ export class MainMenuComponent implements OnInit {
   constructor(private authService: AuthService) {
     this.authService.getDadosUsuario().subscribe((r) => {
       this.dadosUsuario = r;
+      console.log(r)
     });
   }
 

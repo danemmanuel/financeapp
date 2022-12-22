@@ -1,7 +1,10 @@
 <div class="main_menu">
   <div class="menu">
     <div class="content">
-      <div class="logo_menu">Bem vindo, {{ dadosUsuario?.name }} :)</div>
+      <div class="logo_menu">
+        Bem vindo,
+        {{ dadosUsuario?.name || dadosUsuario?.thirdPartyId?.firstName }} :)
+      </div>
       <ul>
         <li [routerLinkActive]="['active']" routerLink="dashboard/home">
           <mat-icon>
@@ -33,12 +36,12 @@
           </mat-icon>
           Relatórios
         </li>
-<!--        <li [routerLinkActive]="['active']" routerLink="dashboard/ajustes">-->
-<!--          <mat-icon>-->
-<!--            account_circle-->
-<!--          </mat-icon>-->
-<!--          Conta-->
-<!--        </li>-->
+        <!--        <li [routerLinkActive]="['active']" routerLink="dashboard/ajustes">-->
+        <!--          <mat-icon>-->
+        <!--            account_circle-->
+        <!--          </mat-icon>-->
+        <!--          Conta-->
+        <!--        </li>-->
       </ul>
 
       <div class="footer_menu">
@@ -117,13 +120,13 @@
     <span class="bottom-nav__label">Relatórios</span>
   </a>
 
-<!--  <a-->
-<!--    [routerLinkActive]="['active']"-->
-<!--    routerLink="dashboard/ajustes"-->
-<!--    class="bottom-nav__destination bottom-nav__destination&#45;&#45;active"-->
-<!--    href="#"-->
-<!--  >-->
-<!--    <mat-icon>account_circle</mat-icon>-->
-<!--    <span class="bottom-nav__label">Conta</span>-->
-<!--  </a>-->
+  <!--  <a-->
+  <!--    [routerLinkActive]="['active']"-->
+  <!--    routerLink="dashboard/ajustes"-->
+  <!--    class="bottom-nav__destination bottom-nav__destination&#45;&#45;active"-->
+  <!--    href="#"-->
+  <!--  >-->
+  <!--    <mat-icon>account_circle</mat-icon>-->
+  <!--    <span class="bottom-nav__label">Conta</span>-->
+  <!--  </a>-->
 </nav>
