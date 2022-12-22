@@ -38,13 +38,13 @@
       color="primary"
       class="transferir"
       matTooltip="Transferir Entre Contas"
-      style="background-color: #35ae96; margin-left:20px;"
+      style="background-color: #35ae96; margin-left: 20px;"
     >
       <mat-icon>cached</mat-icon>
     </button>
   </div>
 
-  <div class="content" style="width: 50%;">
+  <div class="content" style="{{ isMobile ? 'width: 100%' : 'width: 50%' }}">
     <h1>Contas</h1>
     <finances-app-listar-contas
       style="width: 100%;"

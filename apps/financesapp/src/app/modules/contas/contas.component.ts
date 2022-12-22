@@ -13,6 +13,7 @@ import { FormularioTransferenciaContaComponent } from '@finances-app-libs/conta-
   styleUrls: ['./contas.component.scss'],
 })
 export class ContasComponent implements OnInit, OnDestroy {
+  isMobile: boolean;
   contas: any = [];
   saldoAtual: any;
   loading: boolean;
@@ -56,6 +57,7 @@ export class ContasComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
+    this.isMobile = window.innerWidth < 768;
     this.loading = true;
 
     await this.calcularSaldoPrevisto();
