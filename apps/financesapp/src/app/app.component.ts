@@ -46,6 +46,7 @@ export class AppComponent implements OnInit {
       if (!despesas) return;
       this.despesas = despesas;
     });
+    if (!localStorage?.getItem('token')) return;
     const token = jwt_decode(localStorage?.getItem('token'));
     console.log(token);
     this._authService.setDadosUsuario(token);
