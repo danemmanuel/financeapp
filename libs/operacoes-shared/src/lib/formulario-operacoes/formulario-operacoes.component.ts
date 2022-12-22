@@ -14,6 +14,8 @@ import { ContasService } from '@finances-app-libs/conta-shared/src/lib/contas.se
 import * as moment from 'moment';
 import { OperacoesService } from '../operacoes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'finances-app-formulario-operacoes',
@@ -32,6 +34,9 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
   hoje = new Date();
   opened = 0;
   isMobile: boolean;
+  options: string[] = [];
+  filteredOptions: Observable<any[]>;
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     public dialogRef: MatDialogRef<FormularioOperacoesComponent>,
@@ -55,17 +60,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {}
 
-  updateUSAmount(event) {
-    this.usAmount = event.target.value;
-  }
-
-  onEnter() {}
-  onChange(event) {
-    this.formOperacao.get('valor')?.setValue(event);
-  }
-  onInputFocus() {}
-  onInputBlur() {}
-
   async buscarContas() {
     this.loading = true;
     this.contas = await this._contasService.buscarContas().toPromise();
@@ -87,10 +81,14 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       }
 
       this.dialogRef.close(true);
-      this._snackBar.open(`${this.tipoOperacao} adicionada com sucesso`, 'fechar', {
-        panelClass: 'my-custom-snackbar',
-        duration: 2000,
-      });
+      this._snackBar.open(
+        `${this.tipoOperacao} adicionada com sucesso`,
+        'fechar',
+        {
+          panelClass: 'my-custom-snackbar',
+          duration: 2000,
+        }
+      );
     } catch (e) {
       console.log(e);
     } finally {
@@ -112,10 +110,14 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       }
 
       this.dialogRef.close(true);
-      this._snackBar.open(`${this.tipoOperacao} atualizada com sucesso`, 'fechar', {
-        panelClass: 'my-custom-snackbar',
-        duration: 2000,
-      });
+      this._snackBar.open(
+        `${this.tipoOperacao} atualizada com sucesso`,
+        'fechar',
+        {
+          panelClass: 'my-custom-snackbar',
+          duration: 2000,
+        }
+      );
     } catch (e) {
       console.log(e);
     } finally {
@@ -200,6 +202,21 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
     return item1.descricao === item2.descricao;
   }
 
+  private _filter(name: string): any[] {
+    const filterValue = name.toLowerCase();
+
+    return this.options.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
+  }
+
+  removeDuplicado(array) {
+    return array?.filter(
+      (value, index, self) =>
+        index === self.findIndex((t) => t.toLowerCase() === value.toLowerCase())
+    );
+  }
+
   montarFormulario() {
     this.formOperacao = this.fb.group({
       valor: this.fb.control(null, [Validators.required]),
@@ -212,6 +229,18 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
       categoria: this.fb.control(null, [Validators.required]),
       conta: this.fb.control(null, [Validators.required]),
     });
+    this.options = this.data.operacoes?.map((r) => {
+      return r.descricao;
+    });
+    this.options = this.removeDuplicado(this.options)
+
+    this.filteredOptions = this.formOperacao.get('descricao').valueChanges.pipe(
+      startWith(''),
+      map((value) => {
+        const name = typeof value === 'string' ? value : value;
+        return name ? this._filter(name as string) : this.options.slice();
+      })
+    );
 
     if (this.data.tipoOperacao === 'Receita') {
       this.categorias = [

@@ -3,6 +3,7 @@
   border-radius: 5px;
   padding: 15px;
   color: #000;
+  align-items: center;
 }
 
 .content_contas {
@@ -49,6 +50,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .col-5, .col-6, .col-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
   .header {
     justify-content: space-between !important;
     padding: 0 15px;
@@ -85,5 +90,23 @@
     bottom: 150px;
     width: 55px;
     height: 55px;
+  }
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  margin-top:30px;
+  cursor: pointer;
+  color:rgb(255, 96, 79);
+  font-size: 13px;
+
+  mat-icon {
+    width:15px;
+    height: 15px;
+    font-size:15px;
+  }
+  span {
+    margin-right:10px;
   }
 }

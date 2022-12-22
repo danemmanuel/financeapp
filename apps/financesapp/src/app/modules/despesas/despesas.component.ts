@@ -126,6 +126,7 @@ export class DespesasComponent implements OnInit, OnDestroy {
         autoFocus: true,
         data: {
           tipoOperacao: 'Despesa',
+          operacoes: this.todasOperacoes,
         },
       })
       .afterClosed()

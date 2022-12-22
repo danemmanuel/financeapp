@@ -128,6 +128,7 @@ export class ReceitasComponent implements OnInit, OnDestroy {
         autoFocus: true,
         data: {
           tipoOperacao: 'Receita',
+          operacoes: this.todasOperacoes
         },
       })
       .afterClosed()

@@ -157,6 +157,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
         autoFocus: false,
         data: {
           tipoOperacao: this.tipoOperacao,
+          operacoes: this.operacoes,
           operacao: {
             receita,
           },

@@ -3,12 +3,13 @@
     <h1>Conta</h1>
   </div>
   <ng-container *ngIf="formConta">
+
     <form
       [formGroup]="formConta"
       autocomplete="off"
       class="formUsuario row col-6"
     >
-      <mat-form-field class="col-6">
+      <mat-form-field class="col-5">
         <input matInput formControlName="nome" placeholder="Nome" />
 
         <mat-error>
@@ -16,7 +17,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="col-6">
+      <mat-form-field class="col-5">
         <input matInput formControlName="usuario" placeholder="Usuário" />
 
         <mat-error>
@@ -24,29 +25,26 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="col-6">
-        <input
-          matInput
-          formControlName="nascimento"
-          placeholder="Data de Nascimento"
-        />
-
-        <mat-error>
-          {{ formConta.controls['nascimento']?.errors | errorKeys }}
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="col-6">
-        <input
-          matInput
-          formControlName="cel"
-          placeholder="Celular"
-        />
-
-        <mat-error>
-          {{ formConta.controls['cel']?.errors | errorKeys }}
-        </mat-error>
-      </mat-form-field>
+      <div class="col-2">
+        <button
+          mat-button
+          (click)="atualizarDados()"
+          type="submit"
+          color="primary"
+        >
+          Atualizar
+        </button>
+      </div>
     </form>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="logout" (click)="logout()">
+          <span> sair</span>
+          <mat-icon>input</mat-icon>
+        </div>
+      </div>
+
+    </div>
   </ng-container>
 </div>

@@ -58,7 +58,24 @@
         </div>
 
         <mat-form-field class="col-12">
-          <input formControlName="descricao" matInput placeholder="Descrição" />
+          <input
+            type="text"
+            placeholder="Descrição"
+            matInput
+            formControlName="descricao"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            [autoActiveFirstOption]="true"
+          >
+            <mat-option
+              *ngFor="let option of filteredOptions | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
 
           <mat-error>
             {{ formOperacao.controls['descricao']?.errors | errorKeys }}

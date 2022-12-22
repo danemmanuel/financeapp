@@ -48,10 +48,9 @@ export class AppComponent implements OnInit {
       this.despesas = despesas;
     });
     const token = jwt_decode(localStorage?.getItem('token'));
-    this._authService
-      .buscarConta(token['sub']).subscribe(r=>{
-        this._authService.setDadosUsuario(r._doc);
-    })
+    this._authService.buscarConta(token['sub']).subscribe((r) => {
+      this._authService.setDadosUsuario(r._doc);
+    });
   }
   async ngOnInit() {
     this.token = localStorage?.getItem('token');
