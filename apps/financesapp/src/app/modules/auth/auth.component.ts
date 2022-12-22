@@ -83,7 +83,9 @@ export class AuthComponent implements OnInit {
         })
         .subscribe(
           (r) => {
+
             localStorage.setItem('token', JSON.stringify(r.access_token));
+            if (!localStorage?.getItem('token')) return;
             this._authService.setDadosUsuario(jwt_decode(localStorage?.getItem('token')))
             this.router.navigate(['dashboard/home']);
             window.location.reload();
@@ -103,6 +105,7 @@ export class AuthComponent implements OnInit {
         .subscribe(
           (r) => {
             localStorage.setItem('token', JSON.stringify(r.access_token));
+            if (!localStorage?.getItem('token')) return;
             this._authService.setDadosUsuario(jwt_decode(localStorage?.getItem('token')))
             this.router.navigate(['dashboard/home']);
             window.location.reload();
