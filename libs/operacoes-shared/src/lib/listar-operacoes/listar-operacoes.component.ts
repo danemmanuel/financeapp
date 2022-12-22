@@ -178,6 +178,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
         autoFocus: true,
         data: {
           tipoOperacao: 'Receita',
+          operacoes: this.operacoes,
         },
       })
       .afterClosed()
@@ -196,6 +197,7 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
         autoFocus: true,
         data: {
           tipoOperacao: 'Despesa',
+          operacoes: this.operacoes,
         },
       })
       .afterClosed()
