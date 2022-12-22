@@ -90,7 +90,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
         }
       );
     } catch (e) {
-      console.log(e);
     } finally {
     }
   }
@@ -119,7 +118,6 @@ export class FormularioOperacoesComponent implements OnInit, AfterViewInit {
         }
       );
     } catch (e) {
-      console.log(e);
     } finally {
       this.loading = false;
     }

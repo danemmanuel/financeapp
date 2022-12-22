@@ -36,7 +36,6 @@ export class AuthComponent implements OnInit {
       if (!params.jwt) {
         return;
       }
-      console.log(params);
       localStorage.setItem('token', JSON.stringify(params.jwt));
       this._authService.setDadosUsuario(jwt_decode(localStorage?.getItem('token')))
       this._operacoesService.consolidarCarteira();

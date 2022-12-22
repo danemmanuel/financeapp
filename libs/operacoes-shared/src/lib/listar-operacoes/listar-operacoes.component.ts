@@ -66,14 +66,12 @@ export class ListarOperacoesComponent implements OnInit, OnChanges {
       const dateFrom = new Date(
         `${operacao.data.split('-')[1]}-01-${operacao.data.split('-')[0]}`
       );
-      console.log(dateFrom);
       return {
         ...operacao,
         efetivado: !!operacao.efetivado,
         dif: this.monthDiff(dateFrom, dataTo) + 1,
       };
     });
-    console.log(this.operacoes);
 
     this.operacoesFiltradas = this.operacoes.sort(
       (a, b) => new Date(a.data).getTime() - new Date(b.data).getTime()

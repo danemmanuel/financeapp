@@ -12,7 +12,6 @@ export class ContaComponent implements OnInit {
 
   constructor(private authService: AuthService, private fb: FormBuilder) {
     this.authService.getDadosUsuario().subscribe((dadosUsuario) => {
-      console.log(dadosUsuario);
       if (!dadosUsuario) return;
       this.montarFormUsuario(dadosUsuario);
     });

@@ -65,7 +65,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
               errorMsg = `Não foi possível encontrar a origem do erro`;
               break;
           }
-          console.log(errorMsg, title);
         } else {
           console.error('some thing else happened');
         }

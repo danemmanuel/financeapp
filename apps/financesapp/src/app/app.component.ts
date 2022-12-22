@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
       if (!params.jwt) {
         return;
       }
-      console.log(params);
       localStorage.setItem('token', JSON.stringify(params.jwt));
       this._operacoesService.consolidarCarteira();
 
