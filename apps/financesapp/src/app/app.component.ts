@@ -46,16 +46,13 @@ export class AppComponent implements OnInit {
       if (!despesas) return;
       this.despesas = despesas;
     });
-    if (!localStorage?.getItem('token')) return;
     const token = jwt_decode(localStorage?.getItem('token'));
+    console.log(token);
     this._authService.setDadosUsuario(token);
   }
   async ngOnInit() {
     this.token = localStorage?.getItem('token');
-    if (!this.token) {
-      this.router.navigate(['dashboard/home']);
-      return;
-    }
+    if (!this.token) return;
     this._authService.setDadosUsuario(
       jwt_decode(localStorage?.getItem('token'))
     );
