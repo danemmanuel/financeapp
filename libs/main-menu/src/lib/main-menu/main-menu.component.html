@@ -68,64 +68,77 @@
   </div>
 </div>
 
-<nav class="bottom-nav">
-  <a
-    [routerLinkActive]="['active']"
-    routerLink="dashboard/home"
-    class="bottom-nav__destination"
-    href="#"
-  >
-    <mat-icon>home</mat-icon>
-    <span class="bottom-nav__label">Home</span>
-  </a>
+<div class="main" [ngClass]="menuOpened ? 'opened' : 'closed'" *ngIf="isMobile">
+  <div class="menu">
+    <div
+      class="menu__item"
+      [routerLinkActive]="['is-active']"
+      routerLink="dashboard/home"
+      (click)="menuOpened = false"
+    >
+      <mat-icon>home</mat-icon>
+      <div class="menu__content">
+        <span class="menu__span">visão geral</span>
+      </div>
+    </div>
 
-  <a
-    [routerLinkActive]="['active']"
-    routerLink="dashboard/contas"
-    class="bottom-nav__destination bottom-nav__destination--active"
-    href="#"
-  >
-    <mat-icon>account_balance_wallet</mat-icon>
-    <span class="bottom-nav__label">Contas</span>
-  </a>
+    <div
+      (click)="menuOpened = false"
+      class="menu__item"
+      [routerLinkActive]="['is-active']"
+      routerLink="dashboard/contas"
+    >
+      <mat-icon>account_balance_wallet</mat-icon>
+      <div class="menu__content">
+        <span class="menu__span">contas</span>
+      </div>
+    </div>
 
-  <a
-    [routerLinkActive]="['active']"
-    routerLink="dashboard/receitas"
-    class="bottom-nav__destination bottom-nav__destination--active"
-    href="#"
-  >
-    <mat-icon>arrow_upward</mat-icon>
-    <span class="bottom-nav__label">Receitas</span>
-  </a>
+    <div
+      (click)="menuOpened = false"
+      class="menu__item"
+      [routerLinkActive]="['is-active']"
+      routerLink="dashboard/receitas"
+    >
+      <mat-icon>arrow_upward</mat-icon>
+      <div class="menu__content">
+        <span class="menu__span">receitas</span>
+      </div>
+    </div>
 
-  <a
-    [routerLinkActive]="['active']"
-    routerLink="dashboard/despesas"
-    class="bottom-nav__destination bottom-nav__destination--active"
-    href="#"
-  >
-    <mat-icon>arrow_downward</mat-icon>
-    <span class="bottom-nav__label">Despesas</span>
-  </a>
+    <div
+      (click)="menuOpened = false"
+      class="menu__item"
+      [routerLinkActive]="['is-active']"
+      routerLink="dashboard/despesas"
+    >
+      <mat-icon>arrow_downward</mat-icon>
+      <div class="menu__content">
+        <span class="menu__span">despesas</span>
+      </div>
+    </div>
 
-  <a
-    [routerLinkActive]="['active']"
-    routerLink="dashboard/relatorios"
-    class="bottom-nav__destination bottom-nav__destination--active"
-    href="#"
-  >
-    <mat-icon>pie_chart</mat-icon>
-    <span class="bottom-nav__label">Relatórios</span>
-  </a>
+    <div
+      (click)="menuOpened = false"
+      class="menu__item"
+      [routerLinkActive]="['is-active']"
+      routerLink="dashboard/relatorios"
+    >
+      <mat-icon>pie_chart</mat-icon>
+      <div class="menu__content">
+        <span class="menu__span">relatórios</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <!--  <a-->
-  <!--    [routerLinkActive]="['active']"-->
-  <!--    routerLink="dashboard/ajustes"-->
-  <!--    class="bottom-nav__destination bottom-nav__destination&#45;&#45;active"-->
-  <!--    href="#"-->
-  <!--  >-->
-  <!--    <mat-icon>account_circle</mat-icon>-->
-  <!--    <span class="bottom-nav__label">Conta</span>-->
-  <!--  </a>-->
-</nav>
+<button
+  *ngIf="isMobile"
+  (click)="openMenu()"
+  mat-mini-fab
+  color="primary"
+  class="add_operacao"
+  style="background-color: rgb(44 44 44);"
+>
+  <mat-icon>{{ menuOpened ? 'close' : 'menu' }}</mat-icon>
+</button>
