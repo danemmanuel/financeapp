@@ -1,7 +1,6 @@
 <h1 mat-dialog-title class="titulo_modal">
-
   <span style="font-weight: 500; color: rgb(50, 61, 164);">
-     {{ data.conta ? 'Editar' : 'Nova' }}
+    {{ data.conta ? 'Editar' : 'Nova' }}
 
     Conta
   </span>
@@ -43,6 +42,12 @@
             *ngFor="let instituicao of allInstituicoes"
             [value]="instituicao"
           >
+            <img
+              alt=""
+              class="example-option-img"
+              [src]="'/assets/' + instituicao.toLowerCase() + '.png'"
+              height="30"
+            />
             {{ instituicao }}
           </mat-option>
         </mat-select>

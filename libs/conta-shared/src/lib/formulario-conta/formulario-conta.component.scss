@@ -1,6 +1,25 @@
+::ng-deep .mat-option-text {
+  display: flex !important;
+  align-items: center;
+
+  img {
+    margin-right: 10px;
+    border-radius: 100px;
+  }
+}
 .titulo_modal {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .example-option-img {
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  [dir='rtl'] .example-option-img {
+    margin-right: 0;
+    margin-left: 8px;
+  }
 }
