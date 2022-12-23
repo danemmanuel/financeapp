@@ -11,7 +11,7 @@
     <ng-container
       *ngIf="contas.length && despesasTotal.length && receitasTotal.length"
     >
-      <div class="col-6">
+      <div class="col-12">
         <finances-app-receita-x-despesa
           [despesasTotal]="despesasTotal"
           [receitasTotal]="receitasTotal"
@@ -20,13 +20,13 @@
         ></finances-app-receita-x-despesa>
       </div>
 
-      <div class="col-6">
-        <finances-app-receita-x-despesa-individual
-          [contas]="contas"
-          [despesasTotal]="despesasTotal"
-          [receitasTotal]="receitasTotal"
-        ></finances-app-receita-x-despesa-individual>
-      </div>
+<!--      <div class="col-6">-->
+<!--        <finances-app-receita-x-despesa-individual-->
+<!--          [contas]="contas"-->
+<!--          [despesasTotal]="despesasTotal"-->
+<!--          [receitasTotal]="receitasTotal"-->
+<!--        ></finances-app-receita-x-despesa-individual>-->
+<!--      </div>-->
 
       <div class="col-4">
         <h3>

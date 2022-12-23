@@ -43,13 +43,13 @@
                   "with": "apps/financesapp/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": false,
+              "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
+              "vendorChunk": true,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
