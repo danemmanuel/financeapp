@@ -167,6 +167,12 @@
           <mat-label>Conta</mat-label>
           <mat-select formControlName="conta" [compareWith]="byId">
             <mat-option *ngFor="let conta of contas" [value]="conta">
+              <img
+                alt=""
+                class="example-option-img"
+                [src]="'/assets/' + conta.instituicao.toLowerCase() + '.png'"
+                height="30"
+              />
               {{ conta.instituicao }}
             </mat-option>
           </mat-select>

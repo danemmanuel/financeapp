@@ -1,3 +1,12 @@
+::ng-deep .mat-option-text {
+  display: flex !important;
+  align-items: center;
+
+  img {
+    margin-right: 10px;
+    border-radius: 100px;
+  }
+}
 .mat-chip-category {
   color: #fff;
 
