@@ -4,10 +4,24 @@
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
 
-    <div class="data"><b>{{mesAtual}}</b> de {{anoAtual}}</div>
+    <div class="data">
+      <b>{{ mesAtual }}</b> de {{ anoAtual }}
+    </div>
 
     <button mat-icon-button class="arrow_navigate" (click)="avancarMes()">
       <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="reset" *ngIf="checkMes()">
+    <button
+      matTooltip="Voltar ao mês atual"
+      mat-mini-fab
+      color="primary"
+      (click)="setMesAtual()"
+      style="background: #161616"
+    >
+      <mat-icon>cached</mat-icon>
     </button>
   </div>
 </div>
