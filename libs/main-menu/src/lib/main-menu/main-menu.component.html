@@ -70,6 +70,7 @@
 
 <div class="main" [ngClass]="menuOpened ? 'opened' : 'closed'" *ngIf="isMobile">
   <div class="menu">
+
     <div
       class="menu__item"
       [routerLinkActive]="['is-active']"
@@ -129,7 +130,26 @@
         <span class="menu__span">relatórios</span>
       </div>
     </div>
+
   </div>
+
+  <div class="footer_menumobile">
+    <span style="margin-right: 10px; padding-left: 5px;">v4.35</span>
+
+    <a
+      href="https://play.google.com/store/apps/details?id=com.minhasfinancasddvi.minhasfinanasdigitais"
+      target="_blank"
+    >
+
+    </a>
+
+    <div class="logout" (click)="logout()">
+      <span> sair</span>
+      <mat-icon>input</mat-icon>
+    </div>
+  </div>
+
+
 </div>
 
 <button
