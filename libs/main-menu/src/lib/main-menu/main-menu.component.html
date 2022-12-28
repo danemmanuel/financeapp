@@ -68,7 +68,7 @@
   </div>
 </div>
 
-<div id="phone-container">
+<div id="phone-container" *ngIf="isMobile">
   <div id="nav-container" [ngClass]="menuOpened ? 'active' : ''">
     <div id="nav" class="closed">
       <div class="nav-item" routerLink="dashboard/contas">
