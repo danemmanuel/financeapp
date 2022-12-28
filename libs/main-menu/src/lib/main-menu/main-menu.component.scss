@@ -118,11 +118,7 @@ $white: #ffffff;
   }
 }
 /**/
-.is-active {
-  background: darken($main, 5);
-  transition: 200ms;
-  border-radius: 20px;
-}
+
 
 .main_menu {
   border-right: 1px solid #343434;
@@ -271,11 +267,9 @@ $white: #ffffff;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        &#controller {
-          transform: rotate(0deg);
-        }
 
-        &:not(#controller) {
+
+        &:not(#controllesr) {
           transition: all 0.5s ease;
           position: absolute;
 
@@ -339,7 +333,6 @@ $white: #ffffff;
     mat-icon {
       width: 20px;
       opacity: 1;
-      transition: all 0.5s ease;
     }
   }
 
@@ -349,7 +342,7 @@ $white: #ffffff;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: #141414;
+    background-color: #1b1b1b;
     box-shadow: 0px 0px 10px 0px #0e0e0e;
     width: 50px;
     border-radius: 50%;
@@ -360,16 +353,7 @@ $white: #ffffff;
       justify-content: center;
 
       &#controller {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.25s ease;
-        z-index: 1;
-        background-color: #141414;
-        box-shadow: 0px 0px 10px 0px #0e0e0e;
-        height: 65px;
-        width: 65px;
-        border-radius: 50%;
+
 
         mat-icon {
         }
@@ -403,9 +387,21 @@ $white: #ffffff;
       }
 
       mat-icon {
-        transition: all 0.5s ease;
         width: 25px;
       }
     }
   }
+}
+
+.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+  z-index: 1;
+  background-color: #535353;
+  color: #fff;
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
 }

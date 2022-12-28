@@ -71,24 +71,26 @@
 <div id="phone-container" *ngIf="isMobile">
   <div id="nav-container" [ngClass]="menuOpened ? 'active' : ''">
     <div id="nav" class="closed">
-      <div class="nav-item" routerLink="dashboard/contas">
+      <div class="nav-item" routerLink="dashboard/contas" [routerLinkActive]="['is-active']">
         <mat-icon>account_balance_wallet</mat-icon>
         <span>contas</span>
       </div>
-      <div class="nav-item" routerLink="dashboard/receitas">
+      <div class="nav-item" routerLink="dashboard/receitas" [routerLinkActive]="['is-active']">
         <mat-icon>arrow_upward</mat-icon>
         <span>receitas</span>
       </div>
 
-      <div id="controller" routerLink="dashboard/home" class="nav-item">
+      <div id="controller" routerLink="dashboard/home" class="nav-item" [routerLinkActive]="['is-active']">
         <mat-icon>home</mat-icon>
+        <span>home</span>
+
       </div>
-      <div class="nav-item" routerLink="dashboard/despesas">
+      <div class="nav-item" routerLink="dashboard/despesas" [routerLinkActive]="['is-active']">
         <mat-icon>arrow_downward</mat-icon>
         <span>despesas</span>
       </div>
 
-      <div class="nav-item" routerLink="dashboard/relatorios">
+      <div class="nav-item" routerLink="dashboard/relatorios" [routerLinkActive]="['is-active']">
         <mat-icon>pie_chart</mat-icon>
         <span>relatorios</span>
       </div>
