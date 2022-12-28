@@ -68,97 +68,113 @@
   </div>
 </div>
 
-<div class="main" [ngClass]="menuOpened ? 'opened' : 'closed'" *ngIf="isMobile">
-  <div class="menu">
-
-    <div
-      class="menu__item"
-      [routerLinkActive]="['is-active']"
-      routerLink="dashboard/home"
-      (click)="menuOpened = false"
-    >
-      <mat-icon>home</mat-icon>
-      <div class="menu__content">
-        <span class="menu__span">visão geral</span>
+<div id="phone-container">
+  <div id="nav-container" [ngClass]="menuOpened ? 'active' : ''">
+    <div id="nav" class="closed">
+      <div class="nav-item" routerLink="dashboard/contas">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <span>contas</span>
       </div>
-    </div>
-
-    <div
-      (click)="menuOpened = false"
-      class="menu__item"
-      [routerLinkActive]="['is-active']"
-      routerLink="dashboard/contas"
-    >
-      <mat-icon>account_balance_wallet</mat-icon>
-      <div class="menu__content">
-        <span class="menu__span">contas</span>
+      <div class="nav-item" routerLink="dashboard/receitas">
+        <mat-icon>arrow_upward</mat-icon>
+        <span>receitas</span>
       </div>
-    </div>
 
-    <div
-      (click)="menuOpened = false"
-      class="menu__item"
-      [routerLinkActive]="['is-active']"
-      routerLink="dashboard/receitas"
-    >
-      <mat-icon>arrow_upward</mat-icon>
-      <div class="menu__content">
-        <span class="menu__span">receitas</span>
+      <div id="controller" routerLink="dashboard/home" class="nav-item">
+        <mat-icon>home</mat-icon>
       </div>
-    </div>
-
-    <div
-      (click)="menuOpened = false"
-      class="menu__item"
-      [routerLinkActive]="['is-active']"
-      routerLink="dashboard/despesas"
-    >
-      <mat-icon>arrow_downward</mat-icon>
-      <div class="menu__content">
-        <span class="menu__span">despesas</span>
+      <div class="nav-item" routerLink="dashboard/despesas">
+        <mat-icon>arrow_downward</mat-icon>
+        <span>despesas</span>
       </div>
-    </div>
 
-    <div
-      (click)="menuOpened = false"
-      class="menu__item"
-      [routerLinkActive]="['is-active']"
-      routerLink="dashboard/relatorios"
-    >
-      <mat-icon>pie_chart</mat-icon>
-      <div class="menu__content">
-        <span class="menu__span">relatórios</span>
+      <div class="nav-item" routerLink="dashboard/relatorios">
+        <mat-icon>pie_chart</mat-icon>
+        <span>relatorios</span>
       </div>
-    </div>
-
-  </div>
-
-  <div class="footer_menumobile">
-    <span style="margin-right: 10px; padding-left: 5px;">v4.35</span>
-
-    <a
-      href="https://play.google.com/store/apps/details?id=com.minhasfinancasddvi.minhasfinanasdigitais"
-      target="_blank"
-    >
-
-    </a>
-
-    <div class="logout" (click)="logout()">
-      <span> sair</span>
-      <mat-icon>input</mat-icon>
     </div>
   </div>
-
-
 </div>
 
-<button
-  *ngIf="isMobile"
-  (click)="openMenu()"
-  mat-mini-fab
-  color="primary"
-  class="add_operacao"
-  style="background-color: rgb(44 44 44);"
->
-  <mat-icon>{{ menuOpened ? 'close' : 'menu' }}</mat-icon>
-</button>
+<!--<div class="main" [ngClass]="menuOpened ? 'opened' : 'closed'" *ngIf="isMobile">-->
+<!--  <div class="menu">-->
+
+<!--    <div-->
+<!--      class="menu__item"-->
+<!--      [routerLinkActive]="['is-active']"-->
+<!--      routerLink="dashboard/home"-->
+<!--      (click)="menuOpened = false"-->
+<!--    >-->
+<!--      <mat-icon>home</mat-icon>-->
+<!--      <div class="menu__content">-->
+<!--        <span class="menu__span">visão geral</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div-->
+<!--      (click)="menuOpened = false"-->
+<!--      class="menu__item"-->
+<!--      [routerLinkActive]="['is-active']"-->
+<!--      routerLink="dashboard/contas"-->
+<!--    >-->
+<!--      <mat-icon>account_balance_wallet</mat-icon>-->
+<!--      <div class="menu__content">-->
+<!--        <span class="menu__span">contas</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div-->
+<!--      (click)="menuOpened = false"-->
+<!--      class="menu__item"-->
+<!--      [routerLinkActive]="['is-active']"-->
+<!--      routerLink="dashboard/receitas"-->
+<!--    >-->
+<!--      <mat-icon>arrow_upward</mat-icon>-->
+<!--      <div class="menu__content">-->
+<!--        <span class="menu__span">receitas</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div-->
+<!--      (click)="menuOpened = false"-->
+<!--      class="menu__item"-->
+<!--      [routerLinkActive]="['is-active']"-->
+<!--      routerLink="dashboard/despesas"-->
+<!--    >-->
+<!--      <mat-icon>arrow_downward</mat-icon>-->
+<!--      <div class="menu__content">-->
+<!--        <span class="menu__span">despesas</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div-->
+<!--      (click)="menuOpened = false"-->
+<!--      class="menu__item"-->
+<!--      [routerLinkActive]="['is-active']"-->
+<!--      routerLink="dashboard/relatorios"-->
+<!--    >-->
+<!--      <mat-icon>pie_chart</mat-icon>-->
+<!--      <div class="menu__content">-->
+<!--        <span class="menu__span">relatórios</span>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--  <div class="footer_menumobile">-->
+<!--    <span style="margin-right: 10px; padding-left: 5px;">v4.35</span>-->
+
+<!--    <a-->
+<!--      href="https://play.google.com/store/apps/details?id=com.minhasfinancasddvi.minhasfinanasdigitais"-->
+<!--      target="_blank"-->
+<!--    >-->
+
+<!--    </a>-->
+
+<!--    <div class="logout" (click)="logout()">-->
+<!--      <span> sair</span>-->
+<!--      <mat-icon>input</mat-icon>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->

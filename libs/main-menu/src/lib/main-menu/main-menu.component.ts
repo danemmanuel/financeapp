@@ -13,7 +13,7 @@ import {JsonPipe, NgClass, NgIf} from "@angular/common";
 })
 export class MainMenuComponent implements OnInit {
   dadosUsuario;
-  menuOpened = false;
+  menuOpened = true;
   isMobile = window.innerWidth < 768;
 
   constructor(private authService: AuthService) {
