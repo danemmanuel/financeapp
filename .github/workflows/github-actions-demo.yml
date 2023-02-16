@@ -7,7 +7,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      AWS_S3_BUCKET_NAME: minhasfinancas.digital
+      AWS_S3_BUCKET_NAME: minhasfinancasdigitais.com
     strategy:
       matrix:
         node-version: [18.x]
