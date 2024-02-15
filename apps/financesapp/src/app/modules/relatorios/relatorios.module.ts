@@ -8,6 +8,7 @@ import { RelatoriosComponent } from '@finances-app/src/app/modules/relatorios/re
 import { RelatoriosRoutingModule } from '@finances-app/src/app/modules/relatorios/relatorios-routing.module';
 import { ReceitaXDespesaComponent } from '@finances-app/src/app/modules/relatorios/receita-x-despesa/receita-x-despesa.component';
 import { ReceitaXDespesaIndividualComponent } from '@finances-app/src/app/modules/relatorios/receita-x-despesa-individual/receita-x-despesa-individual.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReceitaXDespesaIndividualComponent } from '@finances-app/src/app/module
     AngularMaterialModule,
     OperacoesSharedModule,
     RelatoriosRoutingModule,
+    ReactiveFormsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),

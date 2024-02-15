@@ -14,6 +14,7 @@ import { FormularioOperacoesComponent } from '@finances-app-libs/operacoes-share
 import { OperacoesService } from '@finances-app-libs/operacoes-shared/src/lib/operacoes.service';
 import { Subscription } from 'rxjs';
 import { EChartsOption } from 'echarts';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'finances-app-receita-x-despesa',
@@ -38,6 +39,8 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
   receitasEmAberto: any;
   graficoBanco: EChartsOption;
   saldoPrevisto: any;
+  xMeses = 13;
+  selectControl = new FormControl(12);
 
   constructor(
     private dialog: MatDialog,
@@ -58,6 +61,10 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
     this.loading = true;
     await this.calcularOperacoes();
     this.loading = false;
+    this.selectControl.valueChanges.subscribe((selectedValue) => {
+      this.xMeses = selectedValue;
+      this.configurarGrafico(this.xMeses + 1);
+    });
   }
 
   ngOnDestroy() {
@@ -77,7 +84,7 @@ export class ReceitaXDespesaComponent implements OnInit, OnDestroy {
       this.ano
     );
 
-    this.configurarGrafico();
+    this.configurarGrafico(this.xMeses);
   }
 
   configurarGrafico(xMeses = 7) {
